@@ -1,6 +1,6 @@
-﻿# Vuelta al menu en 365 platos - Desarrollo de soluciones moviles.
-
-Para cloar el proyecto:
+﻿# Vuelta al menu en 365 platos
+Desarrollo de soluciones moviles.
+Para clonar el proyecto:
 ```bash
 git clone https://github.com/AnabolicInc/VueltaAlMenu-DSM.git
 ```
