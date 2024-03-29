@@ -6,7 +6,7 @@ git clone https://github.com/AnabolicInc/VueltaAlMenu-DSM.git
 ```
 
 Posterior a clonar el repo siempre, se debe tener en cuenta que se debe ejecutar el siguiento comando para instalar los modulos:
-`nmp install`
+`npm install`
 
 ## Comandos expo
 
