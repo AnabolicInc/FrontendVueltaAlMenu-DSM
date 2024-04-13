@@ -36,10 +36,7 @@ Para instalar las dependencias de Lottie (Frontend)
 ```bash
 npm i lottie-react-native
 ```
-Para instalar las depependias de Vector Icons (Frontend)
-```bash
-npm i --save dev @types/react-native-vector-icons
-```
+
 
 
 
