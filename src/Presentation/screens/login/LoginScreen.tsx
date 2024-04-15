@@ -18,7 +18,7 @@ export default function LoginScreen() {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
 
-  console.log(LOCAL_HOST);
+  //console.log(LOCAL_HOST);
 
   return (
     
