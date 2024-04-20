@@ -2,88 +2,100 @@ import { StyleSheet } from "react-native";
 
 
 const LoginStyles = StyleSheet.create(
-    {loginImage: {
+
+    {
+
+      loginContainer: {
+        flex: 1,
+        alignContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#0C1013',
+      },
+
+      loginImage: {
+        backgroundColor: '#0C1013',
+        position: 'absolute',
+        top: "-10%",
+        left: "-30%",
         width: 350,
         height: 350,
-        position: 'absolute',
-        top: -380,
-        left: -300,
-        opacity: 0.7
+        opacity: 0.8
         
     },
 
-    loginContainer: {
-      flex:0,
-      alignContent: 'center',
-      alignItems: 'center',
-    },
+      loginText: {
+        position: 'absolute',
+        top: "35%",
+        color: 'white',
+        fontFamily: 'Poppins',
+        fontSize: 20,
+        textAlign: 'center',
+        marginBottom: 20,
 
-    loginText: {
-      color: 'white',
-      fontSize: 20,
-      textAlign: 'center',
-      marginBottom: 20,
-      fontFamily: 'Poppins',
-    },
+      },
 
-    subContainer: {
-      backgroundColor: 'white',
-      width: 200,
-      alignContent: 'center',
-      alignItems: 'center',
-    },
 
-    emailInputContainer: {
-      backgroundColor: 'white',
-      fontFamily: 'Poppins',
-      width: 250,
-      height: 40,
-      position: 'absolute',
-      top: 0,
-      left: -20,
-      borderRadius: 10,
-    },
+      emailInputContainer: {
+        position: 'absolute',
+        top: "50%",
+        left: "15%",
+        width: 250,
+        height: 40,
+        backgroundColor: 'white',
+        fontFamily: 'Poppins',
+        borderRadius: 10,
+      },
 
-    passwordInputContainer: {
-      backgroundColor: 'white',
-      fontFamily: 'Poppins',
-      width: 250,
-      height: 40,
-      position: 'absolute',
-      top: 50,
-      left: -20,
-      borderRadius: 10,
-    },
+      passwordInputContainer: {
+        position: 'absolute',
+        top: "57%",
+        left: "15%",
+        backgroundColor: 'white',
+        fontFamily: 'Poppins',
+        width: 250,
+        height: 40,
+        borderRadius: 10,
+      },
 
-    buttomLogin: {
-      fontFamily: 'Poppins',
-      borderRadius: 10,
-      backgroundColor: '#D17842',
-      width: 150,
-      height: 40,
-      position: 'absolute',
-      top: 160,
-      left: 35,
-    },
+      buttomLogin: {
+        position: 'absolute',
+        top: "65%",
+        left: "30%",
+        backgroundColor: '#D17842',
+        borderRadius: 10,
+        width: 150,
+        height: 40,
+      },
+     
+      buttomLoginText: {
+        color: 'white',
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+        marginTop: 10,
+      },
 
-    signUpContainer: {
-      position: 'absolute',
-      top: 200,
-      alignItems: 'center',
-      marginTop: 20,
-    },
-    signUpText: {
-      color: 'white',
-      fontFamily: 'Poppins',
-      textAlign: 'center',
-      marginBottom: 20,
-    },
+      signUpContainer: {
+        position: 'absolute',
+        top: "80%",
+        alignItems: 'center',
+        marginTop: 20,
+      },
+      
+      signUpText: {
+        color: 'white',
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+        fontSize: 18,
+        marginBottom: 20,
+      },
 
-    signUpLink: {
-      color: '#D17842',
-      fontFamily: 'Poppins',
-      textAlign: 'center',
-    },
+      signUpLink: {
+        color: '#D17842',
+        top: "-40%",
+        fontSize: 18,
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+      },
 
 
 })

@@ -4,22 +4,21 @@ import { StyleSheet } from "react-native";
 const RegisterStyles = StyleSheet.create(
     {
       registerContainer:{
-        height: 700,
-        width: 400,
+        position: 'relative',
+        flex: 1,
+        backgroundColor: '#0C1013',
         alignContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
-        position: 'absolute',
-        top: 300,
+
       },
       registerInnerContainer: {
-        //backgroundColor: 'white',
+        backgroundColor: '#0C1013',
         width: 300,
         height: 400,
         borderRadius: 10,
         position: 'absolute',
-        top: 0,
-        left: 50,
+        top: "35%",
+        left: "10%",
       },
 
       registerMainTitle: {

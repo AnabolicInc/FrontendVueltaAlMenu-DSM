@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native'
-import React from 'react'
+import { Text, View, Image, Pressable, TextInput } from 'react-native'
 import { useFonts } from 'expo-font';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/MainAppStack';
+import React from 'react'
 import styles from './Styles';
 
+interface Props extends StackScreenProps<RootStackParamList, 'Register'> {}
 
-export default function RegisterScreen() {
+export const  RegisterScreen = ({ navigation,route }: Props) => {
 
     const [fontsLoaded] = useFonts({
         Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
@@ -82,3 +85,5 @@ export default function RegisterScreen() {
     </View>
   )
 }
+
+export default RegisterScreen;
