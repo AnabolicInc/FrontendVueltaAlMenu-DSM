@@ -9,13 +9,35 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/blur": "^4.4.0",
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/drawer": "^6.6.15",
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/stack": "^6.3.29",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.2",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "axios": "^1.6.8",
     "expo": "~50.0.14",
+    "expo-font": "^11.10.3",
     "expo-status-bar": "~1.11.1",
+    "lottie-react-native": "^6.7.2",
     "react": "18.2.0",
-    "react-native": "0.73.6"
+    "react-native": "0.73.6",
+    "react-native-dotenv": "^3.4.11",
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-linear-gradient": "^2.8.3",
+    "react-native-paper": "^5.12.3",
+    "react-native-reanimated": "~3.6.2",
+    "typescript": "^5.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
-  "private": true
+  "private": true,
+  "description": "��#\u0000 \u0000V\u0000u\u0000e\u0000l\u0000t\u0000a\u0000A\u0000l\u0000M\u0000e\u0000n\u0000u\u0000-\u0000D\u0000S\u0000M\u0000\r\u0000 \u0000",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
