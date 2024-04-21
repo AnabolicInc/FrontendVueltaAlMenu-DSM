@@ -2,42 +2,48 @@ import { StyleSheet } from "react-native";
 
 
 const RegisterStyles = StyleSheet.create(
-    {
-      registerContainer:{
-        position: 'relative',
-        flex: 1,
-        backgroundColor: '#0C1013',
-        alignContent: 'center',
-        alignItems: 'center',
+  {
+    registerContainer:{
+      position: 'relative',
+      flex: 1,
+      backgroundColor: '#0C1013',
+      alignContent: 'center',
+      alignItems: 'center',
 
-      },
-      registerInnerContainer: {
-        backgroundColor: '#0C1013',
-        width: 300,
-        height: 400,
-        borderRadius: 10,
-        position: 'absolute',
-        top: "35%",
-        left: "10%",
-      },
+    },
+    registerInnerContainer: {
+      width: 300,
+      height: 400,
+      borderRadius: 10,
+      position: 'absolute',
+      top: "35%",
+      left: "10%",
+    },
 
-      registerMainTitle: {
-        color: 'white',
-        fontSize: 24,
-        textAlign: 'center',
-        marginBottom: 20,
-        fontFamily: 'Poppins',
-        position: 'absolute',
-        top: -180,
-        left: 130,
-      },
-  
-      registerUserImage: {
-        width: 150,
-        height: 150,
-        position: 'absolute',
-        top: -140,
-        left: 80,
+    registerMainTitle: {
+      color: '#D17842',
+      fontSize: 24,
+      textAlign: 'center',
+      marginBottom: 20,
+      fontFamily: 'Poppins',
+      position: 'absolute',
+      top: "8%",
+      left: "32%",
+    },
+
+    registerUserImage: {
+      width: 150,
+      height: 150,
+      position: 'absolute',
+      top: "-30%",
+      left: "25%",
+  },
+    backButton: {
+      width: 30,
+      height: 30,
+      position: 'absolute',
+      top: "-50%",
+      left: "-6%",
     },
     
     uploadButtonUserImage: {
@@ -50,14 +56,19 @@ const RegisterStyles = StyleSheet.create(
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      top: 20,
-      left: 55,
+      top: "5%",
+      left: "18%",
     },
-    uploadButtonUserImageText: {
+    uploadButtonText: {
       fontFamily: 'Poppins',
       fontSize: 15,
       color: 'white',
+      position: 'absolute',
+      top: "8%",
+      left: "18%",
+
     },
+
 
     textInputContainer: {
       fontFamily: 'Poppins',
