@@ -51,13 +51,6 @@ const LoginScreen = ({ navigation,route }: Props) => {
           </Pressable>
         </View>
 
-        <View style={[styles.signUpContainer, {top: 625}]}>
-          <Pressable  onPress={() => navigation.navigate('Category') }>
-            <Text style={styles.signUpLink}>TEST CATEGORY</Text>
-          </Pressable>
-        </View>
-
-        
     </View>
     
   )
