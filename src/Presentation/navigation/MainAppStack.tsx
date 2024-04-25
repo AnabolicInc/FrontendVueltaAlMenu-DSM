@@ -3,20 +3,19 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { RegisterScreen } from '../screens/register/RegisterScreen'
 import LoginScreen from '../screens/login/LoginScreen'
+import { AdminBottomTab } from './tabs/admin/AdminBottomTab'
+
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen'
 import DeliveryHomeScreen from '../screens/delivery/DeliveryHomeScreen'
-import UserHomeScreen from '../screens/user/UserHomeScreen'
-import ProfileScreen from '../screens/profile/ProfileScreen'
-
 
 export type RootStackParamList = {
     Login: undefined;
     Register: undefined;
-    Admin: undefined;
-    Delivery : undefined;
-    User : undefined;
-
-    Profile: undefined;
+    AdminBottomTab: undefined;
+    Admin: undefined; // solo para testing
+    Delivery : undefined; // solo para testing
+    User : undefined; // solo para testing
+    Profile: undefined; // solo para testing
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -31,8 +30,7 @@ export const MainAppStack = () => {
         >
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="User" component={UserHomeScreen} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
         </Stack.Navigator>
     );
 }

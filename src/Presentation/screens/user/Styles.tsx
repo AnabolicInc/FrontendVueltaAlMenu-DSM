@@ -53,6 +53,17 @@ const UserHomeStyles = StyleSheet.create(
             fontFamily: 'Poppins',
             fontSize: 15,
         },
+        searchBar: {
+            position: 'absolute',
+            top: "30%",
+            left: "5%",
+            width: "90%",
+            height: "6%",
+            backgroundColor: '#141921',
+            borderRadius: 10,
+            textAlign: 'left',
+            fontSize: 15,
+        },
     }
 );
 

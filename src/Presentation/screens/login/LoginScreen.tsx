@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation,route }: Props) => {
         <TextInput style={styles.passwordInputContainer} placeholder=" Contraseña"/>
 
         <View style={styles.buttomLogin}> 
-          <Pressable onPress={() => navigation.navigate('User')}>
+          <Pressable onPress={() => navigation.navigate('AdminBottomTab')}>
             <Text style={styles.buttomLoginText}>Iniciar Sesión</Text>
           </Pressable>
         </View>
