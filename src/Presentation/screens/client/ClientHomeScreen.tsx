@@ -31,15 +31,13 @@ export const  UserHomeScreen = ({ navigation, route}: Props) => {
         style={styles.searchBar}
         placeholder="Buscar platillo..."
         placeholderTextColor={'rgba(255,255,255,0.5)'}
+        clearButtonMode='always'
+        enterKeyHint='enter'
+
         onChangeText={(text) => {
           // Handle search logic here
         }}
       />
-    
-      <Text style={styles.userText}>¡Bienvenido a tu perfil!</Text>
-      <Pressable style={styles.userButton} onPress={() => navigation.navigate('Profile')}>
-        <Text style={styles.userButtonText}>Ver perfil</Text>
-      </Pressable>
      
     
     </View>

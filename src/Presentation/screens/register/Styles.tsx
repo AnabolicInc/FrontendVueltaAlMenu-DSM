@@ -13,10 +13,10 @@ const RegisterStyles = StyleSheet.create(
     },
     registerInnerContainer: {
       width: 300,
-      height: 400,
+      height: 300,
       borderRadius: 10,
       position: 'absolute',
-      top: "35%",
+      top: "25%",
       left: "10%",
     },
 
@@ -30,12 +30,23 @@ const RegisterStyles = StyleSheet.create(
       top: "8%",
       left: "32%",
     },
+    imageUserContainer: {
+      width: 150,
+      height: 150,
+      borderRadius: 100,
+      position: 'absolute',
+      top: "20%",
+      left: "25%",
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
 
     registerUserImage: {
       width: 150,
       height: 150,
       position: 'absolute',
-      top: "-30%",
+      top: "-25%",
       left: "25%",
   },
     backButton: {
@@ -69,16 +80,16 @@ const RegisterStyles = StyleSheet.create(
 
     },
 
-
     textInputContainer: {
       fontFamily: 'Poppins',
       width: 300,
-      height: 200,
-      position: 'absolute',
-      top: 0,
-      left: 20,
+      height: 500,
+      position: 'relative',
+      top: "0%", left: "6%",
       alignContent: 'center',
       alignItems: 'center',
+      marginBottom: 10,
+      paddingStart: 15,
     },
 
 
@@ -94,8 +105,8 @@ const RegisterStyles = StyleSheet.create(
       left: 5,
       borderRadius: 10,
       marginBottom: 10,
-      //borderBottomWidth: 1,
-      //borderBottomColor: 'white',
+      paddingStart: 15,
+      paddingEnd: 15,
       alignSelf: 'stretch',
       
     },
@@ -111,6 +122,9 @@ const RegisterStyles = StyleSheet.create(
       left: 5,
       borderRadius: 10,
       marginBottom: 10,
+      paddingStart: 15,
+      paddingEnd: 15,
+      
     },
 
     emailInput: {
@@ -124,6 +138,8 @@ const RegisterStyles = StyleSheet.create(
       left: 5,
       borderRadius: 10,
       marginBottom: 10,
+      paddingStart: 15,
+      paddingEnd: 15,
     },
 
     
@@ -138,8 +154,21 @@ const RegisterStyles = StyleSheet.create(
       left: 5,
       borderRadius: 10,
       marginBottom: 10,
+      paddingStart: 15,
+      paddingEnd: 15,
 
     },
+    passwordRequirements: {
+      fontFamily: 'Poppins',
+      paddingVertical: 10,
+
+      color: 'white',
+      position: 'absolute',
+      top: 300,
+      left: 5,
+      marginBottom: 10,
+    },
+      
 
     confirmPasswordInput: {
       fontFamily: 'Poppins',
@@ -148,10 +177,12 @@ const RegisterStyles = StyleSheet.create(
       width: 250,
       height: 40,
       position: 'absolute',
-      top: 320,
+      top: 430,
       left: 5,
       borderRadius: 10,
       marginBottom: 10,
+      paddingStart: 15,
+      paddingEnd: 15,
 
     },
 

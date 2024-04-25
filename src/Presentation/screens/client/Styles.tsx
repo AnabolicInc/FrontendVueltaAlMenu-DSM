@@ -58,11 +58,14 @@ const UserHomeStyles = StyleSheet.create(
             top: "30%",
             left: "5%",
             width: "90%",
-            height: "6%",
+            height: "8%",
             backgroundColor: '#141921',
+            color: 'white',
             borderRadius: 10,
             textAlign: 'left',
             fontSize: 15,
+            paddingStart: 15,
+            paddingEnd: 15,
         },
     }
 );
