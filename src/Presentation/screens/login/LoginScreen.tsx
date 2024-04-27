@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation,route }: Props) => {
         <TextInput style={styles.passwordInputContainer} placeholder=" Contraseña"/>
 
         <View style={styles.buttomLogin}> 
-          <Pressable onPress={() => console.log('Login Button Pressed')}>
+          <Pressable onPress={() => navigation.navigate('AdminBottomTab')}>
             <Text style={styles.buttomLoginText}>Iniciar Sesión</Text>
           </Pressable>
         </View>
@@ -51,13 +51,6 @@ const LoginScreen = ({ navigation,route }: Props) => {
           </Pressable>
         </View>
 
-        <View style={[styles.signUpContainer, {top: 625}]}>
-          <Pressable  onPress={() => navigation.navigate('Category') }>
-            <Text style={styles.signUpLink}>TEST CATEGORY</Text>
-          </Pressable>
-        </View>
-
-        
     </View>
     
   )

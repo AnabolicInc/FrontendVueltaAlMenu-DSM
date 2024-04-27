@@ -1,12 +1,23 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+const RegisterViewModel = () => {
 
-const ViewModel = () => {
-  return (
-    <View>
-      <Text>ViewModel</Text>
-    </View>
-  )
+  const onChange = () => {
+    // Do something
+  }
+
+  const register = () => {
+    // Do something
+  }
+
+  const isValidFrom = () => {
+    // Do something
+  }
+
+  return{
+    onChange,
+    register,
+    isValidFrom
+  }
+
 }
 
-export default ViewModel
+export default RegisterViewModel;
