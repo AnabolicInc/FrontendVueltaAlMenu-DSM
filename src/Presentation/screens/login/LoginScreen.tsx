@@ -50,7 +50,12 @@ const LoginScreen = ({ navigation,route }: Props) => {
             <Text style={styles.signUpLink}>Regístrese</Text>
           </Pressable>
         </View>
-
+        
+        <View style={[styles.signUpContainer, {top: 50}]}>
+          <Pressable  onPress={() => navigation.navigate('Category') }>
+            <Text style={styles.signUpLink}>TEST CATEGORY</Text>
+          </Pressable>
+        </View>
     </View>
     
   )
