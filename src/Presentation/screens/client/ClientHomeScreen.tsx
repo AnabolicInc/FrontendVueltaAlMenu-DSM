@@ -2,12 +2,13 @@ import React from 'react'
 import styles from './Styles';
 import { View, Text, Image, ImageBackground, Pressable } from 'react-native'
 import { useFonts } from 'expo-font';
+//import the dependency to create a search bar
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+import { TextInput } from 'react-native';
 
-
-interface Props extends StackScreenProps<RootStackParamList, 'User'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'Client'> {}
 
 export const  UserHomeScreen = ({ navigation, route}: Props) => {
   
@@ -24,11 +25,19 @@ export const  UserHomeScreen = ({ navigation, route}: Props) => {
     <View style={styles.userContainer}>
       
       <Text style={styles.mainText}>Encuentra el mejor platillo para ti</Text>
-    
-      <Text style={styles.userText}>¡Bienvenido a tu perfil!</Text>
-      <Pressable style={styles.userButton} onPress={() => navigation.navigate('Profile')}>
-        <Text style={styles.userButtonText}>Ver perfil</Text>
-      </Pressable>
+
+
+      <TextInput
+        style={styles.searchBar}
+        placeholder="Buscar platillo..."
+        placeholderTextColor={'rgba(255,255,255,0.5)'}
+        clearButtonMode='always'
+        enterKeyHint='enter'
+
+        onChangeText={(text) => {
+          // Handle search logic here
+        }}
+      />
      
     
     </View>
