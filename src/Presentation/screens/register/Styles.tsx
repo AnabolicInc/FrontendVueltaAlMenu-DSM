@@ -11,13 +11,14 @@ const RegisterStyles = StyleSheet.create(
       alignItems: 'center',
 
     },
+
     registerInnerContainer: {
       width: 300,
-      height: 300,
+      height: 500,
       borderRadius: 10,
       position: 'absolute',
-      top: "25%",
-      left: "10%",
+      top: "24%",
+      left: "13%",
     },
 
     registerMainTitle: {
@@ -31,8 +32,8 @@ const RegisterStyles = StyleSheet.create(
       left: "32%",
     },
     imageUserContainer: {
-      width: 150,
-      height: 150,
+      width: 100,
+      height: 100,
       borderRadius: 100,
       position: 'absolute',
       top: "20%",
@@ -43,11 +44,11 @@ const RegisterStyles = StyleSheet.create(
     },
 
     registerUserImage: {
-      width: 150,
-      height: 150,
+      width: 100,
+      height: 100,
       position: 'absolute',
-      top: "-25%",
-      left: "25%",
+      top: "16%",
+      left: "37%",
   },
     backButton: {
       width: 30,
@@ -81,15 +82,16 @@ const RegisterStyles = StyleSheet.create(
     },
 
     textInputContainer: {
-      fontFamily: 'Poppins',
       width: 300,
-      height: 500,
+      height: 650,
       position: 'relative',
-      top: "0%", left: "6%",
+      top: "20%", left: "6%",
       alignContent: 'center',
       alignItems: 'center',
       marginBottom: 10,
+      fontFamily: 'Poppins',
       paddingStart: 15,
+      paddingEnd: 15,
     },
 
 
@@ -196,8 +198,8 @@ const RegisterStyles = StyleSheet.create(
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      top: 380,
-      left: 50,
+      top: "100%",
+      left: "10.5%",
     },
 
     confirmButtonText: {
