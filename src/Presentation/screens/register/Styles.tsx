@@ -3,24 +3,25 @@ import { StyleSheet } from "react-native";
 
 const RegisterStyles = StyleSheet.create(
   {
+
     registerContainer:{
+		flex: 1,
+		position: 'relative',
+		backgroundColor: '#0C1013',
+		alignContent: 'center',
+		alignItems: 'center',
+
+    },
+    scrollContainer: {
+      flexDirection: 'column',
+      flexGrow: 1,
+      width: "100%",
       position: 'relative',
-      flex: 1,
-      backgroundColor: '#0C1013',
-      alignContent: 'center',
-      alignItems: 'center',
-
+      top: "10%",
+      left: "15%",
+      marginHorizontal: 10
     },
-
-    registerInnerContainer: {
-      width: 300,
-      height: 500,
-      borderRadius: 10,
-      position: 'absolute',
-      top: "24%",
-      left: "13%",
-    },
-
+    
     registerMainTitle: {
       color: '#D17842',
       fontSize: 24,
@@ -31,17 +32,6 @@ const RegisterStyles = StyleSheet.create(
       top: "8%",
       left: "32%",
     },
-    imageUserContainer: {
-      width: 100,
-      height: 100,
-      borderRadius: 100,
-      position: 'absolute',
-      top: "20%",
-      left: "25%",
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
 
     registerUserImage: {
       width: 100,
@@ -49,13 +39,13 @@ const RegisterStyles = StyleSheet.create(
       position: 'absolute',
       top: "16%",
       left: "37%",
-  },
+    },
     backButton: {
       width: 30,
       height: 30,
       position: 'absolute',
-      top: "-50%",
-      left: "-6%",
+      top: "8%",
+      left: "5%",
     },
     
     uploadButtonUserImage: {
@@ -78,23 +68,21 @@ const RegisterStyles = StyleSheet.create(
       position: 'absolute',
       top: "8%",
       left: "18%",
-
+      
     },
-
-    textInputContainer: {
-      width: 300,
-      height: 650,
-      position: 'relative',
-      top: "20%", left: "6%",
+    registerInnerContainer: {
+      flex: 1,
+      flexGrow: 1,
+      flexDirection: 'column',
+      width: "70%",
+      height: "50%",
+      position: 'absolute',
+      top: "35%",
+      left: "15%",
       alignContent: 'center',
-      alignItems: 'center',
-      marginBottom: 10,
-      fontFamily: 'Poppins',
-      paddingStart: 15,
-      paddingEnd: 15,
+      borderRadius: 10,
     },
-
-
+    
     nameInput: {
       fontFamily: 'Poppins',
       //backgroundColor: 'white',
@@ -102,9 +90,6 @@ const RegisterStyles = StyleSheet.create(
       color: 'white',
       width: 250,
       height: 40,
-      position: 'absolute',
-      top: 80,
-      left: 5,
       borderRadius: 10,
       marginBottom: 10,
       paddingStart: 15,
@@ -119,9 +104,7 @@ const RegisterStyles = StyleSheet.create(
       color: 'white',
       width: 250,
       height: 40,
-      position: 'absolute',
-      top: 140,
-      left: 5,
+      position: 'relative',
       borderRadius: 10,
       marginBottom: 10,
       paddingStart: 15,
@@ -135,9 +118,20 @@ const RegisterStyles = StyleSheet.create(
       color: 'white',
       width: 250,
       height: 40,
-      position: 'absolute',
-      top: 200,
-      left: 5,
+      position: 'relative',
+      borderRadius: 10,
+      marginBottom: 10,
+      paddingStart: 15,
+      paddingEnd: 15,
+    },
+
+    phoneInput: {
+      fontFamily: 'Poppins',
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      color: 'white',
+      width: 250,
+      height: 40,
+      position: 'relative',
       borderRadius: 10,
       marginBottom: 10,
       paddingStart: 15,
@@ -151,9 +145,7 @@ const RegisterStyles = StyleSheet.create(
       color: 'white',
       width: 250,
       height: 40,
-      position: 'absolute',
-      top: 260,
-      left: 5,
+      position: 'relative',
       borderRadius: 10,
       marginBottom: 10,
       paddingStart: 15,
@@ -163,11 +155,8 @@ const RegisterStyles = StyleSheet.create(
     passwordRequirements: {
       fontFamily: 'Poppins',
       paddingVertical: 10,
-
       color: 'white',
-      position: 'absolute',
-      top: 300,
-      left: 5,
+      position: 'relative',
       marginBottom: 10,
     },
       
@@ -178,14 +167,31 @@ const RegisterStyles = StyleSheet.create(
       color: 'white',
       width: 250,
       height: 40,
-      position: 'absolute',
-      top: 430,
-      left: 5,
+      position: 'relative',
       borderRadius: 10,
       marginBottom: 10,
       paddingStart: 15,
       paddingEnd: 15,
 
+    },
+    requerimientContainer: {
+      fontFamily: 'Poppins',
+      position: 'relative',
+    },
+
+    completed: {
+      fontFamily: 'Poppins',
+      color: '#77dd77',
+      position: 'relative',
+      marginBottom: 10,
+      alignContent: 'stretch',
+    },
+
+    uncompleted: {
+      fontFamily: 'Poppins',
+      color: '#ff6961',
+      position: 'relative',
+      marginBottom: 10,
     },
 
     confirmButton: {
@@ -197,9 +203,9 @@ const RegisterStyles = StyleSheet.create(
       backgroundColor: '#94c58c',
       justifyContent: 'center',
       alignItems: 'center',
-      position: 'absolute',
-      top: "100%",
-      left: "10.5%",
+      position: 'relative',
+      top: "0%",
+      left: "10%",
     },
 
     confirmButtonText: {
