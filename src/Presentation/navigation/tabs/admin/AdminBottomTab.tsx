@@ -37,6 +37,7 @@ export const AdminBottomTab = () => {
             )
             }}
         />
+        
     </Tab.Navigator>
   );
 }

@@ -12,7 +12,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'Login'> {}
 
 
 const LoginScreen = ({ navigation,route }: Props) => {
-  
+
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
   });
@@ -20,6 +20,7 @@ const LoginScreen = ({ navigation,route }: Props) => {
   if (!fontsLoaded) {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
+  
 
   //console.log(LOCAL_HOST);
 
