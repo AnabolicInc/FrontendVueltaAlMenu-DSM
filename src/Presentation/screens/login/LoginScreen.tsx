@@ -44,6 +44,13 @@ const LoginScreen = ({ navigation,route }: Props) => {
           </Pressable>
         </View>
         
+        <View style={styles.forgotPasswordContainer}>
+          <Text style={styles.forgotPasswordText}>¿Olvidaste tu contraseña?</Text>
+          <Pressable onPress={() => {/* lógica para reestablecer la contraseña */}}>
+            <Text style={styles.resetPasswordLink}>Reestablécela aquí</Text>
+          </Pressable>
+        </View>
+
         <View style={styles.signUpContainer}>
           <Text style={styles.signUpText}> ¿Aún no tiene una cuenta?</Text>
 
