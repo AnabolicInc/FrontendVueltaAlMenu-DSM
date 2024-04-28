@@ -7,9 +7,11 @@ import { AdminBottomTab } from './tabs/admin/AdminBottomTab'
 
 
 export type RootStackParamList = {
-    Login: undefined;
-    Register: undefined;
+    LoginScreen: undefined;
+    RegisterScreen: undefined;
+    AdminHomeScreen: undefined;
     AdminBottomTab: undefined;
+    ProfileScreen: undefined;
     Client: undefined;
 };
 
@@ -18,13 +20,13 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const MainAppStack = () => {
     return (
         <Stack.Navigator
-            initialRouteName='Login'
+            initialRouteName='LoginScreen'
             screenOptions={{ 
                 headerShown: false
              }}
         >
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
         </Stack.Navigator>
     );

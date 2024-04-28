@@ -5,7 +5,7 @@ import { RootStackParamList } from '../../navigation/MainAppStack';
 
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'Admin'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'AdminHomeScreen'> {}
 
 export const AdminHomeScreen = ({navigation,route}: Props) => {
   return (

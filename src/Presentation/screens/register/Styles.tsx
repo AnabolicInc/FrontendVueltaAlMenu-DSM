@@ -12,6 +12,7 @@ const RegisterStyles = StyleSheet.create(
 		alignItems: 'center',
 
     },
+    
     scrollContainer: {
       flexDirection: 'column',
       flexGrow: 1,

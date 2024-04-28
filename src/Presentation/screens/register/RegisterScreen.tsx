@@ -7,7 +7,7 @@ import { RootStackParamList } from '../../navigation/MainAppStack';
 import useViewModel from './ViewModel';
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'Register'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
 
 export const  RegisterScreen = ({ navigation,route }: Props) => {
 

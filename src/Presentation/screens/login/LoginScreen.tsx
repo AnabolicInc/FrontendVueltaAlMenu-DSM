@@ -7,7 +7,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import {LOCAL_HOST} from '@env';
 
-interface Props extends StackScreenProps<RootStackParamList, 'Login'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 
 

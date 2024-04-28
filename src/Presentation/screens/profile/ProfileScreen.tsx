@@ -5,7 +5,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import { TextInput } from 'react-native-gesture-handler';
 
-interface Props extends StackScreenProps<RootStackParamList, 'Profile'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
 
 const ProfileScreen = ({ navigation, route }: Props) => {
   return (
