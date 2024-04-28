@@ -10,7 +10,7 @@ import { TextInput } from 'react-native';
 
 interface Props extends StackScreenProps<RootStackParamList, 'Client'> {}
 
-export const  UserHomeScreen = ({ navigation, route}: Props) => {
+export const  ClientHomeScreen = ({ navigation, route}: Props) => {
   
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf' ),
@@ -46,4 +46,4 @@ export const  UserHomeScreen = ({ navigation, route}: Props) => {
 }
 
 
-export default UserHomeScreen;
+export default ClientHomeScreen;
