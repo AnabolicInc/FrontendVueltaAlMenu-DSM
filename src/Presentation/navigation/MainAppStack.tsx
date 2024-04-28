@@ -5,6 +5,7 @@ import { RegisterScreen } from '../screens/register/RegisterScreen'
 import LoginScreen from '../screens/login/LoginScreen'
 import { AdminBottomTab } from './tabs/admin/AdminBottomTab'
 import { CategoryScreen } from '../screens/category/CategoryScreen'
+import { RestorePasswordScreen } from '../screens/restore/RestorePasswordScreen'
 
 
 export type RootStackParamList = {
@@ -13,6 +14,7 @@ export type RootStackParamList = {
     AdminBottomTab: undefined;
     Client: undefined;
     Category: undefined;
+    Restore: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -29,6 +31,7 @@ export const MainAppStack = () => {
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
             <Stack.Screen name="Category" component={CategoryScreen} />
+            <Stack.Screen name="Restore" component={RestorePasswordScreen} />
         </Stack.Navigator>
     );
 }

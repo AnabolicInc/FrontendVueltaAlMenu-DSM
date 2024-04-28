@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation,route }: Props) => {
         
         <View style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPasswordText}>¿Olvidaste tu contraseña?</Text>
-          <Pressable onPress={() => {/* lógica para reestablecer la contraseña */}}>
+          <Pressable onPress={() => navigation.navigate('Restore') }>
             <Text style={styles.resetPasswordLink}>Reestablécela aquí</Text>
           </Pressable>
         </View>
