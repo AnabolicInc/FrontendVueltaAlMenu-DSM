@@ -12,7 +12,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'Login'> {}
 
 
 const LoginScreen = ({ navigation,route }: Props) => {
-  
+
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
   });
@@ -20,6 +20,7 @@ const LoginScreen = ({ navigation,route }: Props) => {
   if (!fontsLoaded) {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
+  
 
   //console.log(LOCAL_HOST);
 
@@ -50,7 +51,12 @@ const LoginScreen = ({ navigation,route }: Props) => {
             <Text style={styles.signUpLink}>Regístrese</Text>
           </Pressable>
         </View>
-
+        
+        <View style={[styles.signUpContainer, {top: 50}]}>
+          <Pressable  onPress={() => navigation.navigate('Category') }>
+            <Text style={styles.signUpLink}>TEST CATEGORY</Text>
+          </Pressable>
+        </View>
     </View>
     
   )

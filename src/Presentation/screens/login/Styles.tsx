@@ -44,6 +44,8 @@ const LoginStyles = StyleSheet.create(
         backgroundColor: 'white',
         fontFamily: 'Poppins',
         borderRadius: 10,
+        paddingStart: 10,
+        paddingEnd: 10,
       },
 
       passwordInputContainer: {
@@ -55,6 +57,8 @@ const LoginStyles = StyleSheet.create(
         width: 250,
         height: 40,
         borderRadius: 10,
+        paddingStart: 10,
+        paddingEnd: 10,
       },
 
       buttomLogin: {
