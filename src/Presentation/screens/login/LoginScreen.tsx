@@ -47,7 +47,7 @@ const LoginScreen = ({ navigation,route }: Props) => {
         <View style={styles.signUpContainer}>
           <Text style={styles.signUpText}> ¿Aún no tiene una cuenta?</Text>
 
-          <Pressable  onPress={() => navigation.navigate('Register') }>
+          <Pressable  onPress={() => navigation.navigate('RegisterScreen') }>
             <Text style={styles.signUpLink}>Regístrese</Text>
           </Pressable>
         </View>

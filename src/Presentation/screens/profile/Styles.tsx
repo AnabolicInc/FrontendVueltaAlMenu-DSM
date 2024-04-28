@@ -31,6 +31,7 @@ const ProfileStyles = StyleSheet.create(
         },
 
         mainText: {
+            
             fontFamily: 'Poppins',
             fontSize: 20,
             color: '#D17842',

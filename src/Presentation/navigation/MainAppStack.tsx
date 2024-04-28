@@ -12,7 +12,7 @@ export type RootStackParamList = {
     AdminHomeScreen: undefined;
     AdminBottomTab: undefined;
     ProfileScreen: undefined;
-    Client: undefined;
+    ClientHomeScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

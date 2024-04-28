@@ -3,7 +3,9 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+import LinearGradient from 'react-native-linear-gradient';
 import { TextInput } from 'react-native-gesture-handler';
+
 
 interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
 
@@ -16,6 +18,9 @@ const ProfileScreen = ({ navigation, route }: Props) => {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} />
         
         <Text style={styles.mainText}>Perfil de usuario</Text>
+
+        {/*<LinearGradient colors={['#DC3535', '#D17842']} /> */}
+
 
         
         <View style={styles.backgroudField} />
