@@ -12,14 +12,17 @@ const ProfileStyles = StyleSheet.create(
             justifyContent: 'center',
         },
 
-        backgroudField: {
-            backgroundColor: 'linear-gradient(90deg, rgba(190,190,190,0.2) 0%, rgba(209,120,66,01) 100%)',
-            width: 320,
-            height: 100,
-            borderRadius: 15,
-            marginBottom: 10,
+
+        profileInnerContainer: {
+            flex: 1,
+            flexGrow: 1,
+            flexDirection: 'column',
             position: 'absolute',
-            top: "27%",
+            top: "20%",
+            width: "90%",
+            height: "80%",
+            alignSelf: 'center',
+
         },
 
         backButton: {
@@ -65,38 +68,12 @@ const ProfileStyles = StyleSheet.create(
             top: "30%",
             left: "10%",
         },
-        dataText: {
-            fontFamily: 'Poppins',
-            fontSize: 15,
-            color: '#ffffff',
-            marginBottom: 20,
-            position: 'absolute',
-            top: "35%",
-            left: "12%",
-        },
-        
-        editFieldButton: {
-            backgroundColor: '#D17842',
-            padding: 10,
-            borderRadius: 5,
-            marginTop: 20,
-            position: 'absolute',
-            top: "28%",
-            right: "10%",
-        },
 
         
         fieldContainer: {
             marginTop: 20,
         },
-        input: {
-            backgroundColor: '#F6F6F6',
-            width: 200,
-            height: 40,
-            borderRadius: 5,
-            marginBottom: 10,
-            paddingLeft: 10,
-        },
+
 
 
     }
