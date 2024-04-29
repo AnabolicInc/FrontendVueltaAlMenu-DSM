@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Styles';
-import { StyleSheet, TextInput, Pressable } from 'react-native'
-import { View, Text, Image, ImageBackground } from 'react-native'
+import { TextInput, Pressable } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
@@ -49,12 +49,6 @@ const LoginScreen = ({ navigation,route }: Props) => {
 
           <Pressable  onPress={() => navigation.navigate('RegisterScreen') }>
             <Text style={styles.signUpLink}>Regístrese</Text>
-          </Pressable>
-        </View>
-        
-        <View style={[styles.signUpContainer, {top: 50}]}>
-          <Pressable  onPress={() => navigation.navigate('Category') }>
-            <Text style={styles.signUpLink}>TEST CATEGORY</Text>
           </Pressable>
         </View>
     </View>
