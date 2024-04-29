@@ -8,7 +8,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import { TextInput } from 'react-native';
 
-interface Props extends StackScreenProps<RootStackParamList, 'Client'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'ClientHomeScreen'> {}
 
 export const  ClientHomeScreen = ({ navigation, route}: Props) => {
   

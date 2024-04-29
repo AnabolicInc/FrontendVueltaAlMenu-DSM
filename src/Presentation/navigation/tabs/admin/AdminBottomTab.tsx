@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {FontAwesome} from '@expo/vector-icons'
 import ProfileScreen from '../../../screens/profile/ProfileScreen';
 import SettingScreen from '../../../screens/settings/SettingScreen';
-import UserHomeScreen from '../../../screens/client/ClientHomeScreen';
+import ClientHomeScreen from '../../../screens/client/ClientHomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,10 +15,11 @@ export const AdminBottomTab = () => {
             tabBarInactiveTintColor:'#9B9B9B',
         }}
     >
-        <Tab.Screen name="Home"component={UserHomeScreen}
-            options={{tabBarStyle:{backgroundColor:'#0C1013', borderTopWidth:0,paddingBottom:10},
-            tabBarIcon:({})=>(
-                <FontAwesome name="home" size={24} color={'#D17842'} />
+        <Tab.Screen name="Home"component={ClientHomeScreen}
+            options={{
+                tabBarStyle:{ backgroundColor:'#0C1013', borderTopWidth:0, paddingBottom:10},
+                tabBarIcon:({})=>(
+                    <FontAwesome  name="home" size={24} color={'#D17842'} />
             )
             }}    
         />
@@ -28,7 +29,6 @@ export const AdminBottomTab = () => {
                 <FontAwesome name="user" size={24} color={'#D17842'} />
             )
             }}
-        
         />
         <Tab.Screen name="Configuraciones" component={SettingScreen}
             options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
