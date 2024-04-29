@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './Styles';
-import { StyleSheet, TextInput, Pressable } from 'react-native'
-import { View, Text, Image, ImageBackground } from 'react-native'
+import { TextInput, Pressable } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
-import {LOCAL_HOST} from '@env';
+
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
@@ -20,16 +20,14 @@ const LoginScreen = ({ navigation,route }: Props) => {
   if (!fontsLoaded) {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
-  
 
-  //console.log(LOCAL_HOST);
+
 
   return (
     
     <View style={styles.loginContainer}>
-        
-        
-        <Image source={require('../../../../assets/images/chicken-skewers-on-a-plate.png')} 
+      
+      <Image source={require('../../../../assets/images/chicken-skewers-on-a-plate.png')} 
             style={styles.loginImage}
         />
         
@@ -49,12 +47,6 @@ const LoginScreen = ({ navigation,route }: Props) => {
 
           <Pressable  onPress={() => navigation.navigate('RegisterScreen') }>
             <Text style={styles.signUpLink}>Regístrese</Text>
-          </Pressable>
-        </View>
-        
-        <View style={[styles.signUpContainer, {top: 50}]}>
-          <Pressable  onPress={() => navigation.navigate('Category') }>
-            <Text style={styles.signUpLink}>TEST CATEGORY</Text>
           </Pressable>
         </View>
     </View>

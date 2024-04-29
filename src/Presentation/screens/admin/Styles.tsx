@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const ClientHomeStyles = StyleSheet.create(
+const AdminHomeStyles = StyleSheet.create(
     {
         userContainer: {
             flex: 1,
@@ -70,4 +70,4 @@ const ClientHomeStyles = StyleSheet.create(
     }
 );
 
-export default ClientHomeStyles;
+export default AdminHomeStyles;

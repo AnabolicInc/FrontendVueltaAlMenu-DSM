@@ -9,6 +9,7 @@ import { RegisterAuthUseCase } from "../../../Domain/useCases/Auth/AuthRegister"
 
 interface Values{
 
+	image:string;
 	name: string;
 	lastName: string;
 	email: string;
@@ -72,7 +73,7 @@ const RegisterViewModel = () => {
 	/* {Start} Register logic */
 
 	const [values, setValues] = useState<Values>({
-
+		image: '',
 		name: '',
 		lastName: '',
 		email: '',
