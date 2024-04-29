@@ -1,27 +1,34 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
+import { User } from '../../../Domain/entities/User';
+import { authReducer } from './AuthReducer';
 
 
 type AuthContextProps = {
 
-    user: any;
+    user: User | null;
     status: 'checking' | 'authenticated' | 'not-authenticated';
     
 }
 
-const AuthContext = createContext({} as AuthContextProps);
+const authInitialState: AuthContextProps = {
+    status: 'checking',
+    user: null,
+};
 
-export const  AuthContextProvider = ({ children }: any) => {
+export const AuthContext = createContext({} as AuthContextProps);
+
+export const  AuthProvider = ({ children }: any) => {
     
-
-    const user = 'user';
-    const status = 'checking';
+    const [state,dipatch] = useReducer(authReducer, authInitialState);
 
 
     return (
-        <AuthContext.Provider value={{
-            user,
-            status,
-        }}>
+        <AuthContext.Provider 
+            value={{
+                user: null,
+                status: 'checking',
+            }}
+        >
             { children }
         </AuthContext.Provider>
     )
