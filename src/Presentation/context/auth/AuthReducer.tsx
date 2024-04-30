@@ -6,40 +6,37 @@ export interface AuthState {
     status: 'checking' | 'authenticated' | 'not-authenticated';
 }
 
-export type AuthAction = 
-    | { type:'auth',payload: {user:User} }
-    | { type: 'not-authenticated', }
-    | { type: 'logout', }
-    | { type: 'update-user', payload: {user:User} }
+
+export type AuthAction =
+    | { type: 'auth', payload: { user: User } }
+    | { type: 'not-authenticated' }
+    | { type: 'logout' }
+    | { type: 'update-user', payload: { user: User } }
 
 
-export const authReducer =(state:AuthState,action: AuthAction) => {
-    
+export const authReducer = (state: AuthState, action: AuthAction): AuthState => {
     switch (action.type) {
         case 'auth':
-            return{
+            return {
                 ...state,
                 status: 'authenticated',
                 user: action.payload.user
             }
+
         case 'logout':
-            return{
-                
-            }
         case 'not-authenticated':
-            return{
+            return {
+                ...state,
                 status: 'not-authenticated',
                 user: null
             }
         case 'update-user':
-            return{
+            return {
                 ...state,
                 status: 'authenticated',
                 user: action.payload.user
-            } 
-    
+            }
         default:
-            break;
+            return state;
     }
-
 }
