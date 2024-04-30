@@ -4,7 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { RegisterScreen } from '../screens/register/RegisterScreen'
 import LoginScreen from '../screens/login/LoginScreen'
 import { AdminBottomTab } from './tabs/admin/AdminBottomTab'
-
+import { CategoryCreateScreen } from '../screens/admin/category/create/CategoryCreateScreen'
+import { CategoryListScreen } from '../screens/admin/category/list/CategoryListScreen'
 
 export type RootStackParamList = {
     LoginScreen: undefined;
@@ -14,7 +15,8 @@ export type RootStackParamList = {
     AdminTopTab: undefined;
     ProfileScreen: undefined;
     ClientHomeScreen: undefined;
-    CategoryScreen: undefined;
+    CategoryCreateScreen: undefined;
+    CategoryListScreen: undefined;
     PendingOrderScreen: undefined;
 };
 
@@ -32,6 +34,8 @@ export const MainAppStack = () => {
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
             <Stack.Screen name="AdminTopTab" component={AdminBottomTab} />
+            <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
+            <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
         </Stack.Navigator>
     );
 }
