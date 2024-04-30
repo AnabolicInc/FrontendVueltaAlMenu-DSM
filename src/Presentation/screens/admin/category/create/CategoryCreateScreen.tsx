@@ -11,7 +11,7 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
   return (
     <View style={styles.CategoryCreateContainer}>
       <Text style={styles.CategoryCreateText}>CREAR CATEGORÍA</Text>
-      <Image style={styles.registerUserImage} source={require('../../../../../../assets/images/userIcon.png')} />
+      <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/userIcon.png')} />
 
 
       <View style={styles.buttomSave}> 

@@ -13,7 +13,7 @@ const CategoryCreateStyles = StyleSheet.create(
 
       CategoryCreateText: {
         position: 'absolute',
-        top: "19%",
+        top: "15%",
         color: 'white',
         fontFamily: 'Poppins',
         fontSize: 20,
@@ -38,7 +38,7 @@ const CategoryCreateStyles = StyleSheet.create(
         marginTop: 10,
       },
 
-      registerUserImage: {
+      categoryCreateUserImage: {
         width: 100,
         height: 100,
         position: 'absolute',
