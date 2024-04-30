@@ -11,5 +11,5 @@ export interface ResponseVerifyTokenApiDelivery {
 export interface Error{
     name: string;
     message: string;
-    expiredAt: string;  
+    expiredAt: Date;  
 }
