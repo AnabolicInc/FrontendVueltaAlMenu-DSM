@@ -26,7 +26,7 @@ export const AdminBottomTab = () => {
             )
             }}    
         />
-        <Tab.Screen name="Categorías" component={CategoryCreateScreen}
+        <Tab.Screen name="Categorías" component={CategoryListScreen}
             options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
             tabBarIcon:({})=>(
                 <MaterialIcons name="category" size={24} color="#D17842" />
