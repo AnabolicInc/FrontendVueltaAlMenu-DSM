@@ -24,7 +24,7 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
           <Text style={styles.categoryListElementText}>Hamburguesa</Text>
 
           <View style={styles.buttomEdit}> 
-            <Pressable onPress={() => navigation.goBack()}> 
+            <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
               <Text style={styles.editText}>Editar producto</Text>
             </Pressable>
           </View>
@@ -45,7 +45,7 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
           <Text style={styles.categoryListElementText}>Pizza</Text>
 
           <View style={styles.buttomEdit}> 
-            <Pressable onPress={() => navigation.goBack()}> 
+            <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
               <Text style={styles.editText}>Editar producto</Text>
             </Pressable>
           </View>

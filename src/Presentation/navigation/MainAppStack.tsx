@@ -12,6 +12,7 @@ import LoadingScreen from '../screens/miscellaneous/LoadingScreen'
 
 import { CategoryCreateScreen } from '../screens/admin/category/create/CategoryCreateScreen'
 import { CategoryListScreen } from '../screens/admin/category/list/CategoryListScreen'
+import { CategoryUpdateScreen } from '../screens/admin/category/update/CategoryUpdateScreen'
 
 
 export type RootStackParamList = {
@@ -24,6 +25,7 @@ export type RootStackParamList = {
     ClientHomeScreen: undefined;
     CategoryCreateScreen: undefined;
     CategoryListScreen: undefined;
+    CategoryUpdateScreen: undefined;
     PendingOrderScreen: undefined;
 };
 
@@ -78,6 +80,7 @@ export const MainAppStack = () => {
             <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
             <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
+            <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
         </Stack.Navigator>
     );
 }
