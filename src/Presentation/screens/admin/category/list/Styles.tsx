@@ -61,6 +61,7 @@ const CategoryListStyles = StyleSheet.create(
 
         categoryListElement: {
             //backgroundColor: '#262B33',
+            flex: 1,
             width: "100%",
             height: 140,
             borderRadius: 30,
@@ -109,7 +110,7 @@ const CategoryListStyles = StyleSheet.create(
           buttomDelete: {
             position: 'absolute',
             top: "55%",
-            left: "95%",
+            left: "96%",
             backgroundColor: 'transparent',
             borderColor: '#ce2029',
              borderWidth: 2,
