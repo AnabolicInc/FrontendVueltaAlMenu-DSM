@@ -1,8 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {FontAwesome} from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons';
 import ProfileScreen from '../../../screens/profile/ProfileScreen';
 import SettingScreen from '../../../screens/settings/SettingScreen';
 import AdminHomeScreen from '../../../screens/admin/AdminHomeScreen';
+import CategoryListScreen from '../../../screens/admin/category/list/CategoryListScreen';
+import CategoryCreateScreen from '../../../screens/admin/category/create/CategoryCreateScreen';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,10 +27,10 @@ export const AdminBottomTab = () => {
             )
             }}    
         />
-        <Tab.Screen name="Configuraciones" component={SettingScreen}
+        <Tab.Screen name="Categorías" component={CategoryListScreen}
             options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
             tabBarIcon:({})=>(
-                <FontAwesome name="cog" size={24} color={'#D17842'} />
+                <FontAwesome5 name="list" size={24} color="#D17842" />
             )
             }}
         />
