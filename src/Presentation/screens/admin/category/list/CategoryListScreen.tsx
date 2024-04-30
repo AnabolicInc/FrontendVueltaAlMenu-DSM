@@ -5,6 +5,7 @@ import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
 import { LinearGradient } from 'expo-linear-gradient';
+import { FontAwesome6 } from '@expo/vector-icons';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen'> {}
 
@@ -19,12 +20,18 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
         colors={['#262B33', 'transparent']}
         style={styles.categoryListElement}>
         <View style={styles.categoryListElement}>
-          <Image style={styles.categoryListUserImage} source={require('../../../../../../assets/images/chicken-skewers-on-a-plate.png')} />
+          <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/burguer.jpg')} />
           <Text style={styles.categoryListElementText}>Hamburguesa</Text>
 
           <View style={styles.buttomEdit}> 
             <Pressable onPress={() => navigation.goBack()}> 
               <Text style={styles.editText}>Editar producto</Text>
+            </Pressable>
+          </View>
+
+          <View style={styles.buttomDelete}> 
+            <Pressable onPress={() => console.log("Delete button")}> 
+              <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
             </Pressable>
           </View>
         </View>
@@ -34,7 +41,7 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
         colors={['#262B33', 'transparent']}
         style={styles.categoryListElement}>
         <View style={styles.categoryListElement}>
-          <Image style={styles.categoryListUserImage} source={require('../../../../../../assets/images/chicken-skewers-on-a-plate.png')} />
+          <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/pizza.jpg')} />
           <Text style={styles.categoryListElementText}>Pizza</Text>
 
           <View style={styles.buttomEdit}> 
@@ -42,13 +49,17 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
               <Text style={styles.editText}>Editar producto</Text>
             </Pressable>
           </View>
+
+          <View style={styles.buttomDelete}> 
+            <Pressable onPress={() => console.log("Delete button")}> 
+              <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+            </Pressable>
+          </View>
         </View>
       </LinearGradient>
+      
 
         
-
-
-
       </ScrollView>
 
 

@@ -79,7 +79,7 @@ const CategoryListStyles = StyleSheet.create(
             fontSize: 18,
         },
 
-        categoryListUserImage: {
+        categoryListImage: {
             borderRadius: 30,
             width: 100,
             height: 100,
@@ -90,7 +90,7 @@ const CategoryListStyles = StyleSheet.create(
           buttomEdit: {
             position: 'absolute',
             top: "55%",
-            left: "47%",
+            left: "40%",
             backgroundColor: 'transparent',
             borderColor: '#D17842',
              borderWidth: 2,
@@ -104,6 +104,20 @@ const CategoryListStyles = StyleSheet.create(
             fontFamily: 'Poppins',
             textAlign: 'center',
             marginTop: '5%',
+          },
+
+          buttomDelete: {
+            position: 'absolute',
+            top: "55%",
+            left: "95%",
+            backgroundColor: 'transparent',
+            borderColor: '#ce2029',
+             borderWidth: 2,
+            borderRadius: 10,
+            width: 40,
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
           },
 })
 
