@@ -11,7 +11,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 
 
-const LoginScreen = ({ navigation,route }: Props) => {
+export const LoginScreen = ({ navigation,route }: Props) => {
 
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
