@@ -1,7 +1,6 @@
-import { View, Text, ScrollView, Image } from 'react-native'
-import React from 'react'
+import { View, Text, ScrollView, Image, Pressable, Modal } from 'react-native'
+import React, { useState } from 'react'
 import styles from './Styles';
-import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,6 +9,27 @@ import { FontAwesome6 } from '@expo/vector-icons';
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen'> {}
 
 export const CategoryListScreen = ({ navigation,route }: Props) => {
+
+  // Ventana emergente
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<any>(null); // Almacenar lo que se va a eliminar
+
+  const handleDeletePress = (item: any) => {
+    setItemToDelete(item);
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    console.log("Item to delete:", itemToDelete);
+    setShowDeleteConfirmation(false);
+    // Funcionalidad para eliminar
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteConfirmation(false);
+  };
+
+
   return (
     <View style={styles.CategoryListContainer}>
       <Text style={styles.CategoryListText}>CATEGORÍAS</Text>
@@ -30,7 +50,7 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
           </View>
 
           <View style={styles.buttomDelete}> 
-            <Pressable onPress={() => console.log("Delete button")}> 
+            <Pressable onPress={() => handleDeletePress("Hamburguesa")}> 
               <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
             </Pressable>
           </View>
@@ -51,7 +71,7 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
           </View>
 
           <View style={styles.buttomDelete}> 
-            <Pressable onPress={() => console.log("Delete button")}> 
+            <Pressable onPress={() => handleDeletePress("Pizza")}> 
               <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
             </Pressable>
           </View>
@@ -74,8 +94,31 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
             <Text style={styles.SaveText}>NUEVA CATEGORÍA</Text>
           </Pressable>
         </View>
+
+        {/* Delete confirmation modal */}
+      <Modal visible={showDeleteConfirmation} animationType="fade" transparent>
+      <LinearGradient
+        colors={['#262B33', '#0C1013']}
+        style={styles.modalContent}>
+          <Text style={styles.modalText}>¿Estás seguro de que quieres eliminar {itemToDelete}?</Text>
+          <View style={styles.modalButtonsContainer}>
+            <View style={styles.modalButtonDelete}>
+              <Pressable onPress={handleDeleteConfirm}>
+                <Text style={styles.modalButton}>Eliminar</Text>
+              </Pressable>
+           </View>
+            <View style={styles.modalButtonCancel}>
+              <Pressable onPress={handleDeleteCancel}>
+               <Text style={styles.modalButton}>Cancelar</Text>
+             </Pressable>
+            </View>
+          </View>
+      </LinearGradient>
+      </Modal>
     
     </View>
+
+    
   )
 }
 
