@@ -1,32 +1,39 @@
 import React, { useState } from 'react'
-import styles from './Styles';
 import { Text, View, Image, Pressable, TextInput,ScrollView,TouchableOpacity, SafeAreaView } from 'react-native'
-import { useFonts } from 'expo-font';
+
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
-import useViewModel from './ViewModel';
 
+import { ModalPickImage } from '../../components/ModalPickImage';
+import styles from './Styles';
+import useViewModel from './ViewModel';
 
 interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
 
 export const  RegisterScreen = ({ navigation,route }: Props) => {
 
-    const  {  
+    const [modalVisible, setMoldalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
+
+    const  {
+        register, 
+        onChange, 
+        isValidForm, 
+        takePhoto,
+        pickImage,
+        image,  
+        loadFonts,
         handlePasswordChange,
         hasEightChars,
         hasUppercase,
         hasNumber,
         hasSpecialChar,
         password,
-        onChange, 
-        register, 
-        isValidForm, 
-        loadFonts
     } = useViewModel();
 
     const handleRegister = async () => {
         await register();
     }
+
 
 
   return (
@@ -36,8 +43,17 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
         <Image style= {styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
         <Pressable style={styles.backButton} onPress={() => navigation.goBack()} />
         
-        <Image style={styles.registerUserImage} source={require('../../../../assets/images/userIcon.png')} />
-        <Pressable style={styles.registerUserImage} onPress={() => console.log('User Image Pressed')} />
+        {
+            (image == '')
+            ?
+            <Image style={styles.registerUserImage} source={require('../../../../assets/images/userIcon.png')} />
+            :
+            <Image style={styles.registerUserImage} source={{uri:image}} />
+
+
+        }
+
+        <Pressable style={styles.registerUserImage} onPress={() => setMoldalVisible(true)} />
 
   
 
@@ -109,6 +125,13 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
                 <Text style={styles.confirmButtonText} >Confirmar</Text>
             </Pressable>
         </ScrollView>
+
+        <ModalPickImage 
+            modalUseState = {modalVisible} 
+            setModalUseState={setMoldalVisible} 
+            openGallery={pickImage}
+            openCamera={takePhoto}
+        />
 
 
     </View>
