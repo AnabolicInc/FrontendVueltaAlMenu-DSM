@@ -3,7 +3,8 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
-import UserInfoTemplate from '../../components/UserInfoTemplate';
+import { UserInfoTemplate } from '../../components/UserInfoTemplate';
+
 
 
 

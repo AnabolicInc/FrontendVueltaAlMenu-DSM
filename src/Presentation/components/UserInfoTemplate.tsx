@@ -9,16 +9,9 @@ interface Props {
 }
 
 
-const UserInfoTemplate = ({ textCard, dataUser }: Props) => {
+export const UserInfoTemplate = ({ textCard, dataUser }: Props) => {
   return (
     <View style={styles.userInfoContainer}>
-        {/*
-        <LinearGradient
-            colors={['rgba(12, 16, 19, 0.2)', 'rgba(12, 16, 19, 0.6)', 'rgba(12, 16, 19, 1)']}
-            locations={[0, 0.5, 1]}
-            style={[styles.userInfoContainer, {position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,zIndex: -1}]}
-        />
-        */}
 
         <Text style= {styles.titleText}>{textCard}</Text>
         <Text style= {styles.dataText}>{dataUser}</Text>
@@ -33,7 +26,7 @@ const UserInfoTemplate = ({ textCard, dataUser }: Props) => {
 
 }
 
-export default UserInfoTemplate;
+
 
 const styles = StyleSheet.create({
     userInfoContainer: {
