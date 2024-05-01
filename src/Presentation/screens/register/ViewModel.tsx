@@ -8,18 +8,16 @@ import { RegisterAuthUseCase } from "../../../Domain/useCases/Auth/AuthRegister"
 
 
 
-
-interface Values{
-
-	image:string;
+interface Values {
+	image: string;
 	name: string;
 	lastName: string;
 	email: string;
 	phone: string;
 	password: string;
 	confirmPassword: string;
-
 }
+
 
 interface ResponseErrorData{
 	
@@ -61,20 +59,22 @@ const RegisterViewModel = () => {
 		confirmPassword: '',
 	});
 
-	// Actualiza el estado del campo correspondiente cuando cambia el valor
+	
 	const onChange = (property: string, value: string) => {
 
 		setValues({ ... values, [property]:value});
 
 	};
 
+
 	const register =  async () => {
+
 		const isValid = await isValidForm();
 		console.log(isValid);
-		// Lógica para realizar el registro
 		
 		if (isValid) {
 		try {
+			/*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete */
 			//const response = RegisterAuthUseCase();
 			console.log('Registro exitoso');
 		} catch (error) {
@@ -85,6 +85,7 @@ const RegisterViewModel = () => {
 		}
 	};
 
+	
 	const isValidForm = async ():Promise<boolean> => {
 		try {
 			await validationRegisterSchema.validate(values, {abortEarly: false});
@@ -92,14 +93,12 @@ const RegisterViewModel = () => {
 		} catch (error) {
 			const errors: Record<string, string> = {};
 			error.inner.forEach((err) => {
-			errors[err.path] = err.message;
-		});
-		setErrorMessages(errors);
-		console.log(errorMessages);
-		return false;
+				errors[err.path] = err.message;
+			});
+			setErrorMessages(errors);
+			console.log(errorMessages);
+			return false;
 		}
-
-
 	};
 
 
@@ -119,6 +118,7 @@ const RegisterViewModel = () => {
 	  setHasSpecialChar(/[!@#$%^&*(),.?":{}|<>]/.test(text));
 	};
 	/* {End} Password requeriment validation */
+
 
 
 

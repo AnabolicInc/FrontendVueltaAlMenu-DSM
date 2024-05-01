@@ -12,8 +12,8 @@ const RegisterStyles = StyleSheet.create({
     },
     
     scrollContainer: {
-		flexDirection: 'column',
 		flexGrow: 1,
+		flexDirection: 'column',
 		width: "100%",
 		position: 'relative',
 		top: "10%",
@@ -71,7 +71,7 @@ const RegisterStyles = StyleSheet.create({
 		left: "18%",
       
     },
-	
+
      registerInnerContainer: {
 		flex: 1,
 		flexGrow: 1,

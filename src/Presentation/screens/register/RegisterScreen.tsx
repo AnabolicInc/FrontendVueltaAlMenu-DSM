@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Image, Pressable, TextInput,ScrollView,TouchableOpacity, SafeAreaView } from 'react-native'
+import { Text, View, Image, Pressable, TextInput,ScrollView } from 'react-native'
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
@@ -33,8 +33,6 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
     const handleRegister = async () => {
         await register();
     }
-
-
 
   return (
     <View style={styles.registerContainer}>

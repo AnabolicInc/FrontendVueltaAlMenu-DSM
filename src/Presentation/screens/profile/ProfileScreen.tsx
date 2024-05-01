@@ -1,8 +1,10 @@
 import React from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import styles from './Styles';
+
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+
+import styles from './Styles';
 import { UserInfoTemplate } from '../../components/UserInfoTemplate';
 
 
@@ -26,7 +28,6 @@ const ProfileScreen = ({ navigation, route }: Props) => {
 
 		</ScrollView>
 
-        
     </View>
 
       
