@@ -38,7 +38,6 @@ const LoginStyles = StyleSheet.create(
       emailInputContainer: {
         position: 'absolute',
         top: "50%",
-        left: "15%",
         width: 250,
         height: 40,
         backgroundColor: 'white',
@@ -51,7 +50,6 @@ const LoginStyles = StyleSheet.create(
       passwordInputContainer: {
         position: 'absolute',
         top: "57%",
-        left: "15%",
         backgroundColor: 'white',
         fontFamily: 'Poppins',
         width: 250,

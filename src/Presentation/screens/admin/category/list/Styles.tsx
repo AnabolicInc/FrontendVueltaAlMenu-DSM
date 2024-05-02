@@ -59,66 +59,110 @@ const CategoryListStyles = StyleSheet.create(
         borderRadius: 10,
       },
 
-        categoryListElement: {
-            //backgroundColor: '#262B33',
-            width: "100%",
-            height: 140,
-            borderRadius: 30,
-            marginBottom: 10,
-            paddingStart: 15,
-            paddingEnd: 15,
-            alignSelf: 'stretch',
-        },
+      categoryListElement: {
+        //backgroundColor: '#262B33',
+        flex: 1,
+        width: "100%",
+        height: 140,
+        borderRadius: 30,
+        marginBottom: 10,
+        paddingStart: 15,
+        paddingEnd: 15,
+        alignSelf: 'stretch',
+      },
 
-        categoryListElementText: {
-            color: 'white',
-            fontFamily: 'Poppins',
-            textAlign: 'left',
-            marginTop: '8%',
-            marginLeft: '35%',
-            fontSize: 18,
-        },
+      categoryListElementText: {
+        color: 'white',
+        fontFamily: 'Poppins',
+        textAlign: 'left',
+        marginTop: '8%',
+        marginLeft: '35%',
+        fontSize: 18,
+      },
 
-        categoryListImage: {
-            borderRadius: 30,
-            width: 100,
-            height: 100,
-            position: 'absolute',
-            top: "12.5%",
-          },
+      categoryListImage: {
+        borderRadius: 30,
+        width: 100,
+        height: 100,
+        position: 'absolute',
+        top: "12.5%",
+      },
 
-          buttomEdit: {
-            position: 'absolute',
-            top: "55%",
-            left: "40%",
-            backgroundColor: 'transparent',
-            borderColor: '#D17842',
-             borderWidth: 2,
-            borderRadius: 10,
-            width: 150,
-            height: 40,
-          },
+      buttomEdit: {
+        position: 'absolute',
+        top: "55%",
+        left: "40%",
+        backgroundColor: 'transparent',
+        borderColor: '#D17842',
+        borderWidth: 2,
+        borderRadius: 10,
+        width: 150,
+        height: 40,
+      },
 
-          editText: {
-            color: '#D17842',
-            fontFamily: 'Poppins',
-            textAlign: 'center',
-            marginTop: '5%',
-          },
+      editText: {
+        color: '#D17842',
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+        marginTop: '5%',
+      },
 
-          buttomDelete: {
-            position: 'absolute',
-            top: "55%",
-            left: "95%",
-            backgroundColor: 'transparent',
-            borderColor: '#ce2029',
-             borderWidth: 2,
-            borderRadius: 10,
-            width: 40,
-            height: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
+      buttomDelete: {
+        position: 'absolute',
+        top: "55%",
+        left: "96%",
+        backgroundColor: 'transparent',
+        borderColor: '#ce2029',
+        borderWidth: 2,
+        borderRadius: 10,
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+
+
+      modalContent: {
+        top: "35%",
+        borderRadius: 20,
+        width: 360,
+        height: 140,
+        justifyContent: 'center',
+        alignSelf: 'center',
+      },
+
+      modalText: {
+        color: 'white',
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+      },
+
+      modalButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        width: 200,
+        alignSelf: 'center',
+      },
+
+      modalButtonDelete: {
+        backgroundColor: 'red',
+        borderRadius: 13,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+      },
+
+      modalButtonCancel: {
+        backgroundColor: 'green',
+        borderRadius: 13,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+      },
+
+      modalButton: {
+        color: 'white',
+      }
+          
 })
 
 export default CategoryListStyles;
