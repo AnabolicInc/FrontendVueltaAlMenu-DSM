@@ -6,29 +6,32 @@ const CategoryCreateStyles = StyleSheet.create(
 
       CategoryCreateContainer: {
         flex: 1,
-        alignContent: 'center',
         alignItems: 'center',
         backgroundColor: '#0C1013',
       },
 
+      CategoryCreateInnerContainer: {
+        position: 'relative',
+      },
+
       CategoryCreateText: {
-        position: 'absolute',
-        top: "15%",
+        position: 'relative',
         color: 'white',
         fontFamily: 'Poppins',
         fontSize: 20,
         textAlign: 'center',
-        marginBottom: 20,
+        marginBottom: 60,
+        marginTop: 100,
 
       },
 
       buttomSave: {
-        position: 'absolute',
-        top: "77%",
+        position: 'relative',
         backgroundColor: '#D17842',
         borderRadius: 10,
         width: 150,
         height: 40,
+        alignSelf: 'center',
       },
      
       SaveText: {
@@ -41,8 +44,9 @@ const CategoryCreateStyles = StyleSheet.create(
       categoryCreateUserImage: {
         width: 100,
         height: 100,
-        position: 'absolute',
-        top: "25%",
+        position: 'relative',
+        alignSelf: 'center',
+        marginBottom: 30,
       },
 
       nameInput: {
@@ -55,7 +59,6 @@ const CategoryCreateStyles = StyleSheet.create(
         marginBottom: 10,
         paddingStart: 15,
         paddingEnd: 15,
-        top: "40%",
         
       },
 
@@ -69,7 +72,6 @@ const CategoryCreateStyles = StyleSheet.create(
         marginBottom: 10,
         paddingStart: 15,
         paddingEnd: 15,
-        top: "40%",
         
       },
 

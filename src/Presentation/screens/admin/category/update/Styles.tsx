@@ -13,24 +13,30 @@ const CategoryUpdateStyles = StyleSheet.create(
         backgroundColor: '#0C1013',
       },
 
+      CategoryUpdateInnerContainer: {
+        position: 'relative',
+      },
+
       CategoryUpdateText: {
-        position: 'absolute',
-        top: "15%",
+        position: 'relative',
         color: 'white',
         fontFamily: 'Poppins',
         fontSize: 20,
         textAlign: 'center',
-        marginBottom: 20,
+        top: "10%",
+        marginBottom: 100,
+        marginTop: 60,
 
       },
 
       buttomSave: {
-        position: 'absolute',
-        top: "77%",
+        position: 'relative',
         backgroundColor: '#D17842',
         borderRadius: 10,
         width: 150,
         height: 40,
+        alignSelf: 'center',
+        marginTop: 40,
       },
      
       SaveText: {
@@ -43,8 +49,10 @@ const CategoryUpdateStyles = StyleSheet.create(
       categoryUpdateUserImage: {
         width: 100,
         height: 100,
-        position: 'absolute',
-        top: "25%",
+        position: 'relative',
+        alignSelf: 'center',
+        marginBottom: 30,
+
       },
 
       nameInput: {
@@ -57,11 +65,11 @@ const CategoryUpdateStyles = StyleSheet.create(
         marginBottom: 10,
         paddingStart: 15,
         paddingEnd: 15,
-        top: "40%",
         
       },
 
       DescriptionInput: {
+        position: 'relative',
         fontFamily: 'Poppins',
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         color: 'white',
@@ -71,7 +79,6 @@ const CategoryUpdateStyles = StyleSheet.create(
         marginBottom: 10,
         paddingStart: 15,
         paddingEnd: 15,
-        top: "40%",
         
       },
 

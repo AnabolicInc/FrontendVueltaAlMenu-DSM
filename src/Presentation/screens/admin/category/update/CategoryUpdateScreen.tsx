@@ -11,16 +11,9 @@ interface Props extends StackScreenProps<RootStackParamList, 'CategoryUpdateScre
 export const CategoryUpdateScreen = ({ navigation,route }: Props) => {
   return (
     <View style={styles.CategoryUpdateContainer}>
+      <ScrollView style={styles.CategoryUpdateInnerContainer} showsVerticalScrollIndicator = {false}>
       <Text style={styles.CategoryUpdateText}>EDITAR CATEGORÍA</Text>
-      <ScrollView>
       <Image style={styles.categoryUpdateUserImage} source={require('../../../../../../assets/images/userIcon.png')} />
-
-
-      <View style={styles.buttomSave}> 
-        <Pressable onPress={() => navigation.goBack()}> 
-            <Text style={styles.SaveText}>GUARDAR</Text>
-          </Pressable>
-        </View>
 
         <TextInput 
                 style={styles.nameInput}
@@ -36,13 +29,18 @@ export const CategoryUpdateScreen = ({ navigation,route }: Props) => {
                 onChangeText={(text) => console.log(text)}
                 multiline={true}
             />
+
+
+        <View style={styles.buttomSave}> 
+          <Pressable onPress={() => navigation.goBack()}> 
+            <Text style={styles.SaveText}>GUARDAR</Text>
+            </Pressable>
+        </View>
         </ScrollView>
+
+      
     </View>
-
-
-
   )
 }
-
 
 export default CategoryUpdateScreen
