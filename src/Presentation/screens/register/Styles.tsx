@@ -18,7 +18,6 @@ const RegisterStyles = StyleSheet.create({
 		width: "100%",
 		position: 'relative',
 		top: "10%",
-		left: "15%",
 		marginHorizontal: 10
     },
     
@@ -30,7 +29,6 @@ const RegisterStyles = StyleSheet.create({
 		height: "59%",
 		position: 'absolute',
 		top: "20%",
-		left: "15%",
 		alignContent: 'center',
 		borderRadius: 10,
 	},
