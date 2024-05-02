@@ -89,7 +89,7 @@ const CategoryListStyles = StyleSheet.create(
         width: 100,
         height: 100,
         top: 16,
-        marginRight: 10,
+        marginRight: '4%',
       },
 
 
