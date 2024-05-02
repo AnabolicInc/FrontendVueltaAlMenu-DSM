@@ -1,9 +1,10 @@
-import { View, Text, Image, TextInput } from 'react-native'
+import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import React from 'react'
 import styles from './Styles';
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
+import { Dimensions } from 'react-native';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryUpdateScreen'> {}
 
@@ -11,6 +12,7 @@ export const CategoryUpdateScreen = ({ navigation,route }: Props) => {
   return (
     <View style={styles.CategoryUpdateContainer}>
       <Text style={styles.CategoryUpdateText}>EDITAR CATEGORÍA</Text>
+      <ScrollView>
       <Image style={styles.categoryUpdateUserImage} source={require('../../../../../../assets/images/userIcon.png')} />
 
 
@@ -34,7 +36,7 @@ export const CategoryUpdateScreen = ({ navigation,route }: Props) => {
                 onChangeText={(text) => console.log(text)}
                 multiline={true}
             />
-        
+        </ScrollView>
     </View>
 
 
