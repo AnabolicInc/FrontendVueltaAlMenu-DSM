@@ -50,7 +50,7 @@ const RegisterStyles = StyleSheet.create({
 		height: 100,
 		position: 'relative',
 		top: "0%",
-		left: "30%",
+		alignSelf: 'center',
     },
 
     backButton: {
@@ -119,7 +119,7 @@ const RegisterStyles = StyleSheet.create({
 		alignItems: 'center',
 		position: 'relative',
 		top: "80%",
-		left: "0%",
+		alignSelf: 'center',
     },
 
     confirmButtonText: {
