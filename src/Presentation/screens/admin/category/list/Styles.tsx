@@ -73,34 +73,32 @@ const CategoryListStyles = StyleSheet.create(
       },
 
       categoryListInnerElement: {
-        flex: 1,
-        width: "100%",
-        height: 140,
-        borderRadius: 30,
-        marginBottom: 10,
-        paddingStart: 15,
-        paddingEnd: 15,
+        alignSelf: 'stretch',
+        flexDirection: 'column',
+      },
+
+      categoryListInnerInnerElement: {
         alignSelf: 'stretch',
         flexDirection: 'row',
+        top: 40,
       },
 
       categoryListImage: {
+        position: 'relative',
         borderRadius: 30,
         width: 100,
         height: 100,
         top: 16,
-        marginRight: 13,
+        marginRight: '4%',
       },
 
 
       categoryListElementText: {
-        position: 'absolute',
         color: 'white',
         fontFamily: 'Poppins',
         textAlign: 'left',
         fontSize: 18,
         top: 17,
-        left: "40%",
       },
 
       
@@ -109,10 +107,9 @@ const CategoryListStyles = StyleSheet.create(
         borderColor: '#D17842',
         borderWidth: 2,
         borderRadius: 10,
-        width: "47%",
         height: 40,
-        top: 77,
-        marginRight: 8,
+        width: '64%',
+        marginRight: '2%',
       },
 
       editText: {
@@ -131,7 +128,6 @@ const CategoryListStyles = StyleSheet.create(
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        top: 77,
       },
 
 
