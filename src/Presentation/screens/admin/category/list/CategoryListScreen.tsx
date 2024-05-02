@@ -40,18 +40,23 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
         colors={['#262B33', 'transparent']}
         style={styles.categoryListElement}>
           <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/burguer.jpg')} />
-          <Text style={styles.categoryListElementText}>Hamburguesa</Text>
 
-          <View style={styles.buttomEdit}> 
-            <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
-              <Text style={styles.editText}>Editar producto</Text>
-            </Pressable>
-          </View>
+          <View style={styles.categoryListInnerElement}>
+            <Text style={styles.categoryListElementText}>Hamburguesa</Text>
 
-          <View style={styles.buttomDelete}> 
-            <Pressable onPress={() => handleDeletePress("Hamburguesa")}> 
-              <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
-            </Pressable>
+            <View style={styles.categoryListInnerInnerElement}>
+              <View style={styles.buttomEdit}> 
+                <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
+                 <Text style={styles.editText}>Editar producto</Text>
+                </Pressable>
+              </View>
+
+              <View style={styles.buttomDelete}> 
+                <Pressable onPress={() => handleDeletePress("Hamburguesa")}> 
+                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+                </Pressable>
+              </View>
+            </View>
           </View>
       </LinearGradient>
 
@@ -59,18 +64,23 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
         colors={['#262B33', 'transparent']}
         style={styles.categoryListElement}>
           <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/pizza.jpg')} />
-          <Text style={styles.categoryListElementText}>Pizza</Text>
 
-          <View style={styles.buttomEdit}> 
-            <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
-              <Text style={styles.editText}>Editar producto</Text>
-            </Pressable>
-          </View>
+          <View style={styles.categoryListInnerElement}>
+            <Text style={styles.categoryListElementText}>Pizza</Text>
 
-          <View style={styles.buttomDelete}> 
-            <Pressable onPress={() => handleDeletePress("Pizza")}> 
-              <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
-            </Pressable>
+            <View style={styles.categoryListInnerInnerElement}>
+              <View style={styles.buttomEdit}> 
+                <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
+                 <Text style={styles.editText}>Editar producto</Text>
+                </Pressable>
+              </View>
+
+              <View style={styles.buttomDelete}> 
+                <Pressable onPress={() => handleDeletePress("pizza")}> 
+                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+                </Pressable>
+              </View>
+            </View>
           </View>
       </LinearGradient>
       
