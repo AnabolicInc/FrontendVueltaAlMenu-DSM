@@ -24,12 +24,11 @@ const RegisterStyles = StyleSheet.create({
 	registerInnerContainer: {
 		flex: 1,
 		flexGrow: 1,
-		flexDirection: 'column',
 		width: "70%",
 		height: "59%",
 		position: 'absolute',
 		top: "20%",
-		alignContent: 'center',
+		
 		borderRadius: 10,
 	},
 	
@@ -50,7 +49,7 @@ const RegisterStyles = StyleSheet.create({
 		height: 100,
 		position: 'relative',
 		top: "0%",
-		left: "30%",
+		alignSelf: 'center',
     },
 
     backButton: {
@@ -72,7 +71,7 @@ const RegisterStyles = StyleSheet.create({
 		borderWidth: 1,
 		position: 'relative',
 		top: "5%",
-		left: "10%",
+		alignSelf: 'center',
 		marginBottom: 50,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -91,6 +90,7 @@ const RegisterStyles = StyleSheet.create({
     requerimientContainer: {
 		fontFamily: 'Poppins',
 		position: 'relative',
+		alignSelf: 'center',
     },
 
     completed: {
