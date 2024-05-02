@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import * as Yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
-
+import { showMessage } from "react-native-flash-message";
 
 import { RegisterAuthUseCase } from "../../../Domain/useCases/Auth/AuthRegister";
+import { Error, ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/ResponseApiDelivery";
 
 
 
@@ -35,7 +36,7 @@ const validationRegisterSchema = Yup.object().shape({
   	phone: Yup.string().required('El campo teléfono es obligatorio').matches( /^[0-9]{10}$/, 'El número de teléfono debe tener 10 dígitos'),
 	password: Yup.string().required('El campo contraseña es obligatorio').matches(
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/,
-		'La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un caracter especial'
+		'La contraseña no cumple con los requesitos minimos'
 	),
 	confirmPassword: Yup.string().required('El campo confirmar contraseña es obligatorio').oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden'),
 });
@@ -47,7 +48,7 @@ const RegisterViewModel = () => {
 
 	const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
 
-	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
+	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
 
 	const [values, setValues] = useState<Values>({
 		image: '',
@@ -66,26 +67,6 @@ const RegisterViewModel = () => {
 
 	};
 
-
-	const register =  async () => {
-
-		const isValid = await isValidForm();
-		console.log(isValid);
-		
-		if (isValid) {
-		try {
-			/*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete */
-			//const response = RegisterAuthUseCase();
-			console.log('Registro exitoso');
-		} catch (error) {
-			console.log('Error en el registro', error);
-		}
-		} else {
-			console.log('Formulario no válido. Por favor, complete todos los campos.');
-		}
-	};
-
-	
 	const isValidForm = async ():Promise<boolean> => {
 		try {
 			await validationRegisterSchema.validate(values, {abortEarly: false});
@@ -100,6 +81,51 @@ const RegisterViewModel = () => {
 			return false;
 		}
 	};
+
+
+	const register =  async () => {
+
+		const isValid = await isValidForm();
+		console.log(isValid);
+		
+		if (isValid) {
+			setErrorMessages({});
+			try {
+				/*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete */
+				//const response = RegisterAuthUseCase();
+				{/*
+				if(response.success){
+					console.log(response.success);
+				}
+				*/}
+				console.log('Registro exitoso');
+			} catch (error) {
+				const rejectErrors: ResponseAPIDelivery = error;
+
+				if(rejectErrors.error){
+					setErrorResponses([]);
+					showMessage({
+						message: rejectErrors.error,
+						type: 'danger',
+						icon: 'danger',
+					});
+				}else{
+					console.log('Formulario no válido. Por favor, complete todos los campos.');
+				
+					const errorsArray = Object.values(rejectErrors.errors);
+
+					const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }))
+					console.log(errorsArrayFilter);
+					setErrorResponses(errorsArrayFilter);
+					
+				}
+				
+			}
+		}
+	};
+
+	
+
 
 
 
@@ -193,7 +219,7 @@ const RegisterViewModel = () => {
 	hasSpecialChar,
 	hasEightChars,
 	errorMessages,
-	responseError,
+	responseError: errorsResponse,
   };
 };
 
