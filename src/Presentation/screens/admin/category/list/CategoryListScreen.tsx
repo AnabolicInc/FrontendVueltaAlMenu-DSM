@@ -39,7 +39,6 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
       <LinearGradient
         colors={['#262B33', 'transparent']}
         style={styles.categoryListElement}>
-        <View style={styles.categoryListElement}>
           <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/burguer.jpg')} />
           <Text style={styles.categoryListElementText}>Hamburguesa</Text>
 
@@ -54,13 +53,11 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
               <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
             </Pressable>
           </View>
-        </View>
       </LinearGradient>
 
       <LinearGradient
         colors={['#262B33', 'transparent']}
         style={styles.categoryListElement}>
-        <View style={styles.categoryListElement}>
           <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/pizza.jpg')} />
           <Text style={styles.categoryListElementText}>Pizza</Text>
 
@@ -75,7 +72,6 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
               <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
             </Pressable>
           </View>
-        </View>
       </LinearGradient>
       
 
