@@ -23,8 +23,8 @@ const CategoryUpdateStyles = StyleSheet.create(
         fontFamily: 'Poppins',
         fontSize: 20,
         textAlign: 'center',
-        top: "10%",
-        marginBottom: 100,
+        top: "5%",
+        marginBottom: 70,
         marginTop: 60,
 
       },
@@ -54,6 +54,31 @@ const CategoryUpdateStyles = StyleSheet.create(
         marginBottom: 30,
 
       },
+
+      uploadImageButton: {
+        fontFamily: 'Poppins',
+        fontSize: 15,
+        borderRadius: 10,
+        width: 200,
+        height: 40,
+        backgroundColor: '#141921',
+        borderColor: '#D17842',
+        borderWidth: 1,
+        position: 'relative',
+        alignSelf: 'center',
+        marginBottom: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        },
+
+        uploadImageButtonText: {
+          fontFamily: 'Poppins',
+          fontSize: 15,
+          color: '#D17842',
+          position: 'relative',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
 
       nameInput: {
         fontFamily: 'Poppins',

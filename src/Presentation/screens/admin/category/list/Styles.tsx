@@ -69,35 +69,50 @@ const CategoryListStyles = StyleSheet.create(
         paddingStart: 15,
         paddingEnd: 15,
         alignSelf: 'stretch',
+        flexDirection: 'row',
       },
 
-      categoryListElementText: {
-        color: 'white',
-        fontFamily: 'Poppins',
-        textAlign: 'left',
-        marginTop: '8%',
-        marginLeft: '35%',
-        fontSize: 18,
+      categoryListInnerElement: {
+        flex: 1,
+        width: "100%",
+        height: 140,
+        borderRadius: 30,
+        marginBottom: 10,
+        paddingStart: 15,
+        paddingEnd: 15,
+        alignSelf: 'stretch',
+        flexDirection: 'row',
       },
 
       categoryListImage: {
         borderRadius: 30,
         width: 100,
         height: 100,
-        position: 'absolute',
-        top: "12.5%",
+        top: 16,
+        marginRight: 13,
       },
 
-      buttomEdit: {
+
+      categoryListElementText: {
         position: 'absolute',
-        top: "55%",
+        color: 'white',
+        fontFamily: 'Poppins',
+        textAlign: 'left',
+        fontSize: 18,
+        top: 17,
         left: "40%",
+      },
+
+      
+      buttomEdit: {
         backgroundColor: 'transparent',
         borderColor: '#D17842',
         borderWidth: 2,
         borderRadius: 10,
-        width: 150,
+        width: "47%",
         height: 40,
+        top: 77,
+        marginRight: 8,
       },
 
       editText: {
@@ -108,9 +123,6 @@ const CategoryListStyles = StyleSheet.create(
       },
 
       buttomDelete: {
-        position: 'absolute',
-        top: "55%",
-        left: "96%",
         backgroundColor: 'transparent',
         borderColor: '#ce2029',
         borderWidth: 2,
@@ -119,6 +131,7 @@ const CategoryListStyles = StyleSheet.create(
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
+        top: 77,
       },
 
 
