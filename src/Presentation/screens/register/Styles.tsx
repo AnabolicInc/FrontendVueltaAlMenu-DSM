@@ -119,7 +119,7 @@ const RegisterStyles = StyleSheet.create({
 		alignItems: 'center',
 		position: 'relative',
 		top: "80%",
-		left: "0%",
+		alignSelf: 'center',
     },
 
     confirmButtonText: {
