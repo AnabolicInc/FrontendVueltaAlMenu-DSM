@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Image, Pressable, TextInput,ScrollView } from 'react-native'
+import { Text, View, Image, Pressable,ScrollView, FlatList } from 'react-native'
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
@@ -16,6 +16,7 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
     const [modalVisible, setMoldalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
 
     const  {
+
         register, 
         onChange, 
         isValidForm, 
@@ -29,6 +30,9 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
         hasNumber,
         hasSpecialChar,
         password,
+        errorMessages,
+        responseError
+
     } = useViewModel();
 
     const handleRegister = async () => {
@@ -40,6 +44,18 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
         
         <Text style ={styles.registerMainTitle}>Registrarse</Text>
 
+        <FlatList
+            scrollEnabled={true}
+            data={responseError}
+            renderItem ={({item,index}) => {
+                return (
+                    <View key={`${index}-${item.path}`} style={styles.errorContainer}>
+                        <Text style={styles.errorText}>{`\u2022 ${item.value}`}</Text>
+                    </View>
+                );
+            }}
+        />    
+
         <Image style= {styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
         <Pressable style={styles.backButton} onPress={() => navigation.goBack()} />
  
@@ -47,6 +63,7 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
         <ScrollView style={styles.registerInnerContainer} showsVerticalScrollIndicator = {false}>
 
             {
+
                 (image == '')
                 ?
                 <Image style={styles.registerUserImage} source={require('../../../../assets/images/userIcon.png')} />
@@ -58,16 +75,25 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             <Pressable style={styles.uploadImageUserButton} onPress={() => setMoldalVisible(true)}>
                 <Text style={styles.uploadImageUserButtonText}>Subir imagen</Text>
             </Pressable>
+            {errorMessages.image && <Text style={styles.errorText}>{errorMessages.image}</Text>}
 
-            <RegisterInfo fieldLabel="Nombres" onChangeText={(text) => console.log(text)} />
+            {/*Error list*/}
+
+
+            <RegisterInfo fieldLabel="Nombres" onChangeText={(text) => onChange('name',text)}/>
+            {errorMessages.name && <Text style={styles.errorText}>{errorMessages.name}</Text>}
 
             <RegisterInfo fieldLabel="Apellidos" onChangeText={(text) => console.log(text)} />
+            {errorMessages.lastName && <Text style={styles.errorText}>{errorMessages.lastName}</Text>}
 
             <RegisterInfo fieldLabel="Correo electrónico" onChangeText={(text) => console.log(text)} />
+            {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
             <RegisterInfo fieldLabel="Telefono" onChangeText={(text) => console.log(text)} />
+            {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
 
             <RegisterInfo fieldLabel="Contraseña" onChangeText={handlePasswordChange} />
+            {errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
 
             <View style={styles.requerimientContainer}>
 
@@ -86,11 +112,12 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             </View>
 
             <RegisterInfo fieldLabel="Confirmar contraseña" onChangeText={(text) => console.log(text)} />
+            {errorMessages.confirmPassword && <Text style={styles.errorText}>{errorMessages.confirmPassword}</Text>}
 
             
         </ScrollView>
 
-        <Pressable style={styles.confirmButton} onPress={() => console.log('Pressed')}>
+        <Pressable style={styles.confirmButton} onPressIn={handleRegister}>
             <Text style={styles.confirmButtonText} >Confirmar</Text>
         </Pressable>
 

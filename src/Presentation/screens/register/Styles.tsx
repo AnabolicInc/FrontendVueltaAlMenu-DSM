@@ -72,7 +72,7 @@ const RegisterStyles = StyleSheet.create({
 		position: 'relative',
 		top: "5%",
 		alignSelf: 'center',
-		marginBottom: 50,
+		marginBottom: 70,
 		justifyContent: 'center',
 		alignItems: 'center',
     },
@@ -114,11 +114,12 @@ const RegisterStyles = StyleSheet.create({
 		borderRadius: 10,
 		width: 200,
 		height: 40,
+		marginBottom: 50,
 		backgroundColor: '#94c58c',
 		justifyContent: 'center',
 		alignItems: 'center',
 		position: 'relative',
-		top: "80%",
+		top: "40%",
 		alignSelf: 'center',
     },
 
@@ -127,6 +128,22 @@ const RegisterStyles = StyleSheet.create({
 		fontSize: 15,
 		color: 'white',
     },
+
+	errorText: {
+		fontFamily: 'Poppins',
+		fontSize: 15,
+		color: '#ff6961',
+		position: 'relative',
+		top: "0%",
+		alignSelf: 'center',
+		marginBottom: 10,
+	},
+	errorContainer: {
+		fontFamily: 'Poppins',
+		position: 'relative',
+		alignSelf: 'center',
+		marginBottom: 10,
+	},
 
 
 
