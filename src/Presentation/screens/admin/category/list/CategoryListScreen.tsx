@@ -5,6 +5,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6 } from '@expo/vector-icons';
+import CategoryListBox from '../../../../components/CategoryListBox';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen'> {}
 
@@ -36,29 +37,7 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
 
       <ScrollView style={styles.categoryListInnerContainer} showsVerticalScrollIndicator = {false}>
 
-      <LinearGradient
-        colors={['#262B33', 'transparent']}
-        style={styles.categoryListElement}>
-          <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/burguer.jpg')} />
-
-          <View style={styles.categoryListInnerElement}>
-            <Text style={styles.categoryListElementText}>Hamburguesa</Text>
-
-            <View style={styles.categoryListInnerInnerElement}>
-              <View style={styles.buttomEdit}> 
-                <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
-                 <Text style={styles.editText}>Editar producto</Text>
-                </Pressable>
-              </View>
-
-              <View style={styles.buttomDelete}> 
-                <Pressable onPress={() => handleDeletePress("Hamburguesa")}> 
-                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
-                </Pressable>
-              </View>
-            </View>
-          </View>
-      </LinearGradient>
+      <CategoryListBox navigation={navigation} />
 
       <LinearGradient
         colors={['#262B33', 'transparent']}
