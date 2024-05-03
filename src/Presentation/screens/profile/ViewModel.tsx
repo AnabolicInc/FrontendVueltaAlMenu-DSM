@@ -1,6 +1,4 @@
-//create the viewmodel for the profile screen
-// Path: src/Presentation/screens/profile/ViewModel.tsx
-// Compare this snippet from src/Presentation/screens/register/ViewModel.tsx:
+import React from "react";
 
 const ProfileViewModel = () => {
     
