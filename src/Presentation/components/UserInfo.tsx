@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         marginBottom: 10,
         position: 'relative',
+        alignSelf: 'center',
     },
     titleText: {
         fontFamily: 'Poppins',
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         marginEnd: 20,
         marginTop: -75,
-        width:"20%",
+        width:"27%",
         alignItems:"center",
     },
 })
