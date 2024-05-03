@@ -5,7 +5,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 
 import styles from './Styles';
-import { UserInfoTemplate } from '../../components/UserInfoTemplate';
+import { UserInfo } from '../../components/UserInfo';
+import useViewModel from './ViewModel';
 
 
 
@@ -21,10 +22,10 @@ const ProfileScreen = ({ navigation, route }: Props) => {
 		<Text style={styles.mainText}>Perfil de usuario</Text>
 		<ScrollView style={styles.profileInnerContainer}>
 
-			<UserInfoTemplate textCard = 'Nombre completo' dataUser = 'Data here'/>
-			<UserInfoTemplate textCard = 'Correo electrónico' dataUser = 'Data here'/>
-			<UserInfoTemplate textCard = 'Teléfono' dataUser = 'Data here'/>
-			<UserInfoTemplate textCard = 'Imagen de perfil' dataUser = 'Data here'/>
+			<UserInfo textCard = 'Nombre completo' dataUser = 'Data here'/>
+			<UserInfo textCard = 'Correo electrónico' dataUser = 'Data here'/>
+			<UserInfo textCard = 'Teléfono' dataUser = 'Data here'/>
+			<UserInfo textCard = 'Imagen de perfil' dataUser = 'Data here'/>
 
 		</ScrollView>
 

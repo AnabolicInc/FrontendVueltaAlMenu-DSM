@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export const UserInfoTemplate = ({ textCard, dataUser }: Props) => {
+export const UserInfo = ({ textCard, dataUser }: Props) => {
   return (
     <View style={styles.userInfoContainer}>
 
@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         marginBottom: 20,
         position: 'relative',
-        top: "18%",
-        left: "5%",
+        alignSelf: 'flex-start',
+        marginTop: 12,
+        marginLeft: 15,
     },
     dataText: {
         fontFamily: 'Poppins',
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         marginBottom: 20,
         position: 'relative',
-        top: "10%",
-        left: "8%",
+        alignSelf: 'flex-start',
+        marginLeft: 20
     },
     editFieldButton: {
         backgroundColor:'#141921',
@@ -63,8 +64,9 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 5,
         position: 'relative',
-        top: "-65%",
-        right: "-75%",
+        alignSelf: 'flex-end',
+        marginEnd: 20,
+        marginTop: -75,
         width:"20%",
         alignItems:"center",
     },
