@@ -45,17 +45,7 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
         
         {/*Error list*/}
 
-        <FlatList
-            scrollEnabled={true}
-            data={responseError}
-            renderItem ={({item,index}) => {
-                return (
-                    <View key={`${index}-${item.path}`} style={styles.errorContainer}>
-                        <Text style={styles.errorText}>{`\u2022 ${item.value}`}</Text>
-                    </View>
-                );
-            }}
-        />    
+
 
         <Image style= {styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
         <Pressable style={styles.backButton} onPress={() => navigation.goBack()} />
@@ -78,21 +68,26 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             </Pressable>
             {errorMessages.image && <Text style={styles.errorText}>{errorMessages.image}</Text>}
 
-
-
             <RegisterInfo fieldLabel="Nombres" onChangeText={(text) => onChange('name',text)}/>
-            {errorMessages.name && <Text style={styles.errorText}>{errorMessages.name}</Text>}
+            {errorMessages.name && <Text style={styles.errorText}>{ errorMessages.name}</Text>}
 
             <RegisterInfo fieldLabel="Apellidos" onChangeText={(text) => onChange('lastName',text)} />
             {errorMessages.lastName && <Text style={styles.errorText}>{errorMessages.lastName}</Text>}
 
-            <RegisterInfo fieldLabel="Correo electrónico" onChangeText={(text) => onChange('email',text) } />
+            <RegisterInfo fieldLabel="Correo electrónico" keyboardType='email-address' onChangeText={(text) => onChange('email',text) } />
             {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
-            <RegisterInfo fieldLabel="Telefono" onChangeText={(text) => onChange('phone',text)} />
+            <RegisterInfo 
+                fieldLabel="Télefono" 
+                prefix='+569' 
+                icon={require('../../../../assets/images/Flag_of_Chile.png')}
+                customStyle={{width:150,justifyContent: 'flex-start',marginLeft: 10}} 
+                onChangeText={(text) => onChange('phone',text)} 
+                keyboardType='numeric'
+            />
             {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
 
-            <RegisterInfo fieldLabel="Contraseña" onChangeText={(text) => onChange('password',text)}  />
+            <RegisterInfo fieldLabel="Contraseña" secureTextEntry={true} onChangeText={(text) => onChange('password',text)}  />
             {errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
 
             <View style={styles.requerimientContainer}>
@@ -111,15 +106,29 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
                 </Text>
             </View>
 
-            <RegisterInfo fieldLabel="Confirmar contraseña" onChangeText={(text) => onChange('confirmPassword',text)} />
+            <RegisterInfo fieldLabel="Confirmar contraseña" secureTextEntry={true} onChangeText={(text) => onChange('confirmPassword',text)} />
             {errorMessages.confirmPassword && <Text style={styles.errorText}>{errorMessages.confirmPassword}</Text>}
+
+            <Pressable style={styles.confirmButton} onPressIn={handleRegister}>
+                <Text style={styles.confirmButtonText} >Confirmar</Text>
+            </Pressable>
 
             
         </ScrollView>
 
-        <Pressable style={styles.confirmButton} onPressIn={handleRegister}>
-            <Text style={styles.confirmButtonText} >Confirmar</Text>
-        </Pressable>
+        <FlatList style={styles.errorContainer}
+            scrollEnabled={true}
+            data={responseError}
+            renderItem ={({item,index}) => {
+                return (
+                    <View key={`${index}-${item.path}`} >
+                        <Text style={styles.errorText}>Por favor, verifique sus datos. {'\n'} {`\u2022 ${item.value}`}</Text>
+                    </View>
+                );
+            }}
+        />    
+
+
 
         <ModalPickImage 
             modalUseState = {modalVisible} 

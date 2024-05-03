@@ -19,6 +19,7 @@ const RegisterStyles = StyleSheet.create({
 		position: 'relative',
 		top: "10%",
 		marginHorizontal: 10
+
     },
     
 	registerInnerContainer: {
@@ -119,7 +120,6 @@ const RegisterStyles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		position: 'relative',
-		top: "40%",
 		alignSelf: 'center',
     },
 
@@ -130,19 +130,25 @@ const RegisterStyles = StyleSheet.create({
     },
 
 	errorText: {
+		backgroundColor: '#ff6961',
+		borderRadius: 10,
 		fontFamily: 'Poppins',
-		fontSize: 15,
-		color: '#ff6961',
+		fontSize: 14,
+		color: 'white',
 		position: 'relative',
 		top: "0%",
-		alignSelf: 'center',
+		alignSelf: 'flex-start',
+		width: 250,
 		marginBottom: 10,
+		padding: 10,
 	},
 	errorContainer: {
 		fontFamily: 'Poppins',
 		position: 'relative',
 		alignSelf: 'center',
 		marginBottom: 10,
+		zIndex: 1,
+		top: "75%",
 	},
 
 
