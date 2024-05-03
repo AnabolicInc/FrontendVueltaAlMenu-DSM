@@ -34,7 +34,7 @@ const validationRegisterSchema = Yup.object().shape({
 	name: Yup.string().required('El campo nombre es obligatorio'),
 	lastName: Yup.string().required('El campo apellido es obligatorio'),
 	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio'),
-  	phone: Yup.string().required('El campo teléfono es obligatorio').max(9, 'El campo teléfono debe tener 9 digitos') ,
+  	phone: Yup.string().required('El campo teléfono es obligatorio').max(8, 'El campo teléfono debe tener 9 digitos') ,
 	password: Yup.string().required('El campo contraseña es obligatorio').matches(
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/,
 		'La contraseña no cumple con los requesitos minimos'
@@ -111,7 +111,7 @@ const RegisterViewModel = () => {
 					name: values.name,
 					lastName: values.lastName,
 					email: values.email,
-					phone: values.phone,
+					phone: "9"+ values.phone,
 					password: values.password,
 				};
 				console.log('User: ', user);
