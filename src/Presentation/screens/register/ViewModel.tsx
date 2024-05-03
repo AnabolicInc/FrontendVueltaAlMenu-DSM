@@ -6,6 +6,7 @@ import { showMessage } from "react-native-flash-message";
 
 import { RegisterAuthUseCase } from "../../../Domain/useCases/Auth/AuthRegister";
 import { Error, ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/ResponseApiDelivery";
+import { User } from "../../../Domain/entities/User";
 
 
 
@@ -16,7 +17,7 @@ interface Values {
 	email: string;
 	phone: string;
 	password: string;
-	confirmPassword: string;
+	confirmPassword?: string;
 }
 
 
@@ -33,7 +34,7 @@ const validationRegisterSchema = Yup.object().shape({
 	name: Yup.string().required('El campo nombre es obligatorio'),
 	lastName: Yup.string().required('El campo apellido es obligatorio'),
 	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio'),
-  	phone: Yup.string().required('El campo teléfono es obligatorio').matches( /^[0-9]{10}$/, 'El número de teléfono debe tener 10 dígitos'),
+  	phone: Yup.string().required('El campo teléfono es obligatorio').max(9, 'El campo teléfono debe tener 9 digitos') ,
 	password: Yup.string().required('El campo contraseña es obligatorio').matches(
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/,
 		'La contraseña no cumple con los requesitos minimos'
@@ -60,10 +61,23 @@ const RegisterViewModel = () => {
 		confirmPassword: '',
 	});
 
+	const [password, setPassword] = useState('');
+	const [hasEightChars, setHasEightChars] = useState(false);
+	const [hasUppercase, setHasUppercase] = useState(false);
+	const [hasNumber, setHasNumber] = useState(false);
+	const [hasSpecialChar, setHasSpecialChar] = useState(false);
 	
 	const onChange = (property: string, value: string) => {
 
 		setValues({ ... values, [property]:value});
+
+		if(property === 'password'){
+			setPassword(value);
+			setHasEightChars(value.length >= 8);
+			setHasUppercase(/[A-Z]/.test(value));
+			setHasNumber(/\d/.test(value));
+			setHasSpecialChar(/[!@#$%^&*(),.?":{}|<>]/.test(value));
+		}
 
 	};
 
@@ -91,13 +105,27 @@ const RegisterViewModel = () => {
 		if (isValid) {
 			setErrorMessages({});
 			try {
-				/*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete */
-				//const response = RegisterAuthUseCase();
-				{/*
+
+				const user: User = {
+					image: values.image,
+					name: values.name,
+					lastName: values.lastName,
+					email: values.email,
+					phone: values.phone,
+					password: values.password,
+				};
+				console.log('User: ', user);
+
+
+				const response = await RegisterAuthUseCase(user);
+
+				console.log(response);
+				
+				
 				if(response.success){
 					console.log(response.success);
 				}
-				*/}
+				
 				console.log('Registro exitoso');
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
@@ -110,7 +138,7 @@ const RegisterViewModel = () => {
 						icon: 'danger',
 					});
 				}else{
-					console.log('Formulario no válido. Por favor, complete todos los campos.');
+					console.log('Error en el registro');
 				
 					const errorsArray = Object.values(rejectErrors.errors);
 
@@ -125,30 +153,6 @@ const RegisterViewModel = () => {
 	};
 
 	
-
-
-
-
-	/* {Start} Password requeriment validation*/
-	const [password, setPassword] = useState('');
-	const [hasEightChars, setHasEightChars] = useState(false);
-	const [hasUppercase, setHasUppercase] = useState(false);
-	const [hasNumber, setHasNumber] = useState(false);
-	const [hasSpecialChar, setHasSpecialChar] = useState(false);
-  
-	const handlePasswordChange = (text) => {
-	  setPassword(text);
-	  setHasEightChars(text.length >= 8);
-	  setHasUppercase(/[A-Z]/.test(text));
-	  setHasNumber(/\d/.test(text));
-	  setHasSpecialChar(/[!@#$%^&*(),.?":{}|<>]/.test(text));
-	};
-	/* {End} Password requeriment validation */
-
-
-
-
-
 
 	const [file, setfile] = useState<ImagePicker.ImageInfo>();
 
@@ -210,7 +214,6 @@ const RegisterViewModel = () => {
     register,
     isValidForm,
     loadFonts,
-	handlePasswordChange,
 	pickImage,
 	takePhoto,
 	password,

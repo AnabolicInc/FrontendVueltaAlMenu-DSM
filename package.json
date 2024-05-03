@@ -41,7 +41,8 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/react-native": "^0.73.0"
   },
   "private": true,
   "description": "��#\u0000 \u0000V\u0000u\u0000e\u0000l\u0000t\u0000a\u0000A\u0000l\u0000M\u0000e\u0000n\u0000u\u0000-\u0000D\u0000S\u0000M\u0000\r\u0000 \u0000",
