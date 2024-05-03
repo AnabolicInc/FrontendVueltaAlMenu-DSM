@@ -1,11 +1,12 @@
 import axios from "axios";
-import { LOCAL_HOST, HOST_EMULATOR } from "@env";
+import { LOCAL_HOST } from "@env";
 
 const ApiDelivery = axios.create({
-    baseURL: 'http://localhost:8080/api/',
+    baseURL: LOCAL_HOST,
     headers: {
         'Content-type': 'application/json'
     }
+    
 });
 
 export { ApiDelivery }

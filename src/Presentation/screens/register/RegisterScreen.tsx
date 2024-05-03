@@ -24,7 +24,6 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
         pickImage,
         image,  
         loadFonts,
-        handlePasswordChange,
         hasEightChars,
         hasUppercase,
         hasNumber,
@@ -43,6 +42,8 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
     <View style={styles.registerContainer}>
         
         <Text style ={styles.registerMainTitle}>Registrarse</Text>
+        
+        {/*Error list*/}
 
         <FlatList
             scrollEnabled={true}
@@ -77,22 +78,21 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             </Pressable>
             {errorMessages.image && <Text style={styles.errorText}>{errorMessages.image}</Text>}
 
-            {/*Error list*/}
 
 
             <RegisterInfo fieldLabel="Nombres" onChangeText={(text) => onChange('name',text)}/>
             {errorMessages.name && <Text style={styles.errorText}>{errorMessages.name}</Text>}
 
-            <RegisterInfo fieldLabel="Apellidos" onChangeText={(text) => console.log(text)} />
+            <RegisterInfo fieldLabel="Apellidos" onChangeText={(text) => onChange('lastName',text)} />
             {errorMessages.lastName && <Text style={styles.errorText}>{errorMessages.lastName}</Text>}
 
-            <RegisterInfo fieldLabel="Correo electrónico" onChangeText={(text) => console.log(text)} />
+            <RegisterInfo fieldLabel="Correo electrónico" onChangeText={(text) => onChange('email',text) } />
             {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
-            <RegisterInfo fieldLabel="Telefono" onChangeText={(text) => console.log(text)} />
+            <RegisterInfo fieldLabel="Telefono" onChangeText={(text) => onChange('phone',text)} />
             {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
 
-            <RegisterInfo fieldLabel="Contraseña" onChangeText={handlePasswordChange} />
+            <RegisterInfo fieldLabel="Contraseña" onChangeText={(text) => onChange('password',text)}  />
             {errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
 
             <View style={styles.requerimientContainer}>
@@ -111,7 +111,7 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
                 </Text>
             </View>
 
-            <RegisterInfo fieldLabel="Confirmar contraseña" onChangeText={(text) => console.log(text)} />
+            <RegisterInfo fieldLabel="Confirmar contraseña" onChangeText={(text) => onChange('confirmPassword',text)} />
             {errorMessages.confirmPassword && <Text style={styles.errorText}>{errorMessages.confirmPassword}</Text>}
 
             
