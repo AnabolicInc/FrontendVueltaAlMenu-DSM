@@ -150,6 +150,17 @@ const RegisterStyles = StyleSheet.create({
 		zIndex: 1,
 		top: "75%",
 	},
+	loadingContainer: {
+		backgroundColor: 'rgba(0,0,0,0.8)',
+		flex: 1,
+		width: '100%',
+		height: '100%',
+		position: 'absolute',
+		justifyContent: 'center',
+		alignSelf: 'center',
+		marginBottom: 10,
+		zIndex: 1,
+	},
 
 
 

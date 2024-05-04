@@ -1,15 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { RegisterScreen } from '../screens/register/RegisterScreen'
-import LoginScreen from '../screens/login/LoginScreen'
-import { AdminBottomTab } from './tabs/admin/AdminBottomTab'
 
 import { AdminTopTab } from './tabs/admin/AdminTopTab'
+import { AdminBottomTab } from './tabs/admin/AdminBottomTab'
+import { ClientBottomTab } from './tabs/client/ClientBottomTab'
+
 import { AuthContext } from '../context/auth/AuthContext'
+
+import { RegisterScreen } from '../screens/register/RegisterScreen'
+import LoginScreen from '../screens/login/LoginScreen'
 import LoadingScreen from '../screens/miscellaneous/LoadingScreen'
-
-
 import { CategoryCreateScreen } from '../screens/admin/category/create/CategoryCreateScreen'
 import { CategoryListScreen } from '../screens/admin/category/list/CategoryListScreen'
 import { CategoryUpdateScreen } from '../screens/admin/category/update/CategoryUpdateScreen'
@@ -19,6 +19,7 @@ export type RootStackParamList = {
     LoginScreen: undefined;
     RegisterScreen: undefined;
     AdminHomeScreen: undefined;
+    ClientBottomTab: undefined;
     AdminBottomTab: undefined;
     AdminTopTab: undefined;
     ProfileScreen: undefined;
@@ -40,6 +41,11 @@ export const MainAppStack = () => {
 
     const renderRoleScreen = () => {
         if (user.role_id ==3) {
+            <>
+                {/*IMPORTANT (19:49 03/05/2024): commented for future purposes, do not delete*/}
+                {/*<Stack.Screen name="ClientBottomTab" component={ClientBottomTab} /> */}
+
+            </>
         //this client
         } else if (user.role_id ==2) {
         //this delivery

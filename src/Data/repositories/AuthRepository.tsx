@@ -10,7 +10,7 @@ export class AuthRepositoryImpl implements AuthRepository {
 
     async register(user: User): Promise<ResponseAPIDelivery> {
         try {
-            const { data } = await ApiDelivery.post<ResponseAPIDelivery>('user', user);
+            const { data } = await ApiDelivery.post<ResponseAPIDelivery>('auth/register', user);
             console.log('DATA: ', JSON.stringify(data));
             
             return Promise.resolve(data)

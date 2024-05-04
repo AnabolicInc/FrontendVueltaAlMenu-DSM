@@ -1,6 +1,8 @@
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 
+import useViewModel from '../screens/register/ViewModel';
+
 
 interface Props {
     fieldLabel: string;      
@@ -12,7 +14,10 @@ interface Props {
 	keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
 }
 
-const RegisterInfo = ({fieldLabel,onChangeText,prefix,customStyle,icon,secureTextEntry,keyboardType}:Props) => {
+const RegisterInput = ({fieldLabel,onChangeText,prefix,customStyle,icon,secureTextEntry,keyboardType}:Props) => {
+
+	const { loading } = useViewModel();
+
 	return (
 	  <View style={styles.inputContainer}>
 		<View style={styles.prefixContainer}> 
@@ -26,12 +31,13 @@ const RegisterInfo = ({fieldLabel,onChangeText,prefix,customStyle,icon,secureTex
 		  onChangeText={onChangeText}
 		  secureTextEntry={secureTextEntry}
 		  keyboardType={keyboardType} 
+		  editable={loading ? false : true}
 		/>
 	  </View>
 	)
   }
 
-export default RegisterInfo;
+export default RegisterInput;
 
 const styles = StyleSheet.create({
 	inputContainer: {

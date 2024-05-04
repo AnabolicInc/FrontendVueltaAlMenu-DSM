@@ -14,6 +14,15 @@ import useViewModel from './ViewModel';
 interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
 
 const ProfileScreen = ({ navigation, route }: Props) => {
+
+	const {
+		user,
+		status,
+		onChange,
+		isValidFrom 
+
+	} = useViewModel();
+
   return (
     <View style={styles.profileContainer}>
 		<Image style={styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
@@ -22,7 +31,7 @@ const ProfileScreen = ({ navigation, route }: Props) => {
 		<Text style={styles.mainText}>Perfil de usuario</Text>
 		<ScrollView style={styles.profileInnerContainer}>
 
-			<UserInfo textCard = 'Nombre completo' dataUser = 'Data here'/>
+			<UserInfo textCard = 'Nombre completo' dataUser = 'date here'/>
 			<UserInfo textCard = 'Correo electrónico' dataUser = 'Data here'/>
 			<UserInfo textCard = 'Teléfono' dataUser = 'Data here'/>
 			<UserInfo textCard = 'Imagen de perfil' dataUser = 'Data here'/>
