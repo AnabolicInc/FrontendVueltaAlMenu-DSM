@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 const ProfileViewModel = () => {
+
+    
+    const {status,user} = useContext(AuthContext);
+
     
     const onChange = () => {
         // Do something
@@ -12,7 +17,9 @@ const ProfileViewModel = () => {
     
     return{
         onChange,
-        isValidFrom
+        isValidFrom,
+        user,
+        status
     }
 }
 

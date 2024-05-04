@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as Yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import { showMessage } from "react-native-flash-message";
 
-import { RegisterAuthUseCase } from "../../../Domain/useCases/Auth/AuthRegister";
 import { Error, ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/ResponseApiDelivery";
-import { User } from "../../../Domain/entities/User";
-
+import { RegisterAuthUseCase } from "../../../Domain/useCases/Auth/AuthRegister";
+import { SaveUserUseCase } from "../../../Domain/useCases/UserLocal/SaveUserLocal";
+import { AuthContext } from "../../context/auth/AuthContext";
+import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase";
 
 
 interface Values {
@@ -34,7 +35,7 @@ const validationRegisterSchema = Yup.object().shape({
 	name: Yup.string().required('El campo nombre es obligatorio'),
 	lastName: Yup.string().required('El campo apellido es obligatorio'),
 	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio'),
-  	phone: Yup.string().required('El campo teléfono es obligatorio').max(8, 'El campo teléfono debe tener 9 digitos') ,
+  	phone: Yup.string().required('El campo teléfono es obligatorio').min(9, 'El teléfono ingresado no es valido') ,
 	password: Yup.string().required('El campo contraseña es obligatorio').matches(
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/,
 		'La contraseña no cumple con los requesitos minimos'
@@ -46,10 +47,7 @@ const validationRegisterSchema = Yup.object().shape({
 
 const RegisterViewModel = () => {
 
-
-	const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
-
-	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
+	/*{Start} useState variables*/
 
 	const [values, setValues] = useState<Values>({
 		image: '',
@@ -61,12 +59,28 @@ const RegisterViewModel = () => {
 		confirmPassword: '',
 	});
 
+	const { auth } = useContext(AuthContext);
+
+    const [file, setFile] = useState<ImagePicker.ImageInfo>();
+
+	const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
+
+	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
+
+	const [loading, setLoading] = useState(false);
+
 	const [password, setPassword] = useState('');
+
 	const [hasEightChars, setHasEightChars] = useState(false);
+
 	const [hasUppercase, setHasUppercase] = useState(false);
+
 	const [hasNumber, setHasNumber] = useState(false);
+
 	const [hasSpecialChar, setHasSpecialChar] = useState(false);
-	
+
+	/*{End} useState variables*/
+
 	const onChange = (property: string, value: string) => {
 
 		setValues({ ... values, [property]:value});
@@ -103,27 +117,22 @@ const RegisterViewModel = () => {
 		console.log(isValid);
 		
 		if (isValid) {
+			setLoading(true);
 			setErrorMessages({});
 			try {
 
-				const user: User = {
-					image: values.image,
-					name: values.name,
-					lastName: values.lastName,
-					email: values.email,
-					phone: "9"+ values.phone,
-					password: values.password,
-				};
-				console.log('User: ', user);
+				const { image, confirmPassword, ...data } = values; //Destructurando los datos
 
-
-				const response = await RegisterAuthUseCase(user);
-
-				console.log(response);
-				
+				const response = await RegisterAuthUseCase(data);
 				
 				if(response.success){
-					console.log(response.success);
+
+					const responseImage = await UpdateFileUseCase(file!, 'users', response.data.id);
+					const dataUser = response.data;
+					dataUser.image = responseImage.data;
+					await SaveUserUseCase(dataUser);
+					auth(dataUser);
+					setLoading(false);
 				}
 				
 				console.log('Registro exitoso');
@@ -147,14 +156,12 @@ const RegisterViewModel = () => {
 					setErrorResponses(errorsArrayFilter);
 					
 				}
+				setLoading(false);
 				
 			}
 		}
 	};
 
-	
-
-	const [file, setfile] = useState<ImagePicker.ImageInfo>();
 
 	const pickImage = async () => {
 
@@ -166,7 +173,7 @@ const RegisterViewModel = () => {
 		
 		if (!result.canceled) {
 			onChange('image', result.assets[0].uri);
-			setfile(result.assets[0]);
+			setFile(result.assets[0]);
 		}
 		
 	};
@@ -183,7 +190,7 @@ const RegisterViewModel = () => {
 	
 			if (!result.canceled) {
 				onChange('image', result.assets[0].uri);
-				setfile(result.assets[0]);
+				setFile(result.assets[0]);
 			}
 			
 		} catch (error) {
@@ -213,6 +220,7 @@ const RegisterViewModel = () => {
     onChange,
     register,
     isValidForm,
+	loading,
     loadFonts,
 	pickImage,
 	takePhoto,

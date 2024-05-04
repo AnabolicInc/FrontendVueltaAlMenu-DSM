@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Image, Pressable,ScrollView, FlatList } from 'react-native'
+import { Text, View, Image, Pressable,ScrollView, FlatList, ActivityIndicator } from 'react-native'
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
@@ -7,7 +7,7 @@ import { RootStackParamList } from '../../navigation/MainAppStack';
 import { ModalPickImage } from '../../components/ModalPickImage';
 import styles from './Styles';
 import useViewModel from './ViewModel';
-import RegisterInfo from '../../components/RegisterInfo';
+import RegisterInput from '../../components/RegisterInput';
 
 interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
 
@@ -19,7 +19,8 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
 
         register, 
         onChange, 
-        isValidForm, 
+        isValidForm,
+        loading, 
         takePhoto,
         pickImage,
         image,  
@@ -42,9 +43,6 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
     <View style={styles.registerContainer}>
         
         <Text style ={styles.registerMainTitle}>Registrarse</Text>
-        
-        {/*Error list*/}
-
 
 
         <Image style= {styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
@@ -68,26 +66,26 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             </Pressable>
             {errorMessages.image && <Text style={styles.errorText}>{errorMessages.image}</Text>}
 
-            <RegisterInfo fieldLabel="Nombres" onChangeText={(text) => onChange('name',text)}/>
+            <RegisterInput fieldLabel="Nombres" onChangeText={(text) => onChange('name',text)}/>
             {errorMessages.name && <Text style={styles.errorText}>{ errorMessages.name}</Text>}
 
-            <RegisterInfo fieldLabel="Apellidos" onChangeText={(text) => onChange('lastName',text)} />
+            <RegisterInput fieldLabel="Apellidos" onChangeText={(text) => onChange('lastName',text)} />
             {errorMessages.lastName && <Text style={styles.errorText}>{errorMessages.lastName}</Text>}
 
-            <RegisterInfo fieldLabel="Correo electrónico" keyboardType='email-address' onChangeText={(text) => onChange('email',text) } />
+            <RegisterInput fieldLabel="Correo electrónico" keyboardType='email-address' onChangeText={(text) => onChange('email',text) } />
             {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
-            <RegisterInfo 
+            <RegisterInput 
                 fieldLabel="Télefono" 
-                prefix='+569' 
+                prefix='+56' 
                 icon={require('../../../../assets/images/Flag_of_Chile.png')}
-                customStyle={{width:150,justifyContent: 'flex-start',marginLeft: 10}} 
+                customStyle={{width:160,justifyContent: 'flex-start',marginLeft: 10}} 
                 onChangeText={(text) => onChange('phone',text)} 
                 keyboardType='numeric'
             />
             {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
 
-            <RegisterInfo fieldLabel="Contraseña" secureTextEntry={true} onChangeText={(text) => onChange('password',text)}  />
+            <RegisterInput fieldLabel="Contraseña" secureTextEntry={true} onChangeText={(text) => onChange('password',text)}  />
             {errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
 
             <View style={styles.requerimientContainer}>
@@ -106,7 +104,7 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
                 </Text>
             </View>
 
-            <RegisterInfo fieldLabel="Confirmar contraseña" secureTextEntry={true} onChangeText={(text) => onChange('confirmPassword',text)} />
+            <RegisterInput fieldLabel="Confirmar contraseña" secureTextEntry={true} onChangeText={(text) => onChange('confirmPassword',text)} />
             {errorMessages.confirmPassword && <Text style={styles.errorText}>{errorMessages.confirmPassword}</Text>}
 
             <Pressable style={styles.confirmButton} onPressIn={handleRegister}>
@@ -136,8 +134,13 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             openGallery={pickImage}
             openCamera={takePhoto}
         />
+        {loading &&(
 
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#D17842" />
+            </View>
 
+        )}
     </View>
   )
 }
