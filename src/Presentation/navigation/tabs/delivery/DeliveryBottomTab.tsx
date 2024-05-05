@@ -3,9 +3,9 @@ import {FontAwesome} from '@expo/vector-icons'
 
 
 //import ProfileScreen from '../../../screens/profile/ProfileScreen';
-import ClientHomeScreen from '../../../screens/client/ClientHomeScreen';
 import ShoppingCartScreen from '../../../screens/shopping/ShoppingCartScreen';
 import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
+import DeliveryHomeScreen from '../../../screens/delivery/DeliveryHomeScreen';
 
 
 
@@ -17,7 +17,7 @@ export type RootBottomTabParamList = {
 
 const Tab = createBottomTabNavigator();
 
-export const ClientBottomTab = () => {
+export const DeliveryBottomTab = () => {
   return (
     <Tab.Navigator 
         screenOptions={{
@@ -26,7 +26,7 @@ export const ClientBottomTab = () => {
             tabBarInactiveTintColor:'#9B9B9B',
         }}
     >
-        <Tab.Screen name="Home"component={ClientHomeScreen}
+        <Tab.Screen name="Home"component={DeliveryHomeScreen}
             options={{
                 tabBarStyle:{ backgroundColor:'#0C1013', borderTopWidth:0, paddingBottom:10},
                 tabBarIcon:({})=>(

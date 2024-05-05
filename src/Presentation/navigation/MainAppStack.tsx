@@ -23,6 +23,8 @@ import ResetPasswordScreen from '../screens/resetPassword/ResetPasswordScreen'
 export type RootStackParamList = {
     LoginScreen: undefined;
     RegisterScreen: undefined;
+    ResetPasswordScreen: undefined;
+
     ClientBottomTab: undefined;
     AdminBottomTab: undefined;
     
@@ -30,9 +32,8 @@ export type RootStackParamList = {
     CategoryListScreen: undefined;
     CategoryUpdateScreen: undefined;
 
-    PendingOrderScreen: undefined;
-    DeliveryHomeScreen: undefined;
-    ResetPasswordScreen: undefined;
+
+   
 
 };
 
@@ -43,7 +44,7 @@ export const MainAppStack = () => {
     const { user,status } = useContext(AuthContext);
 
     
-    // if(status === 'checking') return <LoadingScreen/>;
+    if(status === 'checking') return <LoadingScreen/>;
 
     const renderRoleScreen = () => {
         if (user.role_id ==3) {
@@ -88,11 +89,9 @@ export const MainAppStack = () => {
             }
 
 
-            <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
             <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
             <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
-            <Stack.Screen name="DeliveryHomeScreen" component={DeliveryHomeScreen} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
         </Stack.Navigator>
     );
