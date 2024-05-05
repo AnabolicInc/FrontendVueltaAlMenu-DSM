@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './Styles';
 import { TextInput, Pressable } from 'react-native'
 import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+import useViewModel from './ViewModel';
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
@@ -13,6 +14,8 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 export const LoginScreen = ({ navigation,route }: Props) => {
 
+  const { email, password, handleEmailChange, handlePasswordChange, login } = useViewModel();
+
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
   });
@@ -20,9 +23,7 @@ export const LoginScreen = ({ navigation,route }: Props) => {
   if (!fontsLoaded) {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
-
-
-
+  
   return (
     
     <View style={styles.loginContainer}>
@@ -33,11 +34,11 @@ export const LoginScreen = ({ navigation,route }: Props) => {
         
         <Text style={styles.loginText}>INICIAR SESIÓN</Text>
         
-        <TextInput style={styles.emailInputContainer} placeholder=" E-mail" />
-        <TextInput style={styles.passwordInputContainer} placeholder=" Contraseña"/>
+        <TextInput style={styles.emailInputContainer} placeholder=" E-mail" value={email} onChangeText={handleEmailChange} />
+        <TextInput style={styles.passwordInputContainer} placeholder=" Contraseña" secureTextEntry={true} value={password} onChangeText={handlePasswordChange} />
 
         <View style={styles.buttomLogin}> 
-          <Pressable onPress={() => navigation.navigate('AdminBottomTab')}>
+          <Pressable onPress={login}>
             <Text style={styles.buttomLoginText}>Iniciar Sesión</Text>
           </Pressable>
         </View>
@@ -47,6 +48,10 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 
           <Pressable  onPress={() => navigation.navigate('RegisterScreen') }>
             <Text style={styles.signUpLink}>Regístrese</Text>
+          </Pressable>
+
+          <Pressable  onPress={() => navigation.navigate('ResetPasswordScreen') }>
+            <Text style={styles.signUpLink}>Recuperar Password</Text>
           </Pressable>
         </View>
     </View>
