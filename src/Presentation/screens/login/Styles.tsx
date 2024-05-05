@@ -135,12 +135,19 @@ const LoginStyles = StyleSheet.create(
 		marginTop: 8,
 		marginBottom: 5,
 	},
-	backendErrorContainer: {
-		position: 'relative',
-		backgroundColor: 'red',
+	errorContainer: {
+		backgroundColor: 'rgba(255, 0, 0, 0.3)',
+		borderWidth: 1,
+		borderColor: 'red',
 		borderRadius: 10,
-		padding: 10,
-		marginTop: 10,
+		padding: 8,
+		justifyContent: 'center',
+		alignContent: 'center',
+		alignItems: 'center',
+		fontFamily: 'Poppins',
+		position: 'relative',
+		marginBottom: 10,
+		zIndex: 1,
 	},
 
 

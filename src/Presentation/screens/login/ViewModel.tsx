@@ -54,6 +54,8 @@ const LoginViewModel = () => {
                 }
                 
             } catch (error) {
+                console.log(error);
+                
                 const rejectErrors: ResponseAPIDelivery = error;
                 if (rejectErrors.error) {
                     setErrorResponses([]);
@@ -105,7 +107,7 @@ const LoginViewModel = () => {
         onChange,
         login,
         errorMessages,
-        errorsResponse
+        responseError: errorsResponse,
     }
 }
 
