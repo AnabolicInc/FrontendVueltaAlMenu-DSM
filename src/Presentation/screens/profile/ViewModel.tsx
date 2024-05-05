@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/auth/AuthContext";
 import { Error, ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/ResponseApiDelivery";
 import { SaveUserUseCase } from "../../../Domain/useCases/UserLocal/SaveUserLocal";
 import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase";
-import { ProfileAuthUseCase } from "../../../Domain/useCases/Auth/AuthProfile";
+
 
 
 interface Values {
@@ -89,17 +89,6 @@ const ProfileViewModel = () => {
 			try {
 
 				const { image, ...data } = values; //Destructurando los datos
-
-				const response = await ProfileAuthUseCase(data);
-				
-				if(response.success){
-
-					const responseImage = await UpdateFileUseCase(file!, 'users', response.data.id);
-					const dataUser = response.data;
-					dataUser.image = responseImage.data;
-					await SaveUserUseCase(dataUser);
-					setLoading(false);
-				}
 				
 				console.log('Cambio de datos exitoso');
 			} catch (error) {
