@@ -1,44 +1,20 @@
-import React from 'react';
-import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-
-import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../navigation/MainAppStack';
-
+import { View, Text, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native'
+import React from 'react'
+import { UserInfo } from '../../../components/UserInfo';
 import styles from './Styles';
-import { UserInfo } from '../../components/UserInfo';
-import useViewModel from './ViewModel';
+import { StackScreenProps } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import { RootBottomTabParamList } from '../../../navigation/tabs/client/ClientBottomTab';
 
 
 
+interface Props extends StackScreenProps<RootBottomTabParamList, 'ProfileInfoScreen'> {};
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
-
-const ProfileScreen = ({ navigation, route }: Props) => {
-	
-
-	const {
-		profile,
-		user,
-		status,
-		onChange,
-		isValidForm,
-		loading,
-		pickImage,
-		takePhoto,
-		errorMessages,
-		responseError
-
-
-	} = useViewModel();
-
-	const handleProfile = async() => {
-		await profile();
-	};
-
+export const ProfileInfoScreen = ({ navigation,route }: Props) => {
   return (
     <View style={styles.profileContainer}>
-		<Image style={styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
+		<Image style={styles.backButton} source={require('../../../../../assets/images/leftButton.png')} />
 		<TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} />
 		
 		<Text style={styles.mainText}>Perfil de usuario</Text>
@@ -85,10 +61,12 @@ const ProfileScreen = ({ navigation, route }: Props) => {
 				<Text style={styles.editButtonText}>Editar</Text>
 			</Pressable>
 
-
-		
-
-			
+			<Pressable 
+				style={styles.editButton}
+			>
+				<MaterialCommunityIcons style ={{marginRight:10}} name="logout" size={20} color="white" />
+				<Text style={styles.editButtonText}>Cerrar sesión</Text>
+			</Pressable>
 
 		</ScrollView>
 
@@ -97,6 +75,4 @@ const ProfileScreen = ({ navigation, route }: Props) => {
 
       
   )
-};
-
-export default ProfileScreen;
+}

@@ -5,6 +5,9 @@ import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+
+import { AdminBottomTab } from '../../navigation/tabs/admin/AdminBottomTab';
+
 import useViewModel from './ViewModel';
 
 
@@ -38,7 +41,12 @@ export const LoginScreen = ({ navigation,route }: Props) => {
         <TextInput style={styles.passwordInputContainer} placeholder=" Contraseña" secureTextEntry={true} value={password} onChangeText={handlePasswordChange} />
 
         <View style={styles.buttomLogin}> 
+
+        {/* FIXME: CHANGE NAVEGATE SCREEN */}
+
+
           <Pressable onPress={login}>
+
             <Text style={styles.buttomLoginText}>Iniciar Sesión</Text>
           </Pressable>
         </View>

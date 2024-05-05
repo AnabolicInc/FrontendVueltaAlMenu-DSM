@@ -19,21 +19,21 @@ import ClientHomeScreen from '../screens/client/ClientHomeScreen'
 import ResetPasswordScreen from '../screens/resetPassword/ResetPasswordScreen'
 
 
+
 export type RootStackParamList = {
     LoginScreen: undefined;
     RegisterScreen: undefined;
-    AdminHomeScreen: undefined;
     ClientBottomTab: undefined;
     AdminBottomTab: undefined;
-    AdminTopTab: undefined;
-    ProfileScreen: undefined;
-    ClientHomeScreen: undefined;
+    
     CategoryCreateScreen: undefined;
     CategoryListScreen: undefined;
     CategoryUpdateScreen: undefined;
+
     PendingOrderScreen: undefined;
     DeliveryHomeScreen: undefined;
     ResetPasswordScreen: undefined;
+
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -90,10 +90,12 @@ export const MainAppStack = () => {
                     </>
                 ):renderRoleScreen()
             }
-           
-            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
-            {/* <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
-            {/* <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} /> */}
+
+            */}
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
+
             <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
             <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
