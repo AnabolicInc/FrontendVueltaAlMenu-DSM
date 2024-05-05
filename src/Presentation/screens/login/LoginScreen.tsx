@@ -16,7 +16,14 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 export const LoginScreen = ({ navigation,route }: Props) => {
 
-  const { email, password, handleEmailChange, handlePasswordChange, login } = useViewModel();
+  const { 
+		email, 
+		password, 
+		onChange, 
+		login,
+		errorMessages,
+		errorsResponse 
+	} = useViewModel();
 
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
@@ -42,15 +49,23 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 			
 				<Text style={styles.loginText}>INICIAR SESIÓN</Text>
 				
-				<TextInput style={styles.emailInputContainer} placeholder=" E-mail" value={email} onChangeText={handleEmailChange} />
+				<TextInput 
+					style={styles.emailInputContainer} 
+					value={email}
+					onChangeText={text => onChange('email', text)}
+					placeholder=" E-mail" 
+				/>
+				{errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
+
 
 				<TextInput 
 					style={{...styles.passwordInputContainer,marginTop: 10}} 
-					placeholder=" Contraseña" 
+					value={password}
+					onChangeText={text => onChange('password', text)}
+					placeholder="*******" 
 					secureTextEntry={true} 
-					value={password} 
-					onChangeText={handlePasswordChange} 
 				/>
+				{errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
 
 				<Pressable style = {styles.loginButton} onPress={login}>
 					<Text style={styles.buttomLoginText}>Iniciar sesión</Text>
@@ -93,7 +108,7 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 							>Recuperar Contraseña
 						</Text>
 					</Pressable>
-					
+
 				</View>
 					
 
