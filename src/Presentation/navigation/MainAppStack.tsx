@@ -42,26 +42,23 @@ export const MainAppStack = () => {
 
     const { user,status } = useContext(AuthContext);
 
-    /*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete */
-    //if(status === 'checking') return <LoadingScreen/>;
+    
+    // if(status === 'checking') return <LoadingScreen/>;
 
     const renderRoleScreen = () => {
         if (user.role_id ==3) {
             <>
-                {/*IMPORTANT (19:49 03/05/2024): commented for future purposes, do not delete*/}
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
-
             </>
         //this client
         } else if (user.role_id ==2) {
         //this delivery
             return <>
-                {/*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete*/}
-                {/* <Stack.Screen name="DeliveryBottomTab" component={DeliveryBottomTab} /> */}
+
+                {/* <Stack.Screen name="DeliveryBottomTab" component={DeliveryBottomTab} */}
             </>
         } else {
             return <>
-                {/*IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete*/}
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
             </>
 
@@ -78,7 +75,6 @@ export const MainAppStack = () => {
                 headerShown: false
              }}
         >
-            {/* IMPORTANT (17:01 01/05/2024): commented for future purposes, do not delete */}
             {status !== 'authenticated' 
                 ? (
 
@@ -91,17 +87,12 @@ export const MainAppStack = () => {
                 ):renderRoleScreen()
             }
 
-            */}
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-            <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
 
+            <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
             <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
             <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
-            <Stack.Screen name="AdminHomeScreen" component={AdminHomeScreen} />
             <Stack.Screen name="DeliveryHomeScreen" component={DeliveryHomeScreen} />
-            <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
         </Stack.Navigator>
     );

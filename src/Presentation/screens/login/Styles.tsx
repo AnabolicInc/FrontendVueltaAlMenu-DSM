@@ -4,19 +4,38 @@ import { StyleSheet } from "react-native";
 const LoginStyles = StyleSheet.create(
 
     {
-
       loginContainer: {
         flex: 1,
+		justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
         backgroundColor: '#0C1013',
       },
+	  loginInnerContainer: {
+		flexDirection: 'column',
+		position: 'relative',
+		justifyContent: 'center',
+		alignContent: 'center',
+		fontFamily: 'Poppins',
+	  },
+
+      loginInputContainer: {
+		position: 'relative',
+        justifyContent: 'center',
+		alignItems: 'center',
+        alignContent: 'center',
+		alignSelf: 'center',
+        marginBottom: 200,
+		width: 250,
+        height: 80,
+
+      },
 
       loginImage: {
         backgroundColor: '#0C1013',
-        position: 'absolute',
-        top: "-10%",
-        left: "-30%",
+		position: 'relative',
+		left: "-45%",
+		top: "-20%",
         width: 350,
         height: 350,
         opacity: 0.8
@@ -24,8 +43,7 @@ const LoginStyles = StyleSheet.create(
     },
 
       loginText: {
-        position: 'absolute',
-        top: "35%",
+		position: 'relative',
         color: 'white',
         fontFamily: 'Poppins',
         fontSize: 20,
@@ -33,11 +51,21 @@ const LoginStyles = StyleSheet.create(
         marginBottom: 20,
 
       },
+	  forgetPasswordSection: {
+		borderColor: 'rgba(255, 255, 255,0.3)',
+		borderRadius: 10,
+		borderWidth: 1,
+		position: 'relative',
+		top: "50%",
+		justifyContent: 'center',
+		alignContent: 'center',
+		alignItems: 'center',
+		padding: 10,
+	  },
 
 
       emailInputContainer: {
-        position: 'absolute',
-        top: "50%",
+        position: 'relative',
         width: 250,
         height: 40,
         backgroundColor: 'white',
@@ -48,8 +76,7 @@ const LoginStyles = StyleSheet.create(
       },
 
       passwordInputContainer: {
-        position: 'absolute',
-        top: "57%",
+        position: 'relative',
         backgroundColor: 'white',
         fontFamily: 'Poppins',
         width: 250,
@@ -58,37 +85,41 @@ const LoginStyles = StyleSheet.create(
         paddingStart: 10,
         paddingEnd: 10,
       },
+	  loginButton: {
+		position: 'relative',
+		backgroundColor: '#141921',
+		borderWidth: 1,
+		borderColor: '#146c43',
+		justifyContent: 'center',
+		alignContent: 'center',
+		alignItems: 'center',
+		width: 150,
+		height: 45,
+		borderRadius: 10,
+		marginTop: 20,
+	  },
 
-      buttomLogin: {
-        position: 'absolute',
-        top: "65%",
-        left: "30%",
-        backgroundColor: '#D17842',
-        borderRadius: 10,
-        width: 150,
-        height: 40,
-      },
-     
+	  registerSection: {
+		position: 'relative',
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignContent: 'center',
+		alignItems: 'center',
+		marginTop: 30,
+	  },
+	  registerText: {
+		fontFamily: 'Poppins',
+		position: 'relative',
+		textAlign: 'center',
+		fontSize:18,
+		color: 'white',
+	  },
+
       buttomLoginText: {
+		position: 'relative',
         color: 'white',
         fontFamily: 'Poppins',
         textAlign: 'center',
-        marginTop: 10,
-      },
-
-      signUpContainer: {
-        position: 'absolute',
-        top: "80%",
-        alignItems: 'center',
-        marginTop: 20,
-      },
-      
-      signUpText: {
-        color: 'white',
-        fontFamily: 'Poppins',
-        textAlign: 'center',
-        fontSize: 18,
-        marginBottom: 20,
       },
 
       signUpLink: {
