@@ -8,6 +8,9 @@ import { RootStackParamList } from '../../navigation/MainAppStack';
 
 
 import useViewModel from './ViewModel';
+import { FlatList } from 'react-native-gesture-handler';
+import { showMessage } from 'react-native-flash-message';
+
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
@@ -48,9 +51,36 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 			<View style = {styles.loginInputContainer}>
 			
 				<Text style={styles.loginText}>INICIAR SESIÓN</Text>
+				{
+					errorsResponse.length > 0 && (
+					<View style={styles.backendErrorContainer}>
+						<Text style={{ color: '#FFF', marginLeft: 10 }}>
+						Por favor revise de nuevo
+						</Text>
+						<FlatList
+						scrollEnabled={false}
+						data={errorsResponse}
+						renderItem={({ item, index }) => {
+							return (
+							<View key={`${index}-${item.path}`} style={{ marginBottom: 10 }}>
+								<Text style={{
+								...styles.errorText,
+								fontSize: 14,
+								paddingVertical: 0,
+								marginVertical: 2,
+								borderLeftWidth: 0
+								}}>{`\u2022  ${item.value}`}</Text>
+							</View>
+							);
+						}}
+						/>
+					</View>
+					)
+          		}
 				
 				<TextInput 
 					style={styles.emailInputContainer} 
+					keyboardType='default'
 					value={email}
 					onChangeText={text => onChange('email', text)}
 					placeholder=" E-mail" 
@@ -105,7 +135,7 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 								fontFamily: 'Poppins',
 								fontSize: 15,
 							}}
-							>Recuperar Contraseña
+							>Recuperar contraseña
 						</Text>
 					</Pressable>
 

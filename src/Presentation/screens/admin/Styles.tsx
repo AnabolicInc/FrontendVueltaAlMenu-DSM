@@ -29,7 +29,7 @@ const AdminHomeStyles = StyleSheet.create(
         mainText: {
             color: 'white',
             fontFamily: 'Poppins',
-            fontSize: 25,
+            fontSize: 20,
             textAlign: 'left',
             marginBottom: 20,
             position: 'absolute',

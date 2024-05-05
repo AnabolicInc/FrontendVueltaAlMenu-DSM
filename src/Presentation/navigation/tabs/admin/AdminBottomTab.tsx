@@ -1,11 +1,18 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5 } from '@expo/vector-icons';
 import {FontAwesome} from '@expo/vector-icons'
 
 
 import ProfileScreen from '../../../screens/profile/ProfileScreen';
 import AdminHomeScreen from '../../../screens/admin/AdminHomeScreen';
 import CategoryListScreen from '../../../screens/admin/category/list/CategoryListScreen';
+
+
+
+export type RootBottomTabParamList = {
+    AdminHomeScreen: undefined;
+    CategoryListScreen: undefined;
+    ProfileScreen: undefined;
+};
 
 const Tab = createBottomTabNavigator();
 

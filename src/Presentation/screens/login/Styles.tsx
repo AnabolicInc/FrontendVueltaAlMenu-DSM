@@ -122,13 +122,26 @@ const LoginStyles = StyleSheet.create(
         textAlign: 'center',
     },
 	errorText:{
+		borderWidth: 1,
+		borderColor: 'red',
+		borderRadius: 10,
+		padding: 5,
+		marginStart: 5,
+		marginEnd: 5,
 		position: 'relative',
 		color: 'red',
 		fontFamily: 'Poppins',
 		fontSize: 12,
-		marginTop: 5,
+		marginTop: 8,
 		marginBottom: 5,
-	}
+	},
+	backendErrorContainer: {
+		position: 'relative',
+		backgroundColor: 'red',
+		borderRadius: 10,
+		padding: 10,
+		marginTop: 10,
+	},
 
 
 
