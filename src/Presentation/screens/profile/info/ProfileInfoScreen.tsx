@@ -1,17 +1,17 @@
 import { View, Text, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { UserInfo } from '../../../components/UserInfo';
 import styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import { RootBottomTabParamList } from '../../../navigation/tabs/client/ClientBottomTab';
-
-
+import { AuthContext } from '../../../context/auth/AuthContext';
 
 interface Props extends StackScreenProps<RootBottomTabParamList, 'ProfileInfoScreen'> {};
 
 
 export const ProfileInfoScreen = ({ navigation,route }: Props) => {
+	const {status, user} = useContext(AuthContext);
   return (
     <View style={styles.profileContainer}>
 		<Image style={styles.backButton} source={require('../../../../../assets/images/leftButton.png')} />
@@ -23,36 +23,36 @@ export const ProfileInfoScreen = ({ navigation,route }: Props) => {
 			<UserInfo 
 				fieldType='image' 
 				textCard = 'Foto de perfil' 
-				dataUser = 'Data here'
+				dataUser = {user?.image}
 			/>
 
 			<UserInfo 
 				fieldType ='name' 
 				textCard = 'Nombre' 
-				dataUser = 'Date here'
+				dataUser = {user?.name}
 			/>
 
 			<UserInfo 
 				fieldType ='lastname' 
 				textCard = 'Apellido' 
-				dataUser = 'Date here'
+				dataUser = {user?.lastName}
 			/>
 			
 			<UserInfo 
 				fieldType ='username' 
 				textCard = 'Nombre de usuario' 
-				dataUser = 'Date here'
+				dataUser = {user?.name + user?.lastName}
 			/>
 
 			<UserInfo 
 				textCard = 'Correo electrónico' 
-				dataUser = 'Data here'
+				dataUser = {user?.email}
 			/>
 			
 			<UserInfo 
 				fieldType='phone'
 				textCard = 'Teléfono' 
-				dataUser = 'Data here'
+				dataUser = {'+56' + user?.phone}
 			/>
 
 			<Pressable 
@@ -63,6 +63,7 @@ export const ProfileInfoScreen = ({ navigation,route }: Props) => {
 
 			<Pressable 
 				style={styles.editButton}
+				onPress={() => console.log('Cerrar sesión')}
 			>
 				<MaterialCommunityIcons style ={{marginRight:10}} name="logout" size={20} color="white" />
 				<Text style={styles.editButtonText}>Cerrar sesión</Text>

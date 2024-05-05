@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		position: 'relative',
 		marginBottom: 10,
+		alignSelf: 'center',
   	},
 	prefixContainer: {
 		backgroundColor: 'rgba(255, 255, 255, 0.1)',
