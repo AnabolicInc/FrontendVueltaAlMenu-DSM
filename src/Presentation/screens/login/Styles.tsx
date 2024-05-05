@@ -115,20 +115,22 @@ const LoginStyles = StyleSheet.create(
 		color: 'white',
 	  },
 
-      buttomLoginText: {
+    buttomLoginText: {
 		position: 'relative',
         color: 'white',
         fontFamily: 'Poppins',
         textAlign: 'center',
-      },
+    },
+	errorText:{
+		position: 'relative',
+		color: 'red',
+		fontFamily: 'Poppins',
+		fontSize: 12,
+		marginTop: 5,
+		marginBottom: 5,
+	}
 
-      signUpLink: {
-        color: '#D17842',
-        top: "-40%",
-        fontSize: 18,
-        fontFamily: 'Poppins',
-        textAlign: 'center',
-      },
+
 
 
 })
