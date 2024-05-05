@@ -5,6 +5,7 @@ import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+import { AdminBottomTab } from '../../navigation/tabs/admin/AdminBottomTab';
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
@@ -37,7 +38,8 @@ export const LoginScreen = ({ navigation,route }: Props) => {
         <TextInput style={styles.passwordInputContainer} placeholder=" Contraseña"/>
 
         <View style={styles.buttomLogin}> 
-          <Pressable onPress={() => navigation.navigate('AdminBottomTab')}>
+        {/* FIXME: CHANGE NAVEGATE SCREEN */}
+          <Pressable onPress={() => navigation.navigate('ClientBottomTab')}>
             <Text style={styles.buttomLoginText}>Iniciar Sesión</Text>
           </Pressable>
         </View>

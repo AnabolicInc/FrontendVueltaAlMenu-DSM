@@ -1,13 +1,22 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5 } from '@expo/vector-icons';
 import {FontAwesome} from '@expo/vector-icons'
 
 
-import ProfileScreen from '../../../screens/profile/ProfileScreen';
+//import ProfileScreen from '../../../screens/profile/ProfileScreen';
 import ClientHomeScreen from '../../../screens/client/ClientHomeScreen';
 import ShoppingCartScreen from '../../../screens/shopping/ShoppingCartScreen';
+import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
 
-const Tab = createBottomTabNavigator();
+
+
+export type RootBottomTabParamList = {
+    ProfileInfoScreen: undefined;
+    Home: undefined;
+    Carrito: undefined;
+    Perfil: undefined;
+};
+
+const Tab = createBottomTabNavigator<RootBottomTabParamList>();
 
 export const ClientBottomTab = () => {
   return (
@@ -33,8 +42,8 @@ export const ClientBottomTab = () => {
             )
             }}
         />
-        <Tab.Screen name="Perfil" component={ProfileScreen} 
-            options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
+        <Tab.Screen name="Perfil" component={ProfileInfoScreen} 
+            options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0, borderTopColor: '#0C1013', paddingTop:10},
             tabBarIcon:({})=>(
                 <FontAwesome name="user" size={24} color={'#D17842'} />
             )
