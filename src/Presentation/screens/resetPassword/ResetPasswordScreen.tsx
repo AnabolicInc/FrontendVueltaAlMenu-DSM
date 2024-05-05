@@ -13,7 +13,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 
 
-export const ResetPasswordScreen = ({ navigation,route }: Props) => {
+const ResetPasswordScreen = ({ navigation,route }: Props) => {
   const [email, setEmail] = useState<string>('');
 
   const [fontsLoaded] = useFonts({
@@ -46,7 +46,7 @@ export const ResetPasswordScreen = ({ navigation,route }: Props) => {
 
         <View style={styles.buttomLogin}> 
           <Pressable onPress={resetPassword}>
-            <Text style={styles.buttomLoginText}>Recuperar Password</Text>
+            <Text style={styles.buttomLoginText}>Recuperar contraseña</Text>
           </Pressable>
         </View>
         
