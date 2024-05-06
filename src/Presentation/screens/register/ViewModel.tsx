@@ -194,8 +194,7 @@ const RegisterViewModel = () => {
 			}
 			
 		} catch (error) {
-			console.log('error');
-			
+			console.log('Error al tomar la foto,',error);
 		}
 
 	  

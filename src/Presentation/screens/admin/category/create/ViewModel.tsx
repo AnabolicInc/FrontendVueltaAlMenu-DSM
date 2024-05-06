@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import * as Yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
+import { CategoryCreateUseCase } from "../../../../../Domain/useCases/Category/CategoryCreateUseCase";
+import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
+import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
+import { showMessage } from "react-native-flash-message";
 
 
 
@@ -21,13 +25,19 @@ interface ResponseErrorData{
 	value: string;
 
 }
+const validationCategorySchema = Yup.object().shape({
+
+	image: Yup.string().required('La imagen es obligatoria'),
+	name: Yup.string().required('El campo nombre es obligatorio'),
+	description: Yup.string().required('El campo descripción es obligatorio'),
+
+	});
 
 const CategoryCreateViewModel = () => {
 
 
-
+	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
-
 	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
 
 	const [values, setValues] = useState<Values>({
@@ -35,6 +45,8 @@ const CategoryCreateViewModel = () => {
 		name: '',
 		description: '',
 	});
+	
+	const [loading, setLoading] = useState(false);
 
 
 
@@ -65,6 +77,67 @@ const CategoryCreateViewModel = () => {
 		
 	};
 
+	const isValidForm = async ():Promise<boolean> => {
+		try {
+			await validationCategorySchema.validate(values, {abortEarly: false});
+			return true;
+		} catch (error) {
+			const errors: Record<string, string> = {};
+			error.inner.forEach((err) => {
+				errors[err.path] = err.message;
+			});
+			setErrorMessages(errors);
+			console.log(errorMessages);
+			return false;
+		}
+	};
+
+	const createCategory = async () => {
+
+		const isValid = await isValidForm();
+		console.log(isValid);
+		
+		if (isValid) {
+			setLoading(true);
+			setErrorMessages({});
+			try {
+
+				const { image, ...data } = values; //Destructurando los datos
+
+				const response = await CategoryCreateUseCase(data);
+				
+				if(response.success){
+
+					const responseImage = await UpdateFileUseCase(file!, 'category', response.data.id);
+					setLoading(false);
+				}
+				
+				console.log('Registro exitoso');
+			} catch (error) {
+				const rejectErrors: ResponseAPIDelivery = error;
+
+				if(rejectErrors.error){
+					setErrorResponses([]);
+					showMessage({
+						message: rejectErrors.error,
+						type: 'danger',
+						icon: 'danger',
+					});
+				}else{
+					console.log('Error en el registro');
+				
+					const errorsArray = Object.values(rejectErrors.errors);
+
+					const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }))
+					console.log(errorsArrayFilter);
+					setErrorResponses(errorsArrayFilter);
+					
+				}
+				setLoading(false);
+				
+			}
+		}
+	};
 
 	const takePhoto = async () => {
 		
@@ -90,6 +163,7 @@ const CategoryCreateViewModel = () => {
 
     return {
         ...values,
+		createCategory,
         onChange,
         pickImage,
         takePhoto,
