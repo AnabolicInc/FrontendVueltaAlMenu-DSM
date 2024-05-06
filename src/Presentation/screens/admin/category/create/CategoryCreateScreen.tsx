@@ -21,7 +21,9 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
     takePhoto,
     pickImage,
     image,
-    createCategory
+    createCategory,
+    name,
+    description
 } = useViewModel();
 
   const handleCategoryCreate = async () => {
@@ -46,13 +48,20 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
           <Text style={styles.uploadImageButtonText}>Subir imagen</Text>
         </Pressable>
 
-      <NewCategoryInfo fieldLabel="Nombre" onChangeText={(text) => console.log(text)} />
+        <TextInput 
+                style={styles.nameInput}
+                placeholder="Nombre"
+                value = {name} 
+                placeholderTextColor={'#D17842'} 
+                onChangeText={(text) => onChange('name', text)}
+            />
 
         <TextInput 
                 style={styles.DescriptionInput}
                 placeholder="Descripción"
+                value = {description} 
                 placeholderTextColor={'#D17842'} 
-                onChangeText={(text) => console.log(text)}
+                onChangeText={(text) => onChange('description', text)}
                 multiline={true}
             />
       
