@@ -49,7 +49,7 @@ export const MainAppStack = () => {
 
     const renderRoleScreen = () => {
         if (user.role_id ==3) {
-            <>
+            return<>
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
             </>

@@ -7,9 +7,9 @@ import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { TextInput } from 'react-native';
-import { RootBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
+import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
 
-interface Props extends StackScreenProps<RootBottomTabParamList, 'ClientHomeScreen'> {}
+interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> {}
 
 export const  ClientHomeScreen = ({ navigation, route}: Props) => {
   
