@@ -7,6 +7,7 @@ import { RootStackParamList } from '../../../../navigation/MainAppStack';
 import NewCategoryInfo from '../../../../components/NewCategoryInfo';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import useViewModel from './ViewModel';
+import { create } from 'domain';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryCreateScreen'> {}
 
@@ -20,7 +21,13 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
     takePhoto,
     pickImage,
     image,
+    createCategory
 } = useViewModel();
+
+  const handleCategoryCreate = async () => {
+    await createCategory();
+  }
+
 
   return (
     <View style={styles.CategoryCreateContainer}>
@@ -50,7 +57,7 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
             />
       
         <View style={styles.buttomSave}> 
-        <Pressable onPress={() => navigation.goBack()}> 
+        <Pressable onPressIn={handleCategoryCreate}> 
             <Text style={styles.SaveText}>AÑADIR</Text>
           </Pressable>
         </View>

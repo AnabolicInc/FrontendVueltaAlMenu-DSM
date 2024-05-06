@@ -25,16 +25,16 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 		onChange, 
 		login,
 		errorMessages,
-		errorsResponse 
+		responseError 
 	} = useViewModel();
 
-  const [fontsLoaded] = useFonts({
-    Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
-  });
+	const [fontsLoaded] = useFonts({
+		Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
+	});
 
-  if (!fontsLoaded) {
-    return null; // Muestra un componente de carga mientras se carga la fuente
-  }
+	if (!fontsLoaded) {
+		return null; // Muestra un componente de carga mientras se carga la fuente
+	}
   
   return (
     
@@ -49,22 +49,24 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 
 		
 			<View style = {styles.loginInputContainer}>
-			
+				
+
 				<Text style={styles.loginText}>INICIAR SESIÓN</Text>
+						
 				{
-					errorsResponse.length > 0 && (
-					<View style={styles.backendErrorContainer}>
+					responseError.length > 0 && (
+					<View style={styles.errorContainer}>
 						<Text style={{ color: '#FFF', marginLeft: 10 }}>
-						Por favor revise de nuevo
+						Por favor revise de nuevo sus datos
 						</Text>
 						<FlatList
 						scrollEnabled={false}
-						data={errorsResponse}
+						data={responseError}
 						renderItem={({ item, index }) => {
 							return (
 							<View key={`${index}-${item.path}`} style={{ marginBottom: 10 }}>
 								<Text style={{
-								...styles.errorText,
+									color:'white',
 								fontSize: 14,
 								paddingVertical: 0,
 								marginVertical: 2,
@@ -76,7 +78,7 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 						/>
 					</View>
 					)
-          		}
+          		} 
 				
 				<TextInput 
 					style={styles.emailInputContainer} 
@@ -97,7 +99,7 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 				/>
 				{errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
 
-				<Pressable style = {styles.loginButton} onPress={login}>
+				<Pressable style = {styles.loginButton} onPressIn={login}>
 					<Text style={styles.buttomLoginText}>Iniciar sesión</Text>
 				</Pressable>
 

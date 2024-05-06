@@ -6,7 +6,7 @@ import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
-import ClientHomeScreen from '../../../../src/Presentation/screens/client/ClientHomeScreen';
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
@@ -14,46 +14,33 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 
 const ResetPasswordScreen = ({ navigation,route }: Props) => {
-  const [email, setEmail] = useState<string>('');
-
-  const [fontsLoaded] = useFonts({
-    Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
-  });
-
-  if (!fontsLoaded) {
-    return null; // Muestra un componente de carga mientras se carga la fuente
-  }
-
-  const handleEmailChange = (email: string) => {
-    setEmail(email);
-  }
-
-  const resetPassword = async () => {
-    const res = await ApiDelivery.post('auth/reset-password', { email });
-  };
 
   return (
     
-    <View style={styles.loginContainer}>
+    <View style={styles.resetPasswordContainer}>
       
       <Image source={require('../../../../assets/images/chicken-skewers-on-a-plate.png')} 
-            style={styles.loginImage}
+            style={styles.resetPasswordImage}
         />
-        
-        <Text style={styles.loginText}>Recuperar Password</Text>
-        
-        <TextInput style={styles.emailInputContainer} placeholder=" E-mail" value={email}  />
 
-        <View style={styles.buttomLogin}> 
-          <Pressable>
-            <Text style={styles.buttomLoginText}>Recuperar contraseña</Text>
-          </Pressable>
-        </View>
-        
-        <View style={styles.signUpContainer}>
-          <Pressable  onPress={() => navigation.navigate('LoginScreen') }>
-            <Text style={styles.signUpLink}>Volver a Login</Text>
-          </Pressable>
+        <View style={styles.resetPasswordInnerContainer}>
+
+          <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
+          
+          <TextInput style={styles.emailInputContainer} placeholder=" E-mail" value={"email"}  />
+
+          <View style={styles.buttomResetPassword}> 
+            <Pressable>
+              <Text style={styles.buttomResetPasswordText}>Recuperar contraseña</Text>
+            </Pressable>
+          </View>
+          
+          <View style={styles.backContainer}>
+            <Pressable  onPressIn={() => navigation.navigate('LoginScreen') }>
+				<Text style={styles.backTextContainer}>Volver</Text>
+            </Pressable>
+          </View>
+
         </View>
     </View>
     

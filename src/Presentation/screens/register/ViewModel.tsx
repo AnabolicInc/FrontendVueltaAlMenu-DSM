@@ -35,10 +35,10 @@ const validationRegisterSchema = Yup.object().shape({
 	name: Yup.string().required('El campo nombre es obligatorio'),
 	lastName: Yup.string().required('El campo apellido es obligatorio'),
 	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio'),
-  	phone: Yup.string().required('El campo teléfono es obligatorio').min(9, 'El teléfono ingresado no es valido') ,
+  	phone: Yup.string().required('El campo teléfono es obligatorio').max(9).min(9, 'El teléfono ingresado no es valido') ,
 	password: Yup.string().required('El campo contraseña es obligatorio').matches(
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/,
-		'La contraseña no cumple con los requesitos minimos'
+		'La contraseña no cumple con los requisitos minimos'
 	),
 	confirmPassword: Yup.string().required('El campo confirmar contraseña es obligatorio').oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden'),
 });
