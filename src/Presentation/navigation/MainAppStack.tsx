@@ -14,6 +14,7 @@ import { CategoryCreateScreen } from '../screens/admin/category/create/CategoryC
 import { CategoryListScreen } from '../screens/admin/category/list/CategoryListScreen'
 import { CategoryUpdateScreen } from '../screens/admin/category/update/CategoryUpdateScreen'
 import ResetPasswordScreen from '../screens/resetPassword/ResetPasswordScreen'
+import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
 
 
 
@@ -29,7 +30,7 @@ export type RootStackParamList = {
     CategoryListScreen: undefined;
     CategoryUpdateScreen: undefined;
 
-
+    ProfileUpdateScreen: undefined;
    
 
 };
@@ -47,6 +48,7 @@ export const MainAppStack = () => {
         if (user.role_id ==3) {
             return<>
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
+                <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
             </>
         //this client
         } else if (user.role_id ==2) {
@@ -58,6 +60,7 @@ export const MainAppStack = () => {
         } else {
             return <>
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
+                <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
             </>
 
         }

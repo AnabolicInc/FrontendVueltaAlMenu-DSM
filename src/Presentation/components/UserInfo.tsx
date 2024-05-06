@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View,TouchableOpacity, Pressable, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ModalChangeInfo } from './ModalChangeInfo';
 import useViewModel from '../screens/profile/ViewModel';
 import { ModalPickImage } from './ModalPickImage';
+import { AuthContext } from '../context/auth/AuthContext';
 
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 
 
 export const UserInfo = ({ fieldType,textCard, dataUser }: Props) => {
+    const {status, user} = useContext(AuthContext);
 
 	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
 
@@ -61,6 +63,7 @@ export const UserInfo = ({ fieldType,textCard, dataUser }: Props) => {
                 />
             }
 
+            
             
         </View>
     )
