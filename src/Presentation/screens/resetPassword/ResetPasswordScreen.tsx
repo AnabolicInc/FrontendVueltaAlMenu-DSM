@@ -9,6 +9,7 @@ import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import useViewModel from './ViewModel';
 import { error } from 'console';
+import { ModalNotification } from '../../components/ModalNotification';
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
@@ -16,6 +17,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 
 const ResetPasswordScreen = ({ navigation,route }: Props) => {
+    const [modalVisible, setMoldalVisible] = useState<boolean>(false); 
 
 	const {
 		email, 
@@ -48,7 +50,7 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
 		  {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
           <View style={styles.buttomResetPassword}> 
-            <Pressable onPressIn={resetPassword}>
+            <Pressable onPressIn={resetPassword} >
               <Text style={styles.buttomResetPasswordText}>Recuperar contraseña</Text>
             </Pressable>
           </View>
@@ -60,6 +62,11 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
           </View>
 
         </View>
+		<ModalNotification
+            email={email}
+            modalUseState={modalVisible}
+            setModalUseState={setMoldalVisible}
+        />
     </View>
     
   )

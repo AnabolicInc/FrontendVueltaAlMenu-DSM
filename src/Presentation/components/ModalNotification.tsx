@@ -27,25 +27,23 @@ export const ModalNotification = ({modalUseState,setModalUseState,email}:Props) 
 
         >
             <View style = {styles.modalInnerContainer}>
-                <View>
-                    <Text style={styles.modalText}>Selecciona una imagen</Text>
-                    
-                    {/* Gallery button */}
-                    <View>
-                        <Text style={styles.modalText}>El correo ha sido correctamente a {email}</Text>
-                    </View>
-                    {/*Create a pressable that close the modal*/}
-                    <View style = {styles.buttonContainer}>
-                        <Pressable style = {styles.saveButton} 
-                            onPress = {() => setModalUseState(false)}
+                <Text style={styles.modalText}>El correo ha sido correctamente a {email}</Text>
+                <View style = {styles.buttonContainer}>
+                    <Pressable style = {styles.saveButton} 
+                        onPress = {() => setModalUseState(false)}
                         >
-                        </Pressable>
-                    </View>
-                        
-                   
+                        <Text style={
+                        {
+                            color: 'white',
+                            fontSize: 20,
+                        }
+                        }>Cerrar</Text>
+                    </Pressable>
 
                 </View>
             </View>
+
+
 
       </Modal>
     </View>
@@ -76,8 +74,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     saveButton: {
-        backgroundColor: '#D17842',
+        backgroundColor: 'rgba(0,0,255,0.35)',
+        borderWidth: 1,
+        borderColor: '#110fac',
         padding: 10,
         borderRadius: 10,
+        width: 250,
+        height: 50,
+        alignItems: 'center',
+
     },
 })
