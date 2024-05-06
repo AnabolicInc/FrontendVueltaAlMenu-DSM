@@ -7,6 +7,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import useViewModel from './ViewModel';
+import { error } from 'console';
+import { ModalNotification } from '../../components/ModalNotification';
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
@@ -14,6 +17,17 @@ interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
 
 
 const ResetPasswordScreen = ({ navigation,route }: Props) => {
+    const [modalVisible, setMoldalVisible] = useState<boolean>(false); 
+
+	const {
+		email, 
+		onChange,
+		resetPassword,
+		errorMessages,
+		responseError: errorsResponse,
+
+	} = useViewModel();
+	
 
   return (
     
@@ -27,10 +41,16 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
 
           <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
           
-          <TextInput style={styles.emailInputContainer} placeholder=" E-mail" value={"email"}  />
+          <TextInput 
+            style={styles.emailInputContainer} 
+            placeholder="Correo electrónico" 
+			value={email}  
+            onChangeText={text => onChange('email', text)}
+          />
+		  {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
           <View style={styles.buttomResetPassword}> 
-            <Pressable>
+            <Pressable onPressIn={resetPassword} >
               <Text style={styles.buttomResetPasswordText}>Recuperar contraseña</Text>
             </Pressable>
           </View>
@@ -42,6 +62,11 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
           </View>
 
         </View>
+		<ModalNotification
+            email={email}
+            modalUseState={modalVisible}
+            setModalUseState={setMoldalVisible}
+        />
     </View>
     
   )
