@@ -17,6 +17,7 @@ import AdminHomeScreen from '../screens/admin/AdminHomeScreen'
 import DeliveryHomeScreen from '../screens/delivery/DeliveryHomeScreen'
 import ClientHomeScreen from '../screens/client/ClientHomeScreen'
 import ResetPasswordScreen from '../screens/resetPassword/ResetPasswordScreen'
+import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
 
 
 
@@ -32,7 +33,7 @@ export type RootStackParamList = {
     CategoryListScreen: undefined;
     CategoryUpdateScreen: undefined;
 
-
+    ProfileUpdateScreen: undefined;
    
 
 };
@@ -48,8 +49,9 @@ export const MainAppStack = () => {
 
     const renderRoleScreen = () => {
         if (user.role_id ==3) {
-            <>
+            return<>
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
+                <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
             </>
         //this client
         } else if (user.role_id ==2) {
@@ -61,6 +63,7 @@ export const MainAppStack = () => {
         } else {
             return <>
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
+                <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
             </>
 
         }
