@@ -1,11 +1,19 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5 } from '@expo/vector-icons';
 import {FontAwesome} from '@expo/vector-icons'
 
 
-import ProfileScreen from '../../../screens/profile/ProfileScreen';
+
 import AdminHomeScreen from '../../../screens/admin/AdminHomeScreen';
 import CategoryListScreen from '../../../screens/admin/category/list/CategoryListScreen';
+import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
+
+
+
+export type RootBottomTabParamList = {
+    AdminHomeScreen: undefined;
+    CategoryListScreen: undefined;
+    ProfileScreen: undefined;
+};
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +41,7 @@ export const AdminBottomTab = () => {
             )
             }}
         />
-        <Tab.Screen name="Perfil" component={ProfileScreen} 
+        <Tab.Screen name="Perfil" component={ProfileInfoScreen} 
             options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
             tabBarIcon:({})=>(
                 <FontAwesome name="user" size={24} color={'#D17842'} />

@@ -25,13 +25,13 @@ const RegisterInput = ({fieldLabel,onChangeText,prefix,customStyle,icon,secureTe
 			{prefix && <Text style={styles.prefix}>{prefix}</Text>}
 		</View> 
 		<TextInput
-		  style = {{...styles.fieldLabel, ...customStyle}}
-		  placeholder = {fieldLabel}
-		  placeholderTextColor={'#D17842'}
-		  onChangeText={onChangeText}
-		  secureTextEntry={secureTextEntry}
-		  keyboardType={keyboardType} 
-		  editable={loading ? false : true}
+			style = {{...styles.fieldLabel, ...customStyle}}
+			placeholder = {fieldLabel}
+			placeholderTextColor={'#D17842'}
+			onChangeText={onChangeText}
+			secureTextEntry={secureTextEntry}
+			keyboardType={keyboardType} 
+			editable={loading ? false : true}
 		/>
 	  </View>
 	)
