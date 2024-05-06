@@ -3,7 +3,7 @@ import { User } from '../../../Domain/entities/User';
 import { AuthState, authReducer } from './AuthReducer';
 import { GetUserUseCase } from '../../../Domain/useCases/UserLocal/GetUserLocal';
 import { VerifyTokenUserCase } from '../../../Domain/useCases/UserLocal/VerifyTokenUserLocal';
-import { RemoveUserUseCase } from '../../../Domain/useCases/UserLocal/RemoteUserLocal';
+import { RemoveUserUseCase } from '../../../Domain/useCases/UserLocal/RemoveUserLocal';
 
 
 type AuthContextProps = {

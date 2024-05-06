@@ -7,9 +7,9 @@ import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { TextInput } from 'react-native';
 import { AuthContext } from '../../context/auth/AuthContext';
-import { RootBottomTabParamList } from '../../navigation/tabs/admin/AdminBottomTab';
+import { RootAdminBottomTabParamList } from '../../navigation/tabs/admin/AdminBottomTab';
 
-interface Props extends StackScreenProps<RootBottomTabParamList, 'AdminHomeScreen'> {}
+interface Props extends StackScreenProps<RootAdminBottomTabParamList, 'AdminHomeScreen'> {}
 
 export const  AdminHomeScreen = ({ navigation, route}: Props) => {
 
@@ -18,7 +18,7 @@ const {status,user} = useContext(AuthContext);
   return (
     <View style={styles.userContainer}>
       
-      <Text style={styles.mainText}>Un placer verte, {user.name}!</Text>
+      <Text style={styles.mainText}>Un placer verte, {user?.name}!</Text>
 
     
     </View>

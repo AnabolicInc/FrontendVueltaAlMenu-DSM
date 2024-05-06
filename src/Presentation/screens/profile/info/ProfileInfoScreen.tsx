@@ -4,14 +4,17 @@ import { UserInfo } from '../../../components/UserInfo';
 import styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
-import { RootBottomTabParamList } from '../../../navigation/tabs/client/ClientBottomTab';
+import { RootAdminBottomTabParamList } from '../../../navigation/tabs/admin/AdminBottomTab';
 import { AuthContext } from '../../../context/auth/AuthContext';
+import { RootStackParamList } from '../../../navigation/MainAppStack';
+import useViewModel from './ViewModel';
 
-interface Props extends StackScreenProps<RootBottomTabParamList, 'ProfileInfoScreen'> {};
+interface Props extends StackScreenProps<RootStackParamList, 'AdminBottomTab'> {};
 
 
 export const ProfileInfoScreen = ({ navigation,route }: Props) => {
-	const {status, user} = useContext(AuthContext);
+	const {status} = useContext(AuthContext);
+	const { user, logoutUser} = useViewModel();
   return (
     <View style={styles.profileContainer}>
 		<Image style={styles.backButton} source={require('../../../../../assets/images/leftButton.png')} />
@@ -57,13 +60,14 @@ export const ProfileInfoScreen = ({ navigation,route }: Props) => {
 
 			<Pressable 
 				style={styles.editButton}
+				onPress={() => navigation.navigate('ProfileUpdateScreen')}
 			>
 				<Text style={styles.editButtonText}>Editar</Text>
 			</Pressable>
 
 			<Pressable 
 				style={styles.editButton}
-				onPress={() => console.log('Cerrar sesión')}
+				onPress={logoutUser}
 			>
 				<MaterialCommunityIcons style ={{marginRight:10}} name="logout" size={20} color="white" />
 				<Text style={styles.editButtonText}>Cerrar sesión</Text>

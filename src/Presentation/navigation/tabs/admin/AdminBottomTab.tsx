@@ -8,13 +8,13 @@ import CategoryListScreen from '../../../screens/admin/category/list/CategoryLis
 
 
 
-export type RootBottomTabParamList = {
+export type RootAdminBottomTabParamList = {
     AdminHomeScreen: undefined;
     CategoryListScreen: undefined;
     ProfileInfoScreen: undefined;
 };
 
-const Tab = createBottomTabNavigator<RootBottomTabParamList>();
+const Tab = createBottomTabNavigator<RootAdminBottomTabParamList>();
 
 export const AdminBottomTab = () => {
   return (
