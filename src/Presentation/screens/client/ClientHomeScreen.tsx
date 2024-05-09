@@ -5,10 +5,11 @@ import { useFonts } from 'expo-font';
 //import the dependency to create a search bar
 
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../navigation/MainAppStack';
-import { TextInput } from 'react-native';
 
-interface Props extends StackScreenProps<RootStackParamList, 'ClientHomeScreen'> {}
+import { TextInput } from 'react-native';
+import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
+
+interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> {}
 
 export const  ClientHomeScreen = ({ navigation, route}: Props) => {
   

@@ -1,28 +1,72 @@
-import { StyleSheet, Text, View,TouchableOpacity, Pressable } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react'
+import { StyleSheet, Text, View,TouchableOpacity, Pressable, Image } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { ModalChangeInfo } from './ModalChangeInfo';
+import useViewModel from '../screens/profile/ViewModel';
+import { ModalPickImage } from './ModalPickImage';
+import { AuthContext } from '../context/auth/AuthContext';
 
 
 interface Props {
-    textCard: String;
-    dataUser: String;
+    fieldType?: string;
+    image?: string;
+    textCard: string;
+    dataUser: string;
+    onPress?: () => void;
 }
 
 
-export const UserInfo = ({ textCard, dataUser }: Props) => {
-  return (
-    <View style={styles.userInfoContainer}>
+export const UserInfo = ({ fieldType,textCard, dataUser }: Props) => {
+    const {status, user} = useContext(AuthContext);
 
-        <Text style= {styles.titleText}>{textCard}</Text>
-        <Text style= {styles.dataText}>{dataUser}</Text>
-        <Pressable
-          style={styles.editFieldButton}
-          onPress={() => console.log("Editando", textCard)}
-        >
-            <Text style = {{color:'#D17842', fontFamily:'Poppins'}}>Editar</Text>
-        </Pressable>
-    </View>
-  )
+	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
+
+    const {image,pickImage,takePhoto} = useViewModel();
+
+    return (
+        <View style={styles.userInfoContainer}>
+
+            <Text style= {styles.titleText}>{textCard}</Text>
+            {
+                //If the fieldType is image, show the image
+                fieldType === 'image' 
+                ?
+                <Image 
+                    style = {{
+                        width: 50, 
+                        height: 50,
+                        borderRadius: 50, 
+                        position: 'relative',
+                        alignSelf: 'flex-start',
+                        marginLeft: 20,
+                        marginTop: -10
+                    }} 
+                    //source={{uri:image}}
+                />  
+                : <Text style= {styles.dataText}>{dataUser}</Text>
+
+            }
+
+            {
+                fieldType === 'image'
+                ? 
+                <ModalPickImage
+                    openGallery={pickImage}
+                    openCamera={takePhoto}
+                    modalUseState = {modalVisible}
+                    setModalUseState = {setMoldalVisible}
+                />
+                :
+                <ModalChangeInfo 
+                    changeInfoLabel = {textCard}
+                    modalUseState = {modalVisible}
+                    setModalUseState = {setMoldalVisible}
+                />
+            }
+
+            
+            
+        </View>
+    )
 
 }
 

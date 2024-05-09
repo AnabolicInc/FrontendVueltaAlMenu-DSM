@@ -1,9 +1,8 @@
 import axios from "axios";
 import { LOCAL_HOST } from "@env";
-
+const host = LOCAL_HOST;
 const ApiDelivery = axios.create({
-    // baseURL: LOCAL_HOST,
-    baseURL: 'http://10.0.2.2:8080/api/', // Para android studio
+    baseURL: host,
     headers: {
         'Content-type': 'application/json'
     }

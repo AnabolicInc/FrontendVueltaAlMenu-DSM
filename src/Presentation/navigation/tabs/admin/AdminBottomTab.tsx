@@ -1,13 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5 } from '@expo/vector-icons';
 import {FontAwesome} from '@expo/vector-icons'
 
 
-import ProfileScreen from '../../../screens/profile/ProfileScreen';
+import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
 import AdminHomeScreen from '../../../screens/admin/AdminHomeScreen';
 import CategoryListScreen from '../../../screens/admin/category/list/CategoryListScreen';
 
-const Tab = createBottomTabNavigator();
+
+
+export type RootAdminBottomTabParamList = {
+    AdminHomeScreen: undefined;
+    CategoryListScreen: undefined;
+    ProfileInfoScreen: undefined;
+};
+
+const Tab = createBottomTabNavigator<RootAdminBottomTabParamList>();
 
 export const AdminBottomTab = () => {
   return (
@@ -18,23 +25,23 @@ export const AdminBottomTab = () => {
             tabBarInactiveTintColor:'#9B9B9B',
         }}
     >
-        <Tab.Screen name="Home"component={AdminHomeScreen}
-            options={{
+        <Tab.Screen name="AdminHomeScreen"component={AdminHomeScreen}
+            options={{title: 'Home',
                 tabBarStyle:{ backgroundColor:'#0C1013', borderTopWidth:0, paddingBottom:10},
                 tabBarIcon:({})=>(
                     <FontAwesome  name="home" size={24} color={'#D17842'} />
             )
             }}    
         />
-        <Tab.Screen name="Categorías" component={CategoryListScreen}
-            options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
+        <Tab.Screen name="CategoryListScreen" component={CategoryListScreen}
+            options={{title: 'Categorías', tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
             tabBarIcon:({})=>(
                 <FontAwesome name="list" size={24} color="#D17842" />
             )
             }}
         />
-        <Tab.Screen name="Perfil" component={ProfileScreen} 
-            options={{tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
+        <Tab.Screen name="ProfileInfoScreen" component={ProfileInfoScreen} 
+            options={{title: 'Perfil', tabBarStyle:{backgroundColor:'#0C1013',borderTopWidth:0,paddingBottom:10},
             tabBarIcon:({})=>(
                 <FontAwesome name="user" size={24} color={'#D17842'} />
             )

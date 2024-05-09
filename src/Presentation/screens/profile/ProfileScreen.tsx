@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
@@ -11,17 +11,30 @@ import useViewModel from './ViewModel';
 
 
 
+
 interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
 
 const ProfileScreen = ({ navigation, route }: Props) => {
+	
 
 	const {
+		profile,
 		user,
 		status,
 		onChange,
-		isValidFrom 
+		isValidForm,
+		loading,
+		pickImage,
+		takePhoto,
+		errorMessages,
+		responseError
+
 
 	} = useViewModel();
+
+	const handleProfile = async() => {
+		await profile();
+	};
 
   return (
     <View style={styles.profileContainer}>
@@ -31,12 +44,54 @@ const ProfileScreen = ({ navigation, route }: Props) => {
 		<Text style={styles.mainText}>Perfil de usuario</Text>
 		<ScrollView style={styles.profileInnerContainer}>
 
-			<UserInfo textCard = 'Nombre completo' dataUser = 'date here'/>
-			<UserInfo textCard = 'Correo electrónico' dataUser = 'Data here'/>
-			<UserInfo textCard = 'Teléfono' dataUser = 'Data here'/>
-			<UserInfo textCard = 'Imagen de perfil' dataUser = 'Data here'/>
+			<UserInfo 
+				fieldType='image' 
+				textCard = 'Foto de perfil' 
+				dataUser = 'Data here'
+			/>
+
+			<UserInfo 
+				fieldType ='name' 
+				textCard = 'Nombre' 
+				dataUser = 'Date here'
+			/>
+
+			<UserInfo 
+				fieldType ='lastname' 
+				textCard = 'Apellido' 
+				dataUser = 'Date here'
+			/>
+			
+			<UserInfo 
+				fieldType ='username' 
+				textCard = 'Nombre de usuario' 
+				dataUser = 'Date here'
+			/>
+
+			<UserInfo 
+				textCard = 'Correo electrónico' 
+				dataUser = 'Data here'
+			/>
+			
+			<UserInfo 
+				fieldType='phone'
+				textCard = 'Teléfono' 
+				dataUser = 'Data here'
+			/>
+
+			<Pressable 
+				style={styles.editButton}
+			>
+				<Text style={styles.editButtonText}>Editar</Text>
+			</Pressable>
+
+
+		
+
+			
 
 		</ScrollView>
+
 
     </View>
 
