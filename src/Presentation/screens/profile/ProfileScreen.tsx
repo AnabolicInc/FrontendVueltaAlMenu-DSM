@@ -1,84 +1,99 @@
 import React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import styles from './Styles';
+import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
-import { TextInput } from 'react-native-gesture-handler';
 
-interface Props extends StackScreenProps<RootStackParamList, 'Profile'> {}
+import styles from './Styles';
+import { UserInfo } from '../../components/UserInfo';
+import useViewModel from './ViewModel';
+
+
+
+
+
+interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
 
 const ProfileScreen = ({ navigation, route }: Props) => {
+	
+
+	const {
+		profile,
+		user,
+		status,
+		onChange,
+		isValidForm,
+		loading,
+		pickImage,
+		takePhoto,
+		errorMessages,
+		responseError
+
+
+	} = useViewModel();
+
+	const handleProfile = async() => {
+		await profile();
+	};
+
   return (
     <View style={styles.profileContainer}>
+		<Image style={styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
+		<TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} />
+		
+		<Text style={styles.mainText}>Perfil de usuario</Text>
+		<ScrollView style={styles.profileInnerContainer}>
 
-    
-        <Image style={styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} />
-        
-        <Text style={styles.mainText}>Perfil de usuario</Text>
+			<UserInfo 
+				fieldType='image' 
+				textCard = 'Foto de perfil' 
+				dataUser = 'Data here'
+			/>
 
-        
-        <View style={styles.backgroudField} />
-        <Text style={styles.titleText}>Nombre de usuario</Text>
-        <Text style={styles.dataText}>Aca va el nombre</Text>
+			<UserInfo 
+				fieldType ='name' 
+				textCard = 'Nombre' 
+				dataUser = 'Date here'
+			/>
 
-        <TouchableOpacity
-          style={styles.editFieldButton}
-          onPress={() => console.log("Editando nombre")}
-        >
-          <Text>Editar</Text>
-        </TouchableOpacity>
+			<UserInfo 
+				fieldType ='lastname' 
+				textCard = 'Apellido' 
+				dataUser = 'Date here'
+			/>
+			
+			<UserInfo 
+				fieldType ='username' 
+				textCard = 'Nombre de usuario' 
+				dataUser = 'Date here'
+			/>
 
-        <View style={[styles.backgroudField, { top: "42%" }]} />
-        <Text style={[styles.titleText,{top:"45%"}]}>Correo electronico</Text>
-        <Text style={[styles.dataText,{top:"50%"}]}>Aca va el email</Text>
+			<UserInfo 
+				textCard = 'Correo electrónico' 
+				dataUser = 'Data here'
+			/>
+			
+			<UserInfo 
+				fieldType='phone'
+				textCard = 'Teléfono' 
+				dataUser = 'Data here'
+			/>
 
-        <TouchableOpacity
-          style={[styles.editFieldButton, { top: '43%' }]}
-          onPress={() => console.log("Editando email")}
-        >
-          <Text>Editar</Text>
-        </TouchableOpacity>
-
-        <View style={[styles.backgroudField, { top: "57%" }]} />
-        <Text style={[styles.titleText,{top:"60%"}]}>Telefono</Text>
-        <Text style={[styles.dataText,{top:"65%"}]}>Aca va el Telefono</Text>
-
-        <TouchableOpacity
-          style={[styles.editFieldButton, { top: '58%' }]}
-          onPress={() => console.log("Editando telefono")}
-        >
-          <Text>Editar</Text>
-        </TouchableOpacity>
-
-        <View style={[styles.backgroudField, { top: "72%" }]} />
-        <Text style={[styles.titleText,{top:"75%"}]}>Contraseña</Text>
-        <Text style={[styles.dataText,{top:"80%"}]}>********</Text>
-
-        <TouchableOpacity
-          style={[styles.editFieldButton, { top: '73%' }]}
-          onPress={() => console.log("Editando password")}
-        >
-          <Text>Editar</Text>
-        </TouchableOpacity>
+			<Pressable 
+				style={styles.editButton}
+			>
+				<Text style={styles.editButtonText}>Editar</Text>
+			</Pressable>
 
 
-        {/* 
-        <TextInput style = {styles.input} placeholder = "Nombre"/>
-        <TextInput style = {styles.input} placeholder = "Apellidos"/>
-        <TextInput style = {styles.input} placeholder = "Correo electrónico"/>
-        */}
+		
 
-        {/*
-        <TouchableOpacity style = {styles.userButton}>
-            <Text style = {styles.userButtonText}>Guardar</Text>
-        </TouchableOpacity>
+			
 
-        <TouchableOpacity style = {styles.userButton}>
-            <Text style = {styles.userButtonText}>Cambiar Contraseña</Text>
-        </TouchableOpacity>
-        */}
-      </View>
+		</ScrollView>
+
+
+    </View>
 
       
   )

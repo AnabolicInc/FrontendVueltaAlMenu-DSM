@@ -1,85 +1,93 @@
 import React, { useState } from 'react'
-import styles from './Styles';
-import { Text, View, Image, Pressable, TextInput,ScrollView,TouchableOpacity, SafeAreaView } from 'react-native'
-import { useFonts } from 'expo-font';
+import { Text, View, Image, Pressable,ScrollView, FlatList, ActivityIndicator } from 'react-native'
+
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+
+import { ModalPickImage } from '../../components/ModalPickImage';
+import styles from './Styles';
 import useViewModel from './ViewModel';
+import RegisterInput from '../../components/RegisterInput';
 
-
-interface Props extends StackScreenProps<RootStackParamList, 'Register'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
 
 export const  RegisterScreen = ({ navigation,route }: Props) => {
 
-    const  {  
-        handlePasswordChange,
+    const [modalVisible, setMoldalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
+
+    const  {
+
+        register, 
+        onChange, 
+        isValidForm,
+        loading, 
+        takePhoto,
+        pickImage,
+        image,  
+        loadFonts,
         hasEightChars,
         hasUppercase,
         hasNumber,
         hasSpecialChar,
         password,
-        onChange, 
-        register, 
-        isValidForm, 
-        loadFonts
+        errorMessages,
+        responseError
+
     } = useViewModel();
 
     const handleRegister = async () => {
         await register();
     }
 
-
   return (
     <View style={styles.registerContainer}>
-
+        
         <Text style ={styles.registerMainTitle}>Registrarse</Text>
+
+
         <Image style= {styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
         <Pressable style={styles.backButton} onPress={() => navigation.goBack()} />
-        
-        <Image style={styles.registerUserImage} source={require('../../../../assets/images/userIcon.png')} />
-        <Pressable style={styles.registerUserImage} onPress={() => console.log('User Image Pressed')} />
-
-  
+ 
 
         <ScrollView style={styles.registerInnerContainer} showsVerticalScrollIndicator = {false}>
 
-            <TextInput 
-                style={styles.nameInput}
-                placeholder="Nombres"
-                placeholderTextColor={'#D17842'} 
-                onChangeText={(text) => console.log(text)}
-            />
+            {
 
-            <TextInput
-                style={styles.lastNameInput}
-                placeholder="Apellidos"
-                placeholderTextColor={'#D17842'}
-                onChangeText={(text) => console.log(text)}
-            />
+                (image == '')
+                ?
+                <Image style={styles.registerUserImage} source={require('../../../../assets/images/userIcon.png')} />
+                :
+                <Image style={styles.registerUserImage} source={{uri:image}} />
 
-            <TextInput
-                style={styles.emailInput}
-                placeholder="Correo electrónico"
-                placeholderTextColor={'#D17842'}
-                onChangeText={(text) => console.log(text)}
-            />
+            }
+            
+            <Pressable style={styles.uploadImageUserButton} onPress={() => setMoldalVisible(true)}>
+                <Text style={styles.uploadImageUserButtonText}>Subir imagen</Text>
+            </Pressable>
+            {errorMessages.image && <Text style={styles.errorText}>{errorMessages.image}</Text>}
 
-            <TextInput
-                style={styles.phoneInput}
-                placeholder="Telefono"
-                
-                placeholderTextColor={'#D17842'}
-                onChangeText={(text) => console.log(text)}
-            />
+            <RegisterInput fieldLabel="Nombres" onChangeText={(text) => onChange('name',text)}/>
+            {errorMessages.name && <Text style={styles.errorText}>{ errorMessages.name}</Text>}
 
-            <TextInput
-                style={styles.passwordInput}
-                placeholder="Contraseña"
-                placeholderTextColor={'#D17842'}
-                secureTextEntry={true}
-                onChangeText={handlePasswordChange}
-                value={password}
+            <RegisterInput fieldLabel="Apellidos" onChangeText={(text) => onChange('lastName',text)} />
+            {errorMessages.lastName && <Text style={styles.errorText}>{errorMessages.lastName}</Text>}
+
+            <RegisterInput fieldLabel="Correo electrónico" keyboardType='email-address' onChangeText={(text) => onChange('email',text) } />
+            {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
+
+            <RegisterInput 
+                fieldLabel="Télefono" 
+                prefix='+56' 
+                icon={require('../../../../assets/images/Flag_of_Chile.png')}
+                customStyle={{width:160,justifyContent: 'flex-start',marginLeft: 10}} 
+                onChangeText={(text) => onChange('phone',text)} 
+                keyboardType='numeric'
             />
+            {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
+
+            <RegisterInput fieldLabel="Contraseña" secureTextEntry={true} onChangeText={(text) => onChange('password',text)}  />
+            {errorMessages.password && <Text style={styles.errorText}>{errorMessages.password}</Text>}
+
             <View style={styles.requerimientContainer}>
 
                 <Text style={hasEightChars ? styles.completed : styles.uncompleted}>
@@ -96,21 +104,43 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
                 </Text>
             </View>
 
+            <RegisterInput fieldLabel="Confirmar contraseña" secureTextEntry={true} onChangeText={(text) => onChange('confirmPassword',text)} />
+            {errorMessages.confirmPassword && <Text style={styles.errorText}>{errorMessages.confirmPassword}</Text>}
 
-            <TextInput
-                style={styles.confirmPasswordInput}
-                placeholder="Confirmar contraseña"
-                placeholderTextColor={'#D17842'}
-                secureTextEntry={true}
-                onChangeText={(text) => console.log(text)}
-            />
-            
-            <Pressable style={styles.confirmButton} onPress={() => console.log('Pressed')}>
+            <Pressable style={styles.confirmButton} onPressIn={handleRegister}>
                 <Text style={styles.confirmButtonText} >Confirmar</Text>
             </Pressable>
+
+            
         </ScrollView>
 
+        <FlatList style={styles.errorContainer}
+            scrollEnabled={true}
+            data={responseError}
+            renderItem ={({item,index}) => {
+                return (
+                    <View key={`${index}-${item.path}`} >
+                        <Text style={styles.errorText}>Por favor, verifique sus datos. {'\n'} {`\u2022 ${item.value}`}</Text>
+                    </View>
+                );
+            }}
+        />    
 
+
+
+        <ModalPickImage 
+            modalUseState = {modalVisible} 
+            setModalUseState={setMoldalVisible} 
+            openGallery={pickImage}
+            openCamera={takePhoto}
+        />
+        {loading &&(
+
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#D17842" />
+            </View>
+
+        )}
     </View>
   )
 }
