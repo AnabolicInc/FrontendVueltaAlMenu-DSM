@@ -39,6 +39,7 @@ export const LoginScreen = ({ navigation,route }: Props) => {
   return (
     
     <View style={styles.loginContainer}>
+
 		
 		
 		<Image source={require('../../../../assets/images/chicken-skewers-on-a-plate.png')} 
@@ -88,7 +89,6 @@ export const LoginScreen = ({ navigation,route }: Props) => {
 					placeholder=" E-mail" 
 				/>
 				{errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
-
 
 				<TextInput 
 					style={{...styles.passwordInputContainer,marginTop: 10}} 
