@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const ProfileStyles = StyleSheet.create(
+const ProfileInfoStyles = StyleSheet.create(
     {
 
         profileContainer: {
@@ -73,26 +73,29 @@ const ProfileStyles = StyleSheet.create(
         },
 
         editButton: {
+            flexDirection: 'row',
             backgroundColor: '#141921',
             borderWidth: 2,
             borderColor: '#D17842',
             padding: 10,
             borderRadius: 5,
-            marginTop: 20,
-            marginBottom: 50,
+            marginTop: 10,
+            marginBottom: 20,
             width: 150,
             alignSelf: 'center',
             alignItems: 'center',
+            justifyContent: 'center',
 
         },
         editButtonText: {
             fontFamily: 'Poppins',
             fontSize: 15,
             color: '#F6F6F6',
+            
         },
 
 
     }
 );
 
-export default ProfileStyles;
+export default ProfileInfoStyles;
