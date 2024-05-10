@@ -40,7 +40,7 @@ export const UserInfo = ({ fieldType,textCard, dataUser }: Props) => {
                         marginLeft: 20,
                         marginTop: -10
                     }} 
-                    //source={{uri:image}}
+                    source={{uri:image}}
                 />  
                 : <Text style= {styles.dataText}>{dataUser}</Text>
 

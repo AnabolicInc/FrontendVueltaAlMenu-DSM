@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/auth/AuthContext";
 import { Error, ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/ResponseApiDelivery";
 import { SaveUserUseCase } from "../../../Domain/useCases/UserLocal/SaveUserLocal";
 import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase";
+import { ResetPasswordAuthUseCase } from "../../../Domain/useCases/Auth/AuthResetPassword";
 
 
 interface Values {
@@ -25,7 +26,7 @@ const validationResetPasswordSchema = Yup.object().shape({
 	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio'),
 
 });
-const ProfileViewModel = () => {
+const ResetPasswordViewModel = () => {
 
     
     
@@ -65,6 +66,40 @@ const ProfileViewModel = () => {
 
     const resetPassword = async () => {
 
+        const isValid = await isValidForm();
+		try {
+			if (isValid) {
+				setLoading(true);
+				setErrorMessages({});
+				const response = await ResetPasswordAuthUseCase(values.email);
+				console.log(response);
+				if (response.success) {
+					showMessage({
+						message: 'Se ha enviado un correo electrónico para restablecer la contraseña',
+						type: 'success',
+						icon: 'success',
+					});
+				}
+				setLoading(false);
+			}
+			
+		} catch (error) {
+			const rejectErrors: ResponseAPIDelivery = error;
+			if (rejectErrors.error) {
+				setErrorResponses([]);
+				showMessage({
+					message: rejectErrors.message,
+					type: 'danger',
+					icon: 'danger',
+				});
+			} else {
+				const errorsArray = Object.values(rejectErrors.errors);
+				const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
+				setErrorResponses(errorsArrayFilter);
+			}
+			setLoading(false);
+			
+		}
         
       
     };
@@ -76,10 +111,11 @@ const ProfileViewModel = () => {
         ...values,
         onChange,
         isValidForm,
+		resetPassword,
         errorMessages,
         responseError: errorsResponse,
     
     }
 }
 
-export default ProfileViewModel;
+export default ResetPasswordViewModel;

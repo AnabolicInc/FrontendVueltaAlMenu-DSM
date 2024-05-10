@@ -20,6 +20,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
     lastName,
     image,
     phone,
+    profile,
     errorMessages,
     file,
     loading,
@@ -110,14 +111,16 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
           
       </Pressable>
 
+
+
       </View>
 		</ScrollView>
     
     <ModalPickImage
-    openGallery={pickImage}
-    openCamera={takePhoto}
-    modalUseState={modalVisible}
-    setModalUseState={setModalVisible}
+		openGallery={pickImage}
+		openCamera={takePhoto}
+		modalUseState={modalVisible}
+		setModalUseState={setModalVisible}
     />
 
     {
