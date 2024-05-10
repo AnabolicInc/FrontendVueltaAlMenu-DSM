@@ -31,7 +31,8 @@ export type RootStackParamList = {
     CategoryUpdateScreen: undefined;
 
     ProfileUpdateScreen: undefined;
-   
+    ChangePasswordScreen: undefined;
+
 
 };
 
@@ -83,6 +84,7 @@ export const MainAppStack = () => {
                         
                         <Stack.Screen name="LoginScreen" component={LoginScreen} />
                         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+                        <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
                         
                     </>
                 ):renderRoleScreen()
@@ -92,7 +94,6 @@ export const MainAppStack = () => {
             <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
             <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
-            <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
         </Stack.Navigator>
     );
 }
