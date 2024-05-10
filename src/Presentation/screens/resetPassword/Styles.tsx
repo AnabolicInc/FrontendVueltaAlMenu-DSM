@@ -73,6 +73,21 @@ export const ResetPasswordStyles = StyleSheet.create({
         fontFamily: 'Poppins',
         fontSize: 15,
     },
+	errorText: {
+		backgroundColor: 'rgba(255, 0, 0, 0.3)',
+		borderWidth: 1,
+		borderColor: 'red',
+		color: 'white',
+		borderRadius: 10,
+		padding: 8,
+		justifyContent: 'center',
+		alignContent: 'center',
+		alignItems: 'center',
+		fontFamily: 'Poppins',
+		position: 'relative',
+		marginBottom: 10,
+		zIndex: 1,
+	},
 
 });
 

@@ -10,6 +10,7 @@ import { AxiosError } from "axios";
 
 export class FileRepositoryImpl implements FileRepository {
     async updateFile(file: ImagePicker.ImageInfo, collection: string, id: string): Promise<ResponseAPIDelivery> {
+        console.log(file, collection, id);
         try {
             let imageRegister = new FormData();
 
