@@ -27,7 +27,7 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
 
           <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
           
-          <TextInput style={styles.emailInputContainer} placeholder=" E-mail" value={"email"}  />
+          <TextInput style={styles.emailInputContainer} placeholder="E-mail" value={"email"}  />
 
           <View style={styles.buttomResetPassword}> 
             <Pressable>
