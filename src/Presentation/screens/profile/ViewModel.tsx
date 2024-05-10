@@ -40,6 +40,7 @@ const ProfileViewModel = () => {
 
     
     const {status,user} = useContext(AuthContext);
+	
     const [values, setValues] = useState<Values>({
 		image: '',
 		name: '',
