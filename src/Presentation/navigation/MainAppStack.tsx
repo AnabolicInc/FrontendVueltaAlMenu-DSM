@@ -9,16 +9,13 @@ import { AuthContext } from '../context/auth/AuthContext'
 
 import { RegisterScreen } from '../screens/register/RegisterScreen'
 import LoginScreen from '../screens/login/LoginScreen'
+
 import LoadingScreen from '../screens/miscellaneous/LoadingScreen'
 import { CategoryCreateScreen } from '../screens/admin/category/create/CategoryCreateScreen'
 import { CategoryListScreen } from '../screens/admin/category/list/CategoryListScreen'
 import { CategoryUpdateScreen } from '../screens/admin/category/update/CategoryUpdateScreen'
-import AdminHomeScreen from '../screens/admin/AdminHomeScreen'
-import DeliveryHomeScreen from '../screens/delivery/DeliveryHomeScreen'
-import ClientHomeScreen from '../screens/client/ClientHomeScreen'
 import ResetPasswordScreen from '../screens/resetPassword/ResetPasswordScreen'
 import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
-
 
 
 export type RootStackParamList = {
@@ -28,14 +25,12 @@ export type RootStackParamList = {
 
     ClientBottomTab: undefined;
     AdminBottomTab: undefined;
-    
     CategoryCreateScreen: undefined;
     CategoryListScreen: undefined;
     CategoryUpdateScreen: undefined;
 
     ProfileUpdateScreen: undefined;
    
-
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -79,6 +74,7 @@ export const MainAppStack = () => {
                 headerShown: false
              }}
         >
+
             {status !== 'authenticated' 
                 ? (
 
@@ -96,6 +92,7 @@ export const MainAppStack = () => {
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
             <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
+
         </Stack.Navigator>
     );
 }

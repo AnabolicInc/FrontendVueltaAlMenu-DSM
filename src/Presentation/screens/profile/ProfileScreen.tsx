@@ -12,7 +12,7 @@ import useViewModel from './ViewModel';
 
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'ProfileScreen'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'ProfileUpdateScreen'> {}
 
 const ProfileScreen = ({ navigation, route }: Props) => {
 	

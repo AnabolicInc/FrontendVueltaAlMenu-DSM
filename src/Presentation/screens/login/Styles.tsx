@@ -39,7 +39,6 @@ const LoginStyles = StyleSheet.create(
         width: 350,
         height: 350,
         opacity: 0.8
-        
     },
 
       loginText: {
@@ -151,6 +150,28 @@ const LoginStyles = StyleSheet.create(
 	},
 
 
+
+      forgotPasswordContainer: {
+        position: 'absolute',
+        top: "73%", // Ajusta esta posición según tu diseño
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      
+      forgotPasswordText: {
+        color: 'white',
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        marginRight: 5,
+      },
+      
+      resetPasswordLink: {
+        color: '#D17842',
+        fontFamily: 'Poppins',
+        fontSize: 14,
+      },
+      
 
 
 })
