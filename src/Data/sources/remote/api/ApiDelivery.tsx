@@ -1,8 +1,8 @@
 import axios from "axios";
 import { LOCAL_HOST } from "@env";
-
+const host = LOCAL_HOST;
 const ApiDelivery = axios.create({
-    baseURL: LOCAL_HOST,
+    baseURL: host,
     headers: {
         'Content-type': 'application/json'
     }
