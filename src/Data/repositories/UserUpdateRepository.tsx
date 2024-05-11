@@ -8,8 +8,12 @@ import { ResponseAPIDelivery } from "../sources/remote/api/models/ResponseApiDel
 
 export class UserUpdateRepositoryImpl implements UserUpdateRepository {
     async update (id: string, name: string, lastName: string, phone: string, session_token: string): Promise<ResponseAPIDelivery> {
+        //console.log('CHANGES FROM THE USER',id, name, lastName, phone, session_token);
+        
         try{
-            const path = 'user/${id}';
+            const path = `user/${id}`;
+            //console.log('PATH', path);
+            
 
             const {data} = await ApiDelivery.put<ResponseAPIDelivery>(path, {name, lastName, phone},{
                 headers: {

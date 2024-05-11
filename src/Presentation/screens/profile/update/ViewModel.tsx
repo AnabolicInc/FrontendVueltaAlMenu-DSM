@@ -7,12 +7,20 @@ import { AuthContext } from "../../../context/auth/AuthContext";
 import { RemoveUserUseCase } from "../../../../Domain/useCases/UserLocal/RemoveUserLocal";
 import { UpdateUserUseCase } from "../../../../Domain/useCases/User/UpdateUserUseCase";
 import { UpdateFileUseCase } from "../../../../Domain/useCases/File/UpdateFileUseCase";
+import { ResponseAPIDelivery } from "../../../../Data/sources/remote/api/models/ResponseApiDelivery";
+import { showMessage } from "react-native-flash-message";
 
 interface Values {
     name: string;
     lastName: string;
     phone: string;
     image: string;
+}
+interface ResponseErrorData{
+	
+	path: string;
+	value: string;
+
 }
 
 const validationSchema = yup.object().shape({
@@ -31,10 +39,55 @@ const ProfileUpdateViewModel = () => {
         phone: user.phone,
         image: '',
     });
-
     const [file, setFile] = useState<ImagePicker.ImageInfo>();
-    const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
-    const [loading, setLoading] = useState(false);
+
+	const [loading, setLoading] = useState(false);
+
+	const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
+
+	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
+
+
+    const profile = async () => {
+        const isValid = await isValidForm();
+		console.log(isValid);
+		
+		if (isValid) {
+			setLoading(true);
+			setErrorMessages({});
+			try {
+
+				const { image, ...data } = values; //Destructurando los datos
+				
+				console.log('Cambio de datos exitoso');
+			} catch (error) {
+				const rejectErrors: ResponseAPIDelivery = error;
+
+				if(rejectErrors.error){
+					setErrorResponses([]);
+					showMessage({
+						message: rejectErrors.error,
+						type: 'danger',
+						icon: 'danger',
+					});
+				}else{
+					console.log('Error al modificar datos de usuario');
+				
+					const errorsArray = Object.values(rejectErrors.errors);
+
+					const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }))
+					console.log(errorsArrayFilter);
+					setErrorResponses(errorsArrayFilter);
+					
+				}
+				setLoading(false);
+				
+			}
+		}
+      
+    };
+    
+
 
     const pickImage = async () => {
 
@@ -85,6 +138,8 @@ const ProfileUpdateViewModel = () => {
 
                 // call to use case
                 const response = await UpdateUserUseCase(user.id, data.name, data.lastName, data.phone, user.session_token);
+                console.log(response);
+                
 
                 if (response.success){
                     const dataUser = response.data;
@@ -132,6 +187,7 @@ const ProfileUpdateViewModel = () => {
 
     return { 
         ...values,
+        profile,
         onChange,
         updateUser,
         pickImage,
