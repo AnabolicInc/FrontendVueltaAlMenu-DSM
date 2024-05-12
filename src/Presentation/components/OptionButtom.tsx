@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
 
+import { COLORS, FONTSIZE } from '../themes/Theme'
 
 interface Props {
     text: String;
@@ -29,13 +30,13 @@ const styles = StyleSheet.create({
     },
     dataText: {
         fontFamily: 'Poppins',
-        fontSize: 15,
-        color: '#D17842',
+        fontSize: FONTSIZE.size_15,
+        color: COLORS.primaryOrange,
         position: 'relative',
     },
     editFieldButton: {
-        backgroundColor:'#141921',
-        borderColor: '#D17842',
+        backgroundColor:COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
         borderWidth: 1,
         paddingHorizontal: 10,
         paddingVertical: 10,

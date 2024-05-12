@@ -2,6 +2,8 @@ import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 
 
+import { COLORS } from '../themes/Theme'
+
 interface Props {
     fieldLabel: string;      
     onChangeText: (text:string) => void;
@@ -12,7 +14,7 @@ const NewCategoryInfo = ({fieldLabel,onChangeText}:Props) => {
     <TextInput
         style = {styles.fieldLabel}
         placeholder = {fieldLabel}
-        placeholderTextColor={'#D17842'}
+        placeholderTextColor={COLORS.primaryOrange}
         onChangeText={onChangeText}
     >
         
@@ -27,8 +29,8 @@ const styles = StyleSheet.create({
   fieldLabel: {
 	position: 'relative',
     fontFamily: 'Poppins',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    color: 'white',
+    backgroundColor: COLORS.backgroundInputGrayRGBA,
+    color: COLORS.primaryWhite,
     width: 250,
     height: 40,
     borderRadius: 10,
