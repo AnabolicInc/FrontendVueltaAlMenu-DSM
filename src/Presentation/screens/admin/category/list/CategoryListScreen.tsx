@@ -1,11 +1,14 @@
 import { View, Text, ScrollView, Image, Pressable, Modal } from 'react-native'
 import React, { useState } from 'react'
-import styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
+
+
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
+import styles from './Styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6 } from '@expo/vector-icons';
 import CategoryListBox from '../../../../components/CategoryListBox';
+import { COLORS } from '../../../../themes/Theme';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen'> {}
 
@@ -32,15 +35,15 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
 
 
   return (
-    <View style={styles.CategoryListContainer}>
-      <Text style={styles.CategoryListText}>CATEGORÍAS</Text>
+    <View style={styles.categoryListContainer}>
+      <Text style={styles.categoryListText}>CATEGORÍAS</Text>
 
       <ScrollView style={styles.categoryListInnerContainer} showsVerticalScrollIndicator = {false}>
 
       <CategoryListBox navigation={navigation} />
 
       <LinearGradient
-        colors={['#262B33', 'transparent']}
+        colors={[COLORS.primaryGrey, 'transparent']}
         style={styles.categoryListElement}>
           <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/pizza.jpg')} />
 
@@ -48,13 +51,13 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
             <Text style={styles.categoryListElementText}>Pizza</Text>
 
             <View style={styles.categoryListInnerInnerElement}>
-              <View style={styles.buttomEdit}> 
+              <View style={styles.buttonEdit}> 
                 <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
                  <Text style={styles.editText}>Editar producto</Text>
                 </Pressable>
               </View>
 
-              <View style={styles.buttomDelete}> 
+              <View style={styles.buttonDelete}> 
                 <Pressable onPress={() => handleDeletePress("pizza")}> 
                   <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
                 </Pressable>
@@ -68,22 +71,22 @@ export const CategoryListScreen = ({ navigation,route }: Props) => {
       </ScrollView>
 
 
-      <View style={styles.buttomSave}> 
+      <View style={styles.buttonSave}> 
         <Pressable onPress={() => null}> 
-            <Text style={styles.SaveText}>GUARDAR</Text>
+            <Text style={styles.saveText}>GUARDAR</Text>
           </Pressable>
         </View>
 
-        <View style={styles.buttomAdd}> 
+        <View style={styles.buttonAdd}> 
         <Pressable onPress={() => navigation.navigate('CategoryCreateScreen')}> 
-            <Text style={styles.SaveText}>NUEVA CATEGORÍA</Text>
+            <Text style={styles.saveText}>NUEVA CATEGORÍA</Text>
           </Pressable>
         </View>
 
         {/* Delete confirmation modal */}
       <Modal visible={showDeleteConfirmation} animationType="fade" transparent>
       <LinearGradient
-        colors={['#262B33', '#0C1013']}
+        colors={[COLORS.primaryGrey, COLORS.generalBackgroundBlack]}
         style={styles.modalContent}>
           <Text style={styles.modalText}>¿Estás seguro de que quieres eliminar {itemToDelete}?</Text>
           <View style={styles.modalButtonsContainer}>

@@ -1,9 +1,10 @@
 import { StyleSheet, Text, TextInput, View, Pressable, Image, Modal } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
-import { FontAwesome6 } from '@expo/vector-icons';
 import React, { useState } from "react";
 
 
+import { LinearGradient } from 'expo-linear-gradient';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { COLORS, FONTSIZE } from '../themes/Theme';
 
 interface Props {
     navigation: any;
@@ -34,7 +35,7 @@ const handleDeleteCancel = () => {
 return (
     <View>
         <LinearGradient
-        colors={['#262B33', 'transparent']}
+        colors={[COLORS.primaryGrey, 'transparent']}
         style={styles.categoryListElement}>
             <Image style={styles.categoryListImage} source={require('../../../assets/images/burguer.jpg')} />
 
@@ -48,7 +49,7 @@ return (
                         </Pressable>
                     </View>
 
-                    <View style={styles.buttomDelete}> 
+                    <View style={styles.buttonDelete}> 
                         <Pressable onPress={() => handleDeletePress("Hamburguesa")}> 
                             <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
                         </Pressable>
@@ -59,7 +60,7 @@ return (
 
         <Modal visible={showDeleteConfirmation} animationType="fade" transparent>
             <LinearGradient
-            colors={['#262B33', '#0C1013']}
+            colors={[COLORS.primaryGrey, COLORS.generalBackgroundBlack]}
             style={styles.modalContent}>
                 <Text style={styles.modalText}>¿Estás seguro de que quieres eliminar {itemToDelete}?</Text>
                 <View style={styles.modalButtonsContainer}>
@@ -86,7 +87,7 @@ export default CategoryListBox;
 const styles = StyleSheet.create({
 
     categoryListElement: {
-        //backgroundColor: '#262B33',
+        //backgroundColor: COLORS.primaryGrey,
         flex: 1,
         width: "100%",
         height: 140,
@@ -120,17 +121,17 @@ const styles = StyleSheet.create({
 
 
       categoryListElementText: {
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: FONTSIZE.size_18,
         top: 17,
       },
 
       
       buttomEdit: {
         backgroundColor: 'transparent',
-        borderColor: '#D17842',
+        borderColor: COLORS.primaryOrange,
         borderWidth: 2,
         borderRadius: 10,
         height: 40,
@@ -139,15 +140,15 @@ const styles = StyleSheet.create({
       },
 
       editText: {
-        color: '#D17842',
+        color: COLORS.primaryOrange,
         fontFamily: 'Poppins',
         textAlign: 'center',
         marginTop: '5%',
       },
 
-      buttomDelete: {
+      buttonDelete: {
         backgroundColor: 'transparent',
-        borderColor: '#ce2029',
+        borderColor: COLORS.deleteButtonRed,
         borderWidth: 2,
         borderRadius: 10,
         width: 40,
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
       },
 
       modalText: {
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
       },
@@ -180,20 +181,20 @@ const styles = StyleSheet.create({
       },
 
       modalButtonDelete: {
-        backgroundColor: 'red',
+        backgroundColor: COLORS.borderErrorBackgroundBackendRed,
         borderRadius: 13,
         paddingVertical: 8,
         paddingHorizontal: 12,
       },
 
       modalButtonCancel: {
-        backgroundColor: 'green',
+        backgroundColor: COLORS.requirementCompletedGreen,
         borderRadius: 13,
         paddingVertical: 8,
         paddingHorizontal: 12,
       },
 
       modalButton: {
-        color: 'white',
+        color: COLORS.primaryWhite,
       }
 })

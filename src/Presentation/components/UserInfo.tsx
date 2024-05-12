@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View,TouchableOpacity, Pressable, Image } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { ModalChangeInfo } from './ModalChangeInfo';
-import useViewModel from '../screens/profile/ViewModel';
+import useViewModel from '../screens/profile/update/ViewModel';
 import { ModalPickImage } from './ModalPickImage';
 import { AuthContext } from '../context/auth/AuthContext';
 
