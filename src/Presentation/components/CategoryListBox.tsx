@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { COLORS, FONTSIZE } from '../themes/Theme';
+import { MaterialIcons } from '@expo/vector-icons';
 
 interface Props {
     navigation: any;
@@ -70,10 +71,16 @@ return (
             <View style={styles.modalButtonsContainer}>
 
               <Pressable onPress={handleDeleteConfirm} style={styles.modalButtonDelete}>
+                <View style={styles.modalButtonImageContainer}>
+                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+                </View>
                 <Text style={styles.modalButtonText}>Eliminar</Text>
               </Pressable>
 
               <Pressable onPress={handleDeleteCancel} style={styles.modalButtonCancel}>
+                <View style={styles.modalButtonImageContainer}>
+                  <MaterialIcons name="cancel" size={24} color="#ffffff" />
+                </View>
                 <Text style={styles.modalButtonText}>Cancelar</Text>
               </Pressable>
 
@@ -162,11 +169,11 @@ const styles = StyleSheet.create({
 
       modalContainer: {
         flex: 1,
-        backgroundColor: COLORS.primaryBlackRGBA,
+        backgroundColor: COLORS.generalBackgroundBlack,
       },
 
       modalMessageBox: {
-        top: '30%',
+        top: '32%',
         borderRadius: 17,
         width: 260,
         height: 140,
@@ -188,10 +195,10 @@ const styles = StyleSheet.create({
       },
 
       modalButtonsContainer: {
-        top: '70%',
+        top: '71%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: 260,
+        width: 270,
         alignSelf: 'center',
       },
 
@@ -203,7 +210,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 48,
-        width: 100,
+        width: 120,
+        flexDirection: 'row',
       },
 
       modalButtonCancel: {
@@ -214,11 +222,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 48,
-        width: 100,
+        width: 120,
+        flexDirection: 'row',
+      },
+
+      modalButtonImageContainer: {
+        marginRight: 3
       },
 
       modalButtonText: {
         color: COLORS.primaryWhite,
         fontSize: FONTSIZE.size_15,
+        justifyContent: 'center',
       }
 })
