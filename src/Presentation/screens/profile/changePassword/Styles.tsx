@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const ChangePasswordStyles = StyleSheet.create({
-  profileContainer: {
+  changePasswordContainer: {
     flex: 1,
     backgroundColor: '#0C1013',
     alignItems: 'center',
@@ -25,16 +25,19 @@ const ChangePasswordStyles = StyleSheet.create({
     width: 300,
   },
   buttomChangePassword: {
-    backgroundColor: '#D17842',
+    backgroundColor: '#141921',
     borderWidth: 2,
-    padding: 8,
-    borderRadius: 10,
-    marginTop: 10,
-    width: 150,
+    borderColor: '#D17842',
+    padding: 10,
+    marginTop: 20,
+    borderRadius: 5,
+    width: 160,
     alignSelf: 'center',
+    alignItems: 'center',
+    color: 'white',
     textAlign: 'center',
-    color: '#FFFFFF',
   },
+  
 });
 
 export default ChangePasswordStyles;

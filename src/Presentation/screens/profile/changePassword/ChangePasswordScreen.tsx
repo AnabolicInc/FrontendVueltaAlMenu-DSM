@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootAdminBottomTabParamList } from '../../../navigation/tabs/admin/AdminBottomTab';
-import ProfileInfoStyles from './Styles';
+import ChangePasswordStyles from './Styles';
 
 interface Props extends StackScreenProps<RootAdminBottomTabParamList, 'ChangePasswordScreen'> {}
 
@@ -15,18 +15,18 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <View style={ProfileInfoStyles.profileContainer}>
-      <Text style={ProfileInfoStyles.mainText}>Cambiar contraseña</Text>
-      <View style={ProfileInfoStyles.fieldContainer}>
+    <View style={ChangePasswordStyles.changePasswordContainer}>
+      <Text style={ChangePasswordStyles.mainText}>Cambiar contraseña</Text>
+      <View style={ChangePasswordStyles.fieldContainer}>
         <TextInput
-          style={ProfileInfoStyles.textInputContainer}
+          style={ChangePasswordStyles.textInputContainer}
           placeholder="Nueva contraseña"
           secureTextEntry={true}
           value={newPassword}
           onChangeText={(text) => setNewPassword(text)}
         />
         <TextInput
-          style={ProfileInfoStyles.textInputContainer}
+          style={ChangePasswordStyles.textInputContainer}
           placeholder="Confirmar contraseña"
           secureTextEntry={true}
           value={confirmPassword}
@@ -34,7 +34,7 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
         />
       </View>
       <Pressable onPress={handleChangePassword}>
-        <Text style={ProfileInfoStyles.buttomChangePassword}>Cambiar contraseña</Text>
+        <Text style={ChangePasswordStyles.buttomChangePassword}>Cambiar contraseña</Text>
       </Pressable>
     </View>
   );
