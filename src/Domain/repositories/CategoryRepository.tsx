@@ -5,4 +5,5 @@ import { Category } from "../entities/Category";
 
 export interface CategoryRepository {
     create(category: Category): Promise<ResponseAPIDelivery>
+    list(): Promise<ResponseAPIDelivery>
 }
