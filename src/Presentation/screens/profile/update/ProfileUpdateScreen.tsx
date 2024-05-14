@@ -107,7 +107,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
       {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
 
       <Pressable onPress={() => updateUser()}>
-        <Text style={styles.editButton}>Guardar</Text>
+        <Text style={styles.editButton}>Guardar</Text>          
           
       </Pressable>
 
