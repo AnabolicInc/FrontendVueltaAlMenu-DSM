@@ -133,6 +133,11 @@ const RegisterViewModel = () => {
 					await SaveUserUseCase(dataUser);
 					auth(dataUser);
 					setLoading(false);
+					showMessage({
+						message: 'Registro exitoso',
+						type: 'success',
+						icon: 'success',
+					});
 				}
 				
 				console.log('Registro exitoso');
