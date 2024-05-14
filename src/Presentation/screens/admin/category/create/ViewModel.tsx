@@ -6,7 +6,7 @@ import { CategoryCreateUseCase } from "../../../../../Domain/useCases/Category/C
 import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
 import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
 import { showMessage } from "react-native-flash-message";
-
+import { SaveCategoryUseCase } from "../../../../../Domain/useCases/Category/SaveCategoryLocal";
 
 
 
@@ -109,10 +109,14 @@ const CategoryCreateViewModel = () => {
 				if(response.success){
 
 					const responseImage = await UpdateFileUseCase(file!, 'category', response.data.id);
+					const dataCategory = response.data;                     
+					dataCategory.image = responseImage.data;
+					await SaveCategoryUseCase(dataCategory);
+					console.log(dataCategory);
 					setLoading(false);
 				}
 				
-				console.log('Registro exitoso');
+				console.log('Registro de categoria exitoso');
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
 
@@ -124,7 +128,7 @@ const CategoryCreateViewModel = () => {
 						icon: 'danger',
 					});
 				}else{
-					console.log('Error en el registro');
+					console.log('Error en la creacion de la categoria');
 				
 					const errorsArray = Object.values(rejectErrors.errors);
 

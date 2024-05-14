@@ -3,7 +3,7 @@ import {FontAwesome} from '@expo/vector-icons'
 
 
 //import ProfileScreen from '../../../screens/profile/ProfileScreen';
-import ShoppingCartScreen from '../../../screens/shopping/ShoppingCartScreen';
+import ShoppingCartScreen from '../../../screens/client/shopping/ShoppingCartScreen';
 import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
 import DeliveryHomeScreen from '../../../screens/delivery/DeliveryHomeScreen';
 

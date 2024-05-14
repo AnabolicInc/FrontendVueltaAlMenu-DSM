@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 
-const ProfileStyles = StyleSheet.create(
+const ShoppingCartStyles = StyleSheet.create(
     {
 
-        profileContainer: {
+        shoppingCartContainer: {
             flex: 1,
             backgroundColor: '#0C1013',
             alignItems: 'center',
@@ -11,25 +11,38 @@ const ProfileStyles = StyleSheet.create(
         },
 
 
-        profileInnerContainer: {
+        shopppingCartInnerContainer: {
             flex: 1,
             flexGrow: 1,
             flexDirection: 'column',
-            position: 'absolute',
-            top: "20%",
-            width: "90%",
-            height: "80%",
+            position: 'relative',
+            alignItems: 'center',
             alignSelf: 'center',
+            justifyContent: 'center',
 
+        },
+        payButton: {
+            backgroundColor: '#D17842',
+            padding: 10,
+            borderRadius: 5,
+            marginTop: 20,
+        },
+        payText: {
+            fontFamily: 'Poppins',
+            fontSize: 20,
+            color: '#F6F6F6',
         },
 
         backButton: {
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
             width: 30,
             height: 30,
-            position: 'absolute',
-            top: "10%",
-            left: "8%",
+            top: "-38%",
+            left: "-40%",
         },
+
 
         mainText: {
             
@@ -72,27 +85,9 @@ const ProfileStyles = StyleSheet.create(
             marginTop: 20,
         },
 
-        editButton: {
-            backgroundColor: '#141921',
-            borderWidth: 2,
-            borderColor: '#D17842',
-            padding: 10,
-            borderRadius: 5,
-            marginTop: 20,
-            marginBottom: 50,
-            width: 150,
-            alignSelf: 'center',
-            alignItems: 'center',
-
-        },
-        editButtonText: {
-            fontFamily: 'Poppins',
-            fontSize: 15,
-            color: '#F6F6F6',
-        },
 
 
     }
 );
 
-export default ProfileStyles;
+export default ShoppingCartStyles;
