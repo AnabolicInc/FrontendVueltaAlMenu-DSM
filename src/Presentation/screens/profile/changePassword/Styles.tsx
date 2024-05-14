@@ -37,7 +37,34 @@ const ChangePasswordStyles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+
+  passwordRequerimentContainer: {
+    marginTop: 10,
+    alignItems: 'flex-start', // Alinear los elementos a la izquierda
+  },
+
+  completed: {
+    fontFamily: 'Poppins',
+    color: '#77dd77',
+    marginBottom: 5,
+  },
+
+  uncompleted: {
+    fontFamily: 'Poppins',
+    color: '#ff6961',
+    marginBottom: 5,
+  },
   
+  errorText: {
+    backgroundColor: '#ff6961',
+    borderRadius: 10,
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    color: 'white',
+    marginBottom: 10,
+    padding: 10,
+    width: 300,
+  },
 });
 
 export default ChangePasswordStyles;
