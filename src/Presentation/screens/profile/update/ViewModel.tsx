@@ -58,7 +58,7 @@ const ProfileUpdateViewModel = () => {
 			try {
 
 				const { image, ...data } = values; //Destructurando los datos
-				
+
 				console.log('Cambio de datos exitoso');
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
@@ -150,12 +150,23 @@ const ProfileUpdateViewModel = () => {
                         dataUser.image = responseImage.data;
                     }
 
+					showMessage({
+						message: 'Datos actualizados correctamente',
+						type: 'success',
+						icon: 'success',
+					});
+
                     setLoading(false);
                     updateUserContext(dataUser);
                 }
             } catch (error) {
                 console.log(error);
                 setLoading(false);
+				showMessage({
+					message: 'Error al actualizar los datos',
+					type: 'danger',
+					icon: 'danger',
+				});
             }
         }
     }

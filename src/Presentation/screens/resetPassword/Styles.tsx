@@ -1,10 +1,12 @@
 //generate styles for resetPassword screen
 import { StyleSheet } from 'react-native';
 
+import { COLORS, FONTSIZE } from '../../themes/Theme';
+
 export const ForgotPasswordStyles = StyleSheet.create({
     resetPasswordContainer: {
         flex: 1,
-        backgroundColor: '#0C1013',
+        backgroundColor: COLORS.generalBackgroundBlack,
         alignItems: 'center',
         justifyContent: 'center',
 		alignContent: 'center',
@@ -29,11 +31,11 @@ export const ForgotPasswordStyles = StyleSheet.create({
       marginBottom: 20,
       color: 'white',
       fontFamily: 'Poppins',
-      fontSize: 20,
+      fontSize: FONTSIZE.size_20,
     },
     emailInputContainer: {
 		position: 'relative',
-        backgroundColor: 'white',
+        backgroundColor: COLORS.primaryWhite,
         width: 300,
         height: 50,
         borderRadius: 10,
@@ -42,7 +44,7 @@ export const ForgotPasswordStyles = StyleSheet.create({
     },
     buttomResetPassword: {
 		position: 'relative',
-        backgroundColor: '#D17842',
+        backgroundColor: COLORS.primaryOrange,
         width: 250,
         height: 50,
         borderRadius: 10,
@@ -52,9 +54,9 @@ export const ForgotPasswordStyles = StyleSheet.create({
     },
     buttomResetPasswordText: {
 		position: 'relative',
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: 15,
+        fontSize: FONTSIZE.size_15,
     },
     backContainer: {
 		position: 'relative',
@@ -62,22 +64,22 @@ export const ForgotPasswordStyles = StyleSheet.create({
 		justifyContent: 'center',
         width: 200,
 		height: 50,
-		backgroundColor: '#141A1E',
-		borderColor: '#D17842',
+		backgroundColor: COLORS.primaryDarkGrey,
+		borderColor: COLORS.primaryOrange,
 		borderRadius: 10,
 		borderWidth: 1,
 
     },
     backTextContainer: {
-        color: '#D17842',
+        color: COLORS.primaryOrange,
         fontFamily: 'Poppins',
-        fontSize: 15,
+        fontSize: FONTSIZE.size_15,
     },
 	errorText: {
-		backgroundColor: 'rgba(255, 0, 0, 0.3)',
+		backgroundColor: COLORS.backgroundErrorBackendContainerRGBA,
 		borderWidth: 1,
-		borderColor: 'red',
-		color: 'white',
+		borderColor: COLORS.borderErrorBackgroundBackendRed,
+		color: COLORS.primaryWhite,
 		borderRadius: 10,
 		padding: 8,
 		justifyContent: 'center',

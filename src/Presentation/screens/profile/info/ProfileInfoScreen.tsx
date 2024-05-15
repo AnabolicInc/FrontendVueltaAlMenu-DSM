@@ -1,13 +1,13 @@
-import { View, Text, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useContext } from 'react'
-import { UserInfo } from '../../../components/UserInfo';
-import styles from './Styles';
+import { View, Text, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
-import { RootAdminBottomTabParamList } from '../../../navigation/tabs/admin/AdminBottomTab';
+
+import styles from './Styles';
+import useViewModel from './ViewModel';
+import { UserInfo } from '../../../components/ShowUserInfo';
 import { AuthContext } from '../../../context/auth/AuthContext';
 import { RootStackParamList } from '../../../navigation/MainAppStack';
-import useViewModel from './ViewModel';
 
 interface Props extends StackScreenProps<RootStackParamList, 'AdminBottomTab'> {};
 
@@ -26,7 +26,6 @@ export const ProfileInfoScreen = ({ navigation,route }: Props) => {
 			<UserInfo 
 				fieldType='image' 
 				textCard = 'Foto de perfil' 
-				dataUser = {user?.image}
 			/>
 
 			<UserInfo 
@@ -48,6 +47,7 @@ export const ProfileInfoScreen = ({ navigation,route }: Props) => {
 			/>
 
 			<UserInfo 
+				fieldType ='email' 
 				textCard = 'Correo electrónico' 
 				dataUser = {user?.email}
 			/>

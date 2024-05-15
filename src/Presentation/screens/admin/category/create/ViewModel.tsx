@@ -108,11 +108,17 @@ const CategoryCreateViewModel = () => {
 				
 				if(response.success){
 
-					const responseImage = await UpdateFileUseCase(file!, 'category', response.data.id);
+					const responseImage = await UpdateFileUseCase(file!, 'categories', response.data.id);
+					const dataCategory = response.data;
+					dataCategory.image = responseImage.data;
+
+					//await SaveCategoryUseCase(dataCategory);
 					setLoading(false);
+
+
 				}
 				
-				console.log('Registro exitoso');
+				console.log('Creación de categoría exitoso');
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
 
@@ -124,7 +130,7 @@ const CategoryCreateViewModel = () => {
 						icon: 'danger',
 					});
 				}else{
-					console.log('Error en el registro');
+					console.log('Error en la creación de categoría');
 				
 					const errorsArray = Object.values(rejectErrors.errors);
 
@@ -168,7 +174,7 @@ const CategoryCreateViewModel = () => {
         pickImage,
         takePhoto,
         errorMessages,
-        responseError,
+        responseError: errorsResponse,
       };
 }
 

@@ -1,24 +1,27 @@
 import { StyleSheet } from "react-native";
 
+
+import { COLORS, FONTSIZE } from '../../../../themes/Theme'
+
 const CategoryCreateStyles = StyleSheet.create(
 
     {
 
-      CategoryCreateContainer: {
+      categoryCreateContainer: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#0C1013',
+        backgroundColor: COLORS.generalBackgroundBlack,
       },
 
-      CategoryCreateInnerContainer: {
+      categoryCreateInnerContainer: {
         position: 'relative',
       },
 
-      CategoryCreateText: {
+      categoryCreateText: {
         position: 'relative',
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: 20,
+        fontSize: FONTSIZE.size_20,
         textAlign: 'center',
         marginBottom: 60,
         marginTop: 70,
@@ -27,40 +30,40 @@ const CategoryCreateStyles = StyleSheet.create(
 
       uploadImageButton: {
         fontFamily: 'Poppins',
-        fontSize: 15,
+        fontSize: FONTSIZE.size_15,
         borderRadius: 10,
         width: 200,
         height: 40,
-        backgroundColor: '#141921',
-        borderColor: '#D17842',
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
         borderWidth: 1,
         position: 'relative',
         alignSelf: 'center',
         marginBottom: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        },
+      },
 
-        uploadImageButtonText: {
-          fontFamily: 'Poppins',
-          fontSize: 15,
-          color: '#D17842',
-          position: 'relative',
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-
-      buttomSave: {
+      uploadImageButtonText: {
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_15,
+        color: COLORS.primaryOrange,
         position: 'relative',
-        backgroundColor: '#D17842',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+
+      buttonSave: {
+        position: 'relative',
+        backgroundColor: COLORS.primaryOrange,
         borderRadius: 10,
         width: 150,
         height: 40,
         alignSelf: 'center',
       },
      
-      SaveText: {
-        color: 'white',
+      saveText: {
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
         marginTop: 10,
@@ -76,8 +79,8 @@ const CategoryCreateStyles = StyleSheet.create(
 
       nameInput: {
         fontFamily: 'Poppins',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        color: 'white',
+        backgroundColor: COLORS.backgroundInputGrayRGBA,
+        color: COLORS.primaryWhite,
         width: 250,
         height: 40,
         borderRadius: 10,
@@ -87,10 +90,10 @@ const CategoryCreateStyles = StyleSheet.create(
         
       },
 
-      DescriptionInput: {
+      descriptionInput: {
         fontFamily: 'Poppins',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        color: 'white',
+        backgroundColor: COLORS.backgroundInputGrayRGBA,
+        color: COLORS.primaryWhite,
         width: 250,
         height: 240,
         borderRadius: 10,

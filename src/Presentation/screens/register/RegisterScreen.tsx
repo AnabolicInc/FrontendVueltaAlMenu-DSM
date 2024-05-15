@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Text, View, Image, Pressable,ScrollView, FlatList, ActivityIndicator } from 'react-native'
-
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
+
 
 import { ModalPickImage } from '../../components/ModalPickImage';
 import styles from './Styles';

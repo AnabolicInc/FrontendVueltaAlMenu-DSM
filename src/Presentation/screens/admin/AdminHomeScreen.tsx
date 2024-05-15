@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import styles from './Styles';
 import { View, Text, Image, ImageBackground, Pressable } from 'react-native'
-import { useFonts } from 'expo-font';
+import { TextInput } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 //import the dependency to create a search bar
 
-import { StackScreenProps } from '@react-navigation/stack';
-import { TextInput } from 'react-native';
+import styles from './Styles';
+import { useFonts } from 'expo-font';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { RootAdminBottomTabParamList } from '../../navigation/tabs/admin/AdminBottomTab';
 
