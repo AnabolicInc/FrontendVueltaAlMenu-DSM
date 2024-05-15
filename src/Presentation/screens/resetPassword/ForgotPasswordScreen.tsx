@@ -12,23 +12,29 @@ import { error } from 'console';
 import { ModalNotification } from '../../components/ModalNotification';
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
+
+interface Props extends StackScreenProps<RootStackParamList, 'ForgotPasswordScreen'> {}
 
 
 
-const ResetPasswordScreen = ({ navigation,route }: Props) => {
+const ForgotPasswordScreen = ({ navigation,route }: Props) => {
     const [modalVisible, setMoldalVisible] = useState<boolean>(false); 
 
-	const {
-		email, 
-		onChange,
-		resetPassword,
-		errorMessages,
-		responseError: errorsResponse,
+    const {
+      email, 
+      onChange,
+      forgotPassword,
+      errorMessages,
+      responseError: errorsResponse,
 
-	} = useViewModel();
-	
+    } = useViewModel();
+    
+    const handleForgotPassword = async () => {
+    
+      await forgotPassword();
+      //navigation.navigate('ConfirmValidationCodeScreen')
 
+    }
   return (
     
     <View style={styles.resetPasswordContainer}>
@@ -50,8 +56,8 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
 		      {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
           <View style={styles.buttomResetPassword}> 
-            <Pressable onPressIn={resetPassword} >
-              <Text style={styles.buttomResetPasswordText}>Recuperar contraseña</Text>
+            <Pressable onPressIn={ handleForgotPassword } >
+              <Text style={styles.buttomResetPasswordText}>Enviar</Text>
             </Pressable>
           </View>
           
@@ -72,4 +78,4 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
   )
 }
 
-export default ResetPasswordScreen;
+export default ForgotPasswordScreen;

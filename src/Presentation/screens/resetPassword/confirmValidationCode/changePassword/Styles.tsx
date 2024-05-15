@@ -1,7 +1,6 @@
-//generate styles for resetPassword screen
 import { StyleSheet } from 'react-native';
 
-export const ForgotPasswordStyles = StyleSheet.create({
+export const ChangePasswordStyles = StyleSheet.create({
     resetPasswordContainer: {
         flex: 1,
         backgroundColor: '#0C1013',
@@ -91,4 +90,4 @@ export const ForgotPasswordStyles = StyleSheet.create({
 
 });
 
-export default ForgotPasswordStyles;
+export default ChangePasswordStyles;

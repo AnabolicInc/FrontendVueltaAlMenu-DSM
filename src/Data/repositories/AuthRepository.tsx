@@ -62,9 +62,10 @@ export class AuthRepositoryImpl implements AuthRepository {
         }
     }
 
-    async resetPassword(email: string): Promise<ResponseAPIDelivery> {
+    async forgotPassword(email: string): Promise<ResponseAPIDelivery> {
         try {
             const { data } = await ApiDelivery.post<ResponseAPIDelivery>('user/change-password', { email });
+            console.log(data);
             return Promise.resolve(data);
         } catch (error) {
             let e = (error as AxiosError);
@@ -76,7 +77,8 @@ export class AuthRepositoryImpl implements AuthRepository {
                 console.log('Request made but no response received', e.request);
                 return Promise.reject(new Error('Request made but no response received'));
             } else {
-                console.log('Error', e.message);
+                console.log('Error', e.message); 
+
                 return Promise.reject(new Error('An error occurred while making the request'));
             }
         }
