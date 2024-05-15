@@ -8,6 +8,7 @@ import { Error, ResponseAPIDelivery } from "../../../Data/sources/remote/api/mod
 import { SaveUserUseCase } from "../../../Domain/useCases/UserLocal/SaveUserLocal";
 import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase";
 import { forgotPasswordAuthUseCase } from "../../../Domain/useCases/Auth/AuthResetPassword";
+import { promises } from "dns";
 
 
 interface Values {
@@ -65,7 +66,8 @@ const ForgotPasswordViewModel = () => {
 	};
 
 
-	const forgotPassword = async () => {
+	const forgotPassword = async (): Promise<ResponseAPIDelivery> => {
+
 		console.log(values.email)
 		const isValid = await isValidForm();
 		console.log(isValid);
@@ -77,6 +79,7 @@ const ForgotPasswordViewModel = () => {
 				const response = await forgotPasswordAuthUseCase(values.email);
 				console.log(response);
 				if (response.success) {
+					return response;
 					showMessage({
 						message: 'Se ha enviado un correo electrónico para restablecer la contraseña',
 						type: 'success',
@@ -101,6 +104,7 @@ const ForgotPasswordViewModel = () => {
 					setErrorResponses(errorsArrayFilter);
 				}
 				setLoading(false);
+				return rejectErrors;
 			}
 
 		}
@@ -117,6 +121,7 @@ const ForgotPasswordViewModel = () => {
 		isValidForm,
 		forgotPassword,
 		errorMessages,
+		loading,
 		responseError: errorsResponse,
 
 	}

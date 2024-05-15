@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import styles from './Styles';
-import { TextInput, Pressable } from 'react-native'
+import { TextInput, Pressable, Keyboard } from 'react-native'
 import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -25,14 +25,18 @@ const ForgotPasswordScreen = ({ navigation,route }: Props) => {
       onChange,
       forgotPassword,
       errorMessages,
+      loading,
       responseError: errorsResponse,
 
     } = useViewModel();
     
     const handleForgotPassword = async () => {
-    
-      await forgotPassword();
-      //navigation.navigate('ConfirmValidationCodeScreen')
+      Keyboard.dismiss();
+      const response = await forgotPassword();
+      if (response.success){
+        navigation.navigate('ConfirmValidationCodeScreen')
+
+      }
 
     }
   return (
@@ -52,11 +56,15 @@ const ForgotPasswordScreen = ({ navigation,route }: Props) => {
             placeholder="Correo electrónico" 
 			      value={email}  
             onChangeText={text => onChange('email', text)}
+            editable = {!loading}
+
           />
 		      {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
           <View style={styles.buttomResetPassword}> 
-            <Pressable onPressIn={ handleForgotPassword } >
+            <Pressable onPressIn={ handleForgotPassword } 
+            disabled={loading}
+            >
               <Text style={styles.buttomResetPasswordText}>Enviar</Text>
             </Pressable>
           </View>
