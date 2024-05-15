@@ -1,7 +1,7 @@
 import { AuthRepositoryImpl } from "../../../Data/repositories/AuthRepository";
 
-const { resetPassword } = new AuthRepositoryImpl();
+const { forgotPassword } = new AuthRepositoryImpl();
 
-export const ResetPasswordAuthUseCase = async (email: string) => {
-    return await resetPassword(email);
+export const forgotPasswordAuthUseCase = async (email: string) => {
+    return await forgotPassword(email);
 }

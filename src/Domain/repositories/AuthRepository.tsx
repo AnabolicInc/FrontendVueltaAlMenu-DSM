@@ -7,5 +7,5 @@ import * as ImagePicker from "expo-image-picker";
 export interface AuthRepository {
     login(email: string, password: string): Promise<ResponseAPIDelivery>
     register(user: User): Promise<ResponseAPIDelivery>
-    resetPassword(email: string): Promise<ResponseAPIDelivery>
+    forgotPassword(email: string): Promise<ResponseAPIDelivery>
 }
