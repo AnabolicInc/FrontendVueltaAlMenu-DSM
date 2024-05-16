@@ -83,7 +83,7 @@ const ProfileUpdateStyles = StyleSheet.create(
             padding: 10,
             marginTop: 20,
             borderRadius: 5,
-            width: 150,
+            width: 151,
             alignSelf: 'center',
             alignItems: 'center',
             color: 'white',
