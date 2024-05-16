@@ -59,7 +59,7 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
             secureTextEntry={true}
             value={confirmPassword}
             onChangeText={(text) => {
-              setNewPassword(text);
+              setConfirmPassword(text);
               onChange('confirmPassword', text);
             }}
           />
