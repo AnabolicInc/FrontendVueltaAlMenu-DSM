@@ -24,15 +24,6 @@ const CategoryListStyles = StyleSheet.create(
 
       },
 
-      buttonSave: {
-        position: 'absolute',
-        top: "79%",
-        backgroundColor: COLORS.primaryOrange,
-        borderRadius: 10,
-        width: 150,
-        height: 45,
-      },
-
       buttonAdd: {
         position: 'absolute',
         top: "87%",

@@ -119,16 +119,6 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
       </LinearGradient> */}
 
 
-
-
-
-
-      <View style={styles.buttonSave}>
-        <Pressable onPress={() => null}>
-          <Text style={styles.saveText}>GUARDAR</Text>
-        </Pressable>
-      </View>
-
       <View style={styles.buttonAdd}>
         <Pressable onPress={() => navigation.navigate('CategoryCreateScreen')}>
           <Text style={styles.saveText}>NUEVA CATEGORÍA</Text>
