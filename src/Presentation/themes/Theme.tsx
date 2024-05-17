@@ -59,7 +59,7 @@ interface Color {
 }
 
 
-
+//backgroundErrorBackendContainer: rgba(255, 0, 0, 0.3)
 export const COLORS: Color = {
     backgroundErrorRed: '#d9534f',
     borderErrorRed: '#c9302c',
