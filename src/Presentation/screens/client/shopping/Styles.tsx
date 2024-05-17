@@ -21,6 +21,17 @@ const ShoppingCartStyles = StyleSheet.create(
             justifyContent: 'center',
 
         },
+        payButton: {
+            backgroundColor: '#D17842',
+            padding: 10,
+            borderRadius: 5,
+            marginTop: 20,
+        },
+        payText: {
+            fontFamily: 'Poppins',
+            fontSize: 20,
+            color: '#F6F6F6',
+        },
 
         backButton: {
             position: 'relative',

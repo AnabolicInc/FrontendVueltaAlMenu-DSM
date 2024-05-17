@@ -17,6 +17,7 @@ import ForgotPasswordScreen from '../screens/resetPassword/ForgotPasswordScreen'
 import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
 import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidationCode/ConfirmValidationCodeScreen'
 import ChangePasswordScreen from '../screens/resetPassword/confirmValidationCode/changePassword/ChangePasswordScreen'
+import PaymentScreen from '../screens/client/payment/PaymentScreen'
 
 
 
@@ -36,6 +37,7 @@ export type RootStackParamList = {
     CategoryUpdateScreen: undefined;
 
     ProfileUpdateScreen: undefined;
+    PaymentScreen: undefined;
 
 
 };
@@ -54,6 +56,7 @@ export const MainAppStack = () => {
             return <>
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
+                <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
             </>
             //this client
         } else if (user.role_id == 2) {
