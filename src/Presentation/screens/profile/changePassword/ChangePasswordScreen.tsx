@@ -10,14 +10,13 @@ interface Props extends StackScreenProps<RootAdminBottomTabParamList, 'ChangePas
 const ChangePasswordScreen = ({ navigation }: Props) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const { onChange, isValidForm, loading, hasEightChars, hasUppercase, hasNumber, hasSpecialChar, errorMessages } = useViewModel();
+  const { onChange, applyNewPassword, isValidForm, loading, hasEightChars, hasUppercase, hasNumber, hasSpecialChar, errorMessages } = useViewModel();
 
   const handleChangePassword = async () => {
-    const isValid = await isValidForm();
+    console.log("se apretó el botón reqliao")
 
-    if (isValid) {
-      // Lógica para cambiar la contraseña
-    }
+    await applyNewPassword();
+
   };
 
   return (
