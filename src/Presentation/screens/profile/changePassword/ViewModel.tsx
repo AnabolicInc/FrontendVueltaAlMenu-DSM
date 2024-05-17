@@ -86,17 +86,17 @@ const ChangePasswordViewModel = () => {
 	};
 
     const applyNewPassword  =  async () => {
-
 		const isValid = await isValidForm();
 		console.log(isValid);
-		
+		console.log("111111111111111")
 		if (isValid) {
 			setLoading(true);
 			setErrorMessages({});
 			try {
+				console.log("222222222222222222222")
+				const response = await ChangePasswordUseCase(user.email, values.newPassword, user.session_token);
+				console.log("Se pasó changepassword")
 
-				const response = await ChangePasswordUseCase(values.newPassword, user.session_token);
-				
 				if(response.success){
 
 					const dataUser = response.data;
