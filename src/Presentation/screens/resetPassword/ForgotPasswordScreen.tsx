@@ -34,10 +34,8 @@ const ForgotPasswordScreen = ({ navigation,route }: Props) => {
       Keyboard.dismiss();
       const response = await forgotPassword();
       if (response.success){
-        navigation.navigate('ConfirmValidationCodeScreen')
-
+        navigation.navigate('ConfirmValidationCodeScreen', {email: email})
       }
-
     }
   return (
     
