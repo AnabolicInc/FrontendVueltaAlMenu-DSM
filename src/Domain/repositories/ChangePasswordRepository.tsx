@@ -1,5 +1,7 @@
 import { ResponseAPIDelivery } from "../../Data/sources/remote/api/models/ResponseApiDelivery";
 
+console.log("Actualmente en ChangePasswordRepositoryINTERFACE")
+
 export interface ChangePasswordRepository {
-    update (newPassword: string, session_token: string): Promise<ResponseAPIDelivery>
+    update (email: string, newPassword: string, session_token: string): Promise<ResponseAPIDelivery>
 }
