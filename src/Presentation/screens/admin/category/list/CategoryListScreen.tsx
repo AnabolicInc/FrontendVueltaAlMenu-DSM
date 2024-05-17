@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, Pressable, Modal, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StackScreenProps } from '@react-navigation/stack';
 
 
@@ -10,6 +10,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import CategoryListBox from '../../../../components/CategoryListBox';
 import { COLORS } from '../../../../themes/Theme';
 import useViewModel from './ViewModel';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -17,12 +18,28 @@ interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen
 
 export const CategoryListScreen = ({ navigation, route }: Props) => {
 
-  const { categories } = useViewModel();
+  const { 
+    getCategories,
+    categories 
+  } = useViewModel();
+
+  
+  
 
   // Ventana emergente
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<any>(null); // Almacenar lo que se va a eliminar
 
+  // Actualizar categorías
+  //const [newCategory, setNewCategory] = useState<boolean>(false);
+
+//    useEffect(() => {
+//      getCategories()
+//  }, [])
+
+
+
+  //---------------------------------------------------------------------------------------
   const handleDeletePress = (item: any) => {
     setItemToDelete(item);
     setShowDeleteConfirmation(true);
@@ -43,16 +60,17 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
     <View style={styles.categoryListContainer}>
       <Text style={styles.categoryListText}>CATEGORÍAS</Text>
 
-
-
-      {/* source={require('../../../../../../assets/images/pizza.jpg' */}
-      
-      <FlatList
+      <FlatList 
+        style={styles.categoryListInnerContainer} showsVerticalScrollIndicator = {false}
         data={categories}
         renderItem={({item}) => {
 
           
+          const words = item.description.split(' ');
+          const midIndex = Math.floor(words.length / 2);
+          
           return (
+            
             <LinearGradient
               colors={[COLORS.primaryGrey, 'transparent']}
               style={styles.categoryListElement}>
@@ -62,12 +80,20 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
                 ? 
                 <Image style={styles.categoryListImage} source={{uri: item.image}} />
                 :
-                <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/pizza.jpg')}/>
+                <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/category.png')}/>
               }
 
 
               <View style={styles.categoryListInnerElement}>
-                <Text style={styles.categoryListElementText}>{item.name}</Text>
+                <Text style={styles.categoryListElementTittle}>{item.name}</Text>
+                
+                <Text style={styles.categoryListElementDescription}>
+                  {
+                    item.description.length > 30
+                    ? item.description.split(' ').slice(0, midIndex).join(' ') + '\n' + item.description.split(' ').slice(midIndex).join(' ')
+                    : item.description
+                  }
+                </Text>
 
                 <View style={styles.categoryListInnerInnerElement}>
                   <View style={styles.buttonEdit}>
@@ -87,37 +113,8 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
           )
         }}
         keyExtractor={item => item.id}
+      
       />
-
-      {/* <ScrollView style={styles.categoryListInnerContainer} showsVerticalScrollIndicator = {false}> */}
-
-      {/* <CategoryListBox navigation={navigation} /> */}
-
-
-      {/* <LinearGradient
-        colors={[COLORS.primaryGrey, 'transparent']}
-        style={styles.categoryListElement}>
-          <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/pizza.jpg')} />
-
-          <View style={styles.categoryListInnerElement}>
-            <Text style={styles.categoryListElementText}>Pizza</Text>
-
-            <View style={styles.categoryListInnerInnerElement}>
-              <View style={styles.buttonEdit}> 
-                <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
-                 <Text style={styles.editText}>Editar producto</Text>
-                </Pressable>
-              </View>
-
-              <View style={styles.buttonDelete}> 
-                <Pressable onPress={() => handleDeletePress("pizza")}> 
-                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
-                </Pressable>
-              </View>
-            </View>
-          </View>
-      </LinearGradient> */}
-
 
       <View style={styles.buttonAdd}>
         <Pressable onPress={() => navigation.navigate('CategoryCreateScreen')}>
