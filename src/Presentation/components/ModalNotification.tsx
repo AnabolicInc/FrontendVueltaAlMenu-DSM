@@ -2,7 +2,7 @@ import { View, Text, Modal, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
 
-
+import { COLORS, FONTSIZE } from '../themes/Theme'
 
 interface Props {
 
@@ -34,8 +34,8 @@ export const ModalNotification = ({modalUseState,setModalUseState,email}:Props) 
                         >
                         <Text style={
                         {
-                            color: 'white',
-                            fontSize: 20,
+                            color: COLORS.primaryWhite,
+                            fontSize: FONTSIZE.size_20,
                         }
                         }>Cerrar</Text>
                     </Pressable>
@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
     },
     modalInnerContainer: {
         flex:1,
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: COLORS.secondaryBlackRGBA,
         borderRadius: 15,
         alignItems: 'center',
         justifyContent: 'center',
     },
     modalText: {
-        color: 'white',
-        fontSize: 20,
+        color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_20,
     },
     buttonContainer: {
         flexDirection: 'row',

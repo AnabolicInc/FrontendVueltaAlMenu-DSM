@@ -1,7 +1,7 @@
 import { View, Text, Modal, StyleSheet, TextInput, Pressable } from 'react-native'
 import React from 'react'
 
-
+import { COLORS, FONTSIZE } from '../themes/Theme'
 
 interface Props {
     changeInfoLabel:string;
@@ -64,29 +64,29 @@ const styles = StyleSheet.create({
     },
     modalInnerContainer: {
         flex:1,
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: COLORS.secondaryBlackRGBA,
         borderRadius: 15,
         alignItems: 'center',
         justifyContent: 'center',
 
     },
     modalText: {
-        color: 'white',
-        fontSize: 20,
+        color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_20,
         fontFamily: 'Poppins',
         textAlign: 'center',
         
     },
     userInput: {
-        backgroundColor: '#141921',
+        backgroundColor: COLORS.primaryDarkGrey,
         borderRadius: 15,
         borderWidth: 1,
-        borderColor: '#D17842',
+        borderColor: COLORS.primaryOrange,
         height: 50,
         width: 300,
         marginTop: 20,
         marginBottom: 20,
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         paddingLeft: 10,
     },
@@ -100,18 +100,18 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     saveButton: {
-        backgroundColor: '#5dc460',
+        backgroundColor: COLORS.backgroundSuccessGreen,
         borderWidth: 1,
         borderRadius: 10,
-        borderColor: '#146c43',
+        borderColor: COLORS.borderSuccessGreen,
         width: 120, // Divide the width of the container by 2
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
     },
     cancelButton: {
-        backgroundColor: '#d9534f',
-        borderColor: '#c9302c',
+        backgroundColor: COLORS.backgroundErrorRed,
+        borderColor: COLORS.borderErrorRed,
         borderWidth: 1,
         borderRadius: 10,
         width: 120, // Divide the width of the container by 2

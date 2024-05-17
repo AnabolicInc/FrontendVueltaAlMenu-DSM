@@ -1,12 +1,15 @@
 import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
-import styles from './Styles';
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
-import { Dimensions } from 'react-native';
+
+
+import styles from './Styles';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import useViewModel from './ViewModel';
+import { COLORS } from '../../../../themes/Theme';
+
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryUpdateScreen'> {}
 
@@ -24,9 +27,9 @@ export const CategoryUpdateScreen = ({ navigation,route }: Props) => {
 
 
   return (
-    <View style={styles.CategoryUpdateContainer}>
-      <ScrollView style={styles.CategoryUpdateInnerContainer} showsVerticalScrollIndicator = {false}>
-        <Text style={styles.CategoryUpdateText}>EDITAR CATEGORÍA</Text>
+    <View style={styles.categoryUpdateContainer}>
+      <ScrollView style={styles.categoryUpdateInnerContainer} showsVerticalScrollIndicator = {false}>
+        <Text style={styles.categoryUpdateText}>EDITAR CATEGORÍA</Text>
         {
           (image == '')
           ?
@@ -43,22 +46,22 @@ export const CategoryUpdateScreen = ({ navigation,route }: Props) => {
         <TextInput 
           style={styles.nameInput}
           placeholder="Nombre"
-          placeholderTextColor={'#D17842'} 
+          placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => console.log(text)}
         />
 
         <TextInput 
-          style={styles.DescriptionInput}
+          style={styles.descriptionInput}
           placeholder="Descripción"
-          placeholderTextColor={'#D17842'} 
+          placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => console.log(text)}
           multiline={true}
         />
 
 
-        <View style={styles.buttomSave}> 
+        <View style={styles.buttonSave}> 
           <Pressable onPress={() => navigation.goBack()}> 
-            <Text style={styles.SaveText}>GUARDAR</Text>
+            <Text style={styles.saveText}>GUARDAR</Text>
           </Pressable>
         </View>
 

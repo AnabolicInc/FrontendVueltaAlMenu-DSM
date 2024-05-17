@@ -1,13 +1,15 @@
 import React from 'react'
-import styles from './Styles';
 import { View, Text, Image, ImageBackground, Pressable } from 'react-native'
+import { TextInput } from 'react-native';
+import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
+import { StackScreenProps } from '@react-navigation/stack';
+
+
+import styles from './Styles';
 import { useFonts } from 'expo-font';
 //import the dependency to create a search bar
 
-import { StackScreenProps } from '@react-navigation/stack';
 
-import { TextInput } from 'react-native';
-import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
 
 interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> {}
 
