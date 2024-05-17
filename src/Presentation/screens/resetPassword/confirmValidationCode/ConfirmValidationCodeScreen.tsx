@@ -1,21 +1,37 @@
 import React, { useContext, useState } from 'react'
 import styles from './Styles';
-import { TextInput, Pressable } from 'react-native'
+import { TextInput, Pressable, Keyboard } from 'react-native'
 import { View, Text, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../../Data/sources/remote/api/ApiDelivery';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
-import useViewModel from '../ViewModel';
+import useViewModel from './ViewModel';
 import { error } from 'console';
 import { ModalNotification } from '../../../components/ModalNotification';
 
-interface Props extends StackScreenProps<RootStackParamList, 'ForgotPasswordScreen'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'ConfirmValidationCodeScreen'> {}
 
 
 
-const ConfirmValidationCodeScreen = () => {
+const ConfirmValidationCodeScreen = ({navigation,route}:Props) => {
+  const { email } = route.params
+  const {
+    onChange,
+    validationCode,
+    errorMessages,
+    loading,
+  } = useViewModel( email );
+
+  const handleConfirmValidationCode = async () => {
+    Keyboard.dismiss();
+    const response = await validationCode();
+    if (response.success){
+      navigation.navigate('ChangePasswordScreen', {email: email})
+    }
+
+  } 
   return (
     <View style={styles.resetPasswordContainer}>
       
@@ -34,7 +50,11 @@ const ConfirmValidationCodeScreen = () => {
 
           <View style={styles.buttomResetPassword}> 
             <Pressable>
+            <Pressable onPressIn={ handleConfirmValidationCode } 
+            disabled={loading}
+            >
               <Text style={styles.buttomResetPasswordText}>Enviar</Text>
+            </Pressable>
             </Pressable>
           </View>
           

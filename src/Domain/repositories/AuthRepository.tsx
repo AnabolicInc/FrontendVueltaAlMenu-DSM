@@ -8,4 +8,5 @@ export interface AuthRepository {
     login(email: string, password: string): Promise<ResponseAPIDelivery>
     register(user: User): Promise<ResponseAPIDelivery>
     forgotPassword(email: string): Promise<ResponseAPIDelivery>
+    verifyCode(email: string, code: string): Promise<ResponseAPIDelivery>
 }

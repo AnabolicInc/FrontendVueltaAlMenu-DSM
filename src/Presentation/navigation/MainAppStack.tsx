@@ -22,8 +22,8 @@ import ChangePasswordScreen from '../screens/resetPassword/confirmValidationCode
 
 export type RootStackParamList = {
     ForgotPasswordScreen: undefined;
-    ConfirmValidationCodeScreen: undefined;
-    ChangePasswordScreen: undefined;
+    ConfirmValidationCodeScreen: {email: string};
+    ChangePasswordScreen: {email: string};
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
