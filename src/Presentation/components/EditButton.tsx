@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
+import { COLORS } from '../themes/Theme'
+
 interface Props {
     onChangeText?: (text:string) => void;
 }
@@ -11,7 +13,7 @@ export const EditButton = ({onChangeText}:Props) => {
         <Pressable
             style={styles.editFieldButton}       
         >
-            <Text style = {{color:'#D17842', fontFamily:'Poppins'}}>Editar</Text>
+            <Text style = {{color:COLORS.primaryOrange, fontFamily:'Poppins'}}>Editar</Text>
         </Pressable>
 
     </View>
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     editFieldButton: {
-        backgroundColor: 'rgba(255,255,255, 0.1)',
+        backgroundColor: COLORS.backgroundInputGrayRGBA,
         width: 320,
         height: 100,
         borderRadius: 15,

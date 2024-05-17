@@ -1,26 +1,32 @@
-import { StyleSheet, Text, View,TouchableOpacity, Pressable, Image } from 'react-native'
-import React, { useContext, useState } from 'react'
-import { ModalChangeInfo } from './ModalChangeInfo';
-import useViewModel from '../screens/profile/update/ViewModel';
-import { ModalPickImage } from './ModalPickImage';
-import { AuthContext } from '../context/auth/AuthContext';
+import { useContext, useState } from "react";
 
+// import { AuthContext } from "../../../context/auth/AuthContext";
+// import { RemoveUserUseCase } from "../../../../Domain/useCases/UserLocal/RemoveUserLocal";
+// import { UpdateUserUseCase } from "../../../../Domain/useCases/User/UpdateUserUseCase";
+// import { UpdateFileUseCase } from "../../../../Domain/useCases/File/UpdateFileUseCase";
+// import { ResponseAPIDelivery } from "../../../../Data/sources/remote/api/models/ResponseApiDelivery";
+import { showMessage } from "react-native-flash-message";
+import {Image, StyleSheet, Text, View } from "react-native";
+import { AuthContext } from "../context/auth/AuthContext";
 
 interface Props {
-    fieldType?: string;
-    image?: string;
+    
+    fieldType: string;
     textCard: string;
-    dataUser: string;
-    onPress?: () => void;
+    dataUser?: string;
+    userImage?: string;
+}
+interface ResponseErrorData{
+	
+	path: string;
+	value: string;
+
 }
 
 
-export const UserInfo = ({ fieldType,textCard, dataUser }: Props) => {
+export const UserInfo = ({ fieldType,textCard, dataUser,userImage }: Props) => {
     const {status, user} = useContext(AuthContext);
 
-	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
-
-    const {image,pickImage,takePhoto} = useViewModel();
 
     return (
         <View style={styles.userInfoContainer}>
@@ -32,45 +38,23 @@ export const UserInfo = ({ fieldType,textCard, dataUser }: Props) => {
                 ?
                 <Image 
                     style = {{
-                        width: 50, 
-                        height: 50,
+                        width: 90, 
+                        height: 90,
                         borderRadius: 50, 
                         position: 'relative',
-                        alignSelf: 'flex-start',
+                        top: "-40%",
+                        right: "5%",
+                        alignSelf: 'flex-end',
                         marginLeft: 20,
                         marginTop: -10
                     }} 
-                    source={{uri:image}}
+                    source={{uri:user?.image}}
                 />  
                 : <Text style= {styles.dataText}>{dataUser}</Text>
-
             }
-
-            {
-                fieldType === 'image'
-                ? 
-                <ModalPickImage
-                    openGallery={pickImage}
-                    openCamera={takePhoto}
-                    modalUseState = {modalVisible}
-                    setModalUseState = {setMoldalVisible}
-                />
-                :
-                <ModalChangeInfo 
-                    changeInfoLabel = {textCard}
-                    modalUseState = {modalVisible}
-                    setModalUseState = {setMoldalVisible}
-                />
-            }
-
-            
-            
         </View>
     )
-
 }
-
-
 
 const styles = StyleSheet.create({
     userInfoContainer: {

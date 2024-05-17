@@ -12,15 +12,20 @@ const ProfileUpdateStyles = StyleSheet.create(
 
 
         profileInnerContainer: {
-            flex: 1,
             flexGrow: 1,
             flexDirection: 'column',
             position: 'relative',
-            top: "17%",
-            width: "90%",
-            height: "80%",
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+        },
+        buttonContainer: {
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
             alignSelf: 'center',
-
+            marginTop: 30,
         },
 
         backButton: {
@@ -37,7 +42,6 @@ const ProfileUpdateStyles = StyleSheet.create(
             fontSize: 20,
             color: '#D17842',
             position: 'relative',
-            top: "10%",
         },
         userText: {
             fontFamily: 'Poppins',
@@ -76,6 +80,7 @@ const ProfileUpdateStyles = StyleSheet.create(
             borderWidth: 2,
             borderColor: '#D17842',
             padding: 10,
+            marginTop: 20,
             borderRadius: 5,
             width: 150,
             alignSelf: 'center',
@@ -106,7 +111,9 @@ const ProfileUpdateStyles = StyleSheet.create(
         },
 
         inputContainer: {
-            width: '100%',
+            position: 'relative',
+            alignSelf: 'stretch',
+            alignItems: 'flex-start',
         },
 
         textInputContainer: {

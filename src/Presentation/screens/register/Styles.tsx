@@ -1,12 +1,15 @@
 import { StyleSheet } from "react-native";
 
 
+import { COLORS, FONTSIZE } from '../../themes/Theme'
+
+
 const RegisterStyles = StyleSheet.create({
 
     registerContainer:{
 		flex: 1,
 		position: 'relative',
-		backgroundColor: '#0C1013',
+		backgroundColor: COLORS.generalBackgroundBlack,
 		alignContent: 'center',
 		alignItems: 'center',
 		
@@ -34,8 +37,8 @@ const RegisterStyles = StyleSheet.create({
 	},
 	
     registerMainTitle: {
-		color: '#D17842',
-		fontSize: 24,
+		color: COLORS.primaryOrange,
+		fontSize: FONTSIZE.size_24,
 		textAlign: 'center',
 		marginBottom: 20,
 		fontFamily: 'Poppins',
@@ -67,8 +70,8 @@ const RegisterStyles = StyleSheet.create({
 		borderRadius: 10,
 		width: 200,
 		height: 40,
-		backgroundColor: '#141921',
-		borderColor: '#D17842',
+		backgroundColor: COLORS.primaryDarkGrey,
+		borderColor: COLORS.primaryOrange,
 		borderWidth: 1,
 		position: 'relative',
 		top: "5%",
@@ -81,7 +84,7 @@ const RegisterStyles = StyleSheet.create({
     uploadImageUserButtonText: {
 		fontFamily: 'Poppins',
 		fontSize: 15,
-		color: '#D17842',
+		color: COLORS.primaryOrange,
 		position: 'relative',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -96,7 +99,7 @@ const RegisterStyles = StyleSheet.create({
 
     completed: {
 		fontFamily: 'Poppins',
-		color: '#77dd77',
+		color: COLORS.requirementCompletedGreen,
 		position: 'relative',
 		marginBottom: 10,
 		alignContent: 'stretch',
@@ -104,19 +107,19 @@ const RegisterStyles = StyleSheet.create({
 
     uncompleted: {
 		fontFamily: 'Poppins',
-		color: '#ff6961',
+		color: COLORS.requirementUncompletedRed,
 		position: 'relative',
 		marginBottom: 10,
     },
 
     confirmButton: {
 		fontFamily: 'Poppins',
-		fontSize: 15,
+		fontSize: FONTSIZE.size_15,
 		borderRadius: 10,
 		width: 200,
 		height: 40,
 		marginBottom: 50,
-		backgroundColor: '#94c58c',
+		backgroundColor: COLORS.backgroundButtonGreen,
 		justifyContent: 'center',
 		alignItems: 'center',
 		position: 'relative',
@@ -125,16 +128,16 @@ const RegisterStyles = StyleSheet.create({
 
     confirmButtonText: {
 		fontFamily: 'Poppins',
-		fontSize: 15,
-		color: 'white',
+		fontSize: FONTSIZE.size_15,
+		color: COLORS.primaryWhite,
     },
 
 	errorText: {
-		backgroundColor: '#ff6961',
+		backgroundColor: COLORS.requirementUncompletedRed,
 		borderRadius: 10,
 		fontFamily: 'Poppins',
-		fontSize: 14,
-		color: 'white',
+		fontSize: FONTSIZE.size_14,
+		color: COLORS.primaryWhite,
 		position: 'relative',
 		top: "0%",
 		alignSelf: 'flex-start',
@@ -151,7 +154,7 @@ const RegisterStyles = StyleSheet.create({
 		top: "75%",
 	},
 	loadingContainer: {
-		backgroundColor: 'rgba(0,0,0,0.8)',
+		backgroundColor: COLORS.secondaryBlackRGBA,
 		flex: 1,
 		width: '100%',
 		height: '100%',
@@ -161,8 +164,6 @@ const RegisterStyles = StyleSheet.create({
 		marginBottom: 10,
 		zIndex: 1,
 	},
-
-
 
 })
 

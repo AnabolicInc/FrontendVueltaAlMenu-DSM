@@ -2,14 +2,16 @@ import React, { useContext, useState } from 'react'
 import styles from './Styles';
 import { TextInput, Pressable, Keyboard } from 'react-native'
 import { View, Text, Image } from 'react-native'
-import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
+
+
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import useViewModel from './ViewModel';
 import { error } from 'console';
 import { ModalNotification } from '../../components/ModalNotification';
+import { useFonts } from 'expo-font';
 
 
 
@@ -45,7 +47,7 @@ const ForgotPasswordScreen = ({ navigation,route }: Props) => {
             style={styles.resetPasswordImage}
         />
 
-        <View style={styles.resetPasswordInnerContainer}>
+	return (
 
           <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
           
@@ -73,15 +75,14 @@ const ForgotPasswordScreen = ({ navigation,route }: Props) => {
             </Pressable>
           </View>
 
-        </View>
-		<ModalNotification
-            email={email}
-            modalUseState={modalVisible}
-            setModalUseState={setMoldalVisible}
-        />
-    </View>
-    
-  )
+			<ModalNotification
+				email={email}
+				modalUseState={modalVisible}
+				setModalUseState={setMoldalVisible}
+			/>
+		</View>
+
+	)
 }
 
 export default ForgotPasswordScreen;
