@@ -13,10 +13,8 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
   const { onChange, applyNewPassword, isValidForm, loading, hasEightChars, hasUppercase, hasNumber, hasSpecialChar, errorMessages } = useViewModel();
 
   const handleChangePassword = async () => {
-    console.log("se apretó el botón reqliao")
-
+    console.log("se apretó el botón cambiar contraseña");
     await applyNewPassword();
-
   };
 
   return (
@@ -31,10 +29,10 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
             value={newPassword}
             onChangeText={(text) => {
               setNewPassword(text);
-              onChange('password', text);
+              onChange('newPassword', text);  // Cambiado a 'newPassword'
             }}
           />
-          {errorMessages.password && <Text style={ChangePasswordStyles.errorText}>{errorMessages.password}</Text>}
+          {errorMessages.newPassword && <Text style={ChangePasswordStyles.errorText}>{errorMessages.newPassword}</Text>}
         </View>
         <View style={ChangePasswordStyles.passwordRequerimentContainer}>
           <Text style={hasEightChars ? ChangePasswordStyles.completed : ChangePasswordStyles.uncompleted}>
@@ -50,19 +48,17 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
             * Al menos un caracter especial
           </Text>
         </View>
-
-
-          <TextInput
-            style={ChangePasswordStyles.textInputContainer}
-            placeholder="Confirmar Contraseña"
-            secureTextEntry={true}
-            value={confirmPassword}
-            onChangeText={(text) => {
-              setConfirmPassword(text);
-              onChange('confirmPassword', text);
-            }}
-          />
-          {errorMessages.confirmPassword && <Text style={ChangePasswordStyles.errorText}>{errorMessages.confirmPassword}</Text>}
+        <TextInput
+          style={ChangePasswordStyles.textInputContainer}
+          placeholder="Confirmar Contraseña"
+          secureTextEntry={true}
+          value={confirmPassword}
+          onChangeText={(text) => {
+            setConfirmPassword(text);
+            onChange('confirmNewPassword', text);  // Cambiado a 'confirmNewPassword'
+          }}
+        />
+        {errorMessages.confirmNewPassword && <Text style={ChangePasswordStyles.errorText}>{errorMessages.confirmNewPassword}</Text>}
       </View>
       <Pressable onPress={handleChangePassword}>
         <Text style={ChangePasswordStyles.buttomChangePassword}>Cambiar contraseña</Text>
