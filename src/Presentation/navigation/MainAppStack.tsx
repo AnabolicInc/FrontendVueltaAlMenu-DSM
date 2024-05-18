@@ -19,7 +19,7 @@ import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
 import ChangePasswordScreen from '../screens/profile/changePassword/ChangePasswordScreen'
 
 import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidationCode/ConfirmValidationCodeScreen'
-import ChangePasswordScreen from '../screens/resetPassword/confirmValidationCode/changePassword/ChangePasswordScreen'
+import ChangeForgotPasswordScreen from '../screens/resetPassword/confirmValidationCode/changeForgotPassword/ChangeForgotPasswordScreen'
 import PaymentScreen from '../screens/client/payment/PaymentScreen'
 
 
@@ -28,7 +28,7 @@ import PaymentScreen from '../screens/client/payment/PaymentScreen'
 export type RootStackParamList = {
     ForgotPasswordScreen: undefined;
     ConfirmValidationCodeScreen: {email: string};
-    ChangePasswordScreen: {email: string};
+    ChangeForgotPasswordScreen: {email: string};
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
