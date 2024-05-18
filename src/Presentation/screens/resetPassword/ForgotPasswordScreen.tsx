@@ -1,34 +1,44 @@
 import React, { useContext, useState } from 'react'
 import styles from './Styles';
-import { TextInput, Pressable } from 'react-native'
+import { TextInput, Pressable, Keyboard } from 'react-native'
 import { View, Text, Image } from 'react-native'
-import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
+
+
+import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import useViewModel from './ViewModel';
 import { error } from 'console';
 import { ModalNotification } from '../../components/ModalNotification';
-
-
-interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> {}
+import { useFonts } from 'expo-font';
 
 
 
-const ResetPasswordScreen = ({ navigation,route }: Props) => {
+interface Props extends StackScreenProps<RootStackParamList, 'ForgotPasswordScreen'> {}
+
+
+
+const ForgotPasswordScreen = ({ navigation,route }: Props) => {
     const [modalVisible, setMoldalVisible] = useState<boolean>(false); 
 
-	const {
-		email, 
-		onChange,
-		resetPassword,
-		errorMessages,
-		responseError: errorsResponse,
+    const {
+      email, 
+      onChange,
+      forgotPassword,
+      errorMessages,
+      loading,
+      responseError: errorsResponse,
 
-	} = useViewModel();
-	
-
+    } = useViewModel();
+    
+    const handleForgotPassword = async () => {
+      Keyboard.dismiss();
+      const response = await forgotPassword();
+      if (response.success){
+        navigation.navigate('ConfirmValidationCodeScreen', {email: email})
+      }
+    }
   return (
     
     <View style={styles.resetPasswordContainer}>
@@ -37,21 +47,25 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
             style={styles.resetPasswordImage}
         />
 
-        <View style={styles.resetPasswordInnerContainer}>
+	return (
 
           <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
           
           <TextInput 
             style={styles.emailInputContainer} 
             placeholder="Correo electrónico" 
-			value={email}  
+			      value={email}  
             onChangeText={text => onChange('email', text)}
+            editable = {!loading}
+
           />
-		  {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
+		      {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
 
           <View style={styles.buttomResetPassword}> 
-            <Pressable onPressIn={resetPassword} >
-              <Text style={styles.buttomResetPasswordText}>Recuperar contraseña</Text>
+            <Pressable onPressIn={ handleForgotPassword } 
+            disabled={loading}
+            >
+              <Text style={styles.buttomResetPasswordText}>Enviar</Text>
             </Pressable>
           </View>
           
@@ -61,15 +75,14 @@ const ResetPasswordScreen = ({ navigation,route }: Props) => {
             </Pressable>
           </View>
 
-        </View>
-		<ModalNotification
-            email={email}
-            modalUseState={modalVisible}
-            setModalUseState={setMoldalVisible}
-        />
-    </View>
-    
-  )
+			<ModalNotification
+				email={email}
+				modalUseState={modalVisible}
+				setModalUseState={setMoldalVisible}
+			/>
+		</View>
+
+	)
 }
 
-export default ResetPasswordScreen;
+export default ForgotPasswordScreen;

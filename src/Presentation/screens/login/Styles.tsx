@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
 
 
+import {COLORS, FONTSIZE} from '../../themes/Theme'
+
 const LoginStyles = StyleSheet.create(
 
     {
@@ -9,7 +11,7 @@ const LoginStyles = StyleSheet.create(
 		justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0C1013',
+        backgroundColor: COLORS.generalBackgroundBlack,
       },
 	  loginInnerContainer: {
 		flexDirection: 'column',
@@ -32,27 +34,26 @@ const LoginStyles = StyleSheet.create(
       },
 
       loginImage: {
-        backgroundColor: '#0C1013',
+        backgroundColor: COLORS.generalBackgroundBlack,
 		position: 'relative',
 		left: "-45%",
 		top: "-20%",
         width: 350,
         height: 350,
         opacity: 0.8
-        
     },
 
       loginText: {
 		position: 'relative',
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: 20,
+        fontSize: FONTSIZE.size_20,
         textAlign: 'center',
         marginBottom: 20,
 
       },
 	  forgetPasswordSection: {
-		borderColor: 'rgba(255, 255, 255,0.3)',
+		borderColor: COLORS.borderContainerGrayRGBA,
 		borderRadius: 10,
 		borderWidth: 1,
 		position: 'relative',
@@ -68,7 +69,7 @@ const LoginStyles = StyleSheet.create(
         position: 'relative',
         width: 250,
         height: 40,
-        backgroundColor: 'white',
+        backgroundColor: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         borderRadius: 10,
         paddingStart: 10,
@@ -77,7 +78,7 @@ const LoginStyles = StyleSheet.create(
 
       passwordInputContainer: {
         position: 'relative',
-        backgroundColor: 'white',
+        backgroundColor: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         width: 250,
         height: 40,
@@ -87,9 +88,9 @@ const LoginStyles = StyleSheet.create(
       },
 	  loginButton: {
 		position: 'relative',
-		backgroundColor: '#141921',
+		backgroundColor: COLORS.primaryDarkGrey,
 		borderWidth: 1,
-		borderColor: '#146c43',
+		borderColor: COLORS.borderSuccessGreen,
 		justifyContent: 'center',
 		alignContent: 'center',
 		alignItems: 'center',
@@ -111,13 +112,13 @@ const LoginStyles = StyleSheet.create(
 		fontFamily: 'Poppins',
 		position: 'relative',
 		textAlign: 'center',
-		fontSize:18,
-		color: 'white',
+		fontSize: FONTSIZE.size_18,
+		color: COLORS.primaryWhite,
 	  },
 
     buttomLoginText: {
 		position: 'relative',
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
     },
@@ -136,9 +137,9 @@ const LoginStyles = StyleSheet.create(
 		marginBottom: 5,
 	},
 	errorContainer: {
-		backgroundColor: 'rgba(255, 0, 0, 0.3)',
+		backgroundColor: COLORS.backgroundErrorBackendContainerRGBA,
 		borderWidth: 1,
-		borderColor: 'red',
+		borderColor: COLORS.borderErrorBackgroundBackendRed,
 		borderRadius: 10,
 		padding: 8,
 		justifyContent: 'center',
@@ -150,7 +151,27 @@ const LoginStyles = StyleSheet.create(
 		zIndex: 1,
 	},
 
-
+      forgotPasswordContainer: {
+        position: 'absolute',
+        top: "73%", // Ajusta esta posición según tu diseño
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      
+      forgotPasswordText: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_14,
+        marginRight: 5,
+      },
+      
+      resetPasswordLink: {
+        color: COLORS.primaryOrange,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_14,
+      },
+      
 
 
 })

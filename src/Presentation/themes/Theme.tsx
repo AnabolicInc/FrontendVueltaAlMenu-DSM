@@ -1,6 +1,3 @@
-
-
-
 interface Spacing {
     space_2: number;
     space_4: number;
@@ -16,10 +13,10 @@ interface Spacing {
     space_30: number;
     space_32: number;
     space_36: number;
-  }
-  
+}
+
 export const SPACING: Spacing = {
-	space_2: 2,
+    space_2: 2,
     space_4: 4,
     space_8: 8,
     space_10: 10,
@@ -33,39 +30,62 @@ export const SPACING: Spacing = {
     space_30: 30,
     space_32: 32,
     space_36: 36,
-  };
-  
+};
+
 interface Color {
-    primaryRedHex: string;
-    primaryOrangeHex: string;
-    primaryBlackHex: string;
-    primaryDarkGreyHex: string;
-    secondaryDarkGreyHex: string;
-    primaryGreyHex: string;
-    secondaryGreyHex: string;
-    primaryLightGreyHex: string;
-    secondaryLightGreyHex: string;
-    primaryWhiteHex: string;
+    backgroundErrorRed: string;
+    borderErrorRed: string;
+    backgroundSuccessGreen: string;
+    borderSuccessGreen: string;
+    primaryOrange: string;
+    generalBackgroundBlack: string;
+    primaryDarkGrey: string;
+    secondaryDarkGrey: string;
+    primaryGrey: string;
+    secondaryGrey: string;
+    primaryLightGrey: string;
+    secondaryLightGrey: string;
+    primaryWhite: string;
     primaryBlackRGBA: string;
     secondaryBlackRGBA: string;
-  }
+    borderContainerGrayRGBA: string;
+    backgroundInputGrayRGBA: string;
+    backgroundErrorBackendContainerRGBA: string;
+    borderErrorBackgroundBackendRed: string;
+    requirementCompletedGreen: string;
+    requirementUncompletedRed: string;
+    backgroundButtonGreen: string;
+    deleteButtonRed: string;
+}
 
-  
+
+//backgroundErrorBackendContainer: rgba(255, 0, 0, 0.3)
 export const COLORS: Color = {
-	primaryRedHex: '#DC3535',
-    primaryOrangeHex: '#D17842',
-    primaryBlackHex: '#0C0F14',
-    primaryDarkGreyHex: '#141921',
-    secondaryDarkGreyHex: '#21262E',
-    primaryGreyHex: '#252A32',
-    secondaryGreyHex: '#252A32',
-    primaryLightGreyHex: '#52555A',
-    secondaryLightGreyHex: '#AEAEAE',
-    primaryWhiteHex: '#FFFFFF',
+    backgroundErrorRed: '#d9534f',
+    borderErrorRed: '#c9302c',
+    backgroundSuccessGreen: '#5dc460',
+    borderSuccessGreen: '#146c43',
+    primaryOrange: '#D17842',
+    generalBackgroundBlack: '#0C0F14',
+    primaryDarkGrey: '#141921',
+    secondaryDarkGrey: '#21262E',
+    primaryGrey: '#252A32',
+    secondaryGrey: '#252A32',
+    primaryLightGrey: '#52555A',
+    secondaryLightGrey: '#AEAEAE',
+    primaryWhite: '#FFFFFF',
     primaryBlackRGBA: 'rgba(12,15,20,0.5)',
     secondaryBlackRGBA: 'rgba(0,0,0,0.7)',
+    borderContainerGrayRGBA: 'rgba(255,255,255,0.3)',
+    backgroundInputGrayRGBA: 'rgba(255,255,255,0.1)',
+    backgroundErrorBackendContainerRGBA: 'rgba(255, 0, 0, 0.3)',
+    borderErrorBackgroundBackendRed: '#ff0000',
+    requirementCompletedGreen: '#77dd77',
+    requirementUncompletedRed: '#ff6961',
+    backgroundButtonGreen: '#94c58c',
+    deleteButtonRed: '#ce2029',
 };
-  
+
 interface FontFamily {
     poppins_black: string;
     poppins_bold: string;
@@ -77,7 +97,7 @@ interface FontFamily {
     poppins_semibold: string;
     poppins_thin: string;
 }
-  
+
 export const FONTFAMILY: FontFamily = {
     poppins_black: 'Poppins-Black',
     poppins_bold: 'Poppins-Bold',
@@ -90,12 +110,13 @@ export const FONTFAMILY: FontFamily = {
     poppins_thin: 'Poppins-Thin',
 };
 
-  
+
 interface FontSize {
     size_8: number;
     size_10: number;
     size_12: number;
     size_14: number;
+    size_15: number;
     size_16: number;
     size_18: number;
     size_20: number;
@@ -103,12 +124,13 @@ interface FontSize {
     size_28: number;
     size_30: number;
 }
-  
+
 export const FONTSIZE: FontSize = {
     size_8: 8,
     size_10: 10,
     size_12: 12,
     size_14: 14,
+    size_15: 15,
     size_16: 16,
     size_18: 18,
     size_20: 20,
@@ -116,7 +138,7 @@ export const FONTSIZE: FontSize = {
     size_28: 28,
     size_30: 30,
 };
-  
+
 interface BorderRadius {
     radius_4: number;
     radius_8: number;
@@ -125,7 +147,7 @@ interface BorderRadius {
     radius_20: number;
     radius_25: number;
 }
-  
+
 export const BORDERRADIUS: BorderRadius = {
     radius_4: 4,
     radius_8: 8,

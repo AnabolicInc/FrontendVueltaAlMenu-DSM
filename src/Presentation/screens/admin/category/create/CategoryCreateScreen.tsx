@@ -1,20 +1,24 @@
 import { View, Text, Image, TextInput, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-import styles from './Styles';
+import React, { useState, useEffect } from 'react'
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
+
+
+import styles from './Styles';
 import NewCategoryInfo from '../../../../components/NewCategoryInfo';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import useViewModel from './ViewModel';
-import { create } from 'domain';
+import { COLORS } from '../../../../themes/Theme';
+import CategoryListViewModel from '../list/ViewModel';
+import { get } from 'http';
+
 
 interface Props extends StackScreenProps<RootStackParamList, 'CategoryCreateScreen'> {}
 
 export const CategoryCreateScreen = ({ navigation,route }: Props) => {
 
   const [modalVisible, setModalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
-
 
   const  {
     onChange, 
@@ -24,7 +28,7 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
     createCategory,
     name,
     description
-} = useViewModel();
+  } = useViewModel();
 
   const handleCategoryCreate = async () => {
     await createCategory();
@@ -32,13 +36,13 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
 
 
   return (
-    <View style={styles.CategoryCreateContainer}>
-      <ScrollView style={styles.CategoryCreateInnerContainer} showsVerticalScrollIndicator = {false}>
-      <Text style={styles.CategoryCreateText}>CREAR CATEGORÍA</Text>
+    <View style={styles.categoryCreateContainer}>
+      <ScrollView style={styles.categoryCreateInnerContainer} showsVerticalScrollIndicator = {false}>
+      <Text style={styles.categoryCreateText}>CREAR CATEGORÍA</Text>
       {
           (image == '')
           ?
-          <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/userIcon.png')} />
+          <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/category.png')} />
           :
           <Image style={styles.categoryCreateUserImage} source={{uri:image}} />
 
@@ -46,29 +50,33 @@ export const CategoryCreateScreen = ({ navigation,route }: Props) => {
 
       <Pressable style={styles.uploadImageButton} onPress={() => setModalVisible(true)}>
           <Text style={styles.uploadImageButtonText}>Subir imagen</Text>
-        </Pressable>
+      </Pressable>
 
         <TextInput 
                 style={styles.nameInput}
                 placeholder="Nombre"
                 value = {name} 
-                placeholderTextColor={'#D17842'} 
+                placeholderTextColor={COLORS.primaryOrange} 
                 onChangeText={(text) => onChange('name', text)}
+                maxLength={10}
             />
 
         <TextInput 
-                style={styles.DescriptionInput}
+                style={styles.descriptionInput}
                 placeholder="Descripción"
                 value = {description} 
-                placeholderTextColor={'#D17842'} 
+                placeholderTextColor={COLORS.primaryOrange} 
                 onChangeText={(text) => onChange('description', text)}
-                multiline={true}
-            />
-      
-        <View style={styles.buttomSave}> 
-        <Pressable onPressIn={handleCategoryCreate}> 
-            <Text style={styles.SaveText}>AÑADIR</Text>
-          </Pressable>
+                maxLength={50}
+        />
+        
+        <View style={styles.buttonSave}> 
+        <Pressable onPress={ () => {
+            handleCategoryCreate();
+            navigation.goBack();
+          }}> 
+          <Text style={styles.saveText}>AÑADIR</Text>
+        </Pressable>
         </View>
 
         </ScrollView>

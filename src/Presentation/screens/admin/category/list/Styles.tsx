@@ -1,47 +1,40 @@
 import { StyleSheet } from "react-native";
 
+import { COLORS, FONTSIZE } from '../../../../themes/Theme'
+
 const CategoryListStyles = StyleSheet.create(
 
     {
 
-      CategoryListContainer: {
+      categoryListContainer: {
         flex: 1,
         alignContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0C1013',
+        backgroundColor: COLORS.generalBackgroundBlack,
       },
 
-      CategoryListText: {
+      categoryListText: {
         position: 'absolute',
-        top: "15%",
-        color: 'white',
+        top: "10%",
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: 20,
+        fontSize: FONTSIZE.size_20,
         textAlign: 'center',
         marginBottom: 20,
 
       },
 
-      buttomSave: {
+      buttonAdd: {
         position: 'absolute',
-        top: "79%",
-        backgroundColor: '#D17842',
+        top: "92%",
+        backgroundColor: COLORS.primaryOrange,
         borderRadius: 10,
         width: 150,
-        height: 45,
-      },
-
-      buttomAdd: {
-        position: 'absolute',
-        top: "87%",
-        backgroundColor: '#D17842',
-        borderRadius: 10,
-        width: 150,
-        height: 45,
+        height: 45, 
       },
      
-      SaveText: {
-        color: 'white',
+      saveText: {
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
         marginTop: 11,
@@ -52,18 +45,18 @@ const CategoryListStyles = StyleSheet.create(
         flexGrow: 1,
         flexDirection: 'column',
         width: "85%",
-        height: "52%",
+        height: "70%",
         position: 'absolute',
-        top: "23%",
+        top: "18%",
         alignContent: 'center',
         borderRadius: 10,
       },
 
       categoryListElement: {
-        //backgroundColor: '#262B33',
+        //backgroundColor: COLORS.primaryGrey,
         flex: 1,
         width: "100%",
-        height: 140,
+        height: 150,
         borderRadius: 30,
         marginBottom: 10,
         paddingStart: 15,
@@ -80,7 +73,7 @@ const CategoryListStyles = StyleSheet.create(
       categoryListInnerInnerElement: {
         alignSelf: 'stretch',
         flexDirection: 'row',
-        top: 40,
+        top: 25,
       },
 
       categoryListImage: {
@@ -88,23 +81,31 @@ const CategoryListStyles = StyleSheet.create(
         borderRadius: 30,
         width: 100,
         height: 100,
-        top: 16,
+        top: 20,
         marginRight: '4%',
       },
 
 
-      categoryListElementText: {
-        color: 'white',
+      categoryListElementTittle: {
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: FONTSIZE.size_16  ,
+        top: 17,
+      },
+
+      categoryListElementDescription: {
+        color: COLORS.primaryLightGrey,
+        fontFamily: 'Poppins',
+        textAlign: 'left',
+        fontSize: FONTSIZE.size_12  ,
         top: 17,
       },
 
       
-      buttomEdit: {
+      buttonEdit: {
         backgroundColor: 'transparent',
-        borderColor: '#D17842',
+        borderColor: COLORS.primaryOrange,
         borderWidth: 2,
         borderRadius: 10,
         height: 40,
@@ -113,15 +114,15 @@ const CategoryListStyles = StyleSheet.create(
       },
 
       editText: {
-        color: '#D17842',
+        color: COLORS.primaryOrange,
         fontFamily: 'Poppins',
         textAlign: 'center',
         marginTop: '5%',
       },
 
-      buttomDelete: {
+      buttonDelete: {
         backgroundColor: 'transparent',
-        borderColor: '#ce2029',
+        borderColor: COLORS.deleteButtonRed,
         borderWidth: 2,
         borderRadius: 10,
         width: 40,
@@ -141,7 +142,7 @@ const CategoryListStyles = StyleSheet.create(
       },
 
       modalText: {
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
       },
@@ -155,21 +156,21 @@ const CategoryListStyles = StyleSheet.create(
       },
 
       modalButtonDelete: {
-        backgroundColor: 'red',
+        backgroundColor: COLORS.borderErrorBackgroundBackendRed,
         borderRadius: 13,
         paddingVertical: 8,
         paddingHorizontal: 12,
       },
 
       modalButtonCancel: {
-        backgroundColor: 'green',
+        backgroundColor: COLORS.backgroundSuccessGreen,
         borderRadius: 13,
         paddingVertical: 8,
         paddingHorizontal: 12,
       },
 
       modalButton: {
-        color: 'white',
+        color: COLORS.primaryWhite,
       }
           
 })
