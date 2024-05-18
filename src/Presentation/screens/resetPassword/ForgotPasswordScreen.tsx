@@ -47,8 +47,6 @@ const ForgotPasswordScreen = ({ navigation,route }: Props) => {
             style={styles.resetPasswordImage}
         />
 
-	return (
-
           <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
           
           <TextInput 
