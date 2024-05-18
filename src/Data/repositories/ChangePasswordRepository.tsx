@@ -8,8 +8,6 @@ export class ChangePasswordRepositoryImpl implements ChangePasswordRepository {
     async update(email: string, newPassword: string, session_token: string): Promise<ResponseAPIDelivery> {
         console.log("Antes de ChangePasswordRepository.Update.try");
 
-        // Declarar la variable de prueba
-
         try {
             // Define la ruta de la solicitud al backend
             const path = `user/new-password`;

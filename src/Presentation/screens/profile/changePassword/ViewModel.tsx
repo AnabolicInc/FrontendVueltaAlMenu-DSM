@@ -73,59 +73,33 @@ const ChangePasswordViewModel = () => {
   };
 
   const applyNewPassword = async () => {
-    console.log(values.newPassword);
-
     const isValid = await isValidForm();
-    console.log(isValid);
-    console.log("111111111111111");
     if (isValid) {
       setLoading(true);
       setErrorMessages({});
       try {
-        console.log("222222222222222222222");
         const response = await ChangePasswordUseCase(user.email, values.newPassword, user.session_token);
-        console.log("Se pasó changepassword");
-
         if (response.success) {
-          const dataUser = response.data;
-          console.log("Se pasó const dataUser");
-
-          //await SaveUserUseCase(dataUser);
-          console.log("Se pasó SaveUserUseCase");
-
-          //auth(dataUser);
-          console.log("Se pasó auth(dataUser)");
-          setLoading(false);
           showMessage({
             message: 'Contraseña cambiada exitosamente',
             type: 'success',
             icon: 'success',
           });
           setValues({ newPassword: '', confirmNewPassword: '' });
+        } else {
+          throw response; // If response.success is false, we throw the response to catch it as an error
         }
-
-        console.log('Cambio de contraseña exitoso');
       } catch (error) {
-        const rejectErrors: ResponseAPIDelivery = error;
-
-        if (rejectErrors.error) {
-          setErrorResponses([]);
+        if (error.message) {
           showMessage({
-            message: rejectErrors.error,
+            message: error.message,
             type: 'danger',
             icon: 'danger',
           });
-        } else {
-          console.log('Error en el cambio de contraseña');
-
-          const errorsArray = Object.values(rejectErrors.errors);
-
-          const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
-          console.log(errorsArrayFilter);
-          setErrorResponses(errorsArrayFilter);
         }
-        setLoading(false);
+        //setErrorMessages({ general: error.message });
       }
+      setLoading(false);
     }
   };
 
