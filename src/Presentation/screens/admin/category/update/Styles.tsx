@@ -1,27 +1,27 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const { width, height } = Dimensions.get('window');
+import { COLORS, FONTSIZE } from '../../../../themes/Theme'
 
 const CategoryUpdateStyles = StyleSheet.create(
 
     {
 
-      CategoryUpdateContainer: {
+      categoryUpdateContainer: {
         flex: 1,
         alignContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0C1013',
+        backgroundColor: COLORS.generalBackgroundBlack,
       },
 
-      CategoryUpdateInnerContainer: {
+      categoryUpdateInnerContainer: {
         position: 'relative',
       },
 
-      CategoryUpdateText: {
+      categoryUpdateText: {
         position: 'relative',
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: 20,
+        fontSize: FONTSIZE.size_20,
         textAlign: 'center',
         top: "5%",
         marginBottom: 70,
@@ -29,9 +29,9 @@ const CategoryUpdateStyles = StyleSheet.create(
 
       },
 
-      buttomSave: {
+      buttonSave: {
         position: 'relative',
-        backgroundColor: '#D17842',
+        backgroundColor: COLORS.primaryOrange,
         borderRadius: 10,
         width: 150,
         height: 40,
@@ -39,8 +39,8 @@ const CategoryUpdateStyles = StyleSheet.create(
         marginTop: 40,
       },
      
-      SaveText: {
-        color: 'white',
+      saveText: {
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
         marginTop: 10,
@@ -57,12 +57,12 @@ const CategoryUpdateStyles = StyleSheet.create(
 
       uploadImageButton: {
         fontFamily: 'Poppins',
-        fontSize: 15,
+        fontSize: FONTSIZE.size_15,
         borderRadius: 10,
         width: 200,
         height: 40,
-        backgroundColor: '#141921',
-        borderColor: '#D17842',
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
         borderWidth: 1,
         position: 'relative',
         alignSelf: 'center',
@@ -73,8 +73,8 @@ const CategoryUpdateStyles = StyleSheet.create(
 
         uploadImageButtonText: {
           fontFamily: 'Poppins',
-          fontSize: 15,
-          color: '#D17842',
+          fontSize: FONTSIZE.size_15,
+          color: COLORS.primaryOrange,
           position: 'relative',
           justifyContent: 'center',
           alignItems: 'center',
@@ -82,8 +82,8 @@ const CategoryUpdateStyles = StyleSheet.create(
 
       nameInput: {
         fontFamily: 'Poppins',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        color: 'white',
+        backgroundColor: COLORS.backgroundInputGrayRGBA,
+        color: COLORS.primaryWhite,
         width: 250,
         height: 40,
         borderRadius: 10,
@@ -93,11 +93,11 @@ const CategoryUpdateStyles = StyleSheet.create(
         
       },
 
-      DescriptionInput: {
+      descriptionInput: {
         position: 'relative',
         fontFamily: 'Poppins',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        color: 'white',
+        backgroundColor: COLORS.backgroundInputGrayRGBA,
+        color: COLORS.primaryWhite,
         width: 250,
         height: 240,
         borderRadius: 10,

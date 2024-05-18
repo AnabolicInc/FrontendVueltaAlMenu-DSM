@@ -13,14 +13,22 @@ import LoadingScreen from '../screens/miscellaneous/LoadingScreen'
 import { CategoryCreateScreen } from '../screens/admin/category/create/CategoryCreateScreen'
 import { CategoryListScreen } from '../screens/admin/category/list/CategoryListScreen'
 import { CategoryUpdateScreen } from '../screens/admin/category/update/CategoryUpdateScreen'
-import ResetPasswordScreen from '../screens/resetPassword/ResetPasswordScreen'
+import ForgotPasswordScreen from '../screens/resetPassword/ForgotPasswordScreen'
 import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
+
 import ChangePasswordScreen from '../screens/profile/changePassword/ChangePasswordScreen'
+
+import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidationCode/ConfirmValidationCodeScreen'
+import ChangePasswordScreen from '../screens/resetPassword/confirmValidationCode/changePassword/ChangePasswordScreen'
+import PaymentScreen from '../screens/client/payment/PaymentScreen'
 
 
 
 
 export type RootStackParamList = {
+    ForgotPasswordScreen: undefined;
+    ConfirmValidationCodeScreen: {email: string};
+    ChangePasswordScreen: {email: string};
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
@@ -33,7 +41,11 @@ export type RootStackParamList = {
     CategoryUpdateScreen: undefined;
 
     ProfileUpdateScreen: undefined;
+
     ChangePasswordScreen: undefined;
+
+    PaymentScreen: undefined;
+
 
 
 };
@@ -52,7 +64,11 @@ export const MainAppStack = () => {
             return <>
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
+
                 <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
+
+                <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+
             </>
             //this client
         } else if (user.role_id == 2) {
@@ -87,7 +103,9 @@ export const MainAppStack = () => {
                     <>
                         <Stack.Screen name="LoginScreen" component={LoginScreen} />
                         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-                        <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
+                        <Stack.Screen name="ResetPasswordScreen" component={ForgotPasswordScreen} />
+                        <Stack.Screen name="ConfirmValidationCodeScreen" component={ConfirmValidationCodeScreen} />
+                        <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
                     </>
                 ) : renderRoleScreen()
             }
@@ -96,6 +114,9 @@ export const MainAppStack = () => {
             <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
             <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
             <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
+
+
+
         </Stack.Navigator>
     );
 }

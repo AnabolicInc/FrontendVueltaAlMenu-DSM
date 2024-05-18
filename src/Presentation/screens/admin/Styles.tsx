@@ -1,15 +1,17 @@
 import { StyleSheet } from "react-native";
 
+import { COLORS, FONTSIZE } from '../../themes/Theme'
+
 const AdminHomeStyles = StyleSheet.create(
     {
         userContainer: {
             flex: 1,
             alignContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#0C1013',
+            backgroundColor: COLORS.generalBackgroundBlack,
         },
         userImage: {
-            backgroundColor: '#0C1013',
+            backgroundColor: COLORS.generalBackgroundBlack,
             position: 'absolute',
             top: "-10%",
             left: "-30%",
@@ -20,16 +22,16 @@ const AdminHomeStyles = StyleSheet.create(
         userText: {
             position: 'absolute',
             top: "35%",
-            color: 'white',
+            color: COLORS.primaryWhite,
             fontFamily: 'Poppins',
-            fontSize: 20,
+            fontSize: FONTSIZE.size_20,
             textAlign: 'center',
             marginBottom: 20,
         },
         mainText: {
-            color: 'white',
+            color: COLORS.primaryWhite,
             fontFamily: 'Poppins',
-            fontSize: 20,
+            fontSize: FONTSIZE.size_20,
             textAlign: 'left',
             marginBottom: 20,
             position: 'absolute',
@@ -43,12 +45,12 @@ const AdminHomeStyles = StyleSheet.create(
             left: "15%",
             width: 250,
             height: 40,
-            backgroundColor: '#D17842',
+            backgroundColor: COLORS.primaryOrange,
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
         },
-            userButtonText: {
+        userButtonText: {
             color: 'white',
             fontFamily: 'Poppins',
             fontSize: 15,
@@ -59,11 +61,11 @@ const AdminHomeStyles = StyleSheet.create(
             left: "5%",
             width: "90%",
             height: "8%",
-            backgroundColor: '#141921',
-            color: 'white',
+            backgroundColor: COLORS.primaryDarkGrey,
+            color: COLORS.primaryWhite,
             borderRadius: 10,
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: FONTSIZE.size_15,
             paddingStart: 15,
             paddingEnd: 15,
         },

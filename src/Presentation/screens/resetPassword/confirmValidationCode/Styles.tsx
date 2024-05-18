@@ -1,12 +1,9 @@
-//generate styles for resetPassword screen
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONTSIZE } from '../../themes/Theme';
-
-export const ForgotPasswordStyles = StyleSheet.create({
+export const ConfirmaValidationCodeStyles = StyleSheet.create({
     resetPasswordContainer: {
         flex: 1,
-        backgroundColor: COLORS.generalBackgroundBlack,
+        backgroundColor: '#0C1013',
         alignItems: 'center',
         justifyContent: 'center',
 		alignContent: 'center',
@@ -31,11 +28,11 @@ export const ForgotPasswordStyles = StyleSheet.create({
       marginBottom: 20,
       color: 'white',
       fontFamily: 'Poppins',
-      fontSize: FONTSIZE.size_20,
+      fontSize: 20,
     },
     emailInputContainer: {
 		position: 'relative',
-        backgroundColor: COLORS.primaryWhite,
+        backgroundColor: 'white',
         width: 300,
         height: 50,
         borderRadius: 10,
@@ -44,7 +41,7 @@ export const ForgotPasswordStyles = StyleSheet.create({
     },
     buttomResetPassword: {
 		position: 'relative',
-        backgroundColor: COLORS.primaryOrange,
+        backgroundColor: '#D17842',
         width: 250,
         height: 50,
         borderRadius: 10,
@@ -54,9 +51,9 @@ export const ForgotPasswordStyles = StyleSheet.create({
     },
     buttomResetPasswordText: {
 		position: 'relative',
-        color: COLORS.primaryWhite,
+        color: 'white',
         fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_15,
+        fontSize: 15,
     },
     backContainer: {
 		position: 'relative',
@@ -64,22 +61,22 @@ export const ForgotPasswordStyles = StyleSheet.create({
 		justifyContent: 'center',
         width: 200,
 		height: 50,
-		backgroundColor: COLORS.primaryDarkGrey,
-		borderColor: COLORS.primaryOrange,
+		backgroundColor: '#141A1E',
+		borderColor: '#D17842',
 		borderRadius: 10,
 		borderWidth: 1,
 
     },
     backTextContainer: {
-        color: COLORS.primaryOrange,
+        color: '#D17842',
         fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_15,
+        fontSize: 15,
     },
 	errorText: {
-		backgroundColor: COLORS.backgroundErrorBackendContainerRGBA,
+		backgroundColor: 'rgba(255, 0, 0, 0.3)',
 		borderWidth: 1,
-		borderColor: COLORS.borderErrorBackgroundBackendRed,
-		color: COLORS.primaryWhite,
+		borderColor: 'red',
+		color: 'white',
 		borderRadius: 10,
 		padding: 8,
 		justifyContent: 'center',
@@ -93,4 +90,4 @@ export const ForgotPasswordStyles = StyleSheet.create({
 
 });
 
-export default ForgotPasswordStyles;
+export default ConfirmaValidationCodeStyles;

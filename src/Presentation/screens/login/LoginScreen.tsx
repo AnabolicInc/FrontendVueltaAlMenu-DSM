@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react'
-import styles from './Styles';
 import { TextInput, Pressable } from 'react-native'
 import { View, Text, Image } from 'react-native'
-import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
-
-
-import useViewModel from './ViewModel';
 import { FlatList } from 'react-native-gesture-handler';
 import { showMessage } from 'react-native-flash-message';
 
+
+import styles from './Styles';
+import { useFonts } from 'expo-font';
+import useViewModel from './ViewModel';
+import {COLORS, FONTSIZE} from '../../themes/Theme'
 
 
 interface Props extends StackScreenProps<RootStackParamList, 'LoginScreen'> { }
@@ -56,7 +56,7 @@ export const LoginScreen = ({ navigation, route }: Props) => {
 					{
 						responseError.length > 0 && (
 							<View style={styles.errorContainer}>
-								<Text style={{ color: '#FFF', marginLeft: 10 }}>
+								<Text style={{ color: COLORS.primaryWhite, marginLeft: 10 }}>
 									Por favor revise de nuevo sus datos
 								</Text>
 								<FlatList
@@ -66,8 +66,8 @@ export const LoginScreen = ({ navigation, route }: Props) => {
 										return (
 											<View key={`${index}-${item.path}`} style={{ marginBottom: 10 }}>
 												<Text style={{
-													color: 'white',
-													fontSize: 14,
+													color: COLORS.primaryWhite,
+													fontSize: FONTSIZE.size_14,
 													paddingVertical: 0,
 													marginVertical: 2,
 													borderLeftWidth: 0
@@ -111,9 +111,9 @@ export const LoginScreen = ({ navigation, route }: Props) => {
 							<Text
 								style={
 									{
-										color: '#D17842',
+										color: COLORS.primaryOrange,
 										fontFamily: 'Poppins',
-										fontSize: 18,
+										fontSize: FONTSIZE.size_18,
 									}
 								}
 							>Regístrese
@@ -125,7 +125,7 @@ export const LoginScreen = ({ navigation, route }: Props) => {
 					<View style={styles.forgetPasswordSection}>
 
 						<Text
-							style={{ color: 'white', fontFamily: 'Poppins', fontSize: 15, }}
+							style={{ color: COLORS.primaryWhite, fontFamily: 'Poppins', fontSize: FONTSIZE.size_15, }}
 						>¿Olvidaste tu contraseña?
 						</Text>
 
@@ -133,9 +133,9 @@ export const LoginScreen = ({ navigation, route }: Props) => {
 
 							<Text
 								style={{
-									color: '#D17842',
+									color: COLORS.primaryOrange,
 									fontFamily: 'Poppins',
-									fontSize: 15,
+									fontSize: FONTSIZE.size_15,
 								}}
 							>Recuperar contraseña
 							</Text>
@@ -143,16 +143,9 @@ export const LoginScreen = ({ navigation, route }: Props) => {
 
 					</View>
 
-
-
-
-
 				</View>
 
-
-
 			</View>
-
 
 		</View>
 

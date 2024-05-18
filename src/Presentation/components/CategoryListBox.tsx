@@ -1,9 +1,11 @@
 import { StyleSheet, Text, TextInput, View, Pressable, Image, Modal } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
-import { FontAwesome6 } from '@expo/vector-icons';
 import React, { useState } from "react";
 
 
+import { LinearGradient } from 'expo-linear-gradient';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { COLORS, FONTSIZE } from '../themes/Theme';
+import { MaterialIcons } from '@expo/vector-icons';
 
 interface Props {
     navigation: any;
@@ -34,7 +36,7 @@ const handleDeleteCancel = () => {
 return (
     <View>
         <LinearGradient
-        colors={['#262B33', 'transparent']}
+        colors={[COLORS.primaryGrey, 'transparent']}
         style={styles.categoryListElement}>
             <Image style={styles.categoryListImage} source={require('../../../assets/images/burguer.jpg')} />
 
@@ -42,13 +44,13 @@ return (
                 <Text style={styles.categoryListElementText}>Hamburguesa</Text>
 
                 <View style={styles.categoryListInnerInnerElement}>
-                    <View style={styles.buttomEdit}> 
+                    <View style={styles.buttonEdit}> 
                         <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}> 
                             <Text style={styles.editText}>Editar producto</Text>
                         </Pressable>
                     </View>
 
-                    <View style={styles.buttomDelete}> 
+                    <View style={styles.buttonDelete}> 
                         <Pressable onPress={() => handleDeletePress("Hamburguesa")}> 
                             <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
                         </Pressable>
@@ -57,25 +59,34 @@ return (
             </View>
         </LinearGradient>
 
-        <Modal visible={showDeleteConfirmation} animationType="fade" transparent>
-            <LinearGradient
-            colors={['#262B33', '#0C1013']}
-            style={styles.modalContent}>
-                <Text style={styles.modalText}>¿Estás seguro de que quieres eliminar {itemToDelete}?</Text>
-                <View style={styles.modalButtonsContainer}>
-                    <View style={styles.modalButtonDelete}>
-                        <Pressable onPress={handleDeleteConfirm}>
-                            <Text style={styles.modalButton}>Eliminar</Text>
-                        </Pressable>
-                    </View>
-                    <View style={styles.modalButtonCancel}>
-                        <Pressable onPress={handleDeleteCancel}>
-                            <Text style={styles.modalButton}>Cancelar</Text>
-                        </Pressable>
-                    </View>
+        <Modal 
+        visible={showDeleteConfirmation} 
+        animationType="slide" 
+        transparent={true}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalMessageBox}>
+              <Text style={styles.modalMessageText}>¿Estás seguro de que deseas eliminar la categoría de {itemToDelete}?</Text>
+            </View>
+
+            <View style={styles.modalButtonsContainer}>
+
+              <Pressable onPress={handleDeleteConfirm} style={styles.modalButtonDelete}>
+                <View style={styles.modalButtonImageContainer}>
+                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
                 </View>
-            </LinearGradient>
-        </Modal>
+                <Text style={styles.modalButtonText}>Eliminar</Text>
+              </Pressable>
+
+              <Pressable onPress={handleDeleteCancel} style={styles.modalButtonCancel}>
+                <View style={styles.modalButtonImageContainer}>
+                  <MaterialIcons name="cancel" size={24} color="#ffffff" />
+                </View>
+                <Text style={styles.modalButtonText}>Cancelar</Text>
+              </Pressable>
+
+            </View>
+          </View>
+      </Modal>
     </View>
       
   );
@@ -86,7 +97,7 @@ export default CategoryListBox;
 const styles = StyleSheet.create({
 
     categoryListElement: {
-        //backgroundColor: '#262B33',
+        //backgroundColor: COLORS.primaryGrey,
         flex: 1,
         width: "100%",
         height: 140,
@@ -120,17 +131,17 @@ const styles = StyleSheet.create({
 
 
       categoryListElementText: {
-        color: 'white',
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: FONTSIZE.size_18,
         top: 17,
       },
 
       
-      buttomEdit: {
+      buttonEdit: {
         backgroundColor: 'transparent',
-        borderColor: '#D17842',
+        borderColor: COLORS.primaryOrange,
         borderWidth: 2,
         borderRadius: 10,
         height: 40,
@@ -139,15 +150,15 @@ const styles = StyleSheet.create({
       },
 
       editText: {
-        color: '#D17842',
+        color: COLORS.primaryOrange,
         fontFamily: 'Poppins',
         textAlign: 'center',
         marginTop: '5%',
       },
 
-      buttomDelete: {
+      buttonDelete: {
         backgroundColor: 'transparent',
-        borderColor: '#ce2029',
+        borderColor: COLORS.deleteButtonRed,
         borderWidth: 2,
         borderRadius: 10,
         width: 40,
@@ -156,44 +167,72 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
 
-      modalContent: {
-        top: "35%",
-        borderRadius: 20,
-        width: 360,
+      modalContainer: {
+        flex: 1,
+        backgroundColor: COLORS.generalBackgroundBlack,
+      },
+
+      modalMessageBox: {
+        top: '32%',
+        borderRadius: 17,
+        width: 260,
         height: 140,
         justifyContent: 'center',
         alignSelf: 'center',
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 3,
       },
 
-      modalText: {
-        color: 'white',
+      modalMessageText: {
+        color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
+        textShadowColor: COLORS.primaryOrange,
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        borderColor: COLORS.primaryOrange,
       },
 
       modalButtonsContainer: {
+        top: '71%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,
-        width: 200,
+        width: 270,
         alignSelf: 'center',
       },
 
       modalButtonDelete: {
-        backgroundColor: 'red',
-        borderRadius: 13,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.deleteButtonRed,
+        borderWidth: 2,
+        borderRadius: 9,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 48,
+        width: 120,
+        flexDirection: 'row',
       },
 
       modalButtonCancel: {
-        backgroundColor: 'green',
-        borderRadius: 13,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryWhite,
+        borderWidth: 2,
+        borderRadius: 9,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 48,
+        width: 120,
+        flexDirection: 'row',
       },
 
-      modalButton: {
-        color: 'white',
+      modalButtonImageContainer: {
+        marginRight: 3
+      },
+
+      modalButtonText: {
+        color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_15,
+        justifyContent: 'center',
       }
 })

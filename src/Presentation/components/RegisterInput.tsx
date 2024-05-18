@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 
 import useViewModel from '../screens/register/ViewModel';
-
+import { COLORS, FONTSIZE } from '../themes/Theme'
 
 interface Props {
     fieldLabel: string;      
@@ -27,7 +27,7 @@ const RegisterInput = ({fieldLabel,onChangeText,prefix,customStyle,icon,secureTe
 		<TextInput
 			style = {{...styles.fieldLabel, ...customStyle}}
 			placeholder = {fieldLabel}
-			placeholderTextColor={'#D17842'}
+			placeholderTextColor={COLORS.primaryOrange}
 			onChangeText={onChangeText}
 			secureTextEntry={secureTextEntry}
 			keyboardType={keyboardType} 
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
   	},
 	prefixContainer: {
-		backgroundColor: 'rgba(255, 255, 255, 0.1)',
+		backgroundColor: COLORS.backgroundInputGrayRGBA,
 		borderRadius: 10,
 		flexDirection: 'row',
 		position: 'relative',
@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
 
 		position: 'relative',
 		borderRadius: 10,
-		color: 'white',
-		fontSize: 15,
+		color: COLORS.primaryWhite,
+		fontSize: FONTSIZE.size_15,
 		marginRight: 10,
 		fontFamily: 'Poppins',
 		marginBottom: 10,
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
   	fieldLabel: {
 		position: 'relative',
 		fontFamily: 'Poppins',
-		backgroundColor: 'rgba(255, 255, 255, 0.1)',
-		color: 'white',
+		backgroundColor: COLORS.backgroundInputGrayRGBA,
+		color: COLORS.primaryWhite,
 		width: 250,
 		height: 40,
 		borderRadius: 10,

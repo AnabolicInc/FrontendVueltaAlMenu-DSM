@@ -42,7 +42,6 @@ const ProfileUpdateStyles = StyleSheet.create(
             fontSize: 20,
             color: '#D17842',
             position: 'relative',
-            top: "10%",
         },
         userText: {
             fontFamily: 'Poppins',

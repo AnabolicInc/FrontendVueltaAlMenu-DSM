@@ -48,10 +48,18 @@ interface Color {
     primaryWhite: string;
     primaryBlackRGBA: string;
     secondaryBlackRGBA: string;
+    borderContainerGrayRGBA: string;
+    backgroundInputGrayRGBA: string;
+    backgroundErrorBackendContainerRGBA: string;
+    borderErrorBackgroundBackendRed: string;
+    requirementCompletedGreen: string;
+    requirementUncompletedRed: string;
+    backgroundButtonGreen: string;
+    deleteButtonRed: string;
 }
 
 
-
+//backgroundErrorBackendContainer: rgba(255, 0, 0, 0.3)
 export const COLORS: Color = {
     backgroundErrorRed: '#d9534f',
     borderErrorRed: '#c9302c',
@@ -68,6 +76,14 @@ export const COLORS: Color = {
     primaryWhite: '#FFFFFF',
     primaryBlackRGBA: 'rgba(12,15,20,0.5)',
     secondaryBlackRGBA: 'rgba(0,0,0,0.7)',
+    borderContainerGrayRGBA: 'rgba(255,255,255,0.3)',
+    backgroundInputGrayRGBA: 'rgba(255,255,255,0.1)',
+    backgroundErrorBackendContainerRGBA: 'rgba(255, 0, 0, 0.3)',
+    borderErrorBackgroundBackendRed: '#ff0000',
+    requirementCompletedGreen: '#77dd77',
+    requirementUncompletedRed: '#ff6961',
+    backgroundButtonGreen: '#94c58c',
+    deleteButtonRed: '#ce2029',
 };
 
 interface FontFamily {
@@ -100,6 +116,7 @@ interface FontSize {
     size_10: number;
     size_12: number;
     size_14: number;
+    size_15: number;
     size_16: number;
     size_18: number;
     size_20: number;
@@ -113,6 +130,7 @@ export const FONTSIZE: FontSize = {
     size_10: 10,
     size_12: 12,
     size_14: 14,
+    size_15: 15,
     size_16: 16,
     size_18: 18,
     size_20: 20,
