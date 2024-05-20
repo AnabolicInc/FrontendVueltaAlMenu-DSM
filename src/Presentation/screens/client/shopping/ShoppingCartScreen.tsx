@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native'
-import styles from './Styles';
-import { RootClientBottomTabParamList } from '../../../navigation/tabs/client/ClientBottomTab';
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../navigation/MainAppStack';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import styles from './Styles';
+import { RootStackParamList } from '../../../navigation/MainAppStack';
+import { ModalPickPayment } from '../../../components/ModalPickPayment';
 
 interface Props extends StackScreenProps<RootStackParamList, 'ClientBottomTab'> { }
 
 
 const ShoppingCartScreen = ({ navigation, route }: Props) => {
+
+	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
+
+	const handlePaymentMethodSelection = (paymentMethod: string) => {
+        navigation.navigate('PaymentScreen');
+        setMoldalVisible(false);
+    };
+
 	return (
+		
 
 
 		<View style={styles.shoppingCartContainer}>
@@ -24,11 +34,24 @@ const ShoppingCartScreen = ({ navigation, route }: Props) => {
 				</Pressable>
 
 				{/*createa a pressable button to go to the payment screen */}
-				<Pressable style={styles.payButton} onPress={() => navigation.navigate('PaymentScreen')}>
+				<Pressable
+					style={styles.payButton}
+					onPressIn={() => setMoldalVisible(true)}
+					//onPress={ () => navigation.navigate('PaymentScreen')}
+				>
+					<MaterialCommunityIcons style={{ marginRight: 10 }} name="cart" size={20} color="white" />
 					<Text style={styles.payText}>Pagar</Text>
 				</Pressable>
 
 			</View>
+
+			<ModalPickPayment
+				modalUseState={modalVisible}
+				setModalUseState={setMoldalVisible}
+				onPaymentMethodSelected={handlePaymentMethodSelection}
+			>
+			</ModalPickPayment>
+
 
 
 		</View>

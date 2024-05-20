@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Image, Pressable,ScrollView, FlatList, ActivityIndicator } from 'react-native'
+import { Text, View, Image, Pressable,ScrollView, FlatList, ActivityIndicator, Keyboard } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/MainAppStack';
 
@@ -19,23 +19,21 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
 
         register, 
         onChange, 
-        isValidForm,
         loading, 
         takePhoto,
         pickImage,
         image,  
-        loadFonts,
         hasEightChars,
         hasUppercase,
         hasNumber,
         hasSpecialChar,
-        password,
         errorMessages,
         responseError
 
     } = useViewModel();
 
     const handleRegister = async () => {
+        Keyboard.dismiss();
         await register();
     }
 
@@ -108,6 +106,7 @@ export const  RegisterScreen = ({ navigation,route }: Props) => {
             {errorMessages.confirmPassword && <Text style={styles.errorText}>{errorMessages.confirmPassword}</Text>}
 
             <Pressable style={styles.confirmButton} onPressIn={handleRegister}>
+                
                 <Text style={styles.confirmButtonText} >Confirmar</Text>
             </Pressable>
 

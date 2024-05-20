@@ -1,3 +1,4 @@
+
 interface Spacing {
     space_2: number;
     space_4: number;
@@ -59,7 +60,6 @@ interface Color {
 }
 
 
-//backgroundErrorBackendContainer: rgba(255, 0, 0, 0.3)
 export const COLORS: Color = {
     backgroundErrorRed: '#d9534f',
     borderErrorRed: '#c9302c',
@@ -84,30 +84,6 @@ export const COLORS: Color = {
     requirementUncompletedRed: '#ff6961',
     backgroundButtonGreen: '#94c58c',
     deleteButtonRed: '#ce2029',
-};
-
-interface FontFamily {
-    poppins_black: string;
-    poppins_bold: string;
-    poppins_extrabold: string;
-    poppins_extralight: string;
-    poppins_light: string;
-    poppins_medium: string;
-    poppins_regular: string;
-    poppins_semibold: string;
-    poppins_thin: string;
-}
-
-export const FONTFAMILY: FontFamily = {
-    poppins_black: 'Poppins-Black',
-    poppins_bold: 'Poppins-Bold',
-    poppins_extrabold: 'Poppins-ExtraBold',
-    poppins_extralight: 'Poppins-ExtraLight',
-    poppins_light: 'Poppins-Light',
-    poppins_medium: 'Poppins-Medium',
-    poppins_regular: 'Poppins-Regular',
-    poppins_semibold: 'Poppins-SemiBold',
-    poppins_thin: 'Poppins-Thin',
 };
 
 

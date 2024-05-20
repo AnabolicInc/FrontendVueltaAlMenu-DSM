@@ -79,12 +79,12 @@ const ForgotPasswordViewModel = () => {
 				const response = await forgotPasswordAuthUseCase(values.email);
 				console.log(response);
 				if (response.success) {
-					return response;
 					showMessage({
 						message: 'Se ha enviado un correo electrónico para restablecer la contraseña',
 						type: 'success',
 						icon: 'success',
 					});
+					return response;
 				}
 				setLoading(false);
 
