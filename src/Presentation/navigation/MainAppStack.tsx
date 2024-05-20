@@ -69,6 +69,9 @@ export const MainAppStack = () => {
             return <>
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
+                <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
+                <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
+                <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
             </>
 
         }
@@ -81,7 +84,8 @@ export const MainAppStack = () => {
         <Stack.Navigator
             initialRouteName='LoginScreen'
             screenOptions={{
-                headerShown: false
+                headerShown: false,
+                gestureEnabled: true,
             }}
         >
             {status !== 'authenticated'
@@ -98,9 +102,7 @@ export const MainAppStack = () => {
             }
 
 
-            <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
-            <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
-            <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
+
 
 
 

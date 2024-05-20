@@ -25,6 +25,7 @@ export const AdminBottomTab = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
+                lazy: true,
                 tabBarActiveTintColor: '#D17842',
                 tabBarInactiveTintColor: '#9B9B9B',
             }}
@@ -32,6 +33,7 @@ export const AdminBottomTab = () => {
             <Tab.Screen name="AdminHomeScreen" component={AdminHomeScreen}
                 options={{
                     title: 'Home',
+                    lazy: true,
                     tabBarStyle: { backgroundColor: '#0C1013', borderTopWidth: 0, paddingBottom: 10 },
                     tabBarIcon: ({ }) => (
                         <FontAwesome name="home" size={24} color={'#D17842'} />
@@ -41,6 +43,7 @@ export const AdminBottomTab = () => {
             <Tab.Screen name="CategoryListScreen" component={CategoryListScreen}
                 options={{
                     title: 'Categorías', tabBarStyle: { backgroundColor: '#0C1013', borderTopWidth: 0, paddingBottom: 10 },
+                    lazy: true,
                     tabBarIcon: ({ }) => (
                         <FontAwesome name="list" size={24} color="#D17842" />
                     )
@@ -49,6 +52,7 @@ export const AdminBottomTab = () => {
             <Tab.Screen name="ProfileInfoScreen" component={ProfileInfoScreen}
                 options={{
                     title: 'Perfil', tabBarStyle: { backgroundColor: '#0C1013', borderTopWidth: 0, paddingBottom: 10 },
+                    lazy: true,
                     tabBarIcon: ({ }) => (
                         <FontAwesome name="user" size={24} color={'#D17842'} />
                     )

@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native'
-import {COLORS, FONTSIZE,FONTFAMILY} from '../../../themes/Theme'
+import {COLORS, FONTSIZE} from '../../../themes/Theme'
 
 const PaymentStyles = StyleSheet.create({
+
     payementMainContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -86,6 +87,28 @@ const PaymentStyles = StyleSheet.create({
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         fontSize: FONTSIZE.size_14,
+    },
+    paymentButtonContainer: {
+        flexDirection: 'column',
+        position: 'relative',
+        alignContent: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+        padding: 10,
+    },
+    paymentButton: {
+        flexDirection: 'column',
+        position: 'relative',
+        alignContent: 'center',
+        justifyContent: 'center',
+        width: 340,
+        height: 60,
+        marginTop: 20,
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        backgroundColor: COLORS.primaryOrange,
     },
 
 });
