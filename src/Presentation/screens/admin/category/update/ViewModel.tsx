@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import * as Yup from 'yup';
+import { showMessage } from "react-native-flash-message";
+
+import * as yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 
-
-
-
+import { UpdateCategoryUseCase } from "../../../../../Domain/useCases/Category/UpdateCategoryUseCase";
+import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
 
 
 interface Values {
 	image: string;
 	name: string;
 	description: string;
+	id: string;
 }
 
 
@@ -22,18 +24,21 @@ interface ResponseErrorData{
 
 }
 
-const CategoryUpdateViewModel = () => {
+const CategoryUpdateViewModel = ( route ) => {
 
+	const { categoryItem } = route.params;
 
+	const [loading, setLoading] = useState(false);
 
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
 
 	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
 
 	const [values, setValues] = useState<Values>({
-		image: '',
-		name: '',
-		description: '',
+		image: categoryItem.image,
+		name: categoryItem.name,
+		description: categoryItem.description,
+		id: categoryItem.id,
 	});
 
 
@@ -88,11 +93,75 @@ const CategoryUpdateViewModel = () => {
 	  
 	};
 
+	const validationSchema = yup.object().shape({
+		name: yup.string().required('El nombre es requerido'),
+		description: yup.string().required('La descripción es requerida'),
+	});
+
+	const isValidForm = async ():Promise<boolean> => {
+		try {
+			await validationSchema.validate(values, {abortEarly: false});
+			return true;
+		} catch (error) {
+			const errors: Record<string, string> = {};
+			error.inner.forEach((err) => {
+				errors[err.path] = err.message;
+			});
+			setErrorMessages(errors);
+			console.log(errorMessages);
+			return false;
+		}
+	};
+
+	const updateCategory = async () => {
+        const validForm = isValidForm();
+
+        if (validForm) {
+            try{
+                setLoading(true);
+            
+                const { image, ...data } = values;
+
+                // call to use case
+                const response = await UpdateCategoryUseCase(data.id, data.name, data.description);
+                console.log(response);
+                
+				
+                if (response.success){
+                    const dataCategory = response.data;
+                    
+                    if (file !== undefined){
+                        const responseImage = await UpdateFileUseCase(file!, 'categories', dataCategory.id);
+                        dataCategory.image = responseImage.data;
+                    }
+
+					showMessage({
+						message: 'Datos actualizados correctamente',
+						type: 'success',
+						icon: 'success',
+					});
+
+                    setLoading(false);
+                }
+				
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+				showMessage({
+					message: 'Error al actualizar los datos',
+					type: 'danger',
+					icon: 'danger',
+				});
+            }
+        }
+    }
+
     return {
         ...values,
         onChange,
         pickImage,
         takePhoto,
+		updateCategory,
         errorMessages,
         responseError,
       };

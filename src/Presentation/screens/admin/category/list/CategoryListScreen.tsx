@@ -19,7 +19,6 @@ interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen
 export const CategoryListScreen = ({ navigation, route }: Props) => {
 
   const { 
-    getCategories,
     categories 
   } = useViewModel();
 
@@ -54,7 +53,7 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
   const handleDeleteCancel = () => {
     setShowDeleteConfirmation(false);
   };
-
+  
 
   return (
     <View style={styles.categoryListContainer}>
@@ -97,7 +96,7 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
 
                 <View style={styles.categoryListInnerInnerElement}>
                   <View style={styles.buttonEdit}>
-                    <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}>
+                    <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen', { categoryItem: item })}>
                       <Text style={styles.editText}>Editar producto</Text>
                     </Pressable>
                   </View>
