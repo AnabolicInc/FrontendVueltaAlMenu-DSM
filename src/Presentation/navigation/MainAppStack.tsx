@@ -18,6 +18,7 @@ import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
 import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidationCode/ConfirmValidationCodeScreen'
 import ChangePasswordScreen from '../screens/resetPassword/confirmValidationCode/changePassword/ChangePasswordScreen'
 import PaymentScreen from '../screens/client/payment/PaymentScreen'
+import { Category } from "../../Domain/entities/Category";
 
 
 
@@ -34,7 +35,7 @@ export type RootStackParamList = {
 
     CategoryCreateScreen: undefined;
     CategoryListScreen: undefined;
-    CategoryUpdateScreen: undefined;
+    CategoryUpdateScreen: { categoryItem: Category };
 
     ProfileUpdateScreen: undefined;
     PaymentScreen: undefined;
