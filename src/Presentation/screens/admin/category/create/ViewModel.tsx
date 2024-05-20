@@ -108,7 +108,7 @@ const CategoryCreateViewModel = () => {
 				
 				if(response.success){
 
-					const responseImage = await UpdateFileUseCase(file!, 'category', response.data.id);
+					const responseImage = await UpdateFileUseCase(file!, 'categories', response.data.id);
 					const dataCategory = response.data;                     
 					dataCategory.image = responseImage.data;
 					await SaveCategoryUseCase(dataCategory);
