@@ -10,6 +10,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import CategoryListBox from '../../../../components/CategoryListBox';
 import { COLORS } from '../../../../themes/Theme';
 import useViewModel from './ViewModel';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 
 
@@ -75,7 +76,7 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
 
               <View style={styles.categoryListText}>
 
-                <Text style={styles.categoryListElementTittle}>{item.name}</Text>            
+                <Text style={styles.categoryListElementName}>{item.name}</Text>            
                 <Text style={styles.categoryListElementDescription}>
                 {
                   item.description.length > 18
@@ -115,24 +116,33 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
       </View>
 
       {/* Delete confirmation modal */}
-      <Modal visible={showDeleteConfirmation} animationType="fade" transparent>
-        <LinearGradient
-          colors={[COLORS.primaryGrey, COLORS.generalBackgroundBlack]}
-          style={styles.modalContent}>
-          <Text style={styles.modalText}>¿Estás seguro de que quieres eliminar {itemToDelete}?</Text>
-          <View style={styles.modalButtonsContainer}>
-            <View style={styles.modalButtonDelete}>
-              <Pressable onPress={handleDeleteConfirm}>
-                <Text style={styles.modalButton}>Eliminar</Text>
-              </Pressable>
+      <Modal 
+        visible={showDeleteConfirmation} 
+        animationType="slide" 
+        transparent={true}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalMessageBox}>
+              <Text style={styles.modalMessageText}>¿Estás seguro de que deseas eliminar la categoría de {itemToDelete}?</Text>
             </View>
-            <View style={styles.modalButtonCancel}>
-              <Pressable onPress={handleDeleteCancel}>
-                <Text style={styles.modalButton}>Cancelar</Text>
+
+            <View style={styles.modalButtonsContainer}>
+
+              <Pressable onPress={handleDeleteConfirm} style={styles.modalButtonDelete}>
+                <View style={styles.modalButtonImageContainer}>
+                  <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+                </View>
+                <Text style={styles.modalButtonText}>Eliminar</Text>
               </Pressable>
+
+              <Pressable onPress={handleDeleteCancel} style={styles.modalButtonCancel}>
+                <View style={styles.modalButtonImageContainer}>
+                  <MaterialIcons name="cancel" size={24} color="#ffffff" />
+                </View>
+                <Text style={styles.modalButtonText}>Cancelar</Text>
+              </Pressable>
+
             </View>
           </View>
-        </LinearGradient>
       </Modal>
     </View>
 
