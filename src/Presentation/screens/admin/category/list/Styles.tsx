@@ -13,7 +13,18 @@ const CategoryListStyles = StyleSheet.create(
         backgroundColor: COLORS.generalBackgroundBlack,
       },
 
-      categoryListText: {
+      noCategoryListText: {
+        position: 'absolute',
+        top: "50%",
+        color: COLORS.primaryOrange,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_20,
+        textAlign: 'center',
+        marginBottom: 20,
+
+      },
+
+      categoryListTittle: {
         position: 'absolute',
         top: "10%",
         color: COLORS.primaryWhite,
@@ -53,7 +64,7 @@ const CategoryListStyles = StyleSheet.create(
       },
 
       categoryListElement: {
-        //backgroundColor: COLORS.primaryGrey,
+        backgroundColor: COLORS.secondaryBlackRGBA,
         flex: 1,
         width: "100%",
         height: 150,
@@ -65,15 +76,17 @@ const CategoryListStyles = StyleSheet.create(
         flexDirection: 'row',
       },
 
-      categoryListInnerElement: {
+      categoryListText: {
         alignSelf: 'stretch',
         flexDirection: 'column',
       },
 
-      categoryListInnerInnerElement: {
+      categoryListOptions: {
+        position: 'absolute',
         alignSelf: 'stretch',
-        flexDirection: 'row',
+        flexDirection: 'column',
         top: 25,
+        right: 17,
       },
 
       categoryListImage: {
@@ -81,25 +94,25 @@ const CategoryListStyles = StyleSheet.create(
         borderRadius: 30,
         width: 100,
         height: 100,
-        top: 20,
+        top: 25,
         marginRight: '4%',
       },
 
 
-      categoryListElementTittle: {
+      categoryListElementName: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'left',
-        fontSize: FONTSIZE.size_16  ,
-        top: 17,
+        fontSize: FONTSIZE.size_18,
+        top: 25,
       },
 
       categoryListElementDescription: {
         color: COLORS.primaryLightGrey,
         fontFamily: 'Poppins',
         textAlign: 'left',
-        fontSize: FONTSIZE.size_12  ,
-        top: 17,
+        fontSize: FONTSIZE.size_14,
+        top: 25,
       },
 
       
@@ -108,9 +121,11 @@ const CategoryListStyles = StyleSheet.create(
         borderColor: COLORS.primaryOrange,
         borderWidth: 2,
         borderRadius: 10,
+        width: 40,
         height: 40,
-        width: '60%',
-        marginRight: '2%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: '15%',
       },
 
       editText: {
@@ -132,47 +147,74 @@ const CategoryListStyles = StyleSheet.create(
       },
 
 
-      modalContent: {
-        top: "35%",
-        borderRadius: 20,
-        width: 360,
+      modalContainer: {
+        flex: 1,
+        backgroundColor: COLORS.generalBackgroundBlack,
+      },
+
+      modalMessageBox: {
+        top: '32%',
+        borderRadius: 17,
+        width: 260,
         height: 140,
         justifyContent: 'center',
         alignSelf: 'center',
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 3,
       },
 
-      modalText: {
+      modalMessageText: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
+        textShadowColor: COLORS.primaryOrange,
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        borderColor: COLORS.primaryOrange,
       },
 
       modalButtonsContainer: {
+        top: '71%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,
-        width: 200,
+        width: 270,
         alignSelf: 'center',
       },
 
       modalButtonDelete: {
-        backgroundColor: COLORS.borderErrorBackgroundBackendRed,
-        borderRadius: 13,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.deleteButtonRed,
+        borderWidth: 2,
+        borderRadius: 9,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 48,
+        width: 120,
+        flexDirection: 'row',
       },
 
       modalButtonCancel: {
-        backgroundColor: COLORS.backgroundSuccessGreen,
-        borderRadius: 13,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryWhite,
+        borderWidth: 2,
+        borderRadius: 9,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 48,
+        width: 120,
+        flexDirection: 'row',
       },
 
-      modalButton: {
+      modalButtonImageContainer: {
+        marginRight: 3
+      },
+
+      modalButtonText: {
         color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_15,
+        justifyContent: 'center',
       }
-          
 })
 
 export default CategoryListStyles;
