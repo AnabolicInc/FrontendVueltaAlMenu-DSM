@@ -42,7 +42,7 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
   const handleDeleteCancel = () => {
     setShowDeleteConfirmation(false);
   };
-
+  
 
   return (
     <View style={styles.categoryListContainer}>

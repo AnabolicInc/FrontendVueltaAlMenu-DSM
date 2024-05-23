@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { View, Text, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './Styles';
 import useViewModel from './ViewModel';

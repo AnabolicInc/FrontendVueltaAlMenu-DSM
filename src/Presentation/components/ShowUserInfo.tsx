@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontFamily: 'Poppins',
         fontSize: 15,
-        color: '#ffffff',
+        color: 'grey',
         marginBottom: 20,
         position: 'relative',
         alignSelf: 'flex-start',
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         position: 'relative',
         alignSelf: 'flex-start',
-        marginLeft: 20
+        marginLeft: 20,
+
     },
     editFieldButton: {
         backgroundColor:'#141921',

@@ -1,48 +1,29 @@
-import React from 'react';
-import { Image, Text, TextInput, View } from 'react-native';
-import { useFonts } from 'expo-font';
-
-
-import styles from './Styles';
+import React, { useState } from 'react';
+import { Image, Pressable, Text, TextInput, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const PaymentScreen = () => {
+import styles from './Styles';
+import useViewModel from './ViewModel';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootClientBottomTabParamList } from '../../../navigation/tabs/client/ClientBottomTab';
 
-	const [cardNumber, setCardNumber] = React.useState('');
 
-	const handleCardNumberChange = (text: string) => {
-		text = text.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim();
-		let cleanedText = text.replace(/\s?/g, '');
-		if (cleanedText.length > 16) {
-			cleanedText = cleanedText.slice(0, 16);
-		}
-		text = cleanedText.replace(/(\d{4})/g, '$1 ').trim();
-		setCardNumber(text);
-	};
+interface Props extends StackScreenProps<RootClientBottomTabParamList, 'PaymentScreen'> { }
 
-	const [expiryDate, setExpiryDate] = React.useState('');
 
-	const handleExpiryDateChange = (text: string) => {
-		text = text.replace(/\D/g, '').substring(0, 4); // Allow only 4 digits
-		text = text.replace(/(\d{2})/, '$1/'); // Add slash after 2 digits
-		setExpiryDate(text);
-	};
 
-	const [rut, setRut] = React.useState('');
+export const PaymentScreen = ({ navigation, route }: Props) => {
 
-	const handleRUTChange = (text: string) => {
-		text = text.replace(/\D/g, '').substring(0, 8); // Allow only 8 digits
-		text = text.replace(/(\d{2})(\d{3})(\d{3})/, '$1.$2.$3-'); // Add dots and dash
-		setRut(text);
-	};
 
-	const [fontsLoaded] = useFonts({
-		Poppins: require('../../../../../assets/fonts/Poppins-Regular.ttf'),
-	});
+	const {
+		holderName,
+		cardNumber,
+		expiryDate,
+		cvc,
+		rut,
+		onChange
 
-	if (!fontsLoaded) {
-		return null; // Muestra un componente de carga mientras se carga la fuente
-	}
+	} = useViewModel();
 
 	return (
 		<View style={styles.payementMainContainer}>
@@ -69,9 +50,9 @@ const PaymentScreen = () => {
 							<TextInput
 								style={{ ...styles.paymentDataTitles, top: '10%' }}
 								placeholder='0000 0000 0000 0000'
-								placeholderTextColor='#AEAEAE'
 								value={cardNumber}
-								onChangeText={handleCardNumberChange}
+								placeholderTextColor='#AEAEAE'
+								onChangeText={text => onChange('cardNumber', text)}
 								keyboardType='numeric'
 								maxLength={19}
 							/>
@@ -82,7 +63,7 @@ const PaymentScreen = () => {
 								style={{ ...styles.paymentDataTitles, top: '15%', left: '0%' }}
 								placeholder='MM/AA' placeholderTextColor='#AEAEAE'
 								value={expiryDate}
-								onChangeText={handleExpiryDateChange}
+								onChangeText={text => onChange('expiryDate', text)}
 								keyboardType='numeric'
 							/>
 
@@ -94,6 +75,8 @@ const PaymentScreen = () => {
 								keyboardType='numeric'
 								maxLength={3}
 								secureTextEntry={true}
+								value={cvc}
+								onChangeText={text => onChange('cvc', text)}
 							/>
 
 						</View>
@@ -105,16 +88,32 @@ const PaymentScreen = () => {
 					style={styles.paymentInputUser}
 					placeholder="Nombre del titular"
 					placeholderTextColor={'#AEAEAE'}
-					onChangeText={(text) => console.log(text)}
-					//value={''}
+					value={holderName || ''}
+					onChangeText={text => onChange('holderName', text)}
 				/>
 				<TextInput
 					style={styles.paymentInputUser}
 					placeholder="RUT"
 					placeholderTextColor={'#AEAEAE'}
 					value={rut}
-					onChangeText={handleRUTChange}
+					onChangeText={text => onChange('rut', text)}
 				/>
+
+				<Pressable style={styles.paymentButtonContainer}
+					//onPress={() => {navigation.navigate('PaymentSuccessScreen');}}
+					disabled={false}
+					onLongPress={() => { console.log('long press'); }}
+					onPress = {() => {console.log('pagar');}}
+				>
+					<LinearGradient
+						colors={['#F9A826', '#F58634']}
+						style={styles.paymentButton}
+						start={{ x: 0, y: 0 }}
+					>
+						
+						<Text style={{ ...styles.paymentDataTitles, color: '#000000' }}>Pagar</Text>
+					</LinearGradient>
+				</Pressable>
 
 			</View>
 
@@ -123,5 +122,5 @@ const PaymentScreen = () => {
 	)
 }
 
-export default PaymentScreen
+export default PaymentScreen;
 
