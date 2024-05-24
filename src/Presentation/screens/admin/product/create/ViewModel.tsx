@@ -1,19 +1,17 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import * as Yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import { showMessage } from "react-native-flash-message";
-
-
-import { Error, ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
-import { SaveUserUseCase } from "../../../../../Domain/useCases/UserLocal/SaveUserLocal";
-import { AuthContext } from "../../../../context/auth/AuthContext";
-import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
-
+import { AuthContext } from "../../../context/auth/AuthContext";
+import { SaveUserUseCase } from "../../../../Domain/useCases/UserLocal/SaveUserLocal";
+import { UpdateFileUseCase } from "../../../../Domain/useCases/File/UpdateFileUseCase";
 
 interface Values {
-    images: string[];
+    image1: string;
+    image2: string;
+    image3: string;
     name: string;
     description: string;
     price: string;
@@ -26,18 +24,18 @@ interface ResponseErrorData {
 }
 
 const validationNewProductSchema = Yup.object().shape({
-    images: Yup.array().of(Yup.string().required('La imagen es obligatoria')).min(1, 'Debe seleccionar al menos una imagen').max(3, 'No puede seleccionar más de tres imágenes'),
+    image: Yup.string().required('La imagen es obligatoria'),
     name: Yup.string().required('El nombre del producto es obligatorio'),
     description: Yup.string().required('La descripción del producto es obligatoria'),
-    price: Yup.number().required('El precio es obligatorio'),
-    quantity: Yup.number().required('La cantidad es obligatorio')
-
+    price: Yup.string().required('El precio es obligatorio'),
+    quantity: Yup.string().required('La cantidad es obligatoria')
 });
 
 const CreateNewProductViewModel = () => {
-
     const [values, setValues] = useState<Values>({
-        images: [],
+        image1: '',
+        image2: '',
+        image3: '',
         name: '',
         description: '',
         price: '',
@@ -45,26 +43,23 @@ const CreateNewProductViewModel = () => {
     });
 
     const { auth } = useContext(AuthContext);
-
-    const [files, setFiles] = useState<ImagePicker.ImageInfo[]>([]);
-
+    const [file, setFile] = useState<ImagePicker.ImageInfo>();
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
-
     const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
-
     const [loading, setLoading] = useState(false);
+    const [hasNonNumber, setHasNonNumber] = useState({ price: false, quantity: false });
+    const [selectedImages, setSelectedImages] = useState<string[]>([]);
 
-    const [price, setPrice] = useState('');
-
-    const [hasNonNumber, setHasNonNumber] = useState(false);
-
-    const onChange = (property: string, value: any) => {
-        setValues({ ...values, [property]: value });
-
-        if (property === 'price') {
-            setPrice(value);
-            setHasNonNumber(/\D/.test(value));
+    const onChange = (property: string, value: string) => {
+        if (property === 'price' || property === 'quantity') {
+            if (/\D/.test(value)) {
+                setHasNonNumber({ ...hasNonNumber, [property]: true });
+            } else {
+                setHasNonNumber({ ...hasNonNumber, [property]: false });
+            }
         }
+
+        setValues({ ...values, [property]: value });
     };
 
     const isValidForm = async (): Promise<boolean> => {
@@ -90,20 +85,14 @@ const CreateNewProductViewModel = () => {
             setErrorMessages({});
 
             try {
-                const { images, ...data } = values;
+                const { image, ...data } = values;
 
-                const response = await CreateNewProductUseCase(data);
+                if (true) { // Mock response success
+                    const dataProduct = {}; // Mock data product
 
-                if (response.success) {
-                    const dataProduct = response.data;
+                    // const responseImages = await UpdateFileUseCase(file, 'products', response.data.id, 'image');
 
-                    const responseImages = await Promise.all(
-                        files.map((file, index) =>
-                            UpdateFileUseCase(file, 'products', response.data.id, `image${index}`)
-                        )
-                    );
-
-                    dataProduct.images = responseImages.map((res) => res.data);
+                    dataProduct.image = ''; // Mock response image
 
                     await SaveUserUseCase(dataProduct);
                     showMessage({
@@ -114,7 +103,7 @@ const CreateNewProductViewModel = () => {
                     setLoading(false);
                 }
             } catch (error) {
-                const rejectErrors: ResponseAPIDelivery = error;
+                const rejectErrors: any = error; // Mock error type
 
                 if (rejectErrors.error) {
                     setErrorResponses([]);
@@ -145,15 +134,11 @@ const CreateNewProductViewModel = () => {
         });
 
         if (!result.canceled) {
-            if (values.images.length < 3) {
-                onChange('images', [...values.images, result.assets[0].uri]);
-                setFiles([...files, result.assets[0]]);
-            } else {
-                showMessage({
-                    message: 'No puede seleccionar más de tres imágenes',
-                    type: 'danger',
-                    icon: 'danger',
-                });
+            // Buscar la primera variable de imagen que esté vacía y asignarle la URI de la imagen seleccionada
+            const emptyImageKey = Object.keys(values).find((key) => key.startsWith('image') && !values[key]);
+            if (emptyImageKey) {
+                onChange(emptyImageKey, result.assets[0].uri);
+                setFile(result.assets[0]);
             }
         }
     };
@@ -167,15 +152,11 @@ const CreateNewProductViewModel = () => {
             });
 
             if (!result.canceled) {
-                if (values.images.length < 3) {
-                    onChange('images', [...values.images, result.assets[0].uri]);
-                    setFiles([...files, result.assets[0]]);
-                } else {
-                    showMessage({
-                        message: 'No puede seleccionar más de tres imágenes',
-                        type: 'danger',
-                        icon: 'danger',
-                    });
+                // Buscar la primera variable de imagen que esté vacía y asignarle la URI de la imagen tomada
+                const emptyImageKey = Object.keys(values).find((key) => key.startsWith('image') && !values[key]);
+                if (emptyImageKey) {
+                    onChange(emptyImageKey, result.assets[0].uri);
+                    setFile(result.assets[0]);
                 }
             }
         } catch (error) {
@@ -204,7 +185,6 @@ const CreateNewProductViewModel = () => {
         loadFonts,
         pickImage,
         takePhoto,
-        price,
         hasNonNumber,
         errorMessages,
         responseError: errorsResponse,
