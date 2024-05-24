@@ -21,7 +21,7 @@ export class FileRepositoryImpl implements FileRepository {
             });
 
             const path = `upload/${collection}/${id}`;
-            const { data } = await ApiDelivery.put(path, imageRegister, {
+            const { data } = await ApiDelivery.put<ResponseAPIDelivery>(path, imageRegister, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
