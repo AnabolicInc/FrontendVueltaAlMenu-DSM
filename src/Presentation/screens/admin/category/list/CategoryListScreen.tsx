@@ -60,7 +60,8 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
           renderItem={({item}) => {
           
           return (
-            
+            <Pressable onPress={() => navigation.navigate('CreateNewProductScreen', { categoryID: item.id })}>
+
             <LinearGradient
               colors={[COLORS.primaryGrey, 'transparent']}
               style={styles.categoryListElement}>
@@ -103,6 +104,7 @@ export const CategoryListScreen = ({ navigation, route }: Props) => {
 
                 </View>
             </LinearGradient>
+            </Pressable>
           )
         }}
         keyExtractor={item => item.id}

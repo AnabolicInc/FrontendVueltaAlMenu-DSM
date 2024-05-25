@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLORS, FONTSIZE } from '../../../themes/Theme';
+import { COLORS, FONTSIZE } from '../../../../themes/Theme';
 import * as Font from 'expo-font';
 
 const CreateNewProductStyles = StyleSheet.create({
