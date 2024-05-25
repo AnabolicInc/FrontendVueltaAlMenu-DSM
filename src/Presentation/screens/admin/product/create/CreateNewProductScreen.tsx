@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { RootStackParamList } from '../../../../navigation/MainAppStack';
 import { View, Text, Image, TextInput, Pressable, ScrollView, Alert } from 'react-native'; // Importar Alert desde react-native
-import { ModalPickImage } from '../../../components/ModalPickImage';
+import { ModalPickImage } from '../../../../components/ModalPickImage';
 import CreateNewProductViewModel from './ViewModel';
 import styles from './Styles';
 import { showMessage } from 'react-native-flash-message';
 
-const CreateNewProductScreen = () => {
+interface Props extends StackScreenProps<RootStackParamList, 'CreateNewProductScreen'> { }
+
+export const CreateNewProductScreen = ({ navigation, route }: Props) => {
+
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const {
     image1,
@@ -46,7 +52,7 @@ const CreateNewProductScreen = () => {
 
         <View style={styles.imageContainer}>
           {/* Mostrar la imagen 1 */}
-          <Image source={image1 ? { uri: image1 } : require('../../../../../assets/images/imagesIcon.png')} style={styles.userImage} />
+          <Image source={image1 ? { uri: image1 } : require('../../../../../../assets/images/imagesIcon.png')} style={styles.userImage} />
 
           {/* Mostrar la imagen 2 si existe */}
           {image2 && (

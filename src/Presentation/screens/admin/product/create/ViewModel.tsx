@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import { showMessage } from "react-native-flash-message";
-import { AuthContext } from "../../../context/auth/AuthContext";
-import { SaveUserUseCase } from "../../../../Domain/useCases/UserLocal/SaveUserLocal";
-import { UpdateFileUseCase } from "../../../../Domain/useCases/File/UpdateFileUseCase";
+import { AuthContext } from "../../../../context/auth/AuthContext";
+import { SaveUserUseCase } from "../../../../../Domain/useCases/UserLocal/SaveUserLocal";
+import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
 
 interface Values {
     image1: string;
@@ -85,7 +85,7 @@ const CreateNewProductViewModel = () => {
             setErrorMessages({});
 
             try {
-                const { image, ...data } = values;
+                const { image1, image2, image3, ...data } = values;
 
                 if (true) { // Mock response success
                     const dataProduct = {}; // Mock data product
