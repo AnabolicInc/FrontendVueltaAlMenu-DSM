@@ -2,13 +2,10 @@ import React, { useContext, useState } from 'react'
 import styles from './Styles';
 import { TextInput, Pressable, Keyboard } from 'react-native'
 import { View, Text, Image } from 'react-native'
-import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../../Data/sources/remote/api/ApiDelivery';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import useViewModel from './ViewModel';
-import { error } from 'console';
 import { ModalNotification } from '../../../components/ModalNotification';
 
 interface Props extends StackScreenProps<RootStackParamList, 'ConfirmValidationCodeScreen'> {}
