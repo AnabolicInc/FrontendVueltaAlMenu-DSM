@@ -46,7 +46,7 @@ export type RootStackParamList = {
 
     ProfileUpdateScreen: undefined;
 
-    ChangePasswordScreen: undefined;
+    ChangePasswordScreen: { email: string};
 
     PaymentScreen: undefined;
 

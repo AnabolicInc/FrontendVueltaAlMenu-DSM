@@ -6,7 +6,6 @@ import { useFonts } from 'expo-font';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../navigation/MainAppStack';
 import { ApiDelivery } from '../../../../Data/sources/remote/api/ApiDelivery';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import useViewModel from './ViewModel';
 import { error } from 'console';
 import { ModalNotification } from '../../../components/ModalNotification';
