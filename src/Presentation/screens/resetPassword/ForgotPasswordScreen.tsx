@@ -5,13 +5,11 @@ import { View, Text, Image } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 
 
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+
 import { RootStackParamList } from '../../navigation/MainAppStack';
-import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
 import useViewModel from './ViewModel';
-import { error } from 'console';
 import { ModalNotification } from '../../components/ModalNotification';
-import { useFonts } from 'expo-font';
+
 
 
 
