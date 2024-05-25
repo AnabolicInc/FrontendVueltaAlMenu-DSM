@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { showMessage } from "react-native-flash-message";
 
 import * as yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 
-import { UpdateCategoryUseCase } from "../../../../../Domain/useCases/Category/UpdateCategoryUseCase";
+import { CategoryUpdateUseCase } from "../../../../../Domain/useCases/Category/CategoryUpdateUseCase";
 import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
+import { categoryContext } from "../../../../context/category/CategoryContext";
 
 
 interface Values {
@@ -27,6 +28,8 @@ interface ResponseErrorData{
 const CategoryUpdateViewModel = ( route ) => {
 
 	const { categoryItem } = route.params;
+
+	const {updateCategory: updateCategoryContext } =useContext(categoryContext)
 
 	const [loading, setLoading] = useState(false);
 
@@ -122,20 +125,14 @@ const CategoryUpdateViewModel = ( route ) => {
             
                 const { image, ...data } = values;
 
-                // call to use case
-                const response = await UpdateCategoryUseCase(data.id, data.name, data.description);
+				
+				
+                // call to update method in CategoryContext
+                const response = await updateCategoryContext(data.id, data.name, data.description, file);
                 console.log(response);
                 
-				
                 if (response.success){
-                    const dataCategory = response.data;
-                    
-                    if (file !== undefined){
-                        const responseImage = await UpdateFileUseCase(file!, 'categories', dataCategory.id);
-                        dataCategory.image = responseImage.data;
-                    }
-
-					showMessage({
+                    showMessage({
 						message: 'Datos actualizados correctamente',
 						type: 'success',
 						icon: 'success',
