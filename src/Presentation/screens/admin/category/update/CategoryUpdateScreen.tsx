@@ -50,7 +50,8 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
           placeholder="Nombre"
           value={name}
           placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('name', text)}
+          onChangeText={(text) => onChange('name', text.toUpperCase())}
+          maxLength={15}
         />
 
         <TextInput 
@@ -59,7 +60,7 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
           value={description}
           placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => onChange('description', text)}
-          multiline={true}
+          maxLength={50}
         />
 
 
