@@ -1,9 +1,11 @@
+import { Image } from './Image' ;
+
 export interface Product {
     id?: string;
     name: string;
-    price: number;
     description: string;
-    quantity: number,
-    image?: string;
-    //add more params according the Database changes
+    price: number;
+    category_id: string;
+    images?: Image[];
+    quantity: number;
 }
