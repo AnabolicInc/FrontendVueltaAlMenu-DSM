@@ -22,6 +22,7 @@ import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidat
 import ChangeForgotPasswordScreen from '../screens/resetPassword/confirmValidationCode/changeForgotPassword/ChangeForgotPasswordScreen'
 import PaymentScreen from '../screens/client/payment/PaymentScreen'
 import { Category } from "../../Domain/entities/Category";
+import CreateNewProductScreen from '../screens/admin/product/create/CreateNewProductScreen'
 
 
 
@@ -40,6 +41,8 @@ export type RootStackParamList = {
     CategoryCreateScreen: undefined;
     CategoryListScreen: undefined;
     CategoryUpdateScreen: { categoryItem: Category };
+
+    CreateNewProductScreen: { categoryID: string};
 
     ProfileUpdateScreen: undefined;
 
@@ -86,6 +89,7 @@ export const MainAppStack = () => {
                 <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
                 <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
                 <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
+                <Stack.Screen name="CreateNewProductScreen" component={CreateNewProductScreen} />
             </>
 
         }
