@@ -7,5 +7,5 @@ export interface CategoryRepository {
     create(category: Category): Promise<ResponseAPIDelivery>
     list(): Promise<ResponseAPIDelivery>
     update (id: string, name: string, description: string): Promise<ResponseAPIDelivery>
-    
+    delete(id: string): Promise<ResponseAPIDelivery>
 }
