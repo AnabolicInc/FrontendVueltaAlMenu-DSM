@@ -57,8 +57,8 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
                 placeholder="Nombre"
                 value = {name} 
                 placeholderTextColor={COLORS.primaryOrange} 
-                onChangeText={(text) => onChange('name', text)}
-                maxLength={10}
+                onChangeText={(text) => onChange('name', text.toUpperCase())}
+                maxLength={15}
             />
 
         <TextInput 
