@@ -4,10 +4,14 @@ import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import { showMessage } from "react-native-flash-message";
 import { AuthContext } from "../../../../context/auth/AuthContext";
+
 import { ProductCreateUseCase } from "../../../../../Domain/useCases/Product/ProductCreateUseCase";
 import { SaveProductUseCase } from "../../../../../Domain/useCases/ProductLocal/SaveProductLocal";
 import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
 import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
+import { SaveUserUseCase } from "../../../../../Domain/useCases/UserLocal/SaveUserLocal";
+import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
+
 
 interface Values {
     image1: string;
@@ -87,7 +91,13 @@ const CreateNewProductViewModel = () => {
 
             try {
                 const { image1, image2, image3, ...data } = values;
+
                 const response = await ProductCreateUseCase(data);
+
+
+                if (true) { // Mock response success
+                    const dataProduct = {}; // Mock data product
+
 
                 if (response.success) {
                     const responseImage1 = image1 ? await UpdateFileUseCase({ uri: image1, type: 'image', name: 'image1' }, 'products', response.data.id) : null;
