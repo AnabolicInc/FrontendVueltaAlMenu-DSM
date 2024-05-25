@@ -25,7 +25,7 @@ const ConfirmValidationCodeScreen = ({navigation,route}:Props) => {
     Keyboard.dismiss();
     const response = await validationCode();
     if (response.success){
-      navigation.navigate('ChangePasswordScreen', {email: email})
+      navigation.navigate('ChangeForgotPasswordScreen', {email: email})
     }
 
   } 
