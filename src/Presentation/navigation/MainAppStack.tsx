@@ -22,6 +22,7 @@ import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidat
 import ChangeForgotPasswordScreen from '../screens/resetPassword/confirmValidationCode/changeForgotPassword/ChangeForgotPasswordScreen'
 import PaymentScreen from '../screens/client/payment/PaymentScreen'
 import { Category } from "../../Domain/entities/Category";
+import CreateNewProductScreen from '../screens/admin/product/create/CreateNewProductScreen'
 
 
 
@@ -39,7 +40,7 @@ export type RootStackParamList = {
 
     ProfileUpdateScreen: undefined;
 
-    ChangePasswordScreen: undefined;
+    ChangePasswordScreen: { email: string};
 
     PaymentScreen: undefined;
 
