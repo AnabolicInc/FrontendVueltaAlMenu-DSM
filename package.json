@@ -22,15 +22,17 @@
     "@types/react-dom": "~18.2.25",
     "axios": "^1.6.8",
     "expo": "^51.0.2",
-    "expo-font": "~12.0.4",
+    "expo-font": "~12.0.5",
     "expo-image-picker": "~15.0.4",
     "expo-linear-gradient": "~13.0.2",
     "expo-status-bar": "~1.12.1",
+    "mime": "^4.0.3",
     "react": "18.2.0",
     "react-native": "0.74.1",
     "react-native-dotenv": "^3.4.11",
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.16.1",
+    "react-native-modal": "^13.0.1",
     "react-native-pager-view": "6.3.0",
     "react-native-paper": "^5.12.3",
     "react-native-reanimated": "~3.10.1",
@@ -42,7 +44,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react-native": "^0.73.0"
+    "@types/react-native": "^0.73.0",
+    "@types/react-native-vector-icons": "^6.4.18"
   },
   "private": true,
   "description": "��#\u0000 \u0000V\u0000u\u0000e\u0000l\u0000t\u0000a\u0000A\u0000l\u0000M\u0000e\u0000n\u0000u\u0000-\u0000D\u0000S\u0000M\u0000\r\u0000 \u0000",

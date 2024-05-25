@@ -15,15 +15,22 @@ import { CategoryListScreen } from '../screens/admin/category/list/CategoryListS
 import { CategoryUpdateScreen } from '../screens/admin/category/update/CategoryUpdateScreen'
 import ForgotPasswordScreen from '../screens/resetPassword/ForgotPasswordScreen'
 import ProfileUpdateScreen from '../screens/profile/update/ProfileUpdateScreen'
+
+import ChangePasswordScreen from '../screens/profile/changePassword/ChangePasswordScreen'
+
 import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidationCode/ConfirmValidationCodeScreen'
-import ChangePasswordScreen from '../screens/resetPassword/confirmValidationCode/changePassword/ChangePasswordScreen'
+import ChangeForgotPasswordScreen from '../screens/resetPassword/confirmValidationCode/changeForgotPassword/ChangeForgotPasswordScreen'
+import PaymentScreen from '../screens/client/payment/PaymentScreen'
+import { Category } from "../../Domain/entities/Category";
+import CreateNewProductScreen from '../screens/admin/product/create/CreateNewProductScreen'
+
 
 
 
 export type RootStackParamList = {
     ForgotPasswordScreen: undefined;
     ConfirmValidationCodeScreen: {email: string};
-    ChangePasswordScreen: {email: string};
+    ChangeForgotPasswordScreen: {email: string};
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
@@ -33,9 +40,16 @@ export type RootStackParamList = {
 
     CategoryCreateScreen: undefined;
     CategoryListScreen: undefined;
-    CategoryUpdateScreen: undefined;
+    CategoryUpdateScreen: { categoryItem: Category };
+
+    CreateNewProductScreen: { categoryID: string};
 
     ProfileUpdateScreen: undefined;
+
+    ChangePasswordScreen: undefined;
+
+    PaymentScreen: undefined;
+
 
 
 };
@@ -54,6 +68,11 @@ export const MainAppStack = () => {
             return <>
                 <Stack.Screen name="ClientBottomTab" component={ClientBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
+
+                <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
+
+                <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+
             </>
             //this client
         } else if (user.role_id == 2) {
@@ -66,6 +85,11 @@ export const MainAppStack = () => {
             return <>
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
+                <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
+                <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
+                <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
+                <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
+                <Stack.Screen name="CreateNewProductScreen" component={CreateNewProductScreen} />
             </>
 
         }
@@ -78,7 +102,8 @@ export const MainAppStack = () => {
         <Stack.Navigator
             initialRouteName='LoginScreen'
             screenOptions={{
-                headerShown: false
+                headerShown: false,
+                gestureEnabled: true,
             }}
         >
             {status !== 'authenticated'
@@ -95,9 +120,7 @@ export const MainAppStack = () => {
             }
 
 
-            <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
-            <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
-            <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
+
 
 
 

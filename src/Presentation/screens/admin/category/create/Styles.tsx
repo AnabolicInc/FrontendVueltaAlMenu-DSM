@@ -95,7 +95,7 @@ const CategoryCreateStyles = StyleSheet.create(
         backgroundColor: COLORS.backgroundInputGrayRGBA,
         color: COLORS.primaryWhite,
         width: 250,
-        height: 240,
+        height: 100,
         borderRadius: 10,
         marginBottom: 10,
         paddingStart: 15,

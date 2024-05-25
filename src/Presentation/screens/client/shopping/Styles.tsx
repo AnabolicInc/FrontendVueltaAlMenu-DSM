@@ -12,14 +12,27 @@ const ShoppingCartStyles = StyleSheet.create(
 
 
         shopppingCartInnerContainer: {
-            flex: 1,
-            flexGrow: 1,
             flexDirection: 'column',
             position: 'relative',
             alignItems: 'center',
-            alignSelf: 'center',
             justifyContent: 'center',
+            alignSelf: 'center',
+            top: "30%",
 
+        },
+        payButton: {
+            flexDirection: 'row',
+            backgroundColor: '#D17842',
+            padding: 15,
+            paddingStart: 30,
+            paddingEnd: 30,
+            borderRadius: 5,
+            marginTop: 20,
+        },
+        payText: {
+            fontFamily: 'Poppins',
+            fontSize: 20,
+            color: '#F6F6F6',
         },
 
         backButton: {

@@ -15,65 +15,72 @@ import { useFonts } from 'expo-font';
 
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'ForgotPasswordScreen'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'ForgotPasswordScreen'> { }
 
 
 
-const ForgotPasswordScreen = ({ navigation,route }: Props) => {
-    const [modalVisible, setMoldalVisible] = useState<boolean>(false); 
+const ForgotPasswordScreen = ({ navigation, route }: Props) => {
+	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
 
-    const {
-      email, 
-      onChange,
-      forgotPassword,
-      errorMessages,
-      loading,
-      responseError: errorsResponse,
+	const {
+		email,
+		onChange,
+		forgotPassword,
+		errorMessages,
+		loading,
+		responseError: errorsResponse,
 
-    } = useViewModel();
-    
-    const handleForgotPassword = async () => {
-      Keyboard.dismiss();
-      const response = await forgotPassword();
-      if (response.success){
-        navigation.navigate('ConfirmValidationCodeScreen', {email: email})
-      }
-    }
-  return (
-    
-    <View style={styles.resetPasswordContainer}>
-      
-      <Image source={require('../../../../assets/images/chicken-skewers-on-a-plate.png')} 
-            style={styles.resetPasswordImage}
-        />
+	} = useViewModel();
+
+	const handleForgotPassword = async () => {
+		Keyboard.dismiss();
+		try {
+			
+			const response = await forgotPassword();
+			if (response.success) {
+				navigation.navigate('ConfirmValidationCodeScreen', { email: email })
+			}
+		} catch (error) {
+			console.log('error', error);
+			
+			
+		}
+	}
+	return (
+
+		<View style={styles.resetPasswordContainer}>
+
+			<Image source={require('../../../../assets/images/chicken-skewers-on-a-plate.png')}
+				style={styles.resetPasswordImage}
+			/>
 
 	
 
-          <Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
-          
-          <TextInput 
-            style={styles.emailInputContainer} 
-            placeholder="Correo electrónico" 
-			      value={email}  
-            onChangeText={text => onChange('email', text)}
-            editable = {!loading}
+			<Text style={styles.resetPasswordText}>Recuperar contraseña</Text>
 
-          />
-		      {errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
+			<TextInput
+				style={styles.emailInputContainer}
+				placeholder="Correo electrónico"
+				value={email}
+				onChangeText={text => onChange('email', text)}
+				editable={!loading}
 
-          <View style={styles.buttomResetPassword}> 
-            <Pressable onPressIn={ handleForgotPassword } 
-            disabled={loading}
-            >
-              <Text style={styles.buttomResetPasswordText}>Enviar</Text>
-            </Pressable>
-          </View>
-          
-          <View style={styles.backContainer}>
-            <Pressable  onPressIn={() => navigation.navigate('LoginScreen') }>
-				<Text style={styles.backTextContainer}>Volver</Text>
-            </Pressable>
-          </View>
+			/>
+			{errorMessages.email && <Text style={styles.errorText}>{errorMessages.email}</Text>}
+
+			<View style={styles.buttomResetPassword}>
+				<Pressable onPressIn={handleForgotPassword}
+					disabled={loading}
+				>
+					<Text style={styles.buttomResetPasswordText}>Enviar</Text>
+				</Pressable>
+			</View>
+
+			<View style={styles.backContainer}>
+				<Pressable onPressIn={() => navigation.navigate('LoginScreen')}>
+					<Text style={styles.backTextContainer}>Volver</Text>
+				</Pressable>
+			</View>
 
 			<ModalNotification
 				email={email}

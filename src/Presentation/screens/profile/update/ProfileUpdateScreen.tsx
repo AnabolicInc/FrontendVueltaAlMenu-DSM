@@ -112,7 +112,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
 				</View>
 				<View style={styles.buttonContainer}>
 						<Pressable onPress={() => updateUser()}>
-							<Text style={styles.editButton}>Guardar</Text>
+							<Text style={styles.editButton}>Guardar</Text>          
 						</Pressable>
 
 						<Pressable onPress={() => navigation.navigate('ChangePasswordScreen')}>
