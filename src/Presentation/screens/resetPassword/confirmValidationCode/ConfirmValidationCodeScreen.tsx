@@ -22,7 +22,6 @@ const ConfirmValidationCodeScreen = ({navigation,route}:Props) => {
     validationCode,
     errorMessages,
     loading,
-    code
   } = useViewModel( email );
 
   const handleConfirmValidationCode = async () => {
@@ -45,8 +44,7 @@ const ConfirmValidationCodeScreen = ({navigation,route}:Props) => {
           <TextInput 
             style={styles.emailInputContainer} 
             placeholder="Código de validación" 
-            value={code}
-            onChangeText={text => onChange('code', text)}
+
           />
 		      
 
