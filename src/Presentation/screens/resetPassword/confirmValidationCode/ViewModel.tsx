@@ -86,7 +86,7 @@ const ConfirmValidationCodeViewModel = (email: string) => {
 
     }
     return{
-        values,
+        ...values,
         errorMessages,
         loading,
         onChange,
