@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons'
 
 import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
 import AdminHomeScreen from '../../../screens/admin/AdminHomeScreen';
+
 import { AdminCategoryNavigator } from './AdminCategoryNavigator';
 
 
@@ -16,6 +17,7 @@ export type RootAdminBottomTabParamList = {
     ProfileInfoScreen: undefined;
     ProfileUpdateScreen: undefined;
     ChangePasswordScreen: undefined;
+    ProductScreen: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootAdminBottomTabParamList>();
@@ -61,6 +63,15 @@ export const AdminBottomTab = () => {
                     lazy: true,
                     tabBarIcon: ({ }) => (
                         <FontAwesome name="user" size={24} color={'#D17842'} />
+                    )
+                }}
+            />
+            <Tab.Screen name="ProductScreen" component={ProductScreen}
+                options={{
+                    title: 'Products',
+                    tabBarStyle: { backgroundColor: '#0C1013', borderTopWidth: 0, paddingBottom: 10 },
+                    tabBarIcon: ({ }) => (
+                        <FontAwesome name="search" size={24} color={'#D17842'} />
                     )
                 }}
             />
