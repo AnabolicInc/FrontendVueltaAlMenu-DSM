@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import Styles from './Styles';
+import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
+import { StackScreenProps } from '@react-navigation/stack';
 
 const mockProducts = [
     {
@@ -13,7 +15,10 @@ const mockProducts = [
     }
 ];
 
-const ProductScreen = () => {
+interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'ProductScreen'> { }
+
+
+export const ProductScreen = () => {
     return (
         <View style={Styles.container}>
             <Text style={Styles.headerText}>Productos</Text>
