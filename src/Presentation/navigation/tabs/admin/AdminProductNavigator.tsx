@@ -1,5 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProductProvider } from "../../../context/product/ProductContext";
+import {CreateNewProductScreen, ProductScreen} from '../../../screens/admin/product';
+import React, { ReactElement } from "react";
+import { Product } from "../../../../Domain/entities/Product";
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;
@@ -13,9 +16,6 @@ export type AdminProductNavigatorParamList = {
 
 const Stack = createStackNavigator<AdminProductNavigatorParamList>();
 
-import {CreateNewProductScreen, ProductScreen} from '../../../screens/admin/product';
-import React, { ReactElement } from "react";
-import { Product } from "../../../../Domain/entities/Product";
 
 
 
