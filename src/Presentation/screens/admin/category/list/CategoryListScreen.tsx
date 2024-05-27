@@ -65,7 +65,7 @@ export const CategoryListScreen = ({navigation, route}:Props) => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
           return (
-            <Pressable onPress={() => navigation.navigate('ProductScreen')}>
+            <Pressable onPress={() => navigation.navigate('AdminProductNavigator')}>
 
             <LinearGradient
               colors={[COLORS.primaryGrey, 'transparent']}
