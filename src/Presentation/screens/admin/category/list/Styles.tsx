@@ -111,7 +111,7 @@ const CategoryListStyles = StyleSheet.create(
         color: COLORS.primaryLightGrey,
         fontFamily: 'Poppins',
         textAlign: 'left',
-        fontSize: FONTSIZE.size_14,
+        fontSize: FONTSIZE.size_12,
         top: 25,
       },
 

@@ -1,5 +1,4 @@
 import { CategoryRepositoryImpl } from "../../../Data/repositories/CategoryRepository";
-import { Category } from "../../entities/Category";
 
 const { list } = new CategoryRepositoryImpl();
 

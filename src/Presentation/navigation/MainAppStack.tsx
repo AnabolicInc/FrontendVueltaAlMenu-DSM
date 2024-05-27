@@ -38,12 +38,6 @@ export type RootStackParamList = {
     ClientBottomTab: undefined;
     AdminBottomTab: undefined;
 
-    CategoryCreateScreen: undefined;
-    CategoryListScreen: undefined;
-    CategoryUpdateScreen: { categoryItem: Category };
-
-    CreateNewProductScreen: { categoryID: string};
-
     ProfileUpdateScreen: undefined;
 
     ChangePasswordScreen: { email: string};
@@ -81,15 +75,11 @@ export const MainAppStack = () => {
 
                 {/* <Stack.Screen name="DeliveryBottomTab" component={DeliveryBottomTab} */}
             </>
-        } else {
+        } else if (user.role_id == 1){
             return <>
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
                 <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
-                <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
-                <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
-                <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
-                <Stack.Screen name="CreateNewProductScreen" component={CreateNewProductScreen} />
             </>
 
         }

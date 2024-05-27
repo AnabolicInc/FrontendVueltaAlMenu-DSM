@@ -2,7 +2,7 @@ import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../../navigation/MainAppStack';
+import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
 
 
 import styles from './Styles';
@@ -11,7 +11,7 @@ import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'CategoryUpdateScreen'> {}
+interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryUpdateScreen'> {}
 
 export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
 
@@ -50,7 +50,8 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
           placeholder="Nombre"
           value={name}
           placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('name', text)}
+          onChangeText={(text) => onChange('name', text.toUpperCase())}
+          maxLength={15}
         />
 
         <TextInput 
@@ -59,12 +60,12 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
           value={description}
           placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => onChange('description', text)}
-          multiline={true}
+          maxLength={50}
         />
 
 
         <View style={styles.buttonSave}> 
-          <Pressable onPress={() => updateCategory()}> 
+          <Pressable onPress={() => {updateCategory(); navigation.goBack();}}>
             <Text style={styles.saveText}>GUARDAR</Text>
           </Pressable>
         </View>
