@@ -4,6 +4,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 
 import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
+import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
 import styles from './Styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -64,7 +65,7 @@ export const CategoryListScreen = ({navigation, route}:Props) => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
           return (
-            // <Pressable onPress={() => navigation.navigate('CreateNewProductScreen', { categoryID: item.id })}>
+            <Pressable onPress={() => navigation.navigate('ProductScreen')}>
 
             <LinearGradient
               colors={[COLORS.primaryGrey, 'transparent']}
@@ -108,7 +109,7 @@ export const CategoryListScreen = ({navigation, route}:Props) => {
 
                 </View>
             </LinearGradient>
-            // </Pressable>
+            </Pressable>
           )
         }}
       

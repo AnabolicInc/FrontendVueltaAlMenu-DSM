@@ -66,7 +66,7 @@ export const AdminBottomTab = () => {
                     )
                 }}
             />
-            <Tab.Screen name="ProductScreen" component={ProductScreen}
+            {/* <Tab.Screen name="ProductScreen" component={ProductScreen}
                 options={{
                     title: 'Products',
                     tabBarStyle: { backgroundColor: '#0C1013', borderTopWidth: 0, paddingBottom: 10 },
@@ -74,7 +74,7 @@ export const AdminBottomTab = () => {
                         <FontAwesome name="search" size={24} color={'#D17842'} />
                     )
                 }}
-            />
+            /> */}
 
 
         </Tab.Navigator>
