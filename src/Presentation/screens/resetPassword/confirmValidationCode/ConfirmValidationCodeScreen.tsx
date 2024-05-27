@@ -25,47 +25,48 @@ const ConfirmValidationCodeScreen = ({ navigation, route }: Props) => {
     Keyboard.dismiss();
     const response = await validationCode();
 
-    if (response.success){
-      navigation.navigate('ChangeForgotPasswordScreen', {email: email})
+    if (response.success) {
+      navigation.navigate('ChangeForgotPasswordScreen', { email: email })
 
 
-  }
-  return (
-    <View style={styles.resetPasswordContainer}>
+    }
+    return (
+      <View style={styles.resetPasswordContainer}>
 
 
 
-      <View style={styles.resetPasswordInnerContainer}>
+        <View style={styles.resetPasswordInnerContainer}>
 
-        <Text style={styles.resetPasswordText}>Confirmar Código de Validación</Text>
+          <Text style={styles.resetPasswordText}>Confirmar Código de Validación</Text>
 
-        <TextInput
-          style={styles.emailInputContainer}
-          placeholder="Código de validación"
+          <TextInput
+            style={styles.emailInputContainer}
+            placeholder="Código de validación"
 
-        />
+          />
 
 
-        <View style={styles.buttomResetPassword}>
-          <Pressable>
-            <Pressable onPressIn={handleConfirmValidationCode}
-              disabled={loading}
-            >
-              <Text style={styles.buttomResetPasswordText}>Enviar</Text>
+          <View style={styles.buttomResetPassword}>
+            <Pressable>
+              <Pressable onPressIn={handleConfirmValidationCode}
+                disabled={loading}
+              >
+                <Text style={styles.buttomResetPasswordText}>Enviar</Text>
+              </Pressable>
             </Pressable>
-          </Pressable>
+          </View>
+
+          <View style={styles.backContainer}>
+            <Pressable>
+              <Text style={styles.backTextContainer}>Volver</Text>
+            </Pressable>
+          </View>
+
+
         </View>
-
-        <View style={styles.backContainer}>
-          <Pressable>
-            <Text style={styles.backTextContainer}>Volver</Text>
-          </Pressable>
-        </View>
-
-
       </View>
-    </View>
-  )
+    )
+  }
 }
 
 export default ConfirmValidationCodeScreen;
