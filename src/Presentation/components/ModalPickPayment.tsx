@@ -2,8 +2,8 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { OptionButtom } from './OptionButtom';
 import { COLORS, FONTSIZE } from '../themes/Theme';
-import Modal from "react-native-modal";
-
+import Modal from 'react-native-modal';
+       
 interface Props {
 
     modalUseState: boolean;
