@@ -28,6 +28,7 @@ import CreateNewProductScreen from '../screens/admin/product/create/CreateNewPro
 
 
 export type RootStackParamList = {
+    CreateNewProductScreen: undefined;
     ForgotPasswordScreen: undefined;
     ConfirmValidationCodeScreen: {email: string};
     ChangeForgotPasswordScreen: {email: string};
