@@ -3,22 +3,23 @@ import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-
 import Styles from './Styles';
 import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
 import { StackScreenProps } from '@react-navigation/stack';
+import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
 
 const mockProducts = [
     {
         id: 1,
         name: 'Cappuccino',
-        description: 'Con leche evaporada',
+        description: 'Con caca',
         price: 6.20,
         quantity: 1,
         image: '../../assets/images/capuccinno.png'
     }
 ];
 
-interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'ProductScreen'> { }
+interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductScreen'> { }
 
 
-export const ProductScreen = () => {
+export const ProductScreen = ({navigation, route}:Props) => {
     return (
         <View style={Styles.container}>
             <Text style={Styles.headerText}>Productos</Text>
@@ -49,7 +50,7 @@ export const ProductScreen = () => {
                     </View>
                 )}
             />
-            <TouchableOpacity style={Styles.newProductButton} onPress={() => {}}>
+            <TouchableOpacity style={Styles.newProductButton} onPress={() => navigation.navigate('CreateNewProductScreen') }>
                 <Text style={Styles.newProductButtonText}>Nuevo Producto</Text>
             </TouchableOpacity>
         </View>

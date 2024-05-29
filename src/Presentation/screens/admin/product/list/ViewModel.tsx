@@ -1,16 +1,26 @@
 import { View, Text } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+
 import { Product } from '../../../../../Domain/entities/Product';
+import { ProductContext } from '../../../../context/product/ProductContext';
 
-const AdminProductViewModel = () => {
+const ProductListViewModel = () => {
 
-    const [products, setProducts] = useState<Product[]>([]);
-
-    return {
-
+    const {products, getAllProducts, deleteProduct: deleteProductContext} = useContext(ProductContext)
+    
+    const deleteProduct = async (id: string) => {
+        try {
+            await deleteProductContext(id);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
-
-
+    return {
+        products,
+        getAllProducts,
+        deleteProduct
+    };
 }
 
-export default AdminProductViewModel
+export default ProductListViewModel;
