@@ -13,7 +13,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
 
 
-interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'ProductUpdateScreen'> {}
+interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryUpdateScreen'> {} // FIX: ESTO DEBE SER MODIFICADO POR EL NOMBRE DE LA RUTA DE ESTA PANTALLA
 
 export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 
