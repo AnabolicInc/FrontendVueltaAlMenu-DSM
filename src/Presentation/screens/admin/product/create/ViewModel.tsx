@@ -1,17 +1,14 @@
-
 import { useContext, useState } from "react";
 import * as Yup from 'yup';
-import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import { showMessage } from "react-native-flash-message";
 import { AuthContext } from "../../../../context/auth/AuthContext";
-import { SaveUserUseCase } from "../../../../../Domain/useCases/UserLocal/SaveUserLocal";
-import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
+import { categoryContext } from "../../../../context/category/CategoryContext";
+import { ProductContext } from "../../../../context/product/ProductContext";
+import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
 
 interface Values {
-    image1: string;
-    image2: string;
-    image3: string;
+    images: string[];
     name: string;
     description: string;
     price: string;
@@ -24,7 +21,7 @@ interface ResponseErrorData {
 }
 
 const validationNewProductSchema = Yup.object().shape({
-    image: Yup.string().required('La imagen es obligatoria'),
+    images: Yup.array().min(1, 'La imagen es obligatoria').max(3, 'No puedes seleccionar más de 3 imágenes'),
     name: Yup.string().required('El nombre del producto es obligatorio'),
     description: Yup.string().required('La descripción del producto es obligatoria'),
     price: Yup.string().required('El precio es obligatorio'),
@@ -33,9 +30,7 @@ const validationNewProductSchema = Yup.object().shape({
 
 const CreateNewProductViewModel = () => {
     const [values, setValues] = useState<Values>({
-        image1: '',
-        image2: '',
-        image3: '',
+        images: [],
         name: '',
         description: '',
         price: '',
@@ -43,14 +38,20 @@ const CreateNewProductViewModel = () => {
     });
 
     const { auth } = useContext(AuthContext);
-    const [file, setFile] = useState<ImagePicker.ImageInfo>();
+    const { currentCategory } = useContext(categoryContext);
+    const { createProduct } = useContext(ProductContext);
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
     const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
     const [loading, setLoading] = useState(false);
     const [hasNonNumber, setHasNonNumber] = useState({ price: false, quantity: false });
-    const [selectedImages, setSelectedImages] = useState<string[]>([]);
 
-    const onChange = (property: string, value: string) => {
+    const onChange = (property: string, value: any) => {
+        if (property === 'images') {
+            setValues({ ...values, images: value });
+        } else {
+            setValues({ ...values, [property]: value });
+        }
+
         if (property === 'price' || property === 'quantity') {
             if (/\D/.test(value)) {
                 setHasNonNumber({ ...hasNonNumber, [property]: true });
@@ -58,8 +59,6 @@ const CreateNewProductViewModel = () => {
                 setHasNonNumber({ ...hasNonNumber, [property]: false });
             }
         }
-
-        setValues({ ...values, [property]: value });
     };
 
     const isValidForm = async (): Promise<boolean> => {
@@ -79,13 +78,7 @@ const CreateNewProductViewModel = () => {
 
     const createNewProduct = async () => {
         const isValid = await isValidForm();
-
-        if (isValid) {
-            setLoading(true);
-            setErrorMessages({});
-
-return null;
-        }
+        if (isValid) {return null;}
     };
 
     const pickImage = async () => {
@@ -96,11 +89,16 @@ return null;
         });
 
         if (!result.canceled) {
-            // Buscar la primera variable de imagen que esté vacía y asignarle la URI de la imagen seleccionada
-            const emptyImageKey = Object.keys(values).find((key) => key.startsWith('image') && !values[key]);
-            if (emptyImageKey) {
-                onChange(emptyImageKey, result.assets[0].uri);
-                setFile(result.assets[0]);
+            if (values.images.length < 3) {
+                const newImages = [...values.images, result.assets[0].uri];
+                onChange('images', newImages);
+            } else {
+                showMessage({
+                    message: "Error",
+                    description: "Solo se pueden seleccionar hasta 3 imágenes",
+                    type: 'danger',
+                    icon: 'danger',
+                });
             }
         }
     };
@@ -114,27 +112,20 @@ return null;
             });
 
             if (!result.canceled) {
-                // Buscar la primera variable de imagen que esté vacía y asignarle la URI de la imagen tomada
-                const emptyImageKey = Object.keys(values).find((key) => key.startsWith('image') && !values[key]);
-                if (emptyImageKey) {
-                    onChange(emptyImageKey, result.assets[0].uri);
-                    setFile(result.assets[0]);
+                if (values.images.length < 3) {
+                    const newImages = [...values.images, result.assets[0].uri];
+                    onChange('images', newImages);
+                } else {
+                    showMessage({
+                        message: "Error",
+                        description: "Solo se pueden seleccionar hasta 3 imágenes",
+                        type: 'danger',
+                        icon: 'danger',
+                    });
                 }
             }
         } catch (error) {
             console.log('Error al tomar la foto', error);
-        }
-    };
-
-    const loadFonts = async () => {
-        try {
-            await Font.loadAsync({
-                Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
-            });
-            return true;
-        } catch (error) {
-            console.log('Error loading fonts', error);
-            return false;
         }
     };
 
@@ -144,7 +135,6 @@ return null;
         createNewProduct,
         isValidForm,
         loading,
-        loadFonts,
         pickImage,
         takePhoto,
         hasNonNumber,
