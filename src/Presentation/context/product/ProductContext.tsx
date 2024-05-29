@@ -9,11 +9,9 @@ import { SaveProductUseCase } from "../../../Domain/useCases/Product/SaveProduct
 import { ProductUpdateUseCase } from "../../../Domain/useCases/Product/ProductUpdateUseCase";
 import { ProductDeleteUseCase } from "../../../Domain/useCases/Product/ProductDeleteUseCase";
 
-
-
 export interface ProductContextProps {
     products: Product[];
-    getAllProducts(id: string);
+    getAllProducts(id: string): void;
     createProduct(product: Product): Promise<ResponseAPIDelivery>;
     updateProduct(id: string, name: string, description: string, price: number, quantity: number): Promise<ResponseAPIDelivery>;
     deleteProduct(id: string): Promise<ResponseAPIDelivery>;
@@ -24,7 +22,6 @@ export interface ProductContextProps {
 export const ProductContext = createContext({} as ProductContextProps);
 
 export const ProductProvider = ({ children }: any) => {
-
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -32,45 +29,34 @@ export const ProductProvider = ({ children }: any) => {
     }, []);
 
     const getAllProducts = async (category_id: string) => {
-
         const response = await ProductListUseCase(category_id);
-
-        setProducts(response.data)
-
+        setProducts(response.data);
     }
 
     const createProduct = async (product: Product, file?: ImagePicker.ImageInfo) => {
         const response = await ProductCreateUseCase(product);
-
-        if (response.success){
-			const dataProduct = response.data;              
-
-            if (file !== undefined){
-                const responseImage = await UpdateFileUseCase(file!, 'products', dataProduct.id);
+        if (response.success) {
+            const dataProduct = response.data;
+            if (file !== undefined) {
+                const responseImage = await UpdateFileUseCase(file, 'products', dataProduct.id);
                 dataProduct.image = responseImage.data;
             }
-
-			await SaveProductUseCase(dataProduct);
-		    console.log(dataProduct);
+            await SaveProductUseCase(dataProduct);
             getAllProducts(dataProduct.category_id);
         }
-
         return response;
     }
 
     const updateProduct = async (id: string, name: string, description: string, price: number, quantity: number, file?: ImagePicker.ImageInfo) => {
-        const response = await ProductUpdateUseCase(id,name,description, price, quantity);
-
-        if (response.success){
+        const response = await ProductUpdateUseCase(id, name, description, price, quantity);
+        if (response.success) {
             const dataProduct = response.data;
-            
-            if (file !== undefined){
-                const responseImage = await UpdateFileUseCase(file!, 'categories', dataProduct.id);
+            if (file !== undefined) {
+                const responseImage = await UpdateFileUseCase(file, 'categories', dataProduct.id);
                 dataProduct.image = responseImage.data;
             }
             getAllProducts(dataProduct.category_id);
         }
-
         return response;
     }
 
@@ -92,10 +78,7 @@ export const ProductProvider = ({ children }: any) => {
         });
     }
 
-
     return (
-
-
         <ProductContext.Provider
             value={{
                 products,
@@ -109,5 +92,5 @@ export const ProductProvider = ({ children }: any) => {
         >
             {children}
         </ProductContext.Provider>
-    )
+    );
 }

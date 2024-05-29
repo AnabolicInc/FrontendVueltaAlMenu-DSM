@@ -1,24 +1,31 @@
-import { View, Text } from 'react-native'
-import React, { useState, useContext } from 'react'
-
-import { Product } from '../../../../../Domain/entities/Product';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../../../context/product/ProductContext';
+import { categoryContext } from '../../../../context/category/CategoryContext';
+import { Product } from '../../../../../Domain/entities/Product';
 
 const ProductListViewModel = () => {
-
-    const {products, getAllProducts, deleteProduct: deleteProductContext} = useContext(ProductContext)
+    const { products, getAllProducts, deleteProduct: deleteProductContext } = useContext(ProductContext);
+    const { currentCategory } = useContext(categoryContext);
     
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        if (currentCategory) {
+            const filtered = products.filter(product => product.category_id === currentCategory.id);
+            setFilteredProducts(filtered);
+        }
+    }, [currentCategory, products]);
+
     const deleteProduct = async (id: string) => {
         try {
             await deleteProductContext(id);
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }
+
     return {
-        products,
-        getAllProducts,
+        products: filteredProducts,
         deleteProduct
     };
 }

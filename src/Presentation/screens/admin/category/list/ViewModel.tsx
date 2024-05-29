@@ -1,22 +1,28 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { categoryContext } from "../../../../context/category/CategoryContext";
-
+import { AuthContext } from "../../../../context/auth/AuthContext";
+import { Category } from "../../../../../Domain/entities/Category";
 
 const CategoryListViewModel = () => {
-
-    const {categories, deleteCategory: deleteCategoryContext} = useContext(categoryContext)
+    const { categories, deleteCategory: deleteCategoryContext, setCurrentCategory } = useContext(categoryContext);
+    const { user, updateUser: updateUserContext } = useContext(AuthContext);
 
     const deleteCategory = async (id: string) => {
         try {
             await deleteCategoryContext(id);
-        }
-        catch (error){
+        } catch (error) {
             console.log(error);
         }
     }
+
+    const selectCategory = (category: Category) => {
+        setCurrentCategory(category);
+    }
+
     return {
         categories,
-        deleteCategory
+        deleteCategory,
+        selectCategory
     };
 }
 
