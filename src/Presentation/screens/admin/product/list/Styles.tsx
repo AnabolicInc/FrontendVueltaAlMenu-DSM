@@ -27,6 +27,16 @@ const Styles = StyleSheet.create({
         height: 80,
         borderRadius: 10,
     },
+    noCategoryListText: {
+        position: 'absolute',
+        top: "50%",
+        color: COLORS.primaryOrange,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_20,
+        textAlign: 'center',
+        marginBottom: 20,
+
+      },
     productInfo: {
         flex: 1,
         marginLeft: 10,
@@ -87,6 +97,7 @@ const Styles = StyleSheet.create({
         fontFamily: 'Poppins',
         fontSize: FONTSIZE.size_18,
     },
+    
 });
 
 export default Styles;
