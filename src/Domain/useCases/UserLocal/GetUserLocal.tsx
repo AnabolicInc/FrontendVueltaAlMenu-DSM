@@ -1,8 +1,12 @@
 import { UserLocalRepositoryImpl } from "../../../Data/repositories/UserLocalRepository";
-import { User } from "../../entities/User";
 
+// Calls the getUser method from the UserLocalRepositoryImpl.
 const {getUser} = new UserLocalRepositoryImpl();
 
+/**
+ * Use case for the getUser operation.
+ */
 export const GetUserUseCase  = async() => {
-    return getUser();
+    // Uses the getUser method from the UserLocalRepositoryImpl.
+    return await getUser();
 }

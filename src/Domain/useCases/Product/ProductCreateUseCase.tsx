@@ -1,12 +1,13 @@
 import { ProductRepositoryImpl } from "../../../Data/repositories/ProductRepository";
 import { Product } from "../../entities/Product";
 
-const { create } = new ProductRepositoryImpl();
+// Calls the create method from the ProductRepositoryImpl.
+const { createProduct } = new ProductRepositoryImpl();
 
+/**
+ * Use case for the create operation.
+ */
 export const ProductCreateUseCase = async (product: Product) => {
-    return await create(product);
-}
-
-export const getAllProducts = async () => {
-    return await getAllProducts();
+    // Uses the create method from the ProductRepositoryImpl.
+    return await createProduct(product);
 }
