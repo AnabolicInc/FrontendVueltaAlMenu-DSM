@@ -10,6 +10,7 @@ export type AdminCategoryNavigatorParamList = {
     CategoryListScreen: undefined;
     CategoryCreateScreen: undefined;
     CategoryUpdateScreen: {categoryItem: Category};
+    ProductUpdateScreen: undefined;
 }
 
 const Stack = createStackNavigator<AdminCategoryNavigatorParamList>();
