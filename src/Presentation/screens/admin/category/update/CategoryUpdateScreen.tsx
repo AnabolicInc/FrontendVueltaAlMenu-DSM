@@ -31,15 +31,26 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
   return (
     <View style={styles.categoryUpdateContainer}>
       <ScrollView style={styles.categoryUpdateInnerContainer} showsVerticalScrollIndicator = {false}>
-        <Text style={styles.categoryUpdateText}>EDITAR CATEGORÍA</Text>
-        {
-          (image == '' || image == null)
-          ?
-          <Image style={styles.categoryUpdateUserImage} source={require('../../../../../../assets/images/category.png')} />
-          :
-          <Image style={styles.categoryUpdateUserImage} source={{uri: image}} />
-
-        }
+        
+        <View>
+          
+          {
+            (image == '' || image == null)
+            ?
+            <Image style={styles.categoryUpdateUserImage} source={require('../../../../../../assets/images/category.png')} />
+            :
+            <Image style={styles.categoryUpdateUserImage} source={{uri: image}} />
+            
+          }
+          <View style={styles.textContainer}>
+            <Text style={styles.categoryName}>{name}</Text>
+            <Text style={styles.categoryDescription}>{description}</Text> 
+          </View>
+        </View>
+        
+        
+        <Text style={styles.categoryUpdateText}>Editar categoría</Text>
+        
 
         <Pressable style={styles.uploadImageButton} onPress={() => setModalVisible(true)}>
           <Text style={styles.uploadImageButtonText}>Subir imagen</Text>
@@ -64,9 +75,15 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
         />
 
 
-        <View style={styles.buttonSave}> 
+        <View style={styles.saveButton}> 
           <Pressable onPress={() => {updateCategory(); navigation.goBack();}}>
-            <Text style={styles.saveText}>GUARDAR</Text>
+            <Text style={styles.saveText}>Actualizar</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.cancelButton}> 
+          <Pressable onPress={() => navigation.goBack()}>
+            <Text style={styles.cancelText}>Cancelar</Text>
           </Pressable>
         </View>
 
