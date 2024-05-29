@@ -5,6 +5,9 @@ import { ApiDelivery } from "../sources/remote/api/ApiDelivery";
 import { ResponseAPIDelivery } from "../sources/remote/api/models/ResponseApiDelivery";
 import * as ImagePicker from "expo-image-picker";
 
+/**
+ * Class to implement the ProductRepository interface
+ */
 export class ProductRepositoryImpl implements ProductRepository {
 
     async getAllProducts(category_id: string): Promise<ResponseAPIDelivery> {
@@ -13,8 +16,8 @@ export class ProductRepositoryImpl implements ProductRepository {
             console.log('DATA: ', JSON.stringify(data));
 
             return Promise.resolve(data)
-
         } catch (error) {
+            // Handle any error that occurs during the request
             let e = (error as AxiosError);
             if (e.response) {
                 console.log('ERROR: ', JSON.stringify(e.response.data));
