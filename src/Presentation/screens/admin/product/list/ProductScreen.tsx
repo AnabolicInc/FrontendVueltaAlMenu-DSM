@@ -4,8 +4,11 @@ import Styles from './Styles';
 import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
+import { ProductContext } from '../../../../context/product/ProductContext';
+import useViewModel from './ViewModel';
 
 const mockProducts = [
+    
     {
         id: 1,
         name: 'Cappuccino',
@@ -13,18 +16,28 @@ const mockProducts = [
         price: 6.20,
         quantity: 1,
         image: '../../assets/images/capuccinno.png'
-    }
+    },
 ];
+
+
 
 interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductScreen'> { }
 
 
 export const ProductScreen = ({navigation, route}:Props) => {
+    const {
+        products,
+        deleteProduct
+    } = useViewModel();
     return (
+        products.length===2
+        ?
+        <Text style={Styles.noCategoryListText}>No hay categorÃas para mostar</Text>
+        :
         <View style={Styles.container}>
             <Text style={Styles.headerText}>Productos</Text>
             <FlatList 
-                data={mockProducts}
+                data={products}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <View style={Styles.productContainer}>
