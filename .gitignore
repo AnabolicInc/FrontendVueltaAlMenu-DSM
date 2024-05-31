@@ -33,7 +33,3 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
-
-src/Presentation/screens/Testing/ViewModel.tsx
-src/Presentation/screens/Testing/Style.tsx
-src/Presentation/screens/Testing/
