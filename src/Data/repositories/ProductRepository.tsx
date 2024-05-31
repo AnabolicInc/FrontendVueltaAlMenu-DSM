@@ -35,15 +35,16 @@ export class ProductRepositoryImpl implements ProductRepository {
 
     async createProduct(product: Product): Promise<ResponseAPIDelivery> {
         try {
-            const { data } = await ApiDelivery.post<ResponseAPIDelivery>('product/createProduct', product);
+            console.log('ENTRÉ EN CREATEPDORUDCT DE PRODUCTREPOSITORY');
+            const { data } = await ApiDelivery.post<ResponseAPIDelivery>(`product/createProduct/${product.category_id}`, product);
             console.log('DATA: ', JSON.stringify(data));
-
+    
             return Promise.resolve(data)
-
+    
         } catch (error) {
             let e = (error as AxiosError);
             if (e.response) {
-                console.log('ERROR: ', JSON.stringify(e.response.data));
+                console.log('ERROOOOOOOOOOR: ', JSON.stringify(e.response.data));
                 const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response.data));
                 return Promise.reject(apiError);
             } else if (e.request) {
@@ -55,6 +56,7 @@ export class ProductRepositoryImpl implements ProductRepository {
             }
         }
     }
+    
 
 
     async updateProduct(id: string, name: string, description: string, price: number, quantity: number): Promise<ResponseAPIDelivery> {

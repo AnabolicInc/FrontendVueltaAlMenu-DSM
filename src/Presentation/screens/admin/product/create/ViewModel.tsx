@@ -13,6 +13,7 @@ interface Values {
     description: string;
     price: string;
     quantity: string;
+    category_id: string;
 }
 
 interface ResponseErrorData {
@@ -35,11 +36,13 @@ const CreateNewProductViewModel = () => {
         description: '',
         price: '',
         quantity: '',
+        category_id: '',
     });
 
+    const [imageFiles, setImageFiles] = useState<ImagePicker.ImageInfo[]>([]);
     const { auth } = useContext(AuthContext);
     const { currentCategory } = useContext(categoryContext);
-    const { createProduct } = useContext(ProductContext);
+    const { createProduct: createProductContext } = useContext(ProductContext);
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
     const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
     const [loading, setLoading] = useState(false);
@@ -78,8 +81,56 @@ const CreateNewProductViewModel = () => {
 
     const createNewProduct = async () => {
         const isValid = await isValidForm();
-        if (isValid) {return null;}
+        console.log("BOTÓN DE CREAR PRODUCTO PRESIONADO")
+        if (isValid) {
+            setLoading(true);
+            setErrorMessages({});
+            try {
+                const { images, ...data } = values;
+    
+                // Convertir price y quantity a number y establecer category_id a 1
+                const dataWithNumbers = {
+                    ...data,
+                    price: parseFloat(data.price),
+                    quantity: parseInt(data.quantity, 10),
+                    category_id: '1',  // Establecer category_id a 1 para pruebas
+                };
+                console.log("CHECKPOINT")
+
+                const response = await createProductContext(dataWithNumbers, imageFiles);
+    
+                if (response.success) {
+                    showMessage({
+                        message: 'Producto creado correctamente',
+                        type: 'success',
+                        icon: 'success',
+                    });
+                    setLoading(false);
+                } else {
+                    throw new Error('Failed to create product');
+                }
+            } catch (error) {
+                const rejectErrors: ResponseAPIDelivery = error;
+    
+                if (rejectErrors.error) {
+                    setErrorResponses([]);
+                    showMessage({
+                        message: rejectErrors.error,
+                        type: 'danger',
+                        icon: 'danger',
+                    });
+                } else {
+                    console.log('Error en la creación del producto');
+                    const errorsArray = Object.values(rejectErrors.errors || {});
+                    const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
+                    console.log(errorsArrayFilter);
+                    setErrorResponses(errorsArrayFilter);
+                }
+                setLoading(false);
+            }
+        }
     };
+    
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -92,6 +143,7 @@ const CreateNewProductViewModel = () => {
             if (values.images.length < 3) {
                 const newImages = [...values.images, result.assets[0].uri];
                 onChange('images', newImages);
+                setImageFiles([...imageFiles, result.assets[0]]);
             } else {
                 showMessage({
                     message: "Error",
@@ -115,6 +167,7 @@ const CreateNewProductViewModel = () => {
                 if (values.images.length < 3) {
                     const newImages = [...values.images, result.assets[0].uri];
                     onChange('images', newImages);
+                    setImageFiles([...imageFiles, result.assets[0]]);
                 } else {
                     showMessage({
                         message: "Error",
@@ -140,6 +193,7 @@ const CreateNewProductViewModel = () => {
         hasNonNumber,
         errorMessages,
         responseError: errorsResponse,
+        imageFiles,
     };
 };
 

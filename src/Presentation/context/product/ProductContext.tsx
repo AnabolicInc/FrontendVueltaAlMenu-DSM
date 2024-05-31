@@ -12,11 +12,11 @@ import { ProductDeleteUseCase } from "../../../Domain/useCases/Product/ProductDe
 export interface ProductContextProps {
     products: Product[];
     getAllProducts(id: string): void;
-    createProduct(product: Product): Promise<ResponseAPIDelivery>;
-    updateProduct(id: string, name: string, description: string, price: number, quantity: number): Promise<ResponseAPIDelivery>;
+    createProduct(product: Product, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
+    updateProduct(id: string, name: string, description: string, price: number, quantity: number, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
     deleteProduct(id: string): Promise<ResponseAPIDelivery>;
     removeProduct(id: string): Promise<ResponseAPIDelivery>;
-    updateFile(file: ImagePicker.ImageInfo, collection: string, id: string): Promise<ResponseAPIDelivery>;
+    updateFile(file: ImagePicker.ImagePickerAsset, collection: string, id: string): Promise<ResponseAPIDelivery>;
 }
 
 export const ProductContext = createContext({} as ProductContextProps);
@@ -33,13 +33,15 @@ export const ProductProvider = ({ children }: any) => {
         setProducts(response.data);
     }
 
-    const createProduct = async (product: Product, file?: ImagePicker.ImageInfo) => {
+    const createProduct = async (product: Product, files?: ImagePicker.ImagePickerAsset[]) => {
         const response = await ProductCreateUseCase(product);
         if (response.success) {
             const dataProduct = response.data;
-            if (file !== undefined) {
-                const responseImage = await UpdateFileUseCase(file, 'products', dataProduct.id);
-                dataProduct.image = responseImage.data;
+            if (files && files.length > 0) {
+                const images = await Promise.all(
+                    files.map(file => UpdateFileUseCase(file, 'products', dataProduct.id))
+                );
+                dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
             }
             await SaveProductUseCase(dataProduct);
             getAllProducts(dataProduct.category_id);
@@ -47,13 +49,15 @@ export const ProductProvider = ({ children }: any) => {
         return response;
     }
 
-    const updateProduct = async (id: string, name: string, description: string, price: number, quantity: number, file?: ImagePicker.ImageInfo) => {
+    const updateProduct = async (id: string, name: string, description: string, price: number, quantity: number, files?: ImagePicker.ImagePickerAsset[]) => {
         const response = await ProductUpdateUseCase(id, name, description, price, quantity);
         if (response.success) {
             const dataProduct = response.data;
-            if (file !== undefined) {
-                const responseImage = await UpdateFileUseCase(file, 'categories', dataProduct.id);
-                dataProduct.image = responseImage.data;
+            if (files && files.length > 0) {
+                const images = await Promise.all(
+                    files.map(file => UpdateFileUseCase(file, 'categories', dataProduct.id))
+                );
+                dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
             }
             getAllProducts(dataProduct.category_id);
         }
@@ -72,7 +76,7 @@ export const ProductProvider = ({ children }: any) => {
         });
     }
 
-    const updateFile = async (file: ImagePicker.ImageInfo, collection: string, id: string) => {
+    const updateFile = async (file: ImagePicker.ImagePickerAsset, collection: string, id: string) => {
         return new Promise((resolve, reject) => {
             resolve({} as ResponseAPIDelivery);
         });

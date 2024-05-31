@@ -1,7 +1,6 @@
 import { Image } from './Image' ;
 
 export interface Product {
-    image: string;
     id?: string;
     name: string;
     description: string;
