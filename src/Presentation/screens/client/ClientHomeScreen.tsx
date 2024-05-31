@@ -3,6 +3,7 @@ import { View, Text, Image, ImageBackground, Pressable } from 'react-native'
 import { TextInput } from 'react-native';
 import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
 import { StackScreenProps } from '@react-navigation/stack';
+import useViewModel from './ViewModel';
 
 
 import styles from './Styles';
@@ -15,6 +16,8 @@ interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHo
 
 export const  ClientHomeScreen = ({ navigation, route}: Props) => {
   
+  const { products } = useViewModel();
+
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf' ),
   });
@@ -23,6 +26,7 @@ export const  ClientHomeScreen = ({ navigation, route}: Props) => {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
   
+  console.log(products);
 
   return (
     <View style={styles.userContainer}>
