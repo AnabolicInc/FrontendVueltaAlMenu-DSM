@@ -12,6 +12,7 @@ import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
 import CategoryListViewModel from '../list/ViewModel';
 import { get } from 'http';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryCreateScreen'> {}
@@ -27,13 +28,14 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
     image,
     createCategory,
     name,
-    description
+    description,
+    loading
   } = useViewModel();
 
-  const handleCategoryCreate = () => {
-    createCategory();
+  const handleCategoryCreate = async () => {
+    await createCategory();
+    navigation.goBack();
   }
-
 
   return (
     <View style={styles.categoryCreateContainer}>
@@ -72,7 +74,7 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
         
         <View style={styles.buttonSave}> 
         <Pressable onPress={ () => {
-            handleCategoryCreate(); navigation.goBack();}}> 
+            handleCategoryCreate();}}> 
           <Text style={styles.saveText}>AÑADIR</Text>
         </Pressable>
         </View>
@@ -86,6 +88,13 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
             openGallery={pickImage}
             openCamera={takePhoto}
         />
+        {loading &&(
+
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#D17842" />
+          </View>
+
+        )}
         
     </View>
   )

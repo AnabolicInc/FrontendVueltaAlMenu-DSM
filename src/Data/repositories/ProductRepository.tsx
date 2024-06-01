@@ -10,7 +10,9 @@ import * as ImagePicker from "expo-image-picker";
  */
 export class ProductRepositoryImpl implements ProductRepository {
 
-    async getAllProducts(category_id: string): Promise<ResponseAPIDelivery> {
+
+    //cambiar nombre a getAllProductsByCategory lo dijo dieGOD
+    async getAllProductsByCategory(category_id: string): Promise<ResponseAPIDelivery> {
         try {
             const { data } = await ApiDelivery.get<ResponseAPIDelivery>(`product/listProducts/${category_id}`);
             console.log('DATA: ', JSON.stringify(data));
@@ -33,14 +35,14 @@ export class ProductRepositoryImpl implements ProductRepository {
         }
     }
 
-    async createProduct(product: Product): Promise<ResponseAPIDelivery> {
+    async getAllProducts(): Promise<ResponseAPIDelivery> {
         try {
-            const { data } = await ApiDelivery.post<ResponseAPIDelivery>('product/createProduct', product);
+            const { data } = await ApiDelivery.get<ResponseAPIDelivery>(`product/listProducts/`);
             console.log('DATA: ', JSON.stringify(data));
 
             return Promise.resolve(data)
-
         } catch (error) {
+            // Handle any error that occurs during the request
             let e = (error as AxiosError);
             if (e.response) {
                 console.log('ERROR: ', JSON.stringify(e.response.data));
@@ -55,6 +57,31 @@ export class ProductRepositoryImpl implements ProductRepository {
             }
         }
     }
+
+    async createProduct(product: Product): Promise<ResponseAPIDelivery> {
+        try {
+            console.log('ENTRÉ EN CREATEPDORUDCT DE PRODUCTREPOSITORY');
+            const { data } = await ApiDelivery.post<ResponseAPIDelivery>(`product/createProduct/${product.category_id}`, product);
+            console.log('DATA: ', JSON.stringify(data));
+    
+            return Promise.resolve(data)
+    
+        } catch (error) {
+            let e = (error as AxiosError);
+            if (e.response) {
+                console.log('ERROOOOOOOOOOR: ', JSON.stringify(e.response.data));
+                const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response.data));
+                return Promise.reject(apiError);
+            } else if (e.request) {
+                console.log('Request made but no response received', e.request);
+                return Promise.reject(new Error('Request made but no response received'));
+            } else {
+                console.log('Error', e.message);
+                return Promise.reject(new Error('An error occurred while making the request'));
+            }
+        }
+    }
+    
 
 
     async updateProduct(id: string, name: string, description: string, price: number, quantity: number): Promise<ResponseAPIDelivery> {
