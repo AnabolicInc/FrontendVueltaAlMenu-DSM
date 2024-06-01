@@ -10,6 +10,7 @@ import useViewModel from './ViewModel';
 import RegisterInput from '../../components/RegisterInput';
 import * as Font from 'expo-font';
 
+
 interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> { }
 
 export const RegisterScreen = ({ navigation, route }: Props) => {
@@ -21,6 +22,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
         register,
         onChange,
         loading,
+        loadFonts,
+        fontsLoaded,
         takePhoto,
         pickImage,
         image,
@@ -33,23 +36,19 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
 
     } = useViewModel();
 
+    useEffect(() => {
+        loadFonts();
+    }, []);
+
+    if (!fontsLoaded) {
+        return <ActivityIndicator size="large" />;
+    }
+
     const handleRegister = async () => {
         Keyboard.dismiss();
         await register();
     }
-    //fonts
-    const [fontsLoaded, setFontsLoaded] = useState(false);
 
-    const loadFonts = async () => {
-        await Font.loadAsync({
-            'Poppins-Black': require('../../../../assets/fonts/Poppins-Black.ttf'),
-        });
-        setFontsLoaded(true);
-    };
-
-    useEffect(() => {
-        loadFonts();
-    }, []);
 
     return (
         <View style={styles.registerContainer}>
@@ -60,6 +59,7 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
 
 
             <Image style={styles.backButton} source={require('../../../../assets/images/leftButton.png')} />
+
             <Pressable style={styles.backButton} onPress={() => navigation.goBack()} />
 
 
@@ -72,7 +72,6 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <Image style={styles.registerUserImage} source={require('../../../../assets/images/userIcon.png')} />
                         :
                         <Image style={styles.registerUserImage} source={{ uri: image }} />
-
                 }
 
                 <Pressable style={styles.uploadImageUserButton} onPress={() => setMoldalVisible(true)}>
@@ -94,8 +93,9 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                     prefix='+56'
                     icon={require('../../../../assets/images/Flag_of_Chile.png')}
                     customStyle={{ width: 160, justifyContent: 'flex-start', marginLeft: 10 }}
-                    onChangeText={(text) => onChange('phone', text)}
+                    onChangeText={(text) => onChange('phone', '+56' + text)}
                     keyboardType='numeric'
+                    maxLength={9}
                 />
                 {errorMessages.phone && <Text style={styles.errorText}>{errorMessages.phone}</Text>}
 
