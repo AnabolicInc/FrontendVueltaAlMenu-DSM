@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, ImageBackground, Pressable } from 'react-native'
+import { View, Text, Image, ImageBackground, Pressable, FlatList } from 'react-native'
 import { TextInput } from 'react-native';
 import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -7,11 +7,12 @@ import useViewModel from './ViewModel';
 
 
 import styles from './Styles';
+import { COLORS } from '../../themes/Theme'
 import { useFonts } from 'expo-font';
-import { FlatList } from 'react-native-reanimated/lib/typescript/Animated';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
+import { Product } from '../../../Domain/entities/Product';
 //import the dependency to create a search bar
 
 //to-do: Falta que se desplieguen los productos en la screen de cliente, esto se implementara proximamente
@@ -32,6 +33,9 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
 
   console.log(products);
 
+  const handleProductPress = (product: Product) => {
+	}
+
   return (
     <View style={styles.userContainer}>
 
@@ -50,9 +54,60 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
         }}
       />
 
+		{products.length === 0 ? (
+			<Text style={styles.noProductListText}>No hay productos para mostar</Text>
+		) : (
+			<FlatList 
+				style={styles.productListInnerContainer} 
+				showsHorizontalScrollIndicator={false}
+				horizontal={true}
+				data={products}
+				keyExtractor={(item) => item.id}
+				renderItem={({ item }) => (
+					<Pressable onPress={() => handleProductPress(item)}>
 
+						<LinearGradient
+							colors={[COLORS.primaryGrey, 'transparent']}
+							style={styles.productListElement}
+						>
+							{item.image ? (
+								<Image style={styles.productListImage} source={{ uri: item.image }} />
+							) : (
+								<Image style={styles.productListImage} source={require('../../../../assets/images/category.png')} />
+							)}
+							<View style={styles.productListText}>
+								<Text style={styles.productListElementName}>
+									{item.name.length > 23
+										? item.name.match(/.{1,23}/g)[0] + '...'
+										: item.name}
+								</Text>
+								
+								<Text style={styles.productListElementDescription}>
+									{item.description.length > 20
+										? item.description.match(/.{1,20}/g)[0] + '...'
+										: item.description}
+								</Text>
+							</View>
 
-  
+							<View style={styles.productListPriceAddBoxContainer}>
+								<View style={styles.productListPriceAddBox}>
+
+									<Text style={styles.productListElementPriceSignText}>$
+										<Text style={styles.productListElementPriceText}> {item.price}</Text> 
+									</Text>
+									
+
+									<Pressable style={styles.addButton} onPress={() => handleProductPress}>
+										<Text style={styles.addButtonText}>+</Text>
+									</Pressable>
+
+								</View>
+							</View>
+						</LinearGradient>
+					</Pressable>
+				)}
+			/>
+		)}
 
     </View>
 
