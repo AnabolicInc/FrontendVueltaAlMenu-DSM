@@ -14,7 +14,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 //import the dependency to create a search bar
 
-
+//to-do: Falta que se desplieguen los productos en la screen de cliente, esto se implementara proximamente
 
 interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> { }
 
