@@ -93,7 +93,7 @@ const CreateNewProductViewModel = () => {
                     ...data,
                     price: parseFloat(data.price),
                     quantity: parseInt(data.quantity, 10),
-                    category_id: '1',  // Establecer category_id a 1 para pruebas
+                    category_id: currentCategory.id,  // Establecer category_id a 1 para pruebas
                 };
                 console.log("CHECKPOINT")
 

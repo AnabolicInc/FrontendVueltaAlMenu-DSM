@@ -39,7 +39,7 @@ export const ProductProvider = ({ children }: any) => {
             const dataProduct = response.data;
             if (files && files.length > 0) {
                 const images = await Promise.all(
-                    files.map(file => UpdateFileUseCase(file, 'products', dataProduct.id))
+                    files.map(file => UpdateFileUseCase(file, 'images', dataProduct.id))
                 );
                 dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
             }
