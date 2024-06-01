@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 
 import { COLORS, FONTSIZE } from "../../themes/Theme";
@@ -79,6 +79,7 @@ const ClientHomeStyles = StyleSheet.create(
           productListText: {
             alignSelf: 'stretch',
             flexDirection: 'column',
+            top: 10,
           },
           productListTittle: {
             position: 'absolute',
@@ -103,32 +104,30 @@ const ClientHomeStyles = StyleSheet.create(
           productListInnerContainer: {
             flex: 1,
             flexGrow: 1,
-            flexDirection: 'column',
-            width: "85%",
+            flexDirection: 'row',
+            width: "92%",
             height: "70%",
             position: 'absolute',
-            top: "18%",
-            alignContent: 'center',
-            borderRadius: 10,
+            top: "45%",
+            
           },
           productListElement: {
             backgroundColor: COLORS.secondaryBlackRGBA,
-            flex: 1,
-            width: "100%",
-            height: 150,
+            width: 180,
+            height: 312,
             borderRadius: 30,
             marginBottom: 10,
             paddingStart: 15,
             paddingEnd: 15,
-            alignSelf: 'stretch',
-            flexDirection: 'row',
+            flexDirection: 'column',
+            marginRight: 15,
           },
           productListImage: {
             position: 'relative',
-            borderRadius: 30,
-            width: 100,
-            height: 100,
-            top: 25,
+            borderRadius: 15,
+            width: "100%",
+            height: 150,
+            top: 17,
             marginRight: '4%',
           },
           productListElementName: {
@@ -136,14 +135,44 @@ const ClientHomeStyles = StyleSheet.create(
             fontFamily: 'Poppins',
             textAlign: 'left',
             fontSize: FONTSIZE.size_18,
-            top: 25,
+            top: 20,
           },
           productListElementDescription: {
             color: COLORS.primaryLightGrey,
             fontFamily: 'Poppins',
             textAlign: 'left',
             fontSize: FONTSIZE.size_12,
-            top: 25,
+            top: 20,
+          },
+          productListPriceAddBoxContainer: {
+            position: 'absolute',
+            width: "100%",
+            bottom: 50,
+            alignSelf: 'center',
+          },
+          productListPriceAddBox: {
+            color: COLORS.primaryLightGrey,
+            fontFamily: 'Poppins',
+            fontSize: FONTSIZE.size_12,
+            top: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            
+
+          },
+          productListElementPriceSignText: {
+            color: COLORS.primaryOrange,
+            fontFamily: 'Poppins',
+            textAlign: 'left',
+            fontSize: FONTSIZE.size_18,
+            top: 22,
+          },
+          productListElementPriceText: {
+            color: COLORS.primaryWhite,
+            fontFamily: 'Poppins',
+            textAlign: 'left',
+            fontSize: FONTSIZE.size_18,
+            top: 22,
           },
           container: {
             flex: 1,
@@ -204,14 +233,16 @@ const ClientHomeStyles = StyleSheet.create(
           addButton: {
             backgroundColor: '#D17842',
             borderRadius: 10,
-            padding: 8,
+            width: 36,
+            height: 36,
             alignItems: 'center',
             justifyContent: 'center',
+            top: 15,
           },
           addButtonText: {
-            color: '#FFFFFF',
-            fontSize: 20,
-            fontWeight: 'bold',
+            color: COLORS.primaryWhite,
+            fontSize: 24,
+            bottom: 1,
           },
     
     }
