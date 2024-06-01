@@ -10,6 +10,8 @@ import { showMessage } from 'react-native-flash-message';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CreateNewProductScreen'> { }
 
+//to-do: Falta que los productos creados se almacenen, además, se necesita cambiar el arreglo de imagenes, esto se implementara proximamente
+
 export const CreateNewProductScreen = ({ navigation, route }: Props) => {
 
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
