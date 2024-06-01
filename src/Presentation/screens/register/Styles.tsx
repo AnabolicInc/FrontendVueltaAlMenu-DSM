@@ -5,7 +5,7 @@ import { COLORS, FONTSIZE } from '../../themes/Theme'
 
 
 const RegisterStyles = StyleSheet.create({
-
+	
     registerContainer:{
 		flex: 1,
 		position: 'relative',
@@ -37,7 +37,7 @@ const RegisterStyles = StyleSheet.create({
 	},
 	
     registerMainTitle: {
-		color: COLORS.primaryOrange,
+		color: COLORS.primaryWhite,
 		fontSize: FONTSIZE.size_24,
 		textAlign: 'center',
 		marginBottom: 20,
