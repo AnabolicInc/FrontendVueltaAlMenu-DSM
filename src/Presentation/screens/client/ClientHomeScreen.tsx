@@ -8,29 +8,33 @@ import useViewModel from './ViewModel';
 
 import styles from './Styles';
 import { useFonts } from 'expo-font';
+import { FlatList } from 'react-native-reanimated/lib/typescript/Animated';
+import { LinearGradient } from 'expo-linear-gradient';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 //import the dependency to create a search bar
 
 
 
-interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> {}
+interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> { }
 
-export const  ClientHomeScreen = ({ navigation, route}: Props) => {
-  
+export const ClientHomeScreen = ({ navigation, route }: Props) => {
+
   const { products } = useViewModel();
 
   const [fontsLoaded] = useFonts({
-    Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf' ),
+    Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
   });
 
   if (!fontsLoaded) {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
-  
+
   console.log(products);
 
   return (
     <View style={styles.userContainer}>
-      
+
       <Text style={styles.mainText}>Encuentra el mejor platillo para ti</Text>
 
 
@@ -45,10 +49,13 @@ export const  ClientHomeScreen = ({ navigation, route}: Props) => {
           // Handle search logic here
         }}
       />
-     
-    
+
+
+
+  
+
     </View>
-    
+
   )
 }
 
