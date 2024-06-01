@@ -5,37 +5,48 @@ import useViewModel from '../screens/register/ViewModel';
 import { COLORS, FONTSIZE } from '../themes/Theme'
 
 interface Props {
-    fieldLabel: string;      
-    onChangeText: (text:string) => void;
+	fieldLabel: string;
+	onChangeText: (text: string) => void;
 	prefix?: string;
 	customStyle?: object;
 	icon?: object;
-	secureTextEntry?:boolean;
+	secureTextEntry?: boolean;
 	keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
+	maxLength?: number;
 }
 
-const RegisterInput = ({fieldLabel,onChangeText,prefix,customStyle,icon,secureTextEntry,keyboardType}:Props) => {
+const RegisterInput = ({
+	fieldLabel,
+	onChangeText,
+	prefix,
+	customStyle,
+	icon,
+	secureTextEntry,
+	keyboardType,
+	maxLength
+}: Props) => {
 
 	const { loading } = useViewModel();
 
 	return (
-	  <View style={styles.inputContainer}>
-		<View style={styles.prefixContainer}> 
-			{icon && <Image source={icon} style={styles.icon} />}
-			{prefix && <Text style={styles.prefix}>{prefix}</Text>}
-		</View> 
-		<TextInput
-			style = {{...styles.fieldLabel, ...customStyle}}
-			placeholder = {fieldLabel}
-			placeholderTextColor={COLORS.primaryOrange}
-			onChangeText={onChangeText}
-			secureTextEntry={secureTextEntry}
-			keyboardType={keyboardType} 
-			editable={loading ? false : true}
-		/>
-	  </View>
+		<View style={styles.inputContainer}>
+			<View style={styles.prefixContainer}>
+				{icon && <Image source={icon} style={styles.icon} />}
+				{prefix && <Text style={styles.prefix}>{prefix}</Text>}
+			</View>
+			<TextInput
+				style={{ ...styles.fieldLabel, ...customStyle }}
+				placeholder={fieldLabel}
+				placeholderTextColor={COLORS.primaryOrange}
+				onChangeText={onChangeText}
+				secureTextEntry={secureTextEntry}
+				keyboardType={keyboardType}
+				editable={loading ? false : true}
+				maxLength={maxLength}
+			/>
+		</View>
 	)
-  }
+}
 
 export default RegisterInput;
 
@@ -45,7 +56,7 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		marginBottom: 10,
 		alignSelf: 'center',
-  	},
+	},
 	prefixContainer: {
 		backgroundColor: COLORS.backgroundInputGrayRGBA,
 		borderRadius: 10,
@@ -54,7 +65,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		height: 40,
-		
+
 	},
 
 	prefix: {
@@ -67,7 +78,7 @@ const styles = StyleSheet.create({
 		fontFamily: 'Poppins',
 		marginBottom: 10,
 		marginTop: 10,
-		
+
 	},
 	icon: {
 		position: 'relative',
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
 		borderRadius: 2,
 	},
 
-  	fieldLabel: {
+	fieldLabel: {
 		position: 'relative',
 		fontFamily: 'Poppins',
 		backgroundColor: COLORS.backgroundInputGrayRGBA,
@@ -90,6 +101,6 @@ const styles = StyleSheet.create({
 		paddingStart: 15,
 		paddingEnd: 15,
 		alignSelf: 'center',
-  	},
+	},
 
 })
