@@ -103,6 +103,18 @@ const CategoryCreateStyles = StyleSheet.create(
         
       },
 
+      loadingContainer: {
+        backgroundColor: COLORS.secondaryBlackRGBA,
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginBottom: 10,
+        zIndex: 1,
+      },
+
 })
 
 export default CategoryCreateStyles;
