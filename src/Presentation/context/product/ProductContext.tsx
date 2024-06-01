@@ -2,16 +2,19 @@ import { createContext, useEffect, useState } from "react";
 import { Product } from "../../../Domain/entities/Product";
 import { ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/ResponseApiDelivery";
 import * as ImagePicker from "expo-image-picker";
-import { ProductListUseCase } from "../../../Domain/useCases/Product/ProductListUseCase";
 import { ProductCreateUseCase } from "../../../Domain/useCases/Product/ProductCreateUseCase";
 import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase";
 import { SaveProductUseCase } from "../../../Domain/useCases/Product/SaveProductLocal";
 import { ProductUpdateUseCase } from "../../../Domain/useCases/Product/ProductUpdateUseCase";
 import { ProductDeleteUseCase } from "../../../Domain/useCases/Product/ProductDeleteUseCase";
+import { ProductListByCategoryUseCase } from "../../../Domain/useCases/Product/ProductListByCategoryUseCase";
+import { ProductListUseCase } from "../../../Domain/useCases/Product/ProductListAllUseCase";
 
 export interface ProductContextProps {
     products: Product[];
-    getAllProducts(id: string): void;
+    productsByCategory: Product[];
+    getAllProductsByCategory(id: string): void;
+    getAllProducts(): void;
     createProduct(product: Product, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
     updateProduct(id: string, name: string, description: string, price: number, quantity: number, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
     deleteProduct(id: string): Promise<ResponseAPIDelivery>;
@@ -23,13 +26,24 @@ export const ProductContext = createContext({} as ProductContextProps);
 
 export const ProductProvider = ({ children }: any) => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [productsByCategory, setProductsByCategory] = useState<Product[]>([]);
+    
 
     useEffect(() => {
-        getAllProducts("");
+        getAllProductsByCategory("");
     }, []);
 
-    const getAllProducts = async (category_id: string) => {
-        const response = await ProductListUseCase(category_id);
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+
+    const getAllProductsByCategory = async (category_id: string) => {
+        const response = await ProductListByCategoryUseCase(category_id);
+        setProductsByCategory(response.data);
+    }
+
+    const getAllProducts = async () => {
+        const response = await ProductListUseCase();
         setProducts(response.data);
     }
 
@@ -44,7 +58,7 @@ export const ProductProvider = ({ children }: any) => {
                 dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
             }
             await SaveProductUseCase(dataProduct);
-            getAllProducts(dataProduct.category_id);
+            getAllProductsByCategory(dataProduct.category_id);
         }
         return response;
     }
@@ -59,14 +73,14 @@ export const ProductProvider = ({ children }: any) => {
                 );
                 dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
             }
-            getAllProducts(dataProduct.category_id);
+            getAllProductsByCategory(dataProduct.category_id);
         }
         return response;
     }
 
     const deleteProduct = async (id: string) => {
         const response = await ProductDeleteUseCase(id);
-        getAllProducts(id);
+        getAllProductsByCategory(id);
         return response;
     }
 
@@ -86,7 +100,9 @@ export const ProductProvider = ({ children }: any) => {
         <ProductContext.Provider
             value={{
                 products,
+                productsByCategory,
                 getAllProducts,
+                getAllProductsByCategory,
                 createProduct,
                 updateProduct,
                 deleteProduct,

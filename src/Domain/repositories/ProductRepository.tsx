@@ -7,7 +7,8 @@ import { Product } from "../entities/Product";
  * The description of the methods can be found in the data layer.
  */
 export interface ProductRepository {
-    getAllProducts(id: string): Promise<ResponseAPIDelivery>;
+    getAllProducts(): Promise<ResponseAPIDelivery>;
+    getAllProductsByCategory(id: string): Promise<ResponseAPIDelivery>;
     createProduct(product: Product): Promise<ResponseAPIDelivery>
     updateProduct(id: string, name: string, description: string, price: number, quantity: number): Promise<ResponseAPIDelivery>
     deleteProduct(id: string): Promise<ResponseAPIDelivery>
