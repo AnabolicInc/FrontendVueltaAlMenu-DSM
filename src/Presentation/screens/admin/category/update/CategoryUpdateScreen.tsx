@@ -9,6 +9,7 @@ import styles from './Styles';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryUpdateScreen'> {}
@@ -24,9 +25,14 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
     updateCategory,
     image,
     name,
-    description
+    description,
+    loading
   } = useViewModel(route);
 
+  const handleCategoryUpdate = async () => {
+    updateCategory(); 
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.categoryUpdateContainer}>
@@ -75,17 +81,13 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
         />
 
 
-        <View style={styles.saveButton}> 
-          <Pressable onPress={() => {updateCategory(); navigation.goBack();}}>
+          <Pressable style={styles.saveButton} onPress={() => {handleCategoryUpdate()}}>
             <Text style={styles.saveText}>Actualizar</Text>
           </Pressable>
-        </View>
 
-        <View style={styles.cancelButton}> 
-          <Pressable onPress={() => navigation.goBack()}>
+          <Pressable style={styles.cancelButton} onPress={() => navigation.goBack()}>
             <Text style={styles.cancelText}>Cancelar</Text>
           </Pressable>
-        </View>
 
       </ScrollView>
 
@@ -95,7 +97,15 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
             setModalUseState={setModalVisible} 
             openGallery={pickImage}
             openCamera={takePhoto}
-        />
+      />
+      
+      {loading &&(
+
+      <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#D17842" />
+      </View>
+
+      )}
 
     </View>
   )
