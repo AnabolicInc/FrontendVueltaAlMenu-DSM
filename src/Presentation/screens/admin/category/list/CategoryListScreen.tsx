@@ -65,11 +65,7 @@ export const CategoryListScreen = ({ navigation }: Props) => {
                                 )}
                                 <View style={styles.categoryListText}>
                                     <Text style={styles.categoryListElementName}>{item.name}</Text>
-                                    <Text style={styles.categoryListElementDescription}>
-                                        {item.description.length > 18
-                                            ? item.description.match(/.{1,18}/g).join('-\n')
-                                            : item.description}
-                                    </Text>
+                                    <Text style={styles.categoryListElementDescription}>{item.description}</Text>
                                 </View>
                                 <View style={styles.categoryListOptions}>
                                     <View style={styles.buttonEdit}>

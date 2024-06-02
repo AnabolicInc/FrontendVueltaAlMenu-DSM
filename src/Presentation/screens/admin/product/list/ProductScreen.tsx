@@ -34,7 +34,7 @@ export const ProductScreen = ({ navigation }: Props) => {
                                         editable={false}
                                     />
                                     <Text style={Styles.productPrice}>${item.price.toFixed(2)}</Text>
-                                    <TouchableOpacity onPress={() => {}}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('ProductUpdateScreen', {productItem: item})}>
                                         <Text style={Styles.editButton}>Editar</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => deleteProduct(item.id)}>

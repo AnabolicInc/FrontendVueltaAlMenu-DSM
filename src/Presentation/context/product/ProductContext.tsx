@@ -68,6 +68,7 @@ export const ProductProvider = ({ children }: any) => {
         const response = await ProductUpdateUseCase(id, name, description, price, quantity);
         if (response.success) {
             const dataProduct = response.data;
+
             if (files && files.length > 0) {
                 const images = await Promise.all(
                     files.map(file => UpdateFileUseCase(file, 'categories', dataProduct.id))
