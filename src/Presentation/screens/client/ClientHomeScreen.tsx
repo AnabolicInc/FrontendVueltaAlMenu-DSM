@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text, Image, ImageBackground, Pressable, FlatList } from 'react-native'
 import { TextInput } from 'react-native';
-import { RootClientBottomTabParamList } from '../../navigation/tabs/client/ClientBottomTab';
 import { StackScreenProps } from '@react-navigation/stack';
 import useViewModel from './ViewModel';
 
 
+import { ClientHomeNavigatorParamList } from '../../navigation/tabs/client/ClientHomeNavigator';
 import styles from './Styles';
 import { COLORS } from '../../themes/Theme'
 import { useFonts } from 'expo-font';
@@ -17,7 +17,7 @@ import { Product } from '../../../Domain/entities/Product';
 
 //to-do: Falta que se desplieguen los productos en la screen de cliente, esto se implementara proximamente
 
-interface Props extends StackScreenProps<RootClientBottomTabParamList, 'ClientHomeScreen'> { }
+interface Props extends StackScreenProps<ClientHomeNavigatorParamList, 'ClientHomeScreen'> { }
 
 export const ClientHomeScreen = ({ navigation, route }: Props) => {
 
@@ -64,7 +64,7 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
 				data={products}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
-					<Pressable onPress={() => handleProductPress(item)}>
+					<Pressable onPress={() => navigation.navigate("ClientShoppingNavigator")}>
 
 						<LinearGradient
 							colors={[COLORS.primaryGrey, 'transparent']}

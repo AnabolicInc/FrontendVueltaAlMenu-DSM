@@ -38,17 +38,25 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
   }
 
   return (
-    <View style={styles.categoryCreateContainer}>
-      <ScrollView style={styles.categoryCreateInnerContainer} showsVerticalScrollIndicator = {false}>
-      <Text style={styles.categoryCreateText}>CREAR CATEGORÍA</Text>
-      {
-          (image == '')
-          ?
-          <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/category.png')} />
-          :
-          <Image style={styles.categoryCreateUserImage} source={{uri:image}} />
+      <ScrollView style={styles.categoryCreateContainer} showsVerticalScrollIndicator = {false}>
+      
+      <View>
+          {
+            (image == '')
+            ?
+            <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/category.png')} />
+            :
+            <Image style={styles.categoryCreateUserImage} source={{uri:image}} />
 
-        }
+          }
+
+          <View style={styles.textContainer}>
+            <Text style={styles.categoryName}>{name}</Text>
+            <Text style={styles.categoryDescription}>{description}</Text> 
+          </View>
+        </View>
+        
+        <Text style={styles.categoryCreateText}>Agregar categoría</Text>
 
       <Pressable style={styles.uploadImageButton} onPress={() => setModalVisible(true)}>
           <Text style={styles.uploadImageButtonText}>Subir imagen</Text>
@@ -72,15 +80,14 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
                 maxLength={50}
         />
         
-        <View style={styles.buttonSave}> 
-        <Pressable onPress={ () => {
+        <Pressable style={styles.saveButton} onPress={ () => {
             handleCategoryCreate();}}> 
-          <Text style={styles.saveText}>AÑADIR</Text>
+          <Text style={styles.saveText}>Agregar</Text>
         </Pressable>
-        </View>
 
-        </ScrollView>
-
+        <Pressable style={styles.cancelButton} onPress={() => navigation.goBack()}>
+            <Text style={styles.cancelText}>Cancelar</Text>
+          </Pressable>
 
         <ModalPickImage 
             modalUseState = {modalVisible} 
@@ -95,7 +102,6 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
           </View>
 
         )}
-        
-    </View>
+        </ScrollView>
   )
 }
