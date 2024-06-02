@@ -14,7 +14,7 @@ interface ContextStateProps {
 
 export type ClientShoppingNavigatorParamList = {
 
-    ProductInfoScreen: undefined;
+    ProductInfoScreen: { product: Product };
 
 }
 

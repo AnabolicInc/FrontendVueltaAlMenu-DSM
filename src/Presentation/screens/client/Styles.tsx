@@ -157,7 +157,6 @@ const ClientHomeStyles = StyleSheet.create(
             top: 20,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            
 
           },
           productListElementPriceSignText: {

@@ -31,7 +31,7 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
     return null; // Muestra un componente de carga mientras se carga la fuente
   }
 
-  console.log(products);
+  //console.log(products);
 
   const handleProductPress = (product: Product) => {
 	}
@@ -64,7 +64,7 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
 				data={products}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
-					<Pressable onPress={() => navigation.navigate("ClientShoppingNavigator")}>
+					<Pressable onPress={() => navigation.navigate("ProductInfoScreen", { product: item })}>
 
 						<LinearGradient
 							colors={[COLORS.primaryGrey, 'transparent']}
