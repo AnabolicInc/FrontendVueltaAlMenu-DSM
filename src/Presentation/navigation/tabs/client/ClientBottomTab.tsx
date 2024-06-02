@@ -4,12 +4,12 @@ import { FontAwesome } from '@expo/vector-icons'
 
 
 //import ProfileScreen from '../../../screens/profile/ProfileScreen';
-import ClientHomeScreen from '../../../screens/client/ClientHomeScreen';
 import ShoppingCartScreen from '../../../../Presentation/screens/client/shopping/ShoppingCartScreen';
 import { CategoryListScreen } from '../../../screens/admin/category';
 import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
 import { ReactElement } from 'react';
 import { ProductProvider } from '../../../context/product/ProductContext';
+import { ClientHomeNavigator } from './ClientHomeNavigator';
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;
@@ -17,13 +17,14 @@ interface ContextStateProps {
 
 
 export type RootClientBottomTabParamList = {
-    ClientHomeScreen: undefined;
     ShoppingCartScreen: undefined;
     ProfileInfoScreen: undefined;
     ProfileUpdateScreen: undefined;
     ChangePasswordScreen: undefined;
     PaymentScreen: undefined;
     CategoryListScreen: undefined;
+    ClientShoppingNavigator: undefined;
+    ClientHomeNavigator: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootClientBottomTabParamList>();
@@ -39,7 +40,7 @@ export const ClientBottomTab = () => {
                     tabBarInactiveTintColor: '#9B9B9B',
                 }}
             >
-                <Tab.Screen name="ClientHomeScreen" component={ClientHomeScreen}
+                <Tab.Screen name="ClientHomeNavigator" component={ClientHomeNavigator}
                     options={{
                         title: 'Home',
                         tabBarStyle: { backgroundColor: '#0C1013', borderTopWidth: 0, paddingBottom: 10 },
