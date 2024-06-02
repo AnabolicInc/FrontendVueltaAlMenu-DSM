@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { CategoryProvider } from '../../../context/category/CategoryContext';
 import { ClientHomeScreen } from '../../../screens/client';
 import { ClientShoppingNavigator } from "./ClientShoppingNavigator";
+import { ProductProvider } from '../../../context/product/ProductContext';
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;
@@ -23,7 +24,7 @@ const Stack = createStackNavigator<ClientHomeNavigatorParamList>();
 export const ClientHomeNavigator = () => {
 
     return (
-        <CategoryState>
+        <ProductState>
             <Stack.Navigator
                 initialRouteName="ClientHomeScreen"
                 screenOptions={{headerShown: false}}
@@ -31,15 +32,15 @@ export const ClientHomeNavigator = () => {
                 <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
                 <Stack.Screen name="ClientShoppingNavigator" component={ClientShoppingNavigator} />
             </Stack.Navigator>
-        </CategoryState>
+        </ProductState>
     );
 }
 
 // Create client provider
-const CategoryState: React.FC<ContextStateProps> = ({ children }) => {
+const ProductState: React.FC<ContextStateProps> = ({ children }) => {
     return (
-        <CategoryProvider>
+        <ProductProvider>
             {children}
-        </CategoryProvider>
+        </ProductProvider>
     )
 }
