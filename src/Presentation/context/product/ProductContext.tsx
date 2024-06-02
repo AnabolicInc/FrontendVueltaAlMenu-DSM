@@ -13,7 +13,7 @@ export interface ProductContextProps {
     products: Product[];
     getAllProducts(id: string): void;
     createProduct(product: Product): Promise<ResponseAPIDelivery>;
-    updateProduct(id: string, name: string, description: string, price: number, quantity: number): Promise<ResponseAPIDelivery>;
+    updateProduct(id: string, name: string, description: string, price: number, quantity: number, file?: ImagePicker.ImageInfo): Promise<ResponseAPIDelivery>;
     deleteProduct(id: string): Promise<ResponseAPIDelivery>;
     removeProduct(id: string): Promise<ResponseAPIDelivery>;
     updateFile(file: ImagePicker.ImageInfo, collection: string, id: string): Promise<ResponseAPIDelivery>;
@@ -52,8 +52,9 @@ export const ProductProvider = ({ children }: any) => {
         if (response.success) {
             const dataProduct = response.data;
             if (file !== undefined) {
-                const responseImage = await UpdateFileUseCase(file, 'categories', dataProduct.id);
-                dataProduct.image = responseImage.data;
+
+                //const responseImage = await UpdateFileUseCase(file, 'products', dataProduct.id);
+                //dataProduct.image = responseImage.data;
             }
             getAllProducts(dataProduct.category_id);
         }
