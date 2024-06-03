@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
-import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { Image, Pressable, Text, TouchableOpacity, View, FlatList } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './Styles';
+import { LinearGradient } from 'expo-linear-gradient';
 import { RootStackParamList } from '../../../navigation/MainAppStack';
 import { ModalPickPayment } from '../../../components/ModalPickPayment';
+import { Product } from '../../../../Domain/entities/Product';
+import { COLORS } from '../../../themes/Theme';
+import { ShoppingContext } from '../../../context/shopping/ShoppingContext';
 
 interface Props extends StackScreenProps<RootStackParamList, 'ClientBottomTab'> { }
 
+interface ShoppingCartItemProps{
+	product: Product;
+	remove: (product: Product) => void;
 
-const ShoppingCartScreen = ({ navigation, route }: Props) => {
+}
+
+export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) => {
 
 	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
 
 	const handlePaymentMethodSelection = (paymentMethod: string) => {
-        navigation.navigate('PaymentScreen');
+        //navigation.navigate('PaymentScreen');
         setMoldalVisible(false);
     };
+
+	const { shoppingCart, total, removeProductShoppingCart } = useContext(ShoppingContext);
+
+	const removeProduct = async ( product: Product ) => {
+		//await removeProductShoppingCart(product);
+	}
 
 	return (
 		
@@ -26,22 +41,73 @@ const ShoppingCartScreen = ({ navigation, route }: Props) => {
 		<View style={styles.shoppingCartContainer}>
 			{/* <Image style={styles.backButton} source={require('../../../../../assets/images/leftButton.png')} /> */}
 
-			<View style={styles.shopppingCartInnerContainer}>
+			<View style={styles.shoppingCartInnerContainer}>
 				<Text style={styles.mainText}>Shopping Cart</Text>
 
 				<Pressable style={styles.backButton} onPress={() => console.log('button')}>
 					<Image style={styles.backButton} source={require('../../../../../assets/images/leftButton.png')} />
 				</Pressable>
 
+
+				{/*DO NOT DELETE, CODE COMMENTED FOR FUTURE IMPLEMENTATION*/}
+				{/* {shoppingCart.length === 0 ? (
+                <Text style={styles.noShoppingCartListText}>No hay productos en tu carrito</Text>
+            	) : (
+                <FlatList 
+                    style={styles.shoppingCartListInnerContainer} 
+                    showsVerticalScrollIndicator={false}
+                    data={shoppingCart}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+						// <ShoppingCartItem product={item} remove={removeProduct}/>
+
+						<LinearGradient
+							colors={[COLORS.primaryGrey, 'transparent']}
+							style={styles.shoppingCartListElement}
+						>
+							{item.image ? (
+								<Image style={styles.shoppingCartListImage} source={{ uri: item.image }} />
+							) : (
+								<Image style={styles.shoppingCartListImage} source={require('../../../../../assets/images/category.png')} />
+							)}
+							<View style={styles.shoppingCartListText}>
+								<Text style={styles.shoppingCartListElementName}>{item.name}</Text>
+								<Text style={styles.shoppingCartListElementDescription}>
+									{item.description.length > 18
+										? item.description.match(/.{1,18}/g).join('-\n')
+										: item.description}
+								</Text>
+							</View>
+						</LinearGradient>
+                    )}
+                />
+            	)} */}
+
+
 				{/*createa a pressable button to go to the payment screen */}
-				<Pressable
-					style={styles.payButton}
-					onPressIn={() => setMoldalVisible(true)}
-					//onPress={ () => navigation.navigate('PaymentScreen')}
-				>
-					<MaterialCommunityIcons style={{ marginRight: 10 }} name="cart" size={20} color="white" />
-					<Text style={styles.payText}>Pagar</Text>
-				</Pressable>
+
+				<View style={styles.payTotalBox}>
+
+					<View>
+
+						<Text style={styles.totalTitle}>Total</Text>
+
+						<View style={{flexDirection: 'row'}}>
+							<Text style={styles.priceSign}>$</Text>
+							{/* Cambiar a variable total */}
+							<Text style={styles.priceText}>total</Text>
+						</View>
+					</View>
+
+					<Pressable
+						style={styles.payButton}
+						onPressIn={() => setMoldalVisible(true)}
+						//onPress={ () => navigation.navigate('PaymentScreen')}
+					>
+						<MaterialCommunityIcons style={{ marginRight: 10 }} name="cart" size={20} color="white" />
+						<Text style={styles.payText}>Pagar</Text>
+					</Pressable>
+				</View>
 
 			</View>
 
@@ -51,8 +117,6 @@ const ShoppingCartScreen = ({ navigation, route }: Props) => {
 				onPaymentMethodSelected={handlePaymentMethodSelection}
 			>
 			</ModalPickPayment>
-
-
 
 		</View>
 	)
