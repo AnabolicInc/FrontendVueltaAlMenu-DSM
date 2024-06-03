@@ -1,9 +1,7 @@
 import React, { ReactElement } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { CategoryProvider } from '../../../context/category/CategoryContext';
-import { ClientBottomTab } from "./ClientBottomTab";
-import { ProductInfoScreen } from '../../../screens/client/shopping';
+import { ProductInfoScreen, ShoppingCartScreen } from '../../../screens/client/shopping';
 import { ProductProvider } from '../../../context/product/ProductContext';
 import { Product } from "../../../../Domain/entities/Product";
 
@@ -15,6 +13,7 @@ interface ContextStateProps {
 export type ClientShoppingNavigatorParamList = {
 
     ProductInfoScreen: { product: Product };
+    ShoppingCartScreen: undefined;
 
 }
 
@@ -30,6 +29,7 @@ export const ClientShoppingNavigator = () => {
                 screenOptions={{headerShown: false}}
             >
                 <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
+                <Stack.Screen name="ShoppingCartScreen" component={ShoppingCartScreen} />
 
             </Stack.Navigator>
         </ProductState>
