@@ -49,7 +49,7 @@ export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) =
 				</Pressable>
 
 
-
+				{/*DO NOT DELETE, CODE COMMENTED FOR FUTURE IMPLEMENTATION*/}
 				{/* {shoppingCart.length === 0 ? (
                 <Text style={styles.noShoppingCartListText}>No hay productos en tu carrito</Text>
             	) : (
