@@ -49,17 +49,11 @@ const CategoryCreateViewModel = () => {
 	
 	const [loading, setLoading] = useState(false);
 
-
-
-
     const onChange = (property: string, value: string) => {
 
 		setValues({ ... values, [property]:value});
 
 	};
-
-
-
 
     const [file, setfile] = useState<ImagePicker.ImageInfo>();
 
@@ -180,6 +174,7 @@ const CategoryCreateViewModel = () => {
         takePhoto,
         errorMessages,
         responseError: errorsResponse,
+		loading,
       };
 }
 

@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProductProvider } from "../../../context/product/ProductContext";
-import {CreateNewProductScreen, ProductScreen} from '../../../screens/admin/product';
+import {CreateNewProductScreen, ProductScreen, ProductUpdateScreen} from '../../../screens/admin/product';
 import React, { ReactElement } from "react";
 import { Product } from "../../../../Domain/entities/Product";
 
@@ -12,6 +12,7 @@ interface ContextStateProps {
 export type AdminProductNavigatorParamList = {
     CreateNewProductScreen: undefined;
     ProductScreen: undefined;
+    ProductUpdateScreen: {productItem: Product};
 }
 
 const Stack = createStackNavigator<AdminProductNavigatorParamList>();
@@ -29,6 +30,7 @@ export const AdminProductNavigator = () => {
         >
             <Stack.Screen name="CreateNewProductScreen" component={CreateNewProductScreen} />
             <Stack.Screen name="ProductScreen" component={ProductScreen} />
+            <Stack.Screen name="ProductUpdateScreen" component={ProductUpdateScreen} />
         </Stack.Navigator>
         </ProductState>
     );

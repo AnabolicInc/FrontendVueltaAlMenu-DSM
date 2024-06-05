@@ -12,6 +12,7 @@ import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
 import CategoryListViewModel from '../list/ViewModel';
 import { get } from 'http';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryCreateScreen'> {}
@@ -27,26 +28,35 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
     image,
     createCategory,
     name,
-    description
+    description,
+    loading
   } = useViewModel();
 
-  const handleCategoryCreate = () => {
-    createCategory();
+  const handleCategoryCreate = async () => {
+    await createCategory();
+    navigation.goBack();
   }
 
-
   return (
-    <View style={styles.categoryCreateContainer}>
-      <ScrollView style={styles.categoryCreateInnerContainer} showsVerticalScrollIndicator = {false}>
-      <Text style={styles.categoryCreateText}>CREAR CATEGORÍA</Text>
-      {
-          (image == '')
-          ?
-          <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/category.png')} />
-          :
-          <Image style={styles.categoryCreateUserImage} source={{uri:image}} />
+      <ScrollView style={styles.categoryCreateContainer} showsVerticalScrollIndicator = {false}>
+      
+      <View>
+          {
+            (image == '')
+            ?
+            <Image style={styles.categoryCreateUserImage} source={require('../../../../../../assets/images/category.png')} />
+            :
+            <Image style={styles.categoryCreateUserImage} source={{uri:image}} />
 
-        }
+          }
+
+          <View style={styles.textContainer}>
+            <Text style={styles.categoryName}>{name}</Text>
+            <Text style={styles.categoryDescription}>{description}</Text> 
+          </View>
+        </View>
+        
+        <Text style={styles.categoryCreateText}>Agregar categoría</Text>
 
       <Pressable style={styles.uploadImageButton} onPress={() => setModalVisible(true)}>
           <Text style={styles.uploadImageButtonText}>Subir imagen</Text>
@@ -70,15 +80,14 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
                 maxLength={50}
         />
         
-        <View style={styles.buttonSave}> 
-        <Pressable onPress={ () => {
-            handleCategoryCreate(); navigation.goBack();}}> 
-          <Text style={styles.saveText}>AÑADIR</Text>
+        <Pressable style={styles.saveButton} onPress={ () => {
+            handleCategoryCreate();}}> 
+          <Text style={styles.saveText}>Agregar</Text>
         </Pressable>
-        </View>
 
-        </ScrollView>
-
+        <Pressable style={styles.cancelButton} onPress={() => navigation.goBack()}>
+            <Text style={styles.cancelText}>Cancelar</Text>
+          </Pressable>
 
         <ModalPickImage 
             modalUseState = {modalVisible} 
@@ -86,7 +95,13 @@ export const CategoryCreateScreen = ({navigation, route}:Props) => {
             openGallery={pickImage}
             openCamera={takePhoto}
         />
-        
-    </View>
+        {loading &&(
+
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#D17842" />
+          </View>
+
+        )}
+        </ScrollView>
   )
 }
