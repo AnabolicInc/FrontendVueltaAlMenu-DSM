@@ -4,7 +4,7 @@ import { ResponseAPIDelivery } from "../../../Data/sources/remote/api/models/Res
 import * as ImagePicker from "expo-image-picker";
 import { ProductListUseCase } from "../../../Domain/useCases/Product/ProductListUseCase";
 import { ProductCreateUseCase } from "../../../Domain/useCases/Product/ProductCreateUseCase";
-import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase"; // Importa el nuevo caso de uso
+import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCase";
 import { SaveProductUseCase } from "../../../Domain/useCases/Product/SaveProductLocal";
 import { ProductUpdateUseCase } from "../../../Domain/useCases/Product/ProductUpdateUseCase";
 import { ProductDeleteUseCase } from "../../../Domain/useCases/Product/ProductDeleteUseCase";
@@ -39,9 +39,9 @@ export const ProductProvider = ({ children }: any) => {
             const dataProduct = response.data;
             if (files && files.length > 0) {
                 const images = await Promise.all(
-                    files.map(file => UpdateFileUseCase(file, 'images', dataProduct.id))  // Usar UpdateFileUseCase
+                    files.map(file => UpdateFileUseCase(file, 'images', dataProduct.id))
                 );
-                dataProduct.images = images.map(image => image.data);  // Asegurarse de que `image.data` contiene la URL de la imagen
+                dataProduct.images = images.map(image => image.data);
             }
             await SaveProductUseCase(dataProduct);
             getAllProducts(dataProduct.category_id);
@@ -55,7 +55,7 @@ export const ProductProvider = ({ children }: any) => {
             const dataProduct = response.data;
             if (files && files.length > 0) {
                 const images = await Promise.all(
-                    files.map(file => UpdateFileUseCase(file, 'categories', dataProduct.id))  // Usar UpdateFileUseCase
+                    files.map(file => UpdateFileUseCase(file, 'categories', dataProduct.id))
                 );
                 dataProduct.images = images.map(image => image.data);
             }
