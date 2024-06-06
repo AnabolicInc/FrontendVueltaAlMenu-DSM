@@ -93,7 +93,7 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                     prefix='+56'
                     icon={require('../../../../assets/images/Flag_of_Chile.png')}
                     customStyle={{ width: 160, justifyContent: 'flex-start', marginLeft: 10 }}
-                    onChangeText={(text) => onChange('phone', '+56' + text)}
+                    onChangeText={(text) => onChange('phone', text)}
                     keyboardType='numeric'
                     maxLength={9}
                 />
