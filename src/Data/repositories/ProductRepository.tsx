@@ -111,7 +111,7 @@ export class ProductRepositoryImpl implements ProductRepository {
 
     async deleteProduct(id: string): Promise<ResponseAPIDelivery> {
         try {
-            const { data } = await ApiDelivery.delete<ResponseAPIDelivery>(`product/deleteProduct/${id}`);
+            const { data } = await ApiDelivery.put<ResponseAPIDelivery>(`product/deleteProduct/${id}`);
             console.log('DATA: ', JSON.stringify(data));
 
             return Promise.resolve(data)
