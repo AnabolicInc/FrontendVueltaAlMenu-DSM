@@ -9,7 +9,7 @@ import { RootStackParamList } from '../../../navigation/MainAppStack';
 import { ModalPickPayment } from '../../../components/ModalPickPayment';
 import { Product } from '../../../../Domain/entities/Product';
 import { COLORS } from '../../../themes/Theme';
-import { ShoppingContext } from '../../../context/shopping/ShoppingContext';
+import { ShoppingCartContext } from '../../../context/shopping/ShoppingContext';
 
 interface Props extends StackScreenProps<RootStackParamList, 'ClientBottomTab'> { }
 

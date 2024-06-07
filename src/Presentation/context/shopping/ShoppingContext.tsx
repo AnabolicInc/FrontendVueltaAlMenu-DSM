@@ -1,37 +1,54 @@
 import React from "react";
 import { createContext, useEffect, useState } from "react";
+import { Product } from "../../../Domain/entities/Product";
 
 
 export interface ShoppingContextProps {
-    shoppingCart: any;
-    total: any;
-    removeProductShoppingCart: any;
+    shoppingCart: Product[];
+    total: number;
+    getShoppingCart(): Promise <void>;
+    getTotal(): void;
+    saveProductShoppingCart(): Promise <void>;
+    removeProductShoppingCart(): Promise <void>;
 }
 
-export const ShoppingContext = createContext({} as ShoppingContextProps);
 
-export const ShoppingProvider = ({ children }: any) => {
+export const ShoppingCartContext = createContext({} as ShoppingContextProps);
+
+export const ShoppingCartProvider = ({ children }: any) => {
+
+    const [shoppingCart, setShoppingCart] = useState<Product[]>([]);
+    const [total, setTotal] = useState<number>(0);
     
-    const shoppingCart = () => {
-
+    const getShoppingCart = async () => {
+        return Promise.resolve()
     }
 
-    const total = () => {
-        
+    const getTotal = async () => {
+         
+    }
+
+    const saveProductShoppingCart = () => {
+        return Promise.resolve()
     }
 
     const removeProductShoppingCart = () => {
-        
+        return Promise.resolve();
     }
+
+
     return (
-        <ShoppingContext.Provider
+        <ShoppingCartContext.Provider
             value={{
                 shoppingCart,
                 total, 
-                removeProductShoppingCart
+                getTotal,
+                getShoppingCart,
+                saveProductShoppingCart,
+                removeProductShoppingCart,
             }}
         >
             {children}
-        </ShoppingContext.Provider>
+        </ShoppingCartContext.Provider>
     );
 }

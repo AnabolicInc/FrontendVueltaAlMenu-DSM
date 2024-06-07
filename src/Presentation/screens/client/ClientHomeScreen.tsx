@@ -39,6 +39,8 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
   return (
     <View style={styles.userContainer}>
 
+
+
       <Text style={styles.mainText}>Encuentra el mejor platillo para ti</Text>
 
 
@@ -70,8 +72,8 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
 							colors={[COLORS.primaryGrey, 'transparent']}
 							style={styles.productListElement}
 						>
-							{item.image ? (
-								<Image style={styles.productListImage} source={{ uri: item.image }} />
+							{item.images ? (
+								<Image style={styles.productListImage} source={{ uri: item.images }} />
 							) : (
 								<Image style={styles.productListImage} source={require('../../../../assets/images/category.png')} />
 							)}
