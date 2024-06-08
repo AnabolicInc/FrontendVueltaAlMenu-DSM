@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 
-import { categoryContext } from "../../../../context/category/CategoryContext";
+import { ProductContext } from "../../../../context/product/ProductContext";
 
 
 
@@ -13,8 +13,8 @@ interface Values {
 	image: string;
 	name: string;
 	description: string;
-    precio: string;
-    cantidad: string;
+    price: number;
+    quantity: number;
 	id: string;
 }
 
@@ -28,9 +28,9 @@ interface ResponseErrorData{
 
 const ProductUpdateViewModel = ( route ) => {
 
-	const { categoryItem } = route.params;
+	const { productItem } = route.params;
 
-	const {updateCategory: updateCategoryContext } =useContext(categoryContext)
+	const {updateProduct: updateProductContext } =useContext(ProductContext)
 
 	const [loading, setLoading] = useState(false);
 
@@ -39,12 +39,12 @@ const ProductUpdateViewModel = ( route ) => {
 	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
 
 	const [values, setValues] = useState<Values>({
-		image: categoryItem.image,
-		name: categoryItem.name,
-		description: categoryItem.description,
-		id: categoryItem.id,
-        precio: categoryItem.precio,
-        cantidad: categoryItem.cantidad,
+		image: productItem.image,
+		name: productItem.name,
+		description: productItem.description,
+		id: productItem.id,
+        price: productItem.price,
+        quantity: productItem.quantity,
 	});
 
 
@@ -119,7 +119,7 @@ const ProductUpdateViewModel = ( route ) => {
 		}
 	};
 
-	const updateCategory = async () => {
+	const updateProduct = async () => {
         const validForm = isValidForm();
 
         if (validForm) {
@@ -128,10 +128,9 @@ const ProductUpdateViewModel = ( route ) => {
             
                 const { image, ...data } = values;
 
-				
-				
-                // call to update method in CategoryContext
-                const response = await updateCategoryContext(data.id, data.name, data.description, file);
+		
+                // call to update method in ProductContext
+                const response = await updateProductContext(data.id, data.name, data.description, data.price, data.quantity, file);
                 console.log(response);
                 
                 if (response.success){
@@ -139,13 +138,12 @@ const ProductUpdateViewModel = ( route ) => {
 						message: 'Datos actualizados correctamente',
 						type: 'success',
 						icon: 'success',
-					});
-
-                    setLoading(false);
+					});               
                 }
+				setLoading(false);
 				
             } catch (error) {
-                console.log(error);
+                //console.log(error);
                 setLoading(false);
 				showMessage({
 					message: 'Error al actualizar los datos',
@@ -161,7 +159,7 @@ const ProductUpdateViewModel = ( route ) => {
         onChange,
         pickImage,
         takePhoto,
-		updateCategory,
+		updateProduct,
         errorMessages,
         responseError,
       };

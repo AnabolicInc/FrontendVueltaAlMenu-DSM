@@ -2,18 +2,17 @@ import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
-import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
-
+import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
 
 import styles from './Styles';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
 import { FontAwesome6 } from '@expo/vector-icons';
-import { RootStackParamList } from '../../../../navigation/MainAppStack';
 
 
-interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryUpdateScreen'> {} // FIX: ESTO DEBE SER MODIFICADO POR EL NOMBRE DE LA RUTA DE ESTA PANTALLA
+
+interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductUpdateScreen'> {} 
 
 export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 
@@ -23,10 +22,19 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
     onChange, 
     takePhoto,
     pickImage,
-    updateCategory,
+    updateProduct,
+    image,
+    name,
+    description,
+    price,
+    quantity,
     
   } = useViewModel(route);
 
+  const handleProductUpdate = async () => {
+    updateProduct(); 
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.productUpdateContainer}>
@@ -34,8 +42,8 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
       <Image style={styles.productUpdateImageContainer} source={require('../../../../../../assets/images/pizza.jpg')}/>
       <View style={styles.opacityContainer}>
 
-        <Text style={styles.productUpdateNameText}> Nombre </Text>
-        <Text style={styles.productUpdateDescriptionText} > Esta es la description y tiene más texto</Text>
+        <Text style={styles.productUpdateNameText}> {name} </Text>
+        <Text style={styles.productUpdateDescriptionText} > {description}</Text>
 
       </View>
 
@@ -50,7 +58,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
         <TextInput 
           style={styles.nameInput}
           placeholder="Nombre"
-          
+          value={name}
           placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => onChange('name', text.toUpperCase())}
           maxLength={15}
@@ -59,6 +67,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
         <TextInput 
           style={styles.descriptionInput}
           placeholder="Descripción"
+          value={description}
           placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => onChange('description', text)}
           maxLength={50}
@@ -68,24 +77,24 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
         <TextInput 
           style={styles.priceInput}
           placeholder="Precio"
-          
+          keyboardType='numeric'
           placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('name', text.toUpperCase())}
+          onChangeText={(text) => onChange('price', text.toUpperCase())}
           maxLength={15}
         />
 
         <TextInput 
-          style={styles.amountInput}
+          style={styles.quantityInput}
           placeholder="Cantidad"
-          
+          keyboardType='numeric'
           placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('name', text.toUpperCase())}
+          onChangeText={(text) => onChange('quantity', text.toUpperCase())}
           maxLength={15}
         />
 
 
         <View style={styles.buttonSave}> 
-          <Pressable onPress={() => {updateCategory(); navigation.goBack();}}>
+          <Pressable onPress={() => {handleProductUpdate()}}>
             <Text style={styles.saveText}>GUARDAR</Text>
           </Pressable>
         </View>
@@ -103,3 +112,4 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
     </View>
   )
 }
+export default ProductUpdateScreen;

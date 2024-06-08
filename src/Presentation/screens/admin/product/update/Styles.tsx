@@ -143,7 +143,7 @@ const ProductUpdateStyles = StyleSheet.create({
     paddingEnd: 15,
   },
 
-  amountInput: {
+  quantityInput: {
     fontFamily: 'Poppins',
     backgroundColor: COLORS.backgroundInputGrayRGBA,
     color: COLORS.primaryWhite,

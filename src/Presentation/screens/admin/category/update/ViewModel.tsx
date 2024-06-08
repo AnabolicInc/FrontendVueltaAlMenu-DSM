@@ -161,6 +161,7 @@ const CategoryUpdateViewModel = ( route ) => {
 		updateCategory,
         errorMessages,
         responseError,
+		loading
       };
 }
 

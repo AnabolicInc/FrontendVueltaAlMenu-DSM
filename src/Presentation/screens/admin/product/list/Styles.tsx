@@ -146,6 +146,75 @@ const Styles = StyleSheet.create({
         fontFamily: 'Poppins',
         fontSize: FONTSIZE.size_18,
     },
+
+    modalContainer: {
+        flex: 1,
+        backgroundColor: COLORS.generalBackgroundBlack,
+      },
+
+      modalMessageBox: {
+        top: '32%',
+        borderRadius: 17,
+        width: 260,
+        height: 140,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 3,
+      },
+
+      modalMessageText: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+        textShadowColor: COLORS.primaryOrange,
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        borderColor: COLORS.primaryOrange,
+      },
+
+      modalButtonsContainer: {
+        top: '71%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: 270,
+        alignSelf: 'center',
+      },
+
+      modalButtonDelete: {
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.deleteButtonRed,
+        borderWidth: 2,
+        borderRadius: 9,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 48,
+        width: 120,
+        flexDirection: 'row',
+      },
+
+      modalButtonCancel: {
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryWhite,
+        borderWidth: 2,
+        borderRadius: 9,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 48,
+        width: 120,
+        flexDirection: 'row',
+      },
+
+      modalButtonImageContainer: {
+        marginRight: 3
+      },
+
+      modalButtonText: {
+        color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_15,
+        justifyContent: 'center',
+      }
 });
 
 export default Styles;

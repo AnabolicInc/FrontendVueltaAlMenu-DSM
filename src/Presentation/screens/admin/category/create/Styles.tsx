@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 
 import { COLORS, FONTSIZE } from '../../../../themes/Theme'
@@ -6,25 +6,33 @@ import { COLORS, FONTSIZE } from '../../../../themes/Theme'
 const CategoryCreateStyles = StyleSheet.create(
 
     {
-
       categoryCreateContainer: {
         flex: 1,
-        alignItems: 'center',
         backgroundColor: COLORS.generalBackgroundBlack,
-      },
-
-      categoryCreateInnerContainer: {
         position: 'relative',
       },
 
       categoryCreateText: {
-        position: 'relative',
+        position: 'absolute',
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         fontSize: FONTSIZE.size_20,
+        alignSelf: 'center',
         textAlign: 'center',
-        marginBottom: 60,
-        marginTop: 70,
+        textAlignVertical: 'center',
+        top: "6%",
+
+        backgroundColor: COLORS.generalBackgroundBlack,
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 1.5,
+        borderRadius: 30,
+        width: 200,
+        height: 40,
+        shadowColor: COLORS.generalBackgroundBlack,
+        shadowOpacity: 0,
+        shadowRadius: 10,
+
+        elevation: 10,
 
       },
 
@@ -53,28 +61,82 @@ const CategoryCreateStyles = StyleSheet.create(
         alignItems: 'center',
       },
 
-      buttonSave: {
+      textContainer: {
+        position: 'absolute',
+        width: "100%",
+        alignSelf: 'center',
+
+        backgroundColor: `${COLORS.generalBackgroundBlack}70`,
+        bottom: 0,
+        borderRadius: 17,
+        height: 175,
+
+      },
+
+      categoryName: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        textAlign: 'left',
+        left: 25,
+        fontSize: FONTSIZE.size_18,
+        top: 25,
+      },
+
+      categoryDescription: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        textAlign: 'left',
+        left: 25,
+        top: 25,
+        flexWrap: 'wrap',
+        width: "87%",
+      },
+
+      saveButton: {
         position: 'relative',
-        backgroundColor: COLORS.primaryOrange,
+        backgroundColor: COLORS.primaryDarkGrey,
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 1.5,
         borderRadius: 10,
-        width: 150,
+        width: 160,
         height: 40,
         alignSelf: 'center',
+        marginTop: 10,
       },
      
       saveText: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
         textAlign: 'center',
+        marginTop: 8,
+      },
+
+      cancelButton: {
+        position: 'relative',
+        backgroundColor: COLORS.borderErrorRed,
+        borderColor: COLORS.borderErrorBackgroundBackendRed,
+        borderWidth: 1.5,
+        borderRadius: 10,
+        width: 160,
+        height: 40,
+        alignSelf: 'center',
         marginTop: 10,
+        marginBottom: 40,
+      },
+     
+      cancelText: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        textAlign: 'center',
+        marginTop: 8,
       },
 
       categoryCreateUserImage: {
-        width: 100,
-        height: 100,
         position: 'relative',
+        width: "100%",
+        height: Dimensions.get('window').width,
         alignSelf: 'center',
-        marginBottom: 30,
+        marginBottom: 20,
       },
 
       nameInput: {
@@ -87,6 +149,7 @@ const CategoryCreateStyles = StyleSheet.create(
         marginBottom: 10,
         paddingStart: 15,
         paddingEnd: 15,
+        alignSelf: 'center',
         
       },
 
@@ -100,7 +163,20 @@ const CategoryCreateStyles = StyleSheet.create(
         marginBottom: 10,
         paddingStart: 15,
         paddingEnd: 15,
+        alignSelf: 'center',
         
+      },
+
+      loadingContainer: {
+        backgroundColor: COLORS.secondaryBlackRGBA,
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginBottom: 10,
+        zIndex: 1,
       },
 
 })

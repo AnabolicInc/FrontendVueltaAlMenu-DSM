@@ -79,6 +79,7 @@ const CategoryListStyles = StyleSheet.create(
       categoryListText: {
         alignSelf: 'stretch',
         flexDirection: 'column',
+        width: '50%',
       },
 
       categoryListOptions: {

@@ -22,8 +22,8 @@ interface Values {
 }
 
 
-interface ResponseErrorData{
-	
+interface ResponseErrorData {
+
 	path: string;
 	value: string;
 
@@ -34,8 +34,8 @@ const validationRegisterSchema = Yup.object().shape({
 	image: Yup.string().required('La imagen es obligatoria'),
 	name: Yup.string().required('El campo nombre es obligatorio'),
 	lastName: Yup.string().required('El campo apellido es obligatorio'),
-	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio'),
-  	phone: Yup.string().required('El campo teléfono es obligatorio').max(9).min(9, 'El teléfono ingresado no es valido') ,
+	email: Yup.string().email('Ingrese un correo electrónico válido').required('El campo correo electrónico es obligatorio').matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/, 'El correo ingresado no es valido'),
+	phone: Yup.string().required('El campo teléfono es obligatorio').max(9).min(9, 'El teléfono ingresado no es valido').matches(/^[0-9]*$/, 'El teléfono ingresado no es valido'),
 	password: Yup.string().required('El campo contraseña es obligatorio').matches(
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/,
 		'La contraseña no cumple con los requisitos minimos'
@@ -61,14 +61,16 @@ const RegisterViewModel = () => {
 
 	const { auth } = useContext(AuthContext);
 
-    const [file, setFile] = useState<ImagePicker.ImageInfo>();
+	const [file, setFile] = useState<ImagePicker.ImageInfo>();
 
 	const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
 
 	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
 
 	const [loading, setLoading] = useState(false);
-
+	
+	const [fontsLoaded, setFontsLoaded] = useState(false);
+	
 	const [password, setPassword] = useState('');
 
 	const [hasEightChars, setHasEightChars] = useState(false);
@@ -83,9 +85,9 @@ const RegisterViewModel = () => {
 
 	const onChange = (property: string, value: string) => {
 
-		setValues({ ... values, [property]:value});
+		setValues({ ...values, [property]: value });
 
-		if(property === 'password'){
+		if (property === 'password') {
 			setPassword(value);
 			setHasEightChars(value.length >= 8);
 			setHasUppercase(/[A-Z]/.test(value));
@@ -95,9 +97,9 @@ const RegisterViewModel = () => {
 
 	};
 
-	const isValidForm = async ():Promise<boolean> => {
+	const isValidForm = async (): Promise<boolean> => {
 		try {
-			await validationRegisterSchema.validate(values, {abortEarly: false});
+			await validationRegisterSchema.validate(values, { abortEarly: false });
 			return true;
 		} catch (error) {
 			const errors: Record<string, string> = {};
@@ -111,11 +113,11 @@ const RegisterViewModel = () => {
 	};
 
 
-	const register =  async () => {
+	const register = async () => {
 
 		const isValid = await isValidForm();
 		console.log(isValid);
-		
+
 		if (isValid) {
 			setLoading(true);
 			setErrorMessages({});
@@ -124,8 +126,8 @@ const RegisterViewModel = () => {
 				const { image, confirmPassword, ...data } = values; //Destructurando los datos
 
 				const response = await RegisterAuthUseCase(data);
-				
-				if(response.success){
+
+				if (response.success) {
 
 					const responseImage = await UpdateFileUseCase(file!, 'users', response.data.id);
 					const dataUser = response.data;
@@ -139,30 +141,30 @@ const RegisterViewModel = () => {
 						icon: 'success',
 					});
 				}
-				
+
 				console.log('Registro exitoso');
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
 
-				if(rejectErrors.error){
+				if (rejectErrors.error) {
 					setErrorResponses([]);
 					showMessage({
 						message: rejectErrors.error,
 						type: 'danger',
 						icon: 'danger',
 					});
-				}else{
+				} else {
 					console.log('Error en el registro');
-				
+
 					const errorsArray = Object.values(rejectErrors.errors);
 
 					const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }))
 					console.log(errorsArrayFilter);
 					setErrorResponses(errorsArrayFilter);
-					
+
 				}
 				setLoading(false);
-				
+
 			}
 		}
 	};
@@ -175,68 +177,67 @@ const RegisterViewModel = () => {
 			allowsEditing: true,
 			quality: 1,
 		});
-		
+
 		if (!result.canceled) {
 			onChange('image', result.assets[0].uri);
 			setFile(result.assets[0]);
 		}
-		
+
 	};
 
 
 	const takePhoto = async () => {
-		
+
 		try {
 			let result = await ImagePicker.launchCameraAsync({
 				mediaTypes: ImagePicker.MediaTypeOptions.Images,
 				allowsEditing: true,
 				quality: 1,
 			});
-	
+
 			if (!result.canceled) {
 				onChange('image', result.assets[0].uri);
 				setFile(result.assets[0]);
 			}
-			
+
 		} catch (error) {
 			console.log('Error al tomar la foto', error);
-			
+
 		}
 
-	  
+
 	};
-	
+
 	
 
-	const loadFonts = async () => {
-	try {
-		await Font.loadAsync({
-			Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
-		});
-		return true;
-	} catch (error) {
-		console.log('Error loading fonts', error);
-		return false;
-	}
-}
+    /**
+     * Loads the required fonts asynchronously.
+     */
+    const loadFonts = async () => {
+        await Font.loadAsync({
+            'Poppins-Black': require('../../../../assets/fonts/Poppins-Black.ttf'),
+        });
+        setFontsLoaded(true);
+    };
 
-  return {
-	...values,
-    onChange,
-    register,
-    isValidForm,
-	loading,
-    loadFonts,
-	pickImage,
-	takePhoto,
-	password,
-	hasUppercase,
-	hasNumber,
-	hasSpecialChar,
-	hasEightChars,
-	errorMessages,
-	responseError: errorsResponse,
-  };
+	return {
+		...values,
+		onChange,
+		register,
+		isValidForm,
+		loading,
+		loadFonts,
+		fontsLoaded,
+		pickImage,
+		takePhoto,
+		password,
+		hasUppercase,
+		hasNumber,
+		hasSpecialChar,
+		hasEightChars,
+		errorMessages,
+		responseError: errorsResponse,
+	};
 };
 
 

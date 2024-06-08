@@ -49,17 +49,11 @@ const CategoryCreateViewModel = () => {
 	
 	const [loading, setLoading] = useState(false);
 
-
-
-
     const onChange = (property: string, value: string) => {
 
 		setValues({ ... values, [property]:value});
 
 	};
-
-
-
 
     const [file, setfile] = useState<ImagePicker.ImageInfo>();
 
@@ -116,10 +110,10 @@ const CategoryCreateViewModel = () => {
 					});
 
 					setLoading(false);
-
+					console.log('Creación de categoría exitoso');
 				}
 				
-				console.log('Creación de categoría exitoso');
+				
 
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
@@ -132,17 +126,12 @@ const CategoryCreateViewModel = () => {
 						icon: 'danger',
 					});
 				}else{
-
 					console.log('Error en la creación de categoría');
-
-
-				
-					const errorsArray = Object.values(rejectErrors.errors);
-
-					const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }))
-					console.log(errorsArrayFilter);
-					setErrorResponses(errorsArrayFilter);
-					
+					showMessage({
+						message: 'Error al crear la categoría',
+						type: 'danger',
+						icon: 'danger',
+					});
 				}
 				setLoading(false);
 				
@@ -180,6 +169,7 @@ const CategoryCreateViewModel = () => {
         takePhoto,
         errorMessages,
         responseError: errorsResponse,
+		loading,
       };
 }
 

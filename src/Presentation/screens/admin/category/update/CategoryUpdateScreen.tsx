@@ -9,6 +9,7 @@ import styles from './Styles';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryUpdateScreen'> {}
@@ -24,22 +25,38 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
     updateCategory,
     image,
     name,
-    description
+    description,
+    loading
   } = useViewModel(route);
 
+  const handleCategoryUpdate = async () => {
+    updateCategory(); 
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.categoryUpdateContainer}>
       <ScrollView style={styles.categoryUpdateInnerContainer} showsVerticalScrollIndicator = {false}>
-        <Text style={styles.categoryUpdateText}>EDITAR CATEGORÍA</Text>
-        {
-          (image == '' || image == null)
-          ?
-          <Image style={styles.categoryUpdateUserImage} source={require('../../../../../../assets/images/category.png')} />
-          :
-          <Image style={styles.categoryUpdateUserImage} source={{uri: image}} />
-
-        }
+        
+        <View>
+          
+          {
+            (image == '' || image == null)
+            ?
+            <Image style={styles.categoryUpdateUserImage} source={require('../../../../../../assets/images/category.png')} />
+            :
+            <Image style={styles.categoryUpdateUserImage} source={{uri: image}} />
+            
+          }
+          <View style={styles.textContainer}>
+            <Text style={styles.categoryName}>{name}</Text>
+            <Text style={styles.categoryDescription}>{description}</Text> 
+          </View>
+        </View>
+        
+        
+        <Text style={styles.categoryUpdateText}>Editar categoría</Text>
+        
 
         <Pressable style={styles.uploadImageButton} onPress={() => setModalVisible(true)}>
           <Text style={styles.uploadImageButtonText}>Subir imagen</Text>
@@ -64,11 +81,13 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
         />
 
 
-        <View style={styles.buttonSave}> 
-          <Pressable onPress={() => {updateCategory(); navigation.goBack();}}>
-            <Text style={styles.saveText}>GUARDAR</Text>
+          <Pressable style={styles.saveButton} onPress={() => {handleCategoryUpdate()}}>
+            <Text style={styles.saveText}>Actualizar</Text>
           </Pressable>
-        </View>
+
+          <Pressable style={styles.cancelButton} onPress={() => navigation.goBack()}>
+            <Text style={styles.cancelText}>Cancelar</Text>
+          </Pressable>
 
       </ScrollView>
 
@@ -78,7 +97,15 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
             setModalUseState={setModalVisible} 
             openGallery={pickImage}
             openCamera={takePhoto}
-        />
+      />
+      
+      {loading &&(
+
+      <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#D17842" />
+      </View>
+
+      )}
 
     </View>
   )

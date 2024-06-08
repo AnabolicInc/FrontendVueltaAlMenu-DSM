@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 
 import { COLORS, FONTSIZE } from "../../themes/Theme";
@@ -70,6 +70,180 @@ const ClientHomeStyles = StyleSheet.create(
             paddingStart: 15,
             paddingEnd: 15,
         },
+        productListContainer: {
+            flex: 1,
+            alignContent: 'center',
+            alignItems: 'center',
+            backgroundColor: COLORS.generalBackgroundBlack,
+          },
+          productListText: {
+            alignSelf: 'stretch',
+            flexDirection: 'column',
+            top: 10,
+          },
+          productListTittle: {
+            position: 'absolute',
+            top: "10%",
+            color: COLORS.primaryWhite,
+            fontFamily: 'Poppins',
+            fontSize: FONTSIZE.size_20,
+            textAlign: 'center',
+            marginBottom: 20,
+    
+          },
+          noProductListText: {
+            position: 'absolute',
+            top: "50%",
+            color: COLORS.primaryOrange,
+            fontFamily: 'Poppins',
+            fontSize: FONTSIZE.size_20,
+            textAlign: 'center',
+            marginBottom: 20,
+    
+          },
+          productListInnerContainer: {
+            flex: 1,
+            flexGrow: 1,
+            flexDirection: 'row',
+            width: "92%",
+            height: "70%",
+            position: 'absolute',
+            top: "45%",
+            
+          },
+          productListElement: {
+            backgroundColor: COLORS.secondaryBlackRGBA,
+            width: 180,
+            height: 312,
+            borderRadius: 30,
+            marginBottom: 10,
+            paddingStart: 15,
+            paddingEnd: 15,
+            flexDirection: 'column',
+            marginRight: 15,
+          },
+          productListImage: {
+            position: 'relative',
+            borderRadius: 15,
+            width: "100%",
+            height: 150,
+            top: 17,
+            marginRight: '4%',
+          },
+          productListElementName: {
+            color: COLORS.primaryWhite,
+            fontFamily: 'Poppins',
+            textAlign: 'left',
+            fontSize: FONTSIZE.size_18,
+            top: 20,
+          },
+          productListElementDescription: {
+            color: COLORS.primaryLightGrey,
+            fontFamily: 'Poppins',
+            textAlign: 'left',
+            fontSize: FONTSIZE.size_12,
+            top: 20,
+          },
+          productListPriceAddBoxContainer: {
+            position: 'absolute',
+            width: "100%",
+            bottom: 50,
+            alignSelf: 'center',
+          },
+          productListPriceAddBox: {
+            color: COLORS.primaryLightGrey,
+            fontFamily: 'Poppins',
+            fontSize: FONTSIZE.size_12,
+            top: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+
+          },
+          productListElementPriceSignText: {
+            color: COLORS.primaryOrange,
+            fontFamily: 'Poppins',
+            textAlign: 'left',
+            fontSize: FONTSIZE.size_18,
+            top: 22,
+          },
+          productListElementPriceText: {
+            color: COLORS.primaryWhite,
+            fontFamily: 'Poppins',
+            textAlign: 'left',
+            fontSize: FONTSIZE.size_18,
+            top: 22,
+          },
+          container: {
+            flex: 1,
+            backgroundColor: '#0C1013',
+            padding: 16,
+          },
+          title: {
+            color: '#FFFFFF',
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 16,
+            textAlign: 'center',
+          },
+          searchContainer: {
+            backgroundColor: '#1F1F1F',
+            borderRadius: 10,
+            marginBottom: 16,
+            padding: 8,
+          },
+          searchInput: {
+            color: '#FFFFFF',
+            fontSize: 16,
+          },
+          flatListContentContainer: {
+            paddingVertical: 16,
+          },
+          productCard: {
+            backgroundColor: '#1F1F1F',
+            borderRadius: 10,
+            padding: 16,
+            marginRight: 16,
+            width: 200,
+            alignItems: 'center',
+          },
+          productImage: {
+            width: 150,
+            height: 150,
+            borderRadius: 10,
+            marginBottom: 8,
+          },
+          productName: {
+            color: '#FFFFFF',
+            fontSize: 18,
+            fontWeight: 'bold',
+            marginBottom: 4,
+          },
+          productDescription: {
+            color: '#7C7C7C',
+            fontSize: 14,
+            marginBottom: 8,
+            textAlign: 'center',
+          },
+          productPrice: {
+            color: '#D17842',
+            fontSize: 16,
+            marginBottom: 8,
+          },
+          addButton: {
+            backgroundColor: '#D17842',
+            borderRadius: 10,
+            width: 36,
+            height: 36,
+            alignItems: 'center',
+            justifyContent: 'center',
+            top: 15,
+          },
+          addButtonText: {
+            color: COLORS.primaryWhite,
+            fontSize: 24,
+            bottom: 1,
+          },
+    
     }
 );
 

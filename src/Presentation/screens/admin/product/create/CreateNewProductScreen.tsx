@@ -13,6 +13,8 @@ import { ProductContext } from '../../../../context/product/ProductContext';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CreateNewProductScreen'> { }
 
+//to-do: Falta que los productos creados se almacenen, además, se necesita cambiar el arreglo de imagenes, esto se implementara proximamente
+
 export const CreateNewProductScreen = ({ navigation, route }: Props) => {
     const { addProduct } = useContext(ProductContext); // Obtener la función addProduct
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
