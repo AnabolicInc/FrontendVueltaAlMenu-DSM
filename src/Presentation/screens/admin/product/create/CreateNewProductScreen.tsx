@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+// En CreateNewProductScreen.tsx
+
+import React, { useContext, useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { RootStackParamList } from '../../../../navigation/MainAppStack';
-import { View, Text, Image, TextInput, Pressable, ScrollView, Alert } from 'react-native'; // Importar Alert desde react-native
+import { View, Text, Image, TextInput, Pressable, ScrollView } from 'react-native'; // Importar Alert desde react-native
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import CreateNewProductViewModel from './ViewModel';
 import styles from './Styles';
 import { showMessage } from 'react-native-flash-message';
+import { ProductContext } from '../../../../context/product/ProductContext';
 
 interface Props extends StackScreenProps<RootStackParamList, 'CreateNewProductScreen'> { }
 
 export const CreateNewProductScreen = ({ navigation, route }: Props) => {
-
+    const { addProduct } = useContext(ProductContext); // Obtener la función addProduct
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
 	const {
 		images,
@@ -42,15 +45,28 @@ export const CreateNewProductScreen = ({ navigation, route }: Props) => {
 		}
 	};
 
+	const handleSave = async () => {
+		console.log('HANDLE SAVE');
+		const newProduct = await createNewProduct();
+        if (newProduct) {
+            addProduct(newProduct); // Añadir el nuevo producto al contexto
+            navigation.goBack();
+        }
+	};
+
 	return (
 		<View style={styles.container}>
 			<ScrollView contentContainerStyle={styles.innerContainer} showsVerticalScrollIndicator={false}>
 				<Text style={styles.title}>Productos</Text>
 
 				<View style={styles.imageContainer}>
-				{images.map((image, index) => (
-						<Image key={index} source={{ uri: image }} style={styles.userImage} />
-					))}
+					{images.length === 0 ? (
+						<Image source={require('../../../../../../assets/images/imagesIcon.png')} style={styles.userImage} />
+					) : (
+						images.map((image, index) => (
+							<Image key={index} source={{ uri: image }} style={styles.userImage} />
+						))
+					)}
 				</View>
 
 				<Pressable style={styles.imageButton} onPress={handlePickImage}>
@@ -100,10 +116,7 @@ export const CreateNewProductScreen = ({ navigation, route }: Props) => {
 				))}
 
 				<View style={styles.buttonSave}>
-					<Pressable onPress={() => {
-						createNewProduct();
-						navigation.goBack();
-					}}>
+					<Pressable onPress={handleSave}>
 						<Text style={styles.saveText}>Guardar</Text>
 					</Pressable>
 				</View>

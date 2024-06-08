@@ -1,4 +1,6 @@
-import React from 'react';
+// En ProductScreen.tsx
+
+import React, { useEffect, useContext } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Styles from './Styles';
@@ -6,11 +8,17 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
 import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
+import { ProductContext } from '../../../../context/product/ProductContext';
 
 interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductScreen'> { }
 
 export const ProductScreen = ({ navigation }: Props) => {
     const { products, deleteProduct } = useViewModel();
+    const { refresh, getAllProducts } = useContext(ProductContext); // Obtener el estado de refresh y la función getAllProducts
+
+    useEffect(() => {
+        getAllProducts(""); // Llamar a getAllProducts cuando se monte el componente
+    }, [refresh]); // Dependencia en el estado de refresh
 
     return (
         <View style={Styles.container}>
