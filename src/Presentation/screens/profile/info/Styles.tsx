@@ -22,6 +22,23 @@ const ProfileInfoStyles = StyleSheet.create(
             alignSelf: 'center',
 
         },
+        profileUpdateUserImageContainer: {
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: 60,
+        },
+        profileUpdateUserImage: {
+            width: 200,
+            height: 200,
+            borderRadius: 50,
+            position: 'relative',
+            top: "10%",
+            right: "5%",
+            alignSelf: 'flex-end',
+            marginLeft: 20,
+            marginTop: -10,
+        },
 
         backButton: {
             width: 30,

@@ -43,7 +43,7 @@ export const ProductProvider = ({ children }: any) => {
                 const images = await Promise.all(
                     files.map(file => UpdateFileUseCase(file, 'images', dataProduct.id))
                 );
-                dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
+                dataProduct.images = images.map(image => image.data);
             }
             await SaveProductUseCase(dataProduct);
             getAllProducts();
@@ -60,7 +60,7 @@ export const ProductProvider = ({ children }: any) => {
                 const images = await Promise.all(
                     files.map(file => UpdateFileUseCase(file, 'categories', dataProduct.id))
                 );
-                dataProduct.images = images.map(image => image.data); // Suponiendo que `dataProduct.images` sea un arreglo
+                dataProduct.images = images.map(image => image.data);
             }
             getAllProducts();
         }
