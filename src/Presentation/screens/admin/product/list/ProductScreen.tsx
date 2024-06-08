@@ -1,7 +1,7 @@
 
 
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, FlatList, Modal, Pressable} from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, Image, TouchableOpacity, TextInput, FlatList, Modal, Pressable, ActivityIndicator} from 'react-native';
 import Styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
@@ -9,21 +9,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { COLORS } from '../../../../themes/Theme';
 import useViewModel from './ViewModel';
-
 import { ProductContext } from '../../../../context/product/ProductContext';
 import { MaterialIcons } from '@expo/vector-icons';
-  import { LinearGradient } from 'expo-linear-gradient';
 import { Product } from '../../../../../Domain/entities/Product';
 
 
 interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductScreen'> { }
 
 export const ProductScreen = ({ navigation }: Props) => {
-    const { products, deleteProduct } = useViewModel();
+    const { products, deleteProduct, loadFonts,fontsLoaded } = useViewModel();
     const { refresh, getAllProducts } = useContext(ProductContext); // Obtener el estado de refresh y la función getAllProducts
 
     useEffect(() => {
-        getAllProducts(""); // Llamar a getAllProducts cuando se monte el componente
+        getAllProducts(); // Llamar a getAllProducts cuando se monte el componente
     }, [refresh]); // Dependencia en el estado de refresh
 
     const [itemToDeleteName, setItemToDeleteName] = useState<any>(null);
@@ -41,10 +39,18 @@ export const ProductScreen = ({ navigation }: Props) => {
         deleteProduct(itemToDelete.id);
         setShowDeleteConfirmation(false);
     };
-
+    //const formattedPrice = item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     const handleDeleteCancel = () => {
         setShowDeleteConfirmation(false);
     };
+
+    useEffect(() => {
+        loadFonts();
+    }, []);
+
+    if (!fontsLoaded) {
+        return <ActivityIndicator size="large" />;
+    }
 
     return (
         <View style={Styles.container}>
@@ -80,34 +86,20 @@ export const ProductScreen = ({ navigation }: Props) => {
                                             />
                                         </View>
                                         <View style={Styles.productPriceWrapper}>
+                                            
                                             <Text style={Styles.productPrice}>
-                                                <Text style={Styles.productPriceSymbol}>$</Text>{item.price}
+                                                <Text style={Styles.productPriceSymbol}>$</Text>{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                                             </Text>
                                         </View>
                                     </View>
                                     <View style={Styles.productButtonsContainer}>
-                                        <TouchableOpacity onPress={() => {}} style={Styles.editButtonContainer}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('ProductUpdateScreen', {productItem: item})} style={Styles.editButtonContainer}>
                                             <Image source={require('../../../../../../assets/images/editProduct.png')} style={Styles.editButtonImage} />
                                         </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => deleteProduct(item.id)} style={Styles.deleteButtonContainer}>
+                                        <TouchableOpacity onPress={() => handleDeletePress(item, item.name)} style={Styles.deleteButtonContainer}>
                                             <Image source={require('../../../../../../assets/images/deleteProduct.png')} style={Styles.deleteButtonImage} />
                                         </TouchableOpacity>
                                     </View>
-
-                                <View style={Styles.productActions}>
-                                    <TextInput
-                                        style={Styles.productQuantity}
-                                        value={item.quantity.toString()}
-                                        editable={false}
-                                    />
-                                    <Text style={Styles.productPrice}>${item.price.toFixed(2)}</Text>
-                                    <TouchableOpacity onPress={() => navigation.navigate('ProductUpdateScreen', {productItem: item})}>
-                                        <Text style={Styles.editButton}>Editar</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => handleDeletePress(item, item.name)}>
-                                        <Text style={Styles.deleteButton}>Borrar</Text>
-                                    </TouchableOpacity>
-
                                 </View>
                             </View>
                         </LinearGradient>

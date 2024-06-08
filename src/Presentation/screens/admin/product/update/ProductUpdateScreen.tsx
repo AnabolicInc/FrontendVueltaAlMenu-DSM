@@ -1,5 +1,5 @@
-import { View, Text, Image, TextInput, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
@@ -12,104 +12,115 @@ import { FontAwesome6 } from '@expo/vector-icons';
 
 
 
-interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductUpdateScreen'> {} 
+interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductUpdateScreen'> { }
 
 export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 
-  const [modalVisible, setModalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
+	const [modalVisible, setModalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
 
-  const  {
-    onChange, 
-    takePhoto,
-    pickImage,
-    updateProduct,
-    image,
-    name,
-    description,
-    price,
-    quantity,
-    
-  } = useViewModel(route);
+	const {
+		onChange,
+		loadFonts,
+		fontsLoaded,
+		takePhoto,
+		pickImage,
+		updateProduct,
+		image,
+		name,
+		description,
+		price,
+		quantity,
 
-  const handleProductUpdate = async () => {
-    updateProduct(); 
-    navigation.goBack();
-  }
+	} = useViewModel(route);
 
-  return (
-    <View style={styles.productUpdateContainer}>
-      
-      <Image style={styles.productUpdateImageContainer} source={require('../../../../../../assets/images/pizza.jpg')}/>
-      <View style={styles.opacityContainer}>
+	
+    useEffect(() => {
+        loadFonts();
+    }, []);
 
-        <Text style={styles.productUpdateNameText}> {name} </Text>
-        <Text style={styles.productUpdateDescriptionText} > {description}</Text>
+    if (!fontsLoaded) {
+        return <ActivityIndicator size="large" />;
+    }
 
-      </View>
+	const handleProductUpdate = async () => {
+		updateProduct();
+		navigation.goBack();
+	}
 
-      <View style={styles.buttonBack}> 
-        <Pressable onPress={() => navigation.goBack()}>
-          <FontAwesome6 name="chevron-left" size={24} color= {COLORS.borderContainerGrayRGBA} />
-        </Pressable>
-      </View>
-      <View style={styles.productUpdateInnerContainer}>
+	return (
+		<View style={styles.productUpdateContainer}>
 
-        
-        <TextInput 
-          style={styles.nameInput}
-          placeholder="Nombre"
-          value={name}
-          placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('name', text.toUpperCase())}
-          maxLength={15}
-        />
+			<Image style={styles.productUpdateImageContainer} source={require('../../../../../../assets/images/pizza.jpg')} />
+			<View style={styles.opacityContainer}>
 
-        <TextInput 
-          style={styles.descriptionInput}
-          placeholder="Descripción"
-          value={description}
-          placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('description', text)}
-          maxLength={50}
-          
-        />
+				<Text style={styles.productUpdateNameText}> {name} </Text>
+				<Text style={styles.productUpdateDescriptionText} > {description}</Text>
 
-        <TextInput 
-          style={styles.priceInput}
-          placeholder="Precio"
-          keyboardType='numeric'
-          placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('price', text.toUpperCase())}
-          maxLength={15}
-        />
+			</View>
 
-        <TextInput 
-          style={styles.quantityInput}
-          placeholder="Cantidad"
-          keyboardType='numeric'
-          placeholderTextColor={COLORS.primaryOrange} 
-          onChangeText={(text) => onChange('quantity', text.toUpperCase())}
-          maxLength={15}
-        />
+			<View style={styles.buttonBack}>
+				<Pressable onPress={() => navigation.goBack()}>
+					<FontAwesome6 name="chevron-left" size={24} color={COLORS.borderContainerGrayRGBA} />
+				</Pressable>
+			</View>
+			<View style={styles.productUpdateInnerContainer}>
 
 
-        <View style={styles.buttonSave}> 
-          <Pressable onPress={() => {handleProductUpdate()}}>
-            <Text style={styles.saveText}>GUARDAR</Text>
-          </Pressable>
-        </View>
+				<TextInput
+					style={styles.nameInput}
+					placeholder="Nombre"
+					value={name}
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('name', text.toUpperCase())}
+					maxLength={15}
+				/>
 
-      </View>
+				<TextInput
+					style={styles.descriptionInput}
+					placeholder="Descripción"
+					value={description}
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('description', text)}
+					maxLength={50}
+
+				/>
+
+				<TextInput
+					style={styles.priceInput}
+					placeholder="Precio"
+					keyboardType='numeric'
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('price', text.toUpperCase())}
+					maxLength={15}
+				/>
+
+				<TextInput
+					style={styles.quantityInput}
+					placeholder="Cantidad"
+					keyboardType='numeric'
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('quantity', text.toUpperCase())}
+					maxLength={15}
+				/>
 
 
-      <ModalPickImage 
-        modalUseState = {modalVisible} 
-        setModalUseState={setModalVisible} 
-        openGallery={pickImage}
-        openCamera={takePhoto}
-      />
+				<View style={styles.buttonSave}>
+					<Pressable onPress={() => { handleProductUpdate() }}>
+						<Text style={styles.saveText}>GUARDAR</Text>
+					</Pressable>
+				</View>
 
-    </View>
-  )
+			</View>
+
+
+			<ModalPickImage
+				modalUseState={modalVisible}
+				setModalUseState={setModalVisible}
+				openGallery={pickImage}
+				openCamera={takePhoto}
+			/>
+
+		</View>
+	)
 }
 export default ProductUpdateScreen;

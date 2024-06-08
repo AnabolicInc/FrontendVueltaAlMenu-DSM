@@ -40,6 +40,21 @@ const Styles = StyleSheet.create({
         marginRight: 10,
         marginLeft: 8,
     },
+    productActions: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    editButton: {
+        color: COLORS.primaryOrange,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_15,
+        marginRight: 10,
+    },
+    deleteButton: {
+        color: COLORS.borderErrorRed,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_15,
+    },
     emptyContainer: {
         flex: 1,
         justifyContent: 'center',
