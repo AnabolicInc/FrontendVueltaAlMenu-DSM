@@ -7,6 +7,16 @@ const Styles = StyleSheet.create({
         backgroundColor: COLORS.generalBackgroundBlack,
         justifyContent: 'space-between',
     },
+    backButton: {
+        position: 'absolute',
+        top: 40,
+        left: 20,
+        zIndex: 1,
+    },
+    backButtonImage: {
+        width: 24,
+        height: 24,
+    },
     headerText: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
@@ -24,9 +34,11 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
     },
     productImage: {
-        width: 80,
-        height: 80,
+        width: 120,
+        height: 120,
         borderRadius: 10,
+        marginRight: 10,
+        marginLeft: 8,
     },
     emptyContainer: {
         flex: 1,
@@ -46,53 +58,88 @@ const Styles = StyleSheet.create({
     productTitle: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_18,
-        marginBottom: 5,
+        fontSize: FONTSIZE.size_15,
+        marginBottom: 0,
     },
     productDescription: {
-        color: COLORS.primaryWhite,
+        color: '#AEAEAE',
         fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_14,
+        fontSize: FONTSIZE.size_10,
         marginBottom: 10,
     },
-    productActions: {
-        flexDirection: 'row',
+    productDetails: {
+        flexDirection: 'column',
         alignItems: 'center',
     },
-    productQuantity: {
+    productQuantityPriceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 5,
+        width: '100%',
+    },
+    productQuantityContainer: {
         backgroundColor: COLORS.primaryDarkGrey,
-        color: COLORS.primaryWhite,
-        fontSize: FONTSIZE.size_15,
-        textAlign: 'center',
+        borderColor: COLORS.primaryOrange,
+        borderWidth: 1,
         borderRadius: 5,
-        width: 30,
+        width: 50,
         height: 30,
-        marginRight: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20,
+        marginLeft: 73,
+    },
+    productQuantity: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_16,
+        textAlign: 'center',
+    },
+    productPriceWrapper: {
+        alignItems: 'center',
+        marginRight: 50,
     },
     productPrice: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_18,
-        marginRight: 10,
+        fontSize: FONTSIZE.size_15,
+        textAlign: 'center',
+        width: 100,
     },
-    editButton: {
+    productPriceSymbol: {
         color: COLORS.primaryOrange,
-        fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_15,
-        marginRight: 10,
     },
-    deleteButton: {
-        color: COLORS.borderErrorRed,
-        fontFamily: 'Poppins',
-        fontSize: FONTSIZE.size_15,
+    productButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '60%',
+        marginTop: 5,
+    },
+    editButtonContainer: {
+        alignItems: 'center',
+    },
+    deleteButtonContainer: {
+        alignItems: 'center',
+    },
+    editButtonImage: {
+        width: 32,
+        height: 48,
+        marginLeft: -5,
+    },
+    deleteButtonImage: {
+        width: 32,
+        height: 48,
+        marginLeft: 59,
     },
     newProductButton: {
         backgroundColor: COLORS.primaryOrange,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
-        margin: 20,
+        paddingVertical: 10,
+        marginHorizontal: 100, // Ajusta este valor para que el botón no ocupe todo el espacio lateral
+        marginBottom: 20,
     },
     newProductButtonText: {
         color: COLORS.primaryWhite,
