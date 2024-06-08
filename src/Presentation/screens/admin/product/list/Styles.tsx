@@ -7,6 +7,16 @@ const Styles = StyleSheet.create({
         backgroundColor: COLORS.generalBackgroundBlack,
         justifyContent: 'space-between',
     },
+    backButton: {
+        position: 'absolute',
+        top: 40,
+        left: 20,
+        zIndex: 1,
+    },
+    backButtonImage: {
+        width: 24,
+        height: 24,
+    },
     headerText: {
         color: COLORS.primaryWhite,
         fontFamily: 'Poppins',
@@ -77,9 +87,8 @@ const Styles = StyleSheet.create({
         height: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 20, // Incrementa el margen derecho para separar más la cantidad del precio
+        marginRight: 20,
         marginLeft: 73,
- 
     },
     productQuantity: {
         color: COLORS.primaryWhite,
@@ -96,8 +105,10 @@ const Styles = StyleSheet.create({
         fontFamily: 'Poppins',
         fontSize: FONTSIZE.size_15,
         textAlign: 'center',
-        // Añadido para centrar el precio simétricamente
-        width: 100, // Ajusta este valor según sea necesario para centrar el precio
+        width: 100,
+    },
+    productPriceSymbol: {
+        color: COLORS.primaryOrange,
     },
     productButtonsContainer: {
         flexDirection: 'row',
@@ -112,13 +123,13 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
     },
     editButtonImage: {
-        width: 32, // Aumenta el tamaño del botón de editar
-        height: 48, // Aumenta el tamaño del botón de editar
-        marginLeft:-5,
+        width: 32,
+        height: 48,
+        marginLeft: -5,
     },
     deleteButtonImage: {
-        width: 32, // Aumenta el tamaño del botón de borrar
-        height: 48, // Aumenta el tamaño del botón de borrar
+        width: 32,
+        height: 48,
         marginLeft: 59,
     },
     newProductButton: {
@@ -126,8 +137,9 @@ const Styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10, // Mantiene el padding vertical
-        margin: 20,
+        paddingVertical: 10,
+        marginHorizontal: 100, // Ajusta este valor para que el botón no ocupe todo el espacio lateral
+        marginBottom: 20,
     },
     newProductButtonText: {
         color: COLORS.primaryWhite,

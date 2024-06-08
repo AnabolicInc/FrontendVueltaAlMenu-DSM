@@ -14,6 +14,9 @@ export const ProductScreen = ({ navigation }: Props) => {
 
     return (
         <View style={Styles.container}>
+            <TouchableOpacity style={Styles.backButton} onPress={() => navigation.goBack()}>
+                <Image source={require('../../../../../../assets/images/backButton.png')} style={Styles.backButtonImage} />
+            </TouchableOpacity>
             <Text style={Styles.headerText}>Productos</Text>
             {products.length === 0 ? (
                 <View style={Styles.emptyContainer}>
@@ -42,7 +45,9 @@ export const ProductScreen = ({ navigation }: Props) => {
                                             />
                                         </View>
                                         <View style={Styles.productPriceWrapper}>
-                                            <Text style={Styles.productPrice}>${item.price}</Text>
+                                            <Text style={Styles.productPrice}>
+                                                <Text style={Styles.productPriceSymbol}>$</Text>{item.price}
+                                            </Text>
                                         </View>
                                     </View>
                                     <View style={Styles.productButtonsContainer}>
