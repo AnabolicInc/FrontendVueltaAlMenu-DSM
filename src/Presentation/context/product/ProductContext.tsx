@@ -13,13 +13,10 @@ import { ProductListUseCase } from "../../../Domain/useCases/Product/ProductList
 
 export interface ProductContextProps {
     products: Product[];
-    productsByCategory: Product[];
-    getAllProductsByCategory(id: string): void;
     getAllProducts(): void;
     createProduct(product: Product, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
     updateProduct(id: string, name: string, description: string, price: number, quantity: number, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
-    deleteProduct(id: string): Promise<ResponseAPIDelivery>;
-    removeProduct(id: string): Promise<ResponseAPIDelivery>;
+    deleteProduct(id: string): Promise<ResponseAPIDelivery>;    updateFile(file: ImagePicker.ImagePickerAsset, collection: string, id: string): Promise<ResponseAPIDelivery>;
     updateFile(file: ImagePicker.ImagePickerAsset, collection: string, id: string): Promise<ResponseAPIDelivery>;
 }
 
@@ -27,21 +24,11 @@ export const ProductContext = createContext({} as ProductContextProps);
 
 export const ProductProvider = ({ children }: any) => {
     const [products, setProducts] = useState<Product[]>([]);
-    const [productsByCategory, setProductsByCategory] = useState<Product[]>([]);
-    
-
-    useEffect(() => {
-        getAllProductsByCategory("");
-    }, []);
 
     useEffect(() => {
         getAllProducts();
     }, []);
 
-    const getAllProductsByCategory = async (category_id: string) => {
-        const response = await ProductListByCategoryUseCase(category_id);
-        setProductsByCategory(response.data);
-    }
 
     const getAllProducts = async () => {
         const response = await ProductListUseCase();
@@ -59,7 +46,7 @@ export const ProductProvider = ({ children }: any) => {
                 dataProduct.images = images.map(image => image.data);
             }
             await SaveProductUseCase(dataProduct);
-            getAllProductsByCategory(dataProduct.category_id);
+            getAllProducts();
         }
         return response;
     }
@@ -75,22 +62,17 @@ export const ProductProvider = ({ children }: any) => {
                 );
                 dataProduct.images = images.map(image => image.data);
             }
-            getAllProductsByCategory(dataProduct.category_id);
+            getAllProducts();
         }
         return response;
     }
 
     const deleteProduct = async (id: string) => {
         const response = await ProductDeleteUseCase(id);
-        getAllProductsByCategory(id);
+        getAllProducts();
         return response;
     }
 
-    const removeProduct = async (id: string) => {
-        return new Promise((resolve, reject) => {
-            resolve({} as ResponseAPIDelivery);
-        });
-    }
 
     const updateFile = async (file: ImagePicker.ImagePickerAsset, collection: string, id: string) => {
         return new Promise((resolve, reject) => {
@@ -102,13 +84,10 @@ export const ProductProvider = ({ children }: any) => {
         <ProductContext.Provider
             value={{
                 products,
-                productsByCategory,
                 getAllProducts,
-                getAllProductsByCategory,
                 createProduct,
                 updateProduct,
                 deleteProduct,
-                removeProduct,
                 updateFile
             }}
         >

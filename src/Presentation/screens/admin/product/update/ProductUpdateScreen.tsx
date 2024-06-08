@@ -31,6 +31,10 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
     
   } = useViewModel(route);
 
+  const handleProductUpdate = async () => {
+    updateProduct(); 
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.productUpdateContainer}>
@@ -54,7 +58,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
         <TextInput 
           style={styles.nameInput}
           placeholder="Nombre"
-          
+          value={name}
           placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => onChange('name', text.toUpperCase())}
           maxLength={15}
@@ -63,6 +67,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
         <TextInput 
           style={styles.descriptionInput}
           placeholder="Descripción"
+          value={description}
           placeholderTextColor={COLORS.primaryOrange} 
           onChangeText={(text) => onChange('description', text)}
           maxLength={50}
@@ -89,7 +94,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 
 
         <View style={styles.buttonSave}> 
-          <Pressable onPress={() => {updateProduct(); navigation.goBack();}}>
+          <Pressable onPress={() => {handleProductUpdate()}}>
             <Text style={styles.saveText}>GUARDAR</Text>
           </Pressable>
         </View>

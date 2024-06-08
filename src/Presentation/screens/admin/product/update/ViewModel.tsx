@@ -138,13 +138,12 @@ const ProductUpdateViewModel = ( route ) => {
 						message: 'Datos actualizados correctamente',
 						type: 'success',
 						icon: 'success',
-					});
-
-                    setLoading(false);
+					});               
                 }
+				setLoading(false);
 				
             } catch (error) {
-                console.log(error);
+                //console.log(error);
                 setLoading(false);
 				showMessage({
 					message: 'Error al actualizar los datos',
