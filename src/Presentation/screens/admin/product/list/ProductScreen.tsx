@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import Styles from './Styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
 import useViewModel from './ViewModel';
+import { COLORS } from '../../../../themes/Theme';
 
 interface Props extends StackScreenProps<AdminProductNavigatorParamList, 'ProductScreen'> { }
 
@@ -22,27 +24,38 @@ export const ProductScreen = ({ navigation }: Props) => {
                     data={products}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                        <View style={Styles.productContainer}>
+                        <LinearGradient
+                            colors={[COLORS.primaryGrey, 'transparent']}
+                            style={Styles.productContainer}
+                        >
                             <Image source={{ uri: item.image }} style={Styles.productImage} />
                             <View style={Styles.productInfo}>
                                 <Text style={Styles.productTitle}>{item.name}</Text>
                                 <Text style={Styles.productDescription}>{item.description}</Text>
-                                <View style={Styles.productActions}>
-                                    <TextInput
-                                        style={Styles.productQuantity}
-                                        value={item.quantity.toString()}
-                                        editable={false}
-                                    />
-                                    <Text style={Styles.productPrice}>${item.price.toFixed(2)}</Text>
-                                    <TouchableOpacity onPress={() => {}}>
-                                        <Text style={Styles.editButton}>Editar</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => deleteProduct(item.id)}>
-                                        <Text style={Styles.deleteButton}>Borrar</Text>
-                                    </TouchableOpacity>
+                                <View style={Styles.productDetails}>
+                                    <View style={Styles.productQuantityPriceContainer}>
+                                        <View style={Styles.productQuantityContainer}>
+                                            <TextInput
+                                                style={Styles.productQuantity}
+                                                value={item.quantity.toString()}
+                                                editable={false}
+                                            />
+                                        </View>
+                                        <View style={Styles.productPriceWrapper}>
+                                            <Text style={Styles.productPrice}>${item.price}</Text>
+                                        </View>
+                                    </View>
+                                    <View style={Styles.productButtonsContainer}>
+                                        <TouchableOpacity onPress={() => {}} style={Styles.editButtonContainer}>
+                                            <Image source={require('../../../../../../assets/images/editProduct.png')} style={Styles.editButtonImage} />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => deleteProduct(item.id)} style={Styles.deleteButtonContainer}>
+                                            <Image source={require('../../../../../../assets/images/deleteProduct.png')} style={Styles.deleteButtonImage} />
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
+                        </LinearGradient>
                     )}
                 />
             )}
