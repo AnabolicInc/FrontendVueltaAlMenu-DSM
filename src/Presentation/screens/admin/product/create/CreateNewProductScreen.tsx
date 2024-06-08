@@ -100,7 +100,10 @@ export const CreateNewProductScreen = ({ navigation, route }: Props) => {
 				))}
 
 				<View style={styles.buttonSave}>
-					<Pressable onPress={createNewProduct}>
+					<Pressable onPress={() => {
+						createNewProduct();
+						navigation.goBack();
+					}}>
 						<Text style={styles.saveText}>Guardar</Text>
 					</Pressable>
 				</View>
