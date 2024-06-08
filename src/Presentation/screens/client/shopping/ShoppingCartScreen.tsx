@@ -9,7 +9,7 @@ import { RootStackParamList } from '../../../navigation/MainAppStack';
 import { ModalPickPayment } from '../../../components/ModalPickPayment';
 import { Product } from '../../../../Domain/entities/Product';
 import { COLORS } from '../../../themes/Theme';
-import { ShoppingCartContext } from '../../../context/shopping/ShoppingContext';
+import { ShoppingCartContext } from '../../../context/shopping/ShoppingCartContext';
 
 interface Props extends StackScreenProps<RootStackParamList, 'ClientBottomTab'> { }
 
@@ -28,7 +28,7 @@ export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) =
         setMoldalVisible(false);
     };
 
-	const { shoppingCart, total, removeProductShoppingCart } = useContext(ShoppingContext);
+	const { shoppingCart } = useContext(ShoppingCartContext);
 
 	const removeProduct = async ( product: Product ) => {
 		//await removeProductShoppingCart(product);

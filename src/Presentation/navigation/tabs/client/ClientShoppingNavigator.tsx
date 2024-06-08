@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { ProductInfoScreen, ShoppingCartScreen } from '../../../screens/client/shopping';
 import { ProductProvider } from '../../../context/product/ProductContext';
 import { Product } from "../../../../Domain/entities/Product";
-import { ShoppingCartProvider } from "../../../context/shopping/ShoppingContext";
+import { ShoppingCartProvider } from "../../../context/shopping/ShoppingCartContext";
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;

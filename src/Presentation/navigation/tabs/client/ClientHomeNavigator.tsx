@@ -7,6 +7,7 @@ import { ClientShoppingNavigator } from "./ClientShoppingNavigator";
 import { ProductProvider } from '../../../context/product/ProductContext';
 import { Product } from "../../../../Domain/entities/Product";
 import { ProductInfoScreen } from '../../../screens/client/shopping/productInfo/ProductInfoScreen';
+import { ShoppingCartProvider } from "../../../context/shopping/ShoppingCartContext";
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;
@@ -25,15 +26,17 @@ const Stack = createStackNavigator<ClientHomeNavigatorParamList>();
 export const ClientHomeNavigator = () => {
 
     return (
-        <ProductState>
-            <Stack.Navigator
-                initialRouteName="ClientHomeScreen"
-                screenOptions={{headerShown: false}}
-            >
-                <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
-                <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
-            </Stack.Navigator>
-        </ProductState>
+        <ShoppingCartState>
+            <ProductState>
+                <Stack.Navigator
+                    initialRouteName="ClientHomeScreen"
+                    screenOptions={{ headerShown: false }}
+                >
+                    <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
+                    <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
+                </Stack.Navigator>
+            </ProductState>
+        </ShoppingCartState>
     );
 }
 
@@ -43,5 +46,13 @@ const ProductState: React.FC<ContextStateProps> = ({ children }) => {
         <ProductProvider>
             {children}
         </ProductProvider>
+    )
+}
+
+const ShoppingCartState: React.FC<ContextStateProps> = ({ children }) => {
+    return (
+        <ShoppingCartProvider>
+            {children}
+        </ShoppingCartProvider>
     )
 }

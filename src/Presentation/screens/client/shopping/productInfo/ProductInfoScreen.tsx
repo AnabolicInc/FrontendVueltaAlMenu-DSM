@@ -7,9 +7,11 @@ import styles from './Styles';
 import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
 import { ClientShoppingNavigatorParamList } from '../../../../navigation/tabs/client/ClientShoppingNavigator';
+import { Product } from '../../../../../Domain/entities/Product';
+import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
 
-interface Props extends StackScreenProps<ClientShoppingNavigatorParamList, 'ProductInfoScreen'> {}
+interface Props extends StackScreenProps<ClientShoppingNavigatorParamList, 'ProductInfoScreen'> { }
 
 export const ProductInfoScreen = ({ navigation, route }: Props) => {
 
@@ -17,59 +19,61 @@ export const ProductInfoScreen = ({ navigation, route }: Props) => {
 
   const { product } = route.params;
 
-  const  {
-    onChange,
-  } = useViewModel();
+  const { addToCart } = useViewModel();
+
+  const handleProductPress = (product: Product) => {
+    addToCart(product);
+  }
 
 
   return (
-      <View style={styles.productInfoContainer}>
-        
-        <View>
-          
-          {
-            (product.image == '' || product.image == null)
+    <View style={styles.productInfoContainer}>
+
+      <View>
+
+        {
+          (product.image == '' || product.image == null)
             ?
             <Image style={styles.productInfoImage} source={require('../../../../../../assets/images/category.png')} />
             :
-            <Image style={styles.productInfoImage} source={{uri:product.image}} />
-            
-          }
-          <View style={styles.textContainer}>
-            <Text style={styles.productName}>{product.name}</Text>
-          </View>
+            <Image style={styles.productInfoImage} source={{ uri: product.image }} />
+
+        }
+        <View style={styles.textContainer}>
+          <Text style={styles.productName}>{product.name}</Text>
         </View>
+      </View>
 
-        <Text style={styles.descriptionTitle}>
-          Descripción
-        </Text>
+      <Text style={styles.descriptionTitle}>
+        Descripción
+      </Text>
 
-        <Text style={styles.descriptionComplete}>
-          {product.description.length > 42
+      <Text style={styles.descriptionComplete}>
+        {product.description.length > 42
           ? product.description.match(/.{1,40}/g).join('\n')
           : product.description}
-        </Text>
+      </Text>
 
-        <View style={styles.productListPriceAddBoxContainer}>
-          <View style={styles.productListPriceAddBox}>
+      <View style={styles.productListPriceAddBoxContainer}>
+        <View style={styles.productListPriceAddBox}>
 
-            <View style={styles.priceBox}>
+          <View style={styles.priceBox}>
 
-              <Text style={styles.priceText}>Precio</Text> 
-              
-              <Text style={styles.productListElementPriceSignText}>$
-                <Text style={styles.productListElementPriceText}> {product.price}</Text> 
-              </Text>
-            </View>
+            <Text style={styles.priceText}>Precio</Text>
 
-            <Pressable style={styles.addButton} onPress={() => "handleProductPress"}>
-              <Text style={styles.addButtonText}>Agregar al carrito</Text>
-            </Pressable>
-
+            <Text style={styles.productListElementPriceSignText}>$
+              <Text style={styles.productListElementPriceText}> {product.price}</Text>
+            </Text>
           </View>
-        </View>
 
+          <Pressable style={styles.addButton} onPress={() => handleProductPress(product)}>
+            <Text style={styles.addButtonText}>Agregar al carrito</Text>
+          </Pressable>
+
+        </View>
       </View>
+
+    </View>
   )
 }
 

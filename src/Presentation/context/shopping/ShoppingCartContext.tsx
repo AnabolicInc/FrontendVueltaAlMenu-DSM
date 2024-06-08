@@ -8,8 +8,8 @@ export interface ShoppingContextProps {
     total: number;
     getShoppingCart(): Promise <void>;
     getTotal(): void;
-    saveProductShoppingCart(): Promise <void>;
-    removeProductShoppingCart(): Promise <void>;
+    saveProductShoppingCart(product: Product): Promise <void>;
+    removeProductShoppingCart(product: Product): Promise <void>;
 }
 
 
@@ -28,11 +28,12 @@ export const ShoppingCartProvider = ({ children }: any) => {
          
     }
 
-    const saveProductShoppingCart = () => {
+    const saveProductShoppingCart = ( product: Product ) => {
+        console.log('Product saved from shopping cart');
         return Promise.resolve()
     }
 
-    const removeProductShoppingCart = () => {
+    const removeProductShoppingCart = ( product: Product ) => {
         return Promise.resolve();
     }
 
