@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
 import { User } from '../../../Domain/entities/User';
 import { AuthState, authReducer } from './AuthReducer';
 import { GetUserUseCase } from '../../../Domain/useCases/UserLocal/GetUserLocal';
