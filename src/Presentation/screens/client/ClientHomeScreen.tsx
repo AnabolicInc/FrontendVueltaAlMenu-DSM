@@ -41,7 +41,7 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
         clearButtonMode='always'
         enterKeyHint='enter'
         onChangeText={(text) => {
-          // Handle search logic here
+          // implement handle search logic here
         }}
       />
 

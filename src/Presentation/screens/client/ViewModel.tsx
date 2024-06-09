@@ -3,13 +3,15 @@ import { ProductContext } from '../../context/product/ProductContext';
 import { categoryContext } from '../../context/category/CategoryContext';
 import { Product } from '../../../Domain/entities/Product';
 import { ShoppingCartContext } from '../../context/shopping/ShoppingCartContext';
+import { ProductShoppingContext } from '../../context/ProductShoppingContext';
 
 const ProductListViewModel = () => {
-    const { products, getAllProducts} = useContext(ProductContext);
+    const { products, getAllProducts} = useContext(ProductShoppingContext);
 
 
     const { saveProductShoppingCart } = useContext(ShoppingCartContext);
     const addToCart = async (product: Product) => { 
+        
         console.log('Add to cart', product);
         await saveProductShoppingCart(product);
     }

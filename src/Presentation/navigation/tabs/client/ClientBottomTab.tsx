@@ -10,6 +10,7 @@ import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScre
 import { ReactElement } from 'react';
 import { ProductProvider } from '../../../context/product/ProductContext';
 import { ClientHomeNavigator } from './ClientHomeNavigator';
+import { ProductShoppingProvider } from '../../../context/ProductShoppingContext';
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;
@@ -31,7 +32,7 @@ const Tab = createBottomTabNavigator<RootClientBottomTabParamList>();
 
 export const ClientBottomTab = () => {
     return (
-        <ProductState>
+        <ProductShoppingState>
 
             <Tab.Navigator
                 screenOptions={{
@@ -69,14 +70,14 @@ export const ClientBottomTab = () => {
 
             </Tab.Navigator>
 
-        </ProductState>
+        </ProductShoppingState>
     );
 }
 
-const ProductState: React.FC<ContextStateProps> = ({ children }) => {
+const ProductShoppingState: React.FC<ContextStateProps> = ({ children }) => {
     return (
-        <ProductProvider>
+        <ProductShoppingProvider>
             {children}
-        </ProductProvider>
+        </ProductShoppingProvider>
     )
 }
