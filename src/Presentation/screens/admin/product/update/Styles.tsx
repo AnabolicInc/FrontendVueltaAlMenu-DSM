@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 import { COLORS, FONTSIZE } from '../../../../themes/Theme'
+import { transparent } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
 
 const ProductUpdateStyles = StyleSheet.create({
 
@@ -16,18 +17,12 @@ const ProductUpdateStyles = StyleSheet.create({
 		flex: 1,
 		width: 400,
 		height: 450,
-
 		marginBottom: 10,
 		marginHorizontal: 10,
 		justifyContent: 'center',
 		alignSelf: 'center',
 		flexDirection: 'column',
 	},
-	productUpdateInnerContainer: {
-		position: 'relative',
-		height: 1000,
-		top: -150,
-	  },
 
 	productImages: {
 		position: 'relative',
@@ -94,9 +89,11 @@ const ProductUpdateStyles = StyleSheet.create({
 		fontFamily: 'Poppins',
 		fontSize: FONTSIZE.size_15,
 		borderRadius: 10,
-		width: 200,
+		width: 100,
 		height: 40,
-		backgroundColor: COLORS.primaryDarkGrey,
+		top: "-40%",
+		left: "-35%",
+		backgroundColor:COLORS.secondaryBlackRGBA,
 		borderColor: COLORS.primaryOrange,
 		borderWidth: 1,
 		position: 'relative',
@@ -119,8 +116,8 @@ const ProductUpdateStyles = StyleSheet.create({
 
 	changeImageButtonText: {
 		fontFamily: 'Poppins',
-		fontSize: FONTSIZE.size_15,
-		color: COLORS.primaryOrange,
+		fontSize: FONTSIZE.size_10,
+		color: COLORS.primaryWhite,
 		position: 'relative',
 		justifyContent: 'center',
 		alignItems: 'center',
