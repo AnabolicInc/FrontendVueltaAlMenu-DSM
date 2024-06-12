@@ -24,6 +24,8 @@ export class FileRepositoryImpl implements FileRepository {
             // Create a new FormData object to send the file
             let imageRegister = new FormData();
             // Append the file to the FormData object
+            console.log("FILE, ESTA ES LA INFO QUE SE TIENE: " + file);
+
             imageRegister.append('archive', {
                 uri: file.uri,
                 name: file.uri.split('/').pop(),
@@ -53,6 +55,7 @@ export class FileRepositoryImpl implements FileRepository {
             // Create a new FormData object to send the files
             let imagesRegister = new FormData();
             // Append the files to the FormData object
+            console.log("FILE REPOSITORY, ESTA ES LA INFO QUE SE TIENE: " + files, files.length);
             files.forEach((file, index) => {
                 imagesRegister.append(`archive${index}`, file.uri, file.uri.split('/').pop());
             });

@@ -9,6 +9,8 @@ module.exports = function(api) {
     ],
 
     plugins: [
+      'react-native-reanimated/plugin',
+      '@babel/plugin-transform-flow-strip-types',
       [
         'module:react-native-dotenv',
         {

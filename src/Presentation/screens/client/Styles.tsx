@@ -114,7 +114,7 @@ const ClientHomeStyles = StyleSheet.create(
           productListElement: {
             backgroundColor: COLORS.secondaryBlackRGBA,
             width: 180,
-            height: 312,
+            height: 400,
             borderRadius: 30,
             marginBottom: 10,
             paddingStart: 15,
@@ -157,7 +157,6 @@ const ClientHomeStyles = StyleSheet.create(
             top: 20,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            
 
           },
           productListElementPriceSignText: {
@@ -172,7 +171,7 @@ const ClientHomeStyles = StyleSheet.create(
             fontFamily: 'Poppins',
             textAlign: 'left',
             fontSize: FONTSIZE.size_18,
-            top: 22,
+            top: 20,
           },
           container: {
             flex: 1,
@@ -237,12 +236,40 @@ const ClientHomeStyles = StyleSheet.create(
             height: 36,
             alignItems: 'center',
             justifyContent: 'center',
-            top: 15,
+            top: 35,
           },
           addButtonText: {
             color: COLORS.primaryWhite,
             fontSize: 24,
             bottom: 1,
+          },
+          counterContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 2,
+          },
+          counterButton: {
+            backgroundColor: '#D17842',
+            borderRadius: 5,
+            padding: 5,
+            marginHorizontal: 10,
+          },
+          counterButtonText: {
+            color: '#FFFFFF',
+            fontSize: 18,
+            fontWeight: 'bold',
+          },
+          counterText: {
+            color: '#FFFFFF',
+            fontSize: 18,
+            fontWeight: 'bold',
+          },
+          addButtonContainer: {
+            flex: 5,
+            alignItems: 'flex-end',
+          },
+          productListPriceContainer: {
+            flex: 1,
           },
     
     }

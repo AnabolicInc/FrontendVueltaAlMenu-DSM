@@ -79,57 +79,62 @@ const CreateNewProductViewModel = () => {
         }
     };
 
-    const createNewProduct = async () => {
-        const isValid = await isValidForm();
-        console.log("BOTÓN DE CREAR PRODUCTO PRESIONADO")
-        if (isValid) {
-            setLoading(true);
-            setErrorMessages({});
-            try {
-                const { images, ...data } = values;
-    
-                // Convertir price y quantity a number y establecer category_id a 1
-                const dataWithNumbers = {
-                    ...data,
-                    price: parseFloat(data.price),
-                    quantity: parseInt(data.quantity, 10),
-                    category_id: currentCategory.id,  // Establecer category_id a 1 para pruebas
-                };
-                console.log("CHECKPOINT")
+// En CreateNewProductViewModel
 
-                const response = await createProductContext(dataWithNumbers, imageFiles);
-    
-                if (response.success) {
-                    showMessage({
-                        message: 'Producto creado correctamente',
-                        type: 'success',
-                        icon: 'success',
-                    });
-                    setLoading(false);
-                } else {
-                    throw new Error('Failed to create product');
-                }
-            } catch (error) {
-                const rejectErrors: ResponseAPIDelivery = error;
-    
-                if (rejectErrors.error) {
-                    setErrorResponses([]);
-                    showMessage({
-                        message: rejectErrors.error,
-                        type: 'danger',
-                        icon: 'danger',
-                    });
-                } else {
-                    console.log('Error en la creación del producto');
-                    const errorsArray = Object.values(rejectErrors.errors || {});
-                    const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
-                    console.log(errorsArrayFilter);
-                    setErrorResponses(errorsArrayFilter);
-                }
+const createNewProduct = async () => {
+    const isValid = await isValidForm();
+    console.log("BOTÓN DE CREAR PRODUCTO PRESIONADO")
+    if (isValid) {
+        setLoading(true);
+        setErrorMessages({});
+        try {
+            const { images, ...data } = values;
+
+            // Convertir price y quantity a number y establecer category_id a 1
+            const dataWithNumbers = {
+                ...data,
+                price: parseFloat(data.price),
+                quantity: parseInt(data.quantity, 10),
+                category_id: currentCategory.id,  // Establecer category_id a 1 para pruebas
+            };
+            console.log("CHECKPOINT")
+
+            const response = await createProductContext(dataWithNumbers, imageFiles);
+
+            if (response.success) {
+                showMessage({
+                    message: 'Producto creado correctamente',
+                    type: 'success',
+                    icon: 'success',
+                });
                 setLoading(false);
+                return response.data; // Retornar el producto creado
+            } else {
+                throw new Error('Failed to create product');
             }
+        } catch (error) {
+            const rejectErrors: ResponseAPIDelivery = error;
+
+            if (rejectErrors.error) {
+                setErrorResponses([]);
+                showMessage({
+                    message: rejectErrors.error,
+                    type: 'danger',
+                    icon: 'danger',
+                });
+            } else {
+                console.log('Error en la creación del producto');
+                const errorsArray = Object.values(rejectErrors.errors || {});
+                const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
+                console.log(errorsArrayFilter);
+                setErrorResponses(errorsArrayFilter);
+            }
+            setLoading(false);
         }
-    };
+    }
+    return null; // Retornar null si no se creó el producto
+};
+
     
 
     const pickImage = async () => {
