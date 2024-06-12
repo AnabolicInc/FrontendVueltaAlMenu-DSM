@@ -36,7 +36,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 		navigation.goBack();
 	}
 
-	const imagess = [
+	const images = [
 		{
 			original: "https://picsum.photos/id/1018/1000/600/",
 			thumbnail: "https://picsum.photos/id/1018/250/150/",
@@ -59,7 +59,7 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 				showsHorizontalScrollIndicator={false}
 				decelerationRate={0}
 				snapToInterval={420}
-				data={imagess}
+				data={images}
 				horizontal={true}
 				keyExtractor={(item) => item.original}
 				renderItem={({ item }) => (
