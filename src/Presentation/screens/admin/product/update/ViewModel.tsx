@@ -38,6 +38,8 @@ const ProductUpdateViewModel = ( route ) => {
 
 	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
 
+	const [fontsLoaded, setFontsLoaded] = useState(false);
+
 	const [values, setValues] = useState<Values>({
 		image: productItem.image,
 		name: productItem.name,
@@ -154,14 +156,28 @@ const ProductUpdateViewModel = ( route ) => {
         }
     }
 
+	
+    /**
+     * Loads the required fonts asynchronously.
+     */
+    const loadFonts = async () => {
+        await Font.loadAsync({
+            'Poppins-Black': require('../../../../../../assets/fonts/Poppins-Black.ttf'),
+        });
+        setFontsLoaded(true);
+    };
+
     return {
         ...values,
         onChange,
+		loadFonts,
+		fontsLoaded,
         pickImage,
         takePhoto,
 		updateProduct,
         errorMessages,
         responseError,
+
       };
 }
 

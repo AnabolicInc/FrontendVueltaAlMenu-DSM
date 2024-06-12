@@ -96,6 +96,7 @@ export const ProductProvider = ({ children }: any) => {
                 createProduct,
                 updateProduct,
                 deleteProduct,
+                updateFile,
                 addProduct, // Añadir la función al contexto
 
             }}

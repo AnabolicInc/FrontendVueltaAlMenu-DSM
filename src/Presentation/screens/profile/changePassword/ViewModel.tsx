@@ -106,7 +106,7 @@ const ChangePasswordViewModel = () => {
   const loadFonts = async () => {
     try {
       await Font.loadAsync({
-        Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
+        Poppins: require('../../../../../assets/fonts/Poppins-Regular.ttf'),
       });
       return true;
     } catch (error) {
