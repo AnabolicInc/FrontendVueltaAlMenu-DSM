@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, Pressable, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from './Styles'; // Asegúrate de tener estilos específicos para este componente
+import styles from './Styles';
 import { Product } from '../../../Domain/entities/Product';
 import { COLORS } from '../../themes/Theme';
 import useViewModel from './ViewModel';
@@ -10,7 +10,7 @@ import useViewModel from './ViewModel';
 interface Props {
     product: Product;
     onPress: () => void;
-    onAddToCart: (product) => void;
+    onAddToCart: (product: Product) => void;
 }
 
 const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
@@ -20,18 +20,18 @@ const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
     const handleAddToCart = () => {
         product.quantity = quantity;
         onAddToCart(product);
-        
-    }
-    
+    };
+
     const incrementQuantity = () => {
         setQuantity(quantity + 1);
-        addItem(product);
-    }
+        addItem({ ...product, quantity: quantity + 1 });
+    };
+
     const decrementQuantity = () => {
         if (quantity > 1) {
             setQuantity(quantity - 1);
+            subtracItem({ ...product, quantity: quantity - 1 });
         }
-        subtracItem(product);
     };
 
     return (
@@ -40,8 +40,8 @@ const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
                 colors={[COLORS.primaryGrey, 'transparent']}
                 style={styles.productListElement}
             >
-                {product.images ? (
-                    <Image style={styles.productListImage} source={{ uri: product.images }} />
+                {product.image ? (
+                    <Image style={styles.productListImage} source={{ uri: product.image }} />
                 ) : (
                     <Image style={styles.productListImage} source={require('../../../../assets/images/category.png')} />
                 )}
@@ -72,11 +72,11 @@ const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
                         <TouchableOpacity style={styles.counterButton} onPress={decrementQuantity}>
                             <Text style={styles.counterButtonText}>-</Text>
                         </TouchableOpacity>
-                    </View>
-                    <View style={styles.addButtonContainer}>
-                        <Pressable style={styles.addButton} onPress={handleAddToCart}>
-                            <Text style={styles.addButtonText}><FontAwesome name="shopping-cart" size={24} color="#000000" /></Text>
-                        </Pressable>
+                        <View style={styles.addButtonContainer}>
+                            <Pressable style={styles.addButton} onPress={handleAddToCart}>
+                                <Text style={styles.addButtonText}><FontAwesome name="shopping-cart" size={24} color="#000000" /></Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
             </LinearGradient>
