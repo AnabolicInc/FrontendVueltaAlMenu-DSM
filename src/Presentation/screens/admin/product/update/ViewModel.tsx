@@ -130,7 +130,7 @@ const ProductUpdateViewModel = ( route ) => {
 
 		
                 // call to update method in ProductContext
-                const response = await updateProductContext(data.id, data.name, data.description, data.price, data.quantity, file);
+                const response = await updateProductContext(data.id, data.name, data.description, data.price, data.quantity);
                 console.log(response);
                 
                 if (response.success){
