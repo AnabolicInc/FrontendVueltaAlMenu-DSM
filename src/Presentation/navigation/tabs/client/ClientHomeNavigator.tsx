@@ -3,10 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 
 import { ClientHomeScreen } from '../../../screens/client';
-import { ClientShoppingNavigator } from "./ClientShoppingNavigator";
+
 import { ProductProvider } from '../../../context/product/ProductContext';
 import { Product } from "../../../../Domain/entities/Product";
 import { ProductInfoScreen } from '../../../screens/client/shopping/productInfo/ProductInfoScreen';
+import { ShoppingCartProvider } from "../../../context/shopping/ShoppingCartContext";
+import { ShoppingCartScreen } from "../../../screens/client/shopping";
 
 interface ContextStateProps {
     children: ReactElement | ReactElement[] | null;
@@ -16,6 +18,7 @@ interface ContextStateProps {
 export type ClientHomeNavigatorParamList = {
     ClientHomeScreen: undefined;
     ProductInfoScreen: { product: Product };
+    ShoppingCartScreen: undefined;
 }
 
 const Stack = createStackNavigator<ClientHomeNavigatorParamList>();
@@ -25,23 +28,27 @@ const Stack = createStackNavigator<ClientHomeNavigatorParamList>();
 export const ClientHomeNavigator = () => {
 
     return (
-        <ProductState>
-            <Stack.Navigator
-                initialRouteName="ClientHomeScreen"
-                screenOptions={{headerShown: false}}
-            >
-                <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
-                <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
-            </Stack.Navigator>
-        </ProductState>
+    
+            <ShoppingCartState>
+                <Stack.Navigator
+                    initialRouteName="ClientHomeScreen"
+                    screenOptions={{ headerShown: false }}
+                >
+                    <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
+                    <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
+                    <Stack.Screen name="ShoppingCartScreen" component={ShoppingCartScreen} />
+                </Stack.Navigator>
+            </ShoppingCartState>
+    
     );
 }
 
-// Create client provider
-const ProductState: React.FC<ContextStateProps> = ({ children }) => {
+
+
+const ShoppingCartState: React.FC<ContextStateProps> = ({ children }) => {
     return (
-        <ProductProvider>
+        <ShoppingCartProvider>
             {children}
-        </ProductProvider>
+        </ShoppingCartProvider>
     )
 }

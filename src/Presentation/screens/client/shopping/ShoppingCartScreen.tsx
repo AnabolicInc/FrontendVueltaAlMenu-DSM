@@ -5,21 +5,19 @@ import { StackScreenProps } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './Styles';
 import { LinearGradient } from 'expo-linear-gradient';
-import { RootStackParamList } from '../../../navigation/MainAppStack';
+
 import { ModalPickPayment } from '../../../components/ModalPickPayment';
 import { Product } from '../../../../Domain/entities/Product';
 import { COLORS } from '../../../themes/Theme';
-import { ShoppingContext } from '../../../context/shopping/ShoppingContext';
+import { ShoppingCartContext } from '../../../context/shopping/ShoppingCartContext';
+import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
+import { ClientHomeNavigatorParamList } from '../../../navigation/tabs/client/ClientHomeNavigator';
+import { ProductShoppingContext } from '../../../context/ProductShoppingContext';
 
-interface Props extends StackScreenProps<RootStackParamList, 'ClientBottomTab'> { }
+interface Props extends StackScreenProps<ClientHomeNavigatorParamList, 'ShoppingCartScreen'> { }
 
-interface ShoppingCartItemProps{
-	product: Product;
-	remove: (product: Product) => void;
 
-}
-
-export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) => {
+export const ShoppingCartScreen = ({ navigation, route }:Props) => {
 
 	const [modalVisible, setMoldalVisible] = useState<boolean>(false);
 
@@ -28,11 +26,9 @@ export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) =
         setMoldalVisible(false);
     };
 
-	const { shoppingCart, total, removeProductShoppingCart } = useContext(ShoppingContext);
+	const { shoppingCart, total } = useContext(ProductShoppingContext);
 
-	const removeProduct = async ( product: Product ) => {
-		//await removeProductShoppingCart(product);
-	}
+	console.log(total);
 
 	return (
 		
@@ -47,10 +43,10 @@ export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) =
 				<Pressable style={styles.backButton} onPress={() => console.log('button')}>
 					<Image style={styles.backButton} source={require('../../../../../assets/images/leftButton.png')} />
 				</Pressable>
-
-
+				
+				
 				{/*DO NOT DELETE, CODE COMMENTED FOR FUTURE IMPLEMENTATION*/}
-				{/* {shoppingCart.length === 0 ? (
+				{ /*shoppingCart.length === 0 ? (
                 <Text style={styles.noShoppingCartListText}>No hay productos en tu carrito</Text>
             	) : (
                 <FlatList 
@@ -81,7 +77,7 @@ export const ShoppingCartScreen = ({ product, remove }: ShoppingCartItemProps) =
 						</LinearGradient>
                     )}
                 />
-            	)} */}
+            	)} */}	 
 
 
 				{/*createa a pressable button to go to the payment screen */}

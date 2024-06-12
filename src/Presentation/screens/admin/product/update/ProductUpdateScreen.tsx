@@ -1,5 +1,6 @@
-import { View, Text, Image, TextInput, FlatList, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Image, TextInput, Flatlist, ScrollView, ActivityIndicator } from 'react-native'
+import React, { useEffect, useState } from 'react'
+
 import { Pressable } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack';
 import { AdminProductNavigatorParamList } from '../../../../navigation/tabs/admin/AdminProductNavigator';
@@ -17,24 +18,36 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
 
   const [modalVisible, setModalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
 
-  const {
-    onChange,
-    takePhoto,
-    pickImage,
-    updateProduct,
-    images,
-    name,
-    description,
-    price,
-    quantity,
+	const {
+		onChange,
+		loadFonts,
+		fontsLoaded,
+		takePhoto,
+		pickImage,
+		updateProduct,
+		image,
+		name,
+		description,
+		price,
+		quantity,
 
-  } = useViewModel(route);
+	} = useViewModel(route);
 
-  const handleProductUpdate = async () => {
-    updateProduct();
-    navigation.goBack();
-  }
+	
+    useEffect(() => {
+        loadFonts();
+    }, []);
 
+    if (!fontsLoaded) {
+        return <ActivityIndicator size="large" />;
+    }
+
+	const handleProductUpdate = async () => {
+		updateProduct();
+		navigation.goBack();
+	}
+    
+    
   const imagess = [
     {
       original: "https://picsum.photos/id/1018/1000/600/",
@@ -50,10 +63,8 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
     }
   ];
 
-  return (
-    <View style={styles.productUpdateContainer}>
-
-
+	return (
+	
       <FlatList
         showsHorizontalScrollIndicator={false}
         decelerationRate={0}
@@ -82,60 +93,67 @@ export const ProductUpdateScreen = ({ navigation, route }: Props) => {
           </View>
         )}
       />
-      <Text style={styles.productUpdateText}>Editar producto</Text>
+			<View style={styles.productUpdateInnerContainer}>
 
-      <TextInput
-        style={styles.nameInput}
-        placeholder="Nombre"
-        value={name}
-        placeholderTextColor={COLORS.primaryOrange}
-        onChangeText={(text) => onChange('name', text.toUpperCase())}
-        maxLength={15}
-      />
 
-      <TextInput
-        style={styles.descriptionInput}
-        placeholder="Descripción"
-        value={description}
-        placeholderTextColor={COLORS.primaryOrange}
-        onChangeText={(text) => onChange('description', text)}
-        maxLength={50}
+				<TextInput
+					style={styles.nameInput}
+					placeholder="Nombre"
+					value={name}
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('name', text.toUpperCase())}
+					maxLength={15}
+				/>
 
-      />
+				<TextInput
+					style={styles.descriptionInput}
+					placeholder="Descripción"
+					value={description}
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('description', text)}
+					maxLength={50}
 
-      <TextInput
-        style={styles.priceInput}
-        placeholder="Precio"
-        keyboardType='numeric'
-        placeholderTextColor={COLORS.primaryOrange}
-        onChangeText={(text) => onChange('price', text)}
-        maxLength={15}
-      />
+				/>
 
-      <TextInput
-        style={styles.quantityInput}
-        placeholder="Cantidad"
-        keyboardType='numeric'
-        placeholderTextColor={COLORS.primaryOrange}
-        onChangeText={(text) => onChange('quantity', text)}
-        maxLength={15}
-      />
+				<TextInput
+					style={styles.priceInput}
+					placeholder="Precio"
+					keyboardType='numeric'
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('price', text.toUpperCase())}
+					maxLength={15}
+				/>
+
+				<TextInput
+					style={styles.quantityInput}
+					placeholder="Cantidad"
+					keyboardType='numeric'
+					placeholderTextColor={COLORS.primaryOrange}
+					onChangeText={(text) => onChange('quantity', text.toUpperCase())}
+					maxLength={15}
+				/>
+
+
       <Pressable style={styles.saveButton} onPress={() => { handleProductUpdate() }}>
         <Text style={styles.saveText}>Actualizar</Text>
       </Pressable>
-
+        
       <Pressable style={styles.cancelButton} onPress={() => navigation.goBack()}>
         <Text style={styles.cancelText}>Cancelar</Text>
       </Pressable>
 
-      <ModalPickImage
-        modalUseState={modalVisible}
-        setModalUseState={setModalVisible}
-        openGallery={pickImage}
-        openCamera={takePhoto}
-      />
+			</View>
 
-    </View>
-  )
+
+			<ModalPickImage
+				modalUseState={modalVisible}
+				setModalUseState={setModalVisible}
+				openGallery={pickImage}
+				openCamera={takePhoto}
+			/>
+
+		</View>
+	)
+
 }
 export default ProductUpdateScreen;

@@ -13,17 +13,20 @@ import { ProductListUseCase } from "../../../Domain/useCases/Product/ProductList
 
 export interface ProductContextProps {
     products: Product[];
+    refresh: boolean;
     getAllProducts(): void;
     createProduct(product: Product, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
     updateProduct(id: string, name: string, description: string, price: number, quantity: number, files?: ImagePicker.ImagePickerAsset[]): Promise<ResponseAPIDelivery>;
     deleteProduct(id: string): Promise<ResponseAPIDelivery>;    updateFile(file: ImagePicker.ImagePickerAsset, collection: string, id: string): Promise<ResponseAPIDelivery>;
     updateFile(file: ImagePicker.ImagePickerAsset, collection: string, id: string): Promise<ResponseAPIDelivery>;
+    addProduct(product: Product): void;
 }
 
 export const ProductContext = createContext({} as ProductContextProps);
 
 export const ProductProvider = ({ children }: any) => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         getAllProducts();
@@ -79,16 +82,23 @@ export const ProductProvider = ({ children }: any) => {
             resolve({} as ResponseAPIDelivery);
         });
     }
+    const addProduct = (product: Product) => {
+        setProducts(prevProducts => [...prevProducts, product]);
+        setRefresh(prev => !prev); // Cambiar el estado de refresh
+    };
 
     return (
         <ProductContext.Provider
             value={{
                 products,
+                refresh, // Añadir refresh al contexto
                 getAllProducts,
                 createProduct,
                 updateProduct,
                 deleteProduct,
-                updateFile
+                updateFile,
+                addProduct, // Añadir la función al contexto
+
             }}
         >
             {children}
