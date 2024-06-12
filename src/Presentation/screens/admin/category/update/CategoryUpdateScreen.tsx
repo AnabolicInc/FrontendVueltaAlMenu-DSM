@@ -36,7 +36,7 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
 
   return (
     <View style={styles.categoryUpdateContainer}>
-      <ScrollView style={styles.categoryUpdateInnerContainer} showsVerticalScrollIndicator = {false}>
+      <View style={styles.categoryUpdateInnerContainer}>
         
         <View>
           
@@ -89,7 +89,7 @@ export const CategoryUpdateScreen = ({ navigation, route }: Props) => {
             <Text style={styles.cancelText}>Cancelar</Text>
           </Pressable>
 
-      </ScrollView>
+      </View>
 
 
       <ModalPickImage 
