@@ -138,7 +138,7 @@ const CategoryUpdateStyles = StyleSheet.create(
         backgroundColor: COLORS.backgroundInputGrayRGBA,
         color: COLORS.primaryWhite,
         width: "70%",
-        height: 240,
+        height: 80,
         borderRadius: 10,
         marginBottom: 10,
         paddingStart: 15,
