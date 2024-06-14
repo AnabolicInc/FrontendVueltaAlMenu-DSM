@@ -53,11 +53,22 @@ const CreateNewProductStyles = StyleSheet.create({
         color: 'white',
         marginBottom: 5,
     },
+    inputRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     input: {
         fontFamily: 'Poppins',
         fontSize: 15,
         color: COLORS.primaryWhite,
         height: 40,
+        flex: 1,
+    },
+    currencyText: {
+        fontFamily: 'Poppins',
+        fontSize: 15,
+        color: COLORS.primaryOrange,
+        marginLeft: 10,
     },
     errorText: {
         color: 'red',
@@ -81,7 +92,7 @@ const CreateNewProductStyles = StyleSheet.create({
     },
     imageContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-start', // Alinear las imágenes al principio del contenedor
+        justifyContent: 'flex-start',
         alignItems: 'center',
         marginBottom: 20,
     },

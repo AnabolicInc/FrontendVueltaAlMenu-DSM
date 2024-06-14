@@ -81,22 +81,25 @@ export const CreateNewProductScreen = ({ navigation, route }: Props) => {
                 {['Nombre', 'Descripción', 'Precio', 'Cantidad'].map((placeholder, index) => (
                     <View key={index} style={styles.inputContainer}>
                         <Text style={styles.inputLabel}>{placeholder}</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder={`Ingrese ${placeholder.toLowerCase()}`}
-                            placeholderTextColor="grey"
-                            value={
-                                index === 0 ? name
-                                : index === 1 ? description
-                                : index === 2 ? price
-                                : quantity
-                            }
-                            onChangeText={(text) =>
-                                onChange(index === 0 ? 'name' : index === 1 ? 'description' : index === 2 ? 'price' : 'quantity', text)
-                            }
-                            keyboardType={index === 2 || index === 3 ? 'numeric' : 'default'}
-                            multiline={index === 1}
-                        />
+                        <View style={styles.inputRow}>
+                            <TextInput
+                                style={styles.input}
+                                placeholder={`Ingrese ${placeholder.toLowerCase()}`}
+                                placeholderTextColor="grey"
+                                value={
+                                    index === 0 ? name
+                                    : index === 1 ? description
+                                    : index === 2 ? price
+                                    : quantity
+                                }
+                                onChangeText={(text) =>
+                                    onChange(index === 0 ? 'name' : index === 1 ? 'description' : index === 2 ? 'price' : 'quantity', text)
+                                }
+                                keyboardType={index === 2 || index === 3 ? 'numeric' : 'default'}
+                                multiline={index === 1}
+                            />
+                            {index === 2 && <Text style={styles.currencyText}>CLP</Text>}
+                        </View>
                         {errorMessages[
                             index === 0 ? 'name' : index === 1 ? 'description' : index === 2 ? 'price' : 'quantity'
                         ] && (
