@@ -22,7 +22,7 @@ interface ResponseErrorData {
 }
 
 const validationNewProductSchema = Yup.object().shape({
-    images: Yup.array().min(1, 'La imagen es obligatoria').max(3, 'No puedes seleccionar más de 3 imágenes'),
+    images: Yup.array().length(3, 'Debe seleccionar exactamente 3 imágenes'),
     name: Yup.string().required('El nombre del producto es obligatorio'),
     description: Yup.string().required('La descripción del producto es obligatoria'),
     price: Yup.string().required('El precio es obligatorio'),
@@ -74,68 +74,57 @@ const CreateNewProductViewModel = () => {
                 errors[err.path] = err.message;
             });
             setErrorMessages(errors);
-            console.log(errorMessages);
             return false;
         }
     };
 
-// En CreateNewProductViewModel
+    const createNewProduct = async () => {
+        const isValid = await isValidForm();
+        if (isValid) {
+            setLoading(true);
+            setErrorMessages({});
+            try {
+                const { images, ...data } = values;
+                const dataWithNumbers = {
+                    ...data,
+                    price: parseFloat(data.price),
+                    quantity: parseInt(data.quantity, 10),
+                    category_id: currentCategory.id,  
+                };
 
-const createNewProduct = async () => {
-    const isValid = await isValidForm();
-    console.log("BOTÓN DE CREAR PRODUCTO PRESIONADO")
-    if (isValid) {
-        setLoading(true);
-        setErrorMessages({});
-        try {
-            const { images, ...data } = values;
+                const response = await createProductContext(dataWithNumbers, imageFiles);
 
-            // Convertir price y quantity a number y establecer category_id a 1
-            const dataWithNumbers = {
-                ...data,
-                price: parseFloat(data.price),
-                quantity: parseInt(data.quantity, 10),
-                category_id: currentCategory.id,  // Establecer category_id a 1 para pruebas
-            };
-            console.log("CHECKPOINT")
+                if (response.success) {
+                    showMessage({
+                        message: 'Producto creado correctamente',
+                        type: 'success',
+                        icon: 'success',
+                    });
+                    setLoading(false);
+                    return response.data; 
+                } else {
+                    throw new Error('Failed to create product');
+                }
+            } catch (error) {
+                const rejectErrors: ResponseAPIDelivery = error;
 
-            const response = await createProductContext(dataWithNumbers, imageFiles);
-
-            if (response.success) {
-                showMessage({
-                    message: 'Producto creado correctamente',
-                    type: 'success',
-                    icon: 'success',
-                });
+                if (rejectErrors.error) {
+                    setErrorResponses([]);
+                    showMessage({
+                        message: rejectErrors.error,
+                        type: 'danger',
+                        icon: 'danger',
+                    });
+                } else {
+                    const errorsArray = Object.values(rejectErrors.errors || {});
+                    const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
+                    setErrorResponses(errorsArrayFilter);
+                }
                 setLoading(false);
-                return response.data; // Retornar el producto creado
-            } else {
-                throw new Error('Failed to create product');
             }
-        } catch (error) {
-            const rejectErrors: ResponseAPIDelivery = error;
-
-            if (rejectErrors.error) {
-                setErrorResponses([]);
-                showMessage({
-                    message: rejectErrors.error,
-                    type: 'danger',
-                    icon: 'danger',
-                });
-            } else {
-                console.log('Error en la creación del producto');
-                const errorsArray = Object.values(rejectErrors.errors || {});
-                const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }));
-                console.log(errorsArrayFilter);
-                setErrorResponses(errorsArrayFilter);
-            }
-            setLoading(false);
         }
-    }
-    return null; // Retornar null si no se creó el producto
-};
-
-    
+        return null; 
+    };
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -152,7 +141,7 @@ const createNewProduct = async () => {
             } else {
                 showMessage({
                     message: "Error",
-                    description: "Solo se pueden seleccionar hasta 3 imágenes",
+                    description: "Debe seleccionar exactamente 3 imágenes",
                     type: 'danger',
                     icon: 'danger',
                 });
@@ -176,7 +165,7 @@ const createNewProduct = async () => {
                 } else {
                     showMessage({
                         message: "Error",
-                        description: "Solo se pueden seleccionar hasta 3 imágenes",
+                        description: "Debe seleccionar exactamente 3 imágenes",
                         type: 'danger',
                         icon: 'danger',
                     });
