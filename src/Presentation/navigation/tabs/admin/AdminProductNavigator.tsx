@@ -17,9 +17,6 @@ export type AdminProductNavigatorParamList = {
 
 const Stack = createStackNavigator<AdminProductNavigatorParamList>();
 
-
-
-
 export const AdminProductNavigator = () => {
     
     return (

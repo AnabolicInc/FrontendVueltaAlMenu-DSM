@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 import { COLORS, FONTSIZE } from '../../../../themes/Theme'
-import { transparent } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
 
 const ProductUpdateStyles = StyleSheet.create({
 
@@ -10,18 +9,6 @@ const ProductUpdateStyles = StyleSheet.create({
 		alignContent: 'center',
 		alignItems: 'center',
 		backgroundColor: COLORS.generalBackgroundBlack,
-	},
-
-	productImagesContainer: {
-
-		flex: 1,
-		width: 400,
-		height: 450,
-		marginBottom: 10,
-		marginHorizontal: 10,
-		justifyContent: 'center',
-		alignSelf: 'center',
-		flexDirection: 'column',
 	},
 
 	productImages: {
@@ -91,15 +78,13 @@ const ProductUpdateStyles = StyleSheet.create({
 		borderRadius: 10,
 		width: 100,
 		height: 40,
-		top: "-40%",
-		left: "-35%",
-		backgroundColor:COLORS.secondaryBlackRGBA,
+		
+		top: 5,
+		backgroundColor:COLORS.primaryDarkGrey,
 		borderColor: COLORS.primaryOrange,
 		borderWidth: 1,
 		position: 'relative',
 		alignSelf: 'center',
-		marginBottom: 10,
-		marginTop: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -130,7 +115,7 @@ const ProductUpdateStyles = StyleSheet.create({
 		width: 350,
 		height: 40,
 		borderRadius: 10,
-		marginTop: 10,
+		
 		marginBottom: 10,
 		paddingStart: 15,
 		paddingEnd: 15,
@@ -209,6 +194,47 @@ const ProductUpdateStyles = StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 8,
 	},
+
+	imageContainer: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start', // Alinear las imágenes al principio del contenedor
+        alignItems: 'center',
+		height: 300
+    },
+
+
+	productImagesContainer: {
+
+		
+		width: 400,
+		height: 450,
+		
+		
+
+		
+	},
+
+	imagesContainer: {
+        flexDirection: 'column',
+		marginTop: 10,
+		bottom: 10,
+    
+    },
+
+	textInputsContainer: {
+        
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: '100%',
+		top: 20,
+    
+    },
+
+	userImage: {
+        width: 300,
+        height: 300,
+    },
 })
 
 export default ProductUpdateStyles;
