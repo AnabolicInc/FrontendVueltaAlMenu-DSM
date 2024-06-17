@@ -8,6 +8,7 @@ import { COLORS } from '../../../themes/Theme';
 import { ClientHomeNavigatorParamList } from '../../../navigation/tabs/client/ClientHomeNavigator';
 import ShoppingCartViewModel from './ViewModel';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Product } from '../../../../Domain/entities/Product';
 
 interface Props extends StackScreenProps<ClientHomeNavigatorParamList, 'ShoppingCartScreen'> { }
 
@@ -18,7 +19,7 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
         setMoldalVisible(false);
     };
 
-    const { shoppingCart } = ShoppingCartViewModel();
+    const { shoppingCart, addItem, subtracItem, total } = ShoppingCartViewModel();
 
     useEffect(() => {
         console.log('ShoppingCartScreen - shoppingCart:', shoppingCart);
@@ -27,6 +28,14 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
 
     console.log("ShoppingCartScreen - TAMAÑO DEL SHOPPING CART: " + shoppingCart.length);
     console.log("ShoppingCartScreen - SHOPPING CART CONTENT:", shoppingCart);
+
+    const handleIncrementQuantity = (product: Product) => {
+        addItem(product);
+    };
+
+    const handleDecrementQuantity = (product: Product) => {
+        subtracItem(product);
+    };
 
     return (
         <View style={styles.shoppingCartContainer}>
@@ -59,11 +68,19 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
                                     <Text style={styles.priceText}>{item.price} CLP</Text>
                                 </View>
                                 <View style={styles.quantityContainer}>
-                                    <Pressable style={styles.quantityButton}>
+                                    <Pressable
+                                        style={[styles.quantityButton, item.quantity >= item.stock && styles.disabledCounterButton]}
+                                        onPress={() => handleIncrementQuantity(item)}
+                                        disabled={item.quantity >= item.stock}
+                                    >
                                         <Text style={styles.quantityButtonText}>+</Text>
                                     </Pressable>
                                     <Text style={styles.quantityText}>{item.quantity}</Text>
-                                    <Pressable style={styles.quantityButton}>
+                                    <Pressable
+                                        style={[styles.quantityButton, item.quantity === 1 && styles.disabledCounterButton]}
+                                        onPress={() => handleDecrementQuantity(item)}
+                                        disabled={item.quantity === 1}
+                                    >
                                         <Text style={styles.quantityButtonText}>-</Text>
                                     </Pressable>
                                 </View>
@@ -78,7 +95,7 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
                     <Text style={styles.totalTitle}>Total</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.priceSign}>$</Text>
-                        <Text style={styles.priceText}>total</Text>
+                        <Text style={styles.priceText}>{total} CLP</Text>
                     </View>
                 </View>
 
