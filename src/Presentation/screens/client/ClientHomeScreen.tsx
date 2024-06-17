@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, Pressable } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import useViewModel from './ViewModel';
- // Importa el nuevo componente
 import { ClientHomeNavigatorParamList } from '../../navigation/tabs/client/ClientHomeNavigator';
 import styles from './Styles';
 import { useFonts } from 'expo-font';
@@ -13,6 +12,7 @@ interface Props extends StackScreenProps<ClientHomeNavigatorParamList, 'ClientHo
 
 export const ClientHomeScreen = ({ navigation, route }: Props) => {
   const { products, addToCart } = useViewModel();
+  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
 
   const [fontsLoaded] = useFonts({
     Poppins: require('../../../../assets/fonts/Poppins-Regular.ttf'),
@@ -28,6 +28,8 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
+    setButtonPressed(true);
+    setTimeout(() => setButtonPressed(false), 300); // Change color back after 300ms
   };
 
   return (
@@ -46,7 +48,7 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
       />
 
       {products.length === 0 ? (
-        <Text style={styles.noProductListText}>No hay productos para mostar</Text>
+        <Text style={styles.noProductListText}>No hay productos para mostrar</Text>
       ) : (
         <FlatList
           style={styles.productListInnerContainer}
@@ -59,6 +61,7 @@ export const ClientHomeScreen = ({ navigation, route }: Props) => {
               product={item}
               onPress={() => handleProductPress(item)}
               onAddToCart={() => handleAddToCart(item)}
+              buttonPressed={buttonPressed}
             />
           )}
         />

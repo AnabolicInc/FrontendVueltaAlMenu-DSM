@@ -71,7 +71,7 @@ export const ProductScreen = ({ navigation }: Props) => {
                             colors={[COLORS.primaryGrey, 'transparent']}
                             style={Styles.productContainer}
                         >
-                            <Image source={{ uri: item.image }} style={Styles.productImage} />
+                            <Image source={{ uri: item.images[0].uri}} style={Styles.productImage} />
                             <View style={Styles.productInfo}>
                                 <Text style={Styles.productTitle}>{item.name}</Text>
                                 <Text style={Styles.productDescription}>{item.description}</Text>

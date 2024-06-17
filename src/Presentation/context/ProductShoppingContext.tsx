@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import { createContext, useEffect, useState } from "react";
 import { Product } from "../../Domain/entities/Product";
@@ -26,23 +23,21 @@ export interface ProductShoppingContextProps {
     updateFile(file: ImagePicker.ImagePickerAsset, collection: string, id: string): Promise<ResponseAPIDelivery>;
     shoppingCart: Product[];
     total: number;
-    getShoppingCart(): Promise <void>;
+    getShoppingCart(): Promise<void>;
     getTotal(): void;
-    saveProductShoppingCart(product: Product): Promise <void>;
-    removeProductShoppingCart(product: Product): Promise <void>;
+    saveProductShoppingCart(product: Product): Promise<void>;
+    removeProductShoppingCart(product: Product): Promise<void>;
+    addItem(product: Product): void;
+    subtracItem(product: Product): void;
 }
 
 export const ProductShoppingContext = createContext({} as ProductShoppingContextProps);
 
 export const ProductShoppingProvider = ({ children }: any) => {
-
     const [products, setProducts] = useState<Product[]>([]);
     const [productsByCategory, setProductsByCategory] = useState<Product[]>([]);
-
     const [shoppingCart, setShoppingCart] = useState<Product[]>([]);
     const [total, setTotal] = useState<number>(0);
-
-    
 
     useEffect(() => {
         getAllProductsByCategory("");
@@ -82,7 +77,6 @@ export const ProductShoppingProvider = ({ children }: any) => {
         const response = await ProductUpdateUseCase(id, name, description, price, quantity);
         if (response.success) {
             const dataProduct = response.data;
-
             if (files && files.length > 0) {
                 const images = await Promise.all(
                     files.map(file => UpdateFileUseCase(file, 'categories', dataProduct.id))
@@ -112,41 +106,62 @@ export const ProductShoppingProvider = ({ children }: any) => {
         });
     }
 
-    //Toy chato papito Shopping Cart
     const getShoppingCart = async () => {
-        return Promise.resolve()
+        return Promise.resolve();
     }
 
     const getTotal = async () => {
          
     }
 
-    const saveProductShoppingCart = ( product: Product ) => {
-        console.log('Product saved from shopping cart');
-        const index = shoppingCart.findIndex((p) => p.id === product.id)
+    const saveProductShoppingCart = (product: Product) => {
+        console.log('Product saved from shopping context');
+        const index = shoppingCart.findIndex((p) => p.id === product.id);
         if (index === -1) {
             shoppingCart.push(product);
-        }else{
+        } else {
             shoppingCart[index].quantity += product.quantity;
         }
-
-
-        return Promise.resolve()
+        setShoppingCart([...shoppingCart]);
+        return Promise.resolve();
     }
 
-    const removeProductShoppingCart = ( product: Product ) => {
+    const removeProductShoppingCart = (product: Product) => {
+        const index = shoppingCart.findIndex((p) => p.id === product.id);
+        if (index !== -1) {
+            shoppingCart.splice(index, 1);
+        }
+        setShoppingCart([...shoppingCart]);
         return Promise.resolve();
+    }
+
+    const addItem = (product: Product) => {
+        const index = shoppingCart.findIndex((p) => p.id === product.id);
+        if (index !== -1) {
+            shoppingCart[index].quantity += 1;
+            setShoppingCart([...shoppingCart]);
+        }
+    }
+
+    const subtracItem = (product: Product) => {
+        const index = shoppingCart.findIndex((p) => p.id === product.id);
+        if (index !== -1 && shoppingCart[index].quantity > 1) {
+            shoppingCart[index].quantity -= 1;
+            setShoppingCart([...shoppingCart]);
+        }
     }
 
     return (
         <ProductShoppingContext.Provider
             value={{
                 shoppingCart,
-                total, 
+                total,
                 getTotal,
                 getShoppingCart,
                 saveProductShoppingCart,
                 removeProductShoppingCart,
+                addItem,
+                subtracItem,
                 products,
                 productsByCategory,
                 getAllProducts,
@@ -162,4 +177,3 @@ export const ProductShoppingProvider = ({ children }: any) => {
         </ProductShoppingContext.Provider>
     );
 }
-
