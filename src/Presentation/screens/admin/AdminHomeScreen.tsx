@@ -18,7 +18,7 @@ const {status,user} = useContext(AuthContext);
   return (
     <View style={styles.userContainer}>
       
-      <Text style={styles.mainText}>Un placer verte, {user?.name}!</Text>
+      <Text style={styles.mainText}>¡Un placer verte, {user?.name}!</Text>
 
     
     </View>

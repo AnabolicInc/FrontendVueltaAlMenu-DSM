@@ -6,6 +6,7 @@ import { AuthContext } from "../../../../context/auth/AuthContext";
 import { categoryContext } from "../../../../context/category/CategoryContext";
 import { ProductContext } from "../../../../context/product/ProductContext";
 import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
+import * as Font from 'expo-font';
 
 interface Values {
     images: string[];
@@ -47,6 +48,7 @@ const CreateNewProductViewModel = () => {
     const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
     const [loading, setLoading] = useState(false);
     const [hasNonNumber, setHasNonNumber] = useState({ price: false, quantity: false });
+    const [fontsLoaded, setFontsLoaded] = useState(false);
 
     const onChange = (property: string, value: any) => {
         if (property === 'images') {
@@ -89,7 +91,7 @@ const CreateNewProductViewModel = () => {
                     ...data,
                     price: parseFloat(data.price),
                     quantity: parseInt(data.quantity, 10),
-                    category_id: currentCategory.id,  
+                    category_id: currentCategory.id,
                 };
 
                 const response = await createProductContext(dataWithNumbers, imageFiles);
@@ -101,7 +103,7 @@ const CreateNewProductViewModel = () => {
                         icon: 'success',
                     });
                     setLoading(false);
-                    return response.data; 
+                    return response.data;
                 } else {
                     throw new Error('Failed to create product');
                 }
@@ -123,7 +125,7 @@ const CreateNewProductViewModel = () => {
                 setLoading(false);
             }
         }
-        return null; 
+        return null;
     };
 
     const pickImage = async () => {
@@ -176,6 +178,16 @@ const CreateNewProductViewModel = () => {
         }
     };
 
+    /**
+    * Loads the required fonts asynchronously.
+    */
+    // const loadFonts = async () => {
+    //     await Font.loadAsync({
+    //         'Poppins-Bold': require('../../../../../../assets/fonts/Poppins-Bold.ttf'),
+    //     });
+    //     setFontsLoaded(true);
+    // };
+
     return {
         ...values,
         onChange,
@@ -188,6 +200,7 @@ const CreateNewProductViewModel = () => {
         errorMessages,
         responseError: errorsResponse,
         imageFiles,
+
     };
 };
 
