@@ -30,6 +30,7 @@ const ForgotPasswordScreen = ({ navigation, route }: Props) => {
 
 	} = useViewModel();
 
+
 	const handleForgotPassword = async () => {
 		Keyboard.dismiss();
 		try {
@@ -79,6 +80,7 @@ const ForgotPasswordScreen = ({ navigation, route }: Props) => {
 					<Text style={styles.backTextContainer}>Volver</Text>
 				</Pressable>
 			</View>
+
 
 			<ModalNotification
 				email={email}
