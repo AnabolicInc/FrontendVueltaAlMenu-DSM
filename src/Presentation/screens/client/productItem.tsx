@@ -11,9 +11,10 @@ interface Props {
     product: Product;
     onPress: () => void;
     onAddToCart: (product: Product) => void;
+    buttonPressed: boolean;
 }
 
-const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
+const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart, buttonPressed }) => {
     const [quantity, setQuantity] = useState(1);
     const { subtracItem, addItem } = useViewModel();
 
@@ -72,11 +73,12 @@ const ProductItem: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
                         <TouchableOpacity style={styles.counterButton} onPress={decrementQuantity}>
                             <Text style={styles.counterButtonText}>-</Text>
                         </TouchableOpacity>
-                        <View style={styles.addButtonContainer}>
-                            <Pressable style={styles.addButton} onPress={handleAddToCart}>
-                                <Text style={styles.addButtonText}><FontAwesome name="shopping-cart" size={24} color="#000000" /></Text>
-                            </Pressable>
-                        </View>
+                        <Pressable
+                            style={[styles.addButton, buttonPressed && styles.buttonPressed]}
+                            onPress={handleAddToCart}
+                        >
+                            <Text style={styles.addButtonText}><FontAwesome name="shopping-cart" size={24} color="#000000" /></Text>
+                        </Pressable>
                     </View>
                 </View>
             </LinearGradient>
