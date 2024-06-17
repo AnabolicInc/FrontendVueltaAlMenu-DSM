@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
-import * as Yup from 'yup';
+import { useContext, useState } from "react";
+import { showMessage } from "react-native-flash-message";
+
+import * as yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 
-
-
-
+import { CategoryUpdateUseCase } from "../../../../../Domain/useCases/Category/CategoryUpdateUseCase";
+import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
+import { categoryContext } from "../../../../context/category/CategoryContext";
 
 
 interface Values {
 	image: string;
 	name: string;
 	description: string;
+	id: string;
 }
 
 
@@ -22,18 +25,23 @@ interface ResponseErrorData{
 
 }
 
-const CategoryUpdateViewModel = () => {
+const CategoryUpdateViewModel = ( route ) => {
 
+	const { categoryItem } = route.params;
 
+	const {updateCategory: updateCategoryContext } =useContext(categoryContext)
+
+	const [loading, setLoading] = useState(false);
 
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
 
 	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
 
 	const [values, setValues] = useState<Values>({
-		image: '',
-		name: '',
-		description: '',
+		image: categoryItem.image,
+		name: categoryItem.name,
+		description: categoryItem.description,
+		id: categoryItem.id,
 	});
 
 
@@ -88,13 +96,72 @@ const CategoryUpdateViewModel = () => {
 	  
 	};
 
+	const validationSchema = yup.object().shape({
+		name: yup.string().required('El nombre es requerido'),
+		description: yup.string().required('La descripción es requerida'),
+	});
+
+	const isValidForm = async ():Promise<boolean> => {
+		try {
+			await validationSchema.validate(values, {abortEarly: false});
+			return true;
+		} catch (error) {
+			const errors: Record<string, string> = {};
+			error.inner.forEach((err) => {
+				errors[err.path] = err.message;
+			});
+			setErrorMessages(errors);
+			console.log(errorMessages);
+			return false;
+		}
+	};
+
+	const updateCategory = async () => {
+        const validForm = isValidForm();
+
+        if (validForm) {
+            try{
+                setLoading(true);
+            
+                const { image, ...data } = values;
+
+				
+				
+                // call to update method in CategoryContext
+                const response = await updateCategoryContext(data.id, data.name, data.description, file);
+                console.log(response);
+                
+                if (response.success){
+                    showMessage({
+						message: 'Datos actualizados correctamente',
+						type: 'success',
+						icon: 'success',
+					});
+
+                    setLoading(false);
+                }
+				
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+				showMessage({
+					message: 'Error al actualizar los datos',
+					type: 'danger',
+					icon: 'danger',
+				});
+            }
+        }
+    }
+
     return {
         ...values,
         onChange,
         pickImage,
         takePhoto,
+		updateCategory,
         errorMessages,
         responseError,
+		loading
       };
 }
 

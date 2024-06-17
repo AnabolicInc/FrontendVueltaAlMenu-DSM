@@ -1,9 +1,11 @@
-import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
 import { User } from '../../../Domain/entities/User';
 import { AuthState, authReducer } from './AuthReducer';
 import { GetUserUseCase } from '../../../Domain/useCases/UserLocal/GetUserLocal';
 import { VerifyTokenUserCase } from '../../../Domain/useCases/UserLocal/VerifyTokenUserLocal';
 import { RemoveUserUseCase } from '../../../Domain/useCases/UserLocal/RemoveUserLocal';
+import { UpdateUserUseCase } from '../../../Domain/useCases/User/UpdateUserUseCase';
+import { SaveUserUseCase } from '../../../Domain/useCases/UserLocal/SaveUserLocal';
 
 
 type AuthContextProps = {
@@ -70,12 +72,16 @@ export const  AuthProvider = ({ children }: any) => {
     }
 
     const updateUser = async (user: User) => {
+        await SaveUserUseCase(user);
+
         dispatch({ 
             type: 'update-user', 
             payload: { user }
         });
 
     }
+
+    
 
     return (
         <AuthContext.Provider 

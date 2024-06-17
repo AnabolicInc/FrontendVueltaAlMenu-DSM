@@ -21,11 +21,14 @@ import ChangePasswordScreen from '../screens/profile/changePassword/ChangePasswo
 import ConfirmValidationCodeScreen from '../screens/resetPassword/confirmValidationCode/ConfirmValidationCodeScreen'
 import ChangeForgotPasswordScreen from '../screens/resetPassword/confirmValidationCode/changeForgotPassword/ChangeForgotPasswordScreen'
 import PaymentScreen from '../screens/client/payment/PaymentScreen'
+import { Category } from "../../Domain/entities/Category";
+import CreateNewProductScreen from '../screens/admin/product/create/CreateNewProductScreen'
 
 
 
 
 export type RootStackParamList = {
+    CreateNewProductScreen: undefined;
     ForgotPasswordScreen: undefined;
     ConfirmValidationCodeScreen: {email: string};
     ChangeForgotPasswordScreen: {email: string};
@@ -36,13 +39,9 @@ export type RootStackParamList = {
     ClientBottomTab: undefined;
     AdminBottomTab: undefined;
 
-    CategoryCreateScreen: undefined;
-    CategoryListScreen: undefined;
-    CategoryUpdateScreen: undefined;
-
     ProfileUpdateScreen: undefined;
 
-    ChangePasswordScreen: undefined;
+    ChangePasswordScreen: { email: string};
 
     PaymentScreen: undefined;
 
@@ -77,7 +76,7 @@ export const MainAppStack = () => {
 
                 {/* <Stack.Screen name="DeliveryBottomTab" component={DeliveryBottomTab} */}
             </>
-        } else {
+        } else if (user.role_id == 1){
             return <>
                 <Stack.Screen name="AdminBottomTab" component={AdminBottomTab} />
                 <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen} />
@@ -94,7 +93,8 @@ export const MainAppStack = () => {
         <Stack.Navigator
             initialRouteName='LoginScreen'
             screenOptions={{
-                headerShown: false
+                headerShown: false,
+                gestureEnabled: true,
             }}
         >
             {status !== 'authenticated'
@@ -111,9 +111,7 @@ export const MainAppStack = () => {
             }
 
 
-            <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
-            <Stack.Screen name="CategoryCreateScreen" component={CategoryCreateScreen} />
-            <Stack.Screen name="CategoryUpdateScreen" component={CategoryUpdateScreen} />
+
 
 
 

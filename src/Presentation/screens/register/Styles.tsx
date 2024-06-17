@@ -5,7 +5,7 @@ import { COLORS, FONTSIZE } from '../../themes/Theme'
 
 
 const RegisterStyles = StyleSheet.create({
-
+	
     registerContainer:{
 		flex: 1,
 		position: 'relative',
@@ -37,7 +37,7 @@ const RegisterStyles = StyleSheet.create({
 	},
 	
     registerMainTitle: {
-		color: COLORS.primaryOrange,
+		color: COLORS.primaryWhite,
 		fontSize: FONTSIZE.size_24,
 		textAlign: 'center',
 		marginBottom: 20,
@@ -49,12 +49,27 @@ const RegisterStyles = StyleSheet.create({
 	
     registerUserImage: {
 		
-		width: 100,
-		height: 100,
+		width: 200,
+		height: 200,
+		borderRadius: 100,
+		borderWidth: 1,
+		borderColor: COLORS.primaryOrange,
 		position: 'relative',
 		top: "0%",
 		alignSelf: 'center',
+		zIndex: 1,
     },
+	imageBackgroud: {
+		width: 210,
+		height: 210,
+		borderRadius: 100,
+		position: 'relative',
+		top: "0%",
+		alignSelf: 'center',
+		backgroundColor: COLORS.primaryOrange,
+		opacity: 0.5,
+		zIndex: -1,
+	},
 
     backButton: {
 		width: 30,

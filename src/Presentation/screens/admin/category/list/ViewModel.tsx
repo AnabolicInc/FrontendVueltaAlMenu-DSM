@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { CategoryListUseCase } from "../../../../../Domain/useCases/Category/CategoryListUseCase";
+import React, { useContext, useState } from "react";
+import { categoryContext } from "../../../../context/category/CategoryContext";
+import { AuthContext } from "../../../../context/auth/AuthContext";
 import { Category } from "../../../../../Domain/entities/Category";
-import { useFocusEffect } from "@react-navigation/native";
 
 const CategoryListViewModel = () => {
-    const [categories, setCategories] = useState<Category[]>([]);
+    const { categories, deleteCategory: deleteCategoryContext, setCurrentCategory } = useContext(categoryContext);
+    const { user, updateUser: updateUserContext } = useContext(AuthContext);
 
-    useEffect (() => { 
-        getCategories();
-    });
-    
-    const getCategories = async () => {
+    const deleteCategory = async (id: string) => {
+        try {
+            await deleteCategoryContext(id);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-        const response = await CategoryListUseCase();
-
-        setCategories(response.data)
+    const selectCategory = (category: Category) => {
+        setCurrentCategory(category);
     }
 
     return {
-        categories
+        categories,
+        deleteCategory,
+        selectCategory
     };
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import * as Yup from 'yup';
 import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
@@ -7,7 +7,7 @@ import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFil
 import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
 import { showMessage } from "react-native-flash-message";
 import { SaveCategoryUseCase } from "../../../../../Domain/useCases/Category/SaveCategoryLocal";
-
+import { categoryContext } from "../../../../context/category/CategoryContext";
 
 
 
@@ -36,6 +36,7 @@ const validationCategorySchema = Yup.object().shape({
 const CategoryCreateViewModel = () => {
 
 
+	const { createCategory: createCategoryContext } = useContext(categoryContext);
 	const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
 	const [responseError, setResponseError] = useState<ResponseErrorData[]>([]);
@@ -48,17 +49,11 @@ const CategoryCreateViewModel = () => {
 	
 	const [loading, setLoading] = useState(false);
 
-
-
-
     const onChange = (property: string, value: string) => {
 
 		setValues({ ... values, [property]:value});
 
 	};
-
-
-
 
     const [file, setfile] = useState<ImagePicker.ImageInfo>();
 
@@ -104,21 +99,21 @@ const CategoryCreateViewModel = () => {
 
 				const { image, ...data } = values; //Destructurando los datos
 
-				const response = await CategoryCreateUseCase(data);
+				const response = await createCategoryContext(data, file);
 				
 				if(response.success){
 
-					const responseImage = await UpdateFileUseCase(file!, 'categories', response.data.id);
-					const dataCategory = response.data;                     
-					dataCategory.image = responseImage.data;
-					await SaveCategoryUseCase(dataCategory);
-					console.log(dataCategory);
+					showMessage({
+						message: 'Categoría creada correctamente',
+						type: 'success',
+						icon: 'success',
+					});
 
 					setLoading(false);
-
+					console.log('Creación de categoría exitoso');
 				}
 				
-				console.log('Creación de categoría exitoso');
+				
 
 			} catch (error) {
 				const rejectErrors: ResponseAPIDelivery = error;
@@ -131,17 +126,12 @@ const CategoryCreateViewModel = () => {
 						icon: 'danger',
 					});
 				}else{
-
 					console.log('Error en la creación de categoría');
-
-
-				
-					const errorsArray = Object.values(rejectErrors.errors);
-
-					const errorsArrayFilter = errorsArray.map(({ msg, path }) => ({ value: msg, path }))
-					console.log(errorsArrayFilter);
-					setErrorResponses(errorsArrayFilter);
-					
+					showMessage({
+						message: 'Error al crear la categoría',
+						type: 'danger',
+						icon: 'danger',
+					});
 				}
 				setLoading(false);
 				
@@ -179,6 +169,7 @@ const CategoryCreateViewModel = () => {
         takePhoto,
         errorMessages,
         responseError: errorsResponse,
+		loading,
       };
 }
 

@@ -1,152 +1,119 @@
-import { View, Text, ScrollView, Image, Pressable, Modal, FlatList } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, ScrollView, Image, Pressable, Modal, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 
-
-import { RootStackParamList } from '../../../../navigation/MainAppStack';
+import { AdminCategoryNavigatorParamList } from '../../../../navigation/tabs/admin/AdminCategoryNavigator';
 import styles from './Styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6 } from '@expo/vector-icons';
-import CategoryListBox from '../../../../components/CategoryListBox';
 import { COLORS } from '../../../../themes/Theme';
 import useViewModel from './ViewModel';
-import { useFocusEffect } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Category } from '../../../../../Domain/entities/Category';
 
+interface Props extends StackScreenProps<AdminCategoryNavigatorParamList, 'CategoryListScreen'> {}
 
+export const CategoryListScreen = ({ navigation }: Props) => {
+    const { categories, deleteCategory, selectCategory } = useViewModel();
 
-interface Props extends StackScreenProps<RootStackParamList, 'CategoryListScreen'> { }
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [itemToDeleteName, setItemToDeleteName] = useState<any>(null);
+    const [itemToDelete, setItemToDelete] = useState<any>(null);
 
-export const CategoryListScreen = ({ navigation, route }: Props) => {
+    const handleDeletePress = (categoryItem: Category, categoryName: string) => {
+        setItemToDelete(categoryItem);
+        setItemToDeleteName(categoryName);
+        setShowDeleteConfirmation(true);
+    };
 
-  const { 
-    getCategories,
-    categories 
-  } = useViewModel();
+    const handleDeleteConfirm = () => {
+        console.log("Item to delete:", itemToDelete);
+        deleteCategory(itemToDelete.id);
+        setShowDeleteConfirmation(false);
+    };
 
-  
-  
+    const handleDeleteCancel = () => {
+        setShowDeleteConfirmation(false);
+    };
 
-  // Ventana emergente
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<any>(null); // Almacenar lo que se va a eliminar
+    const handleCategoryPress = (category: Category) => {
+        selectCategory(category);
+        navigation.navigate('AdminProductNavigator');
+    }
 
-  // Actualizar categorías
-  //const [newCategory, setNewCategory] = useState<boolean>(false);
-
-//    useEffect(() => {
-//      getCategories()
-//  }, [])
-
-
-
-  //---------------------------------------------------------------------------------------
-  const handleDeletePress = (item: any) => {
-    setItemToDelete(item);
-    setShowDeleteConfirmation(true);
-  };
-
-  const handleDeleteConfirm = () => {
-    console.log("Item to delete:", itemToDelete);
-    setShowDeleteConfirmation(false);
-    // Funcionalidad para eliminar
-  };
-
-  const handleDeleteCancel = () => {
-    setShowDeleteConfirmation(false);
-  };
-
-
-  return (
-    <View style={styles.categoryListContainer}>
-      <Text style={styles.categoryListText}>CATEGORÍAS</Text>
-
-      <FlatList 
-        style={styles.categoryListInnerContainer} showsVerticalScrollIndicator = {false}
-        data={categories}
-        renderItem={({item}) => {
-
-          
-          const words = item.description.split(' ');
-          const midIndex = Math.floor(words.length / 2);
-          
-          return (
-            
-            <LinearGradient
-              colors={[COLORS.primaryGrey, 'transparent']}
-              style={styles.categoryListElement}>
-              
-              {
-                item.image 
-                ? 
-                <Image style={styles.categoryListImage} source={{uri: item.image}} />
-                :
-                <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/category.png')}/>
-              }
-
-
-              <View style={styles.categoryListInnerElement}>
-                <Text style={styles.categoryListElementTittle}>{item.name}</Text>
-                
-                <Text style={styles.categoryListElementDescription}>
-                  {
-                    item.description.length > 30
-                    ? item.description.split(' ').slice(0, midIndex).join(' ') + '\n' + item.description.split(' ').slice(midIndex).join(' ')
-                    : item.description
-                  }
-                </Text>
-
-                <View style={styles.categoryListInnerInnerElement}>
-                  <View style={styles.buttonEdit}>
-                    <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen')}>
-                      <Text style={styles.editText}>Editar producto</Text>
-                    </Pressable>
-                  </View>
-
-                  <View style={styles.buttonDelete}>
-                    <Pressable onPress={() => handleDeletePress("pizza")}>
-                      <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
-                    </Pressable>
-                  </View>
+    return (
+        <View style={styles.categoryListContainer}>
+            <Text style={styles.categoryListTittle}>CATEGORÍAS</Text>
+            {categories.length === 0 ? (
+                <Text style={styles.noCategoryListText}>No hay categorías para mostar</Text>
+            ) : (
+                <FlatList 
+                    style={styles.categoryListInnerContainer} 
+                    showsVerticalScrollIndicator={false}
+                    data={categories}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                        <Pressable onPress={() => handleCategoryPress(item)}>
+                            <LinearGradient
+                                colors={[COLORS.primaryGrey, 'transparent']}
+                                style={styles.categoryListElement}
+                            >
+                                {item.image ? (
+                                    <Image style={styles.categoryListImage} source={{ uri: item.image }} />
+                                ) : (
+                                    <Image style={styles.categoryListImage} source={require('../../../../../../assets/images/category.png')} />
+                                )}
+                                <View style={styles.categoryListText}>
+                                    <Text style={styles.categoryListElementName}>{item.name}</Text>
+                                    <Text style={styles.categoryListElementDescription}>{item.description}</Text>
+                                </View>
+                                <View style={styles.categoryListOptions}>
+                                    <View style={styles.buttonEdit}>
+                                        <Pressable onPress={() => navigation.navigate('CategoryUpdateScreen', { categoryItem: item })}>
+                                            <FontAwesome6 name="pen-to-square" size={24} color="#D17842" />
+                                        </Pressable>
+                                    </View>
+                                    <View style={styles.buttonDelete}>
+                                        <Pressable onPress={() => handleDeletePress(item, item.name)}>
+                                            <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+                                        </Pressable>
+                                    </View>
+                                </View>
+                            </LinearGradient>
+                        </Pressable>
+                    )}
+                />
+            )}
+            <View style={styles.buttonAdd}>
+                <Pressable onPress={() => navigation.navigate('CategoryCreateScreen')}>
+                    <Text style={styles.saveText}>NUEVA CATEGORÍA</Text>
+                </Pressable>
+            </View>
+            <Modal 
+                visible={showDeleteConfirmation} 
+                animationType="slide" 
+                transparent={true}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalMessageBox}>
+                        <Text style={styles.modalMessageText}>¿Estás seguro de que deseas eliminar la categoría de {itemToDeleteName}?</Text>
+                    </View>
+                    <View style={styles.modalButtonsContainer}>
+                        <Pressable style={styles.modalButtonDelete} onPress={handleDeleteConfirm}>
+                            <View style={styles.modalButtonImageContainer}>
+                                <FontAwesome6 name="trash-can" size={24} color="#ce2029" />
+                            </View>
+                            <Text style={styles.modalButtonText}>Eliminar</Text>
+                        </Pressable>
+                        <Pressable onPress={handleDeleteCancel} style={styles.modalButtonCancel}>
+                            <View style={styles.modalButtonImageContainer}>
+                                <MaterialIcons name="cancel" size={24} color="#ffffff" />
+                            </View>
+                            <Text style={styles.modalButtonText}>Cancelar</Text>
+                        </Pressable>
+                    </View>
                 </View>
-              </View>
-            </LinearGradient>
-          )
-        }}
-        keyExtractor={item => item.id}
-      
-      />
-
-      <View style={styles.buttonAdd}>
-        <Pressable onPress={() => navigation.navigate('CategoryCreateScreen')}>
-          <Text style={styles.saveText}>NUEVA CATEGORÍA</Text>
-        </Pressable>
-      </View>
-
-      {/* Delete confirmation modal */}
-      <Modal visible={showDeleteConfirmation} animationType="fade" transparent>
-        <LinearGradient
-          colors={[COLORS.primaryGrey, COLORS.generalBackgroundBlack]}
-          style={styles.modalContent}>
-          <Text style={styles.modalText}>¿Estás seguro de que quieres eliminar {itemToDelete}?</Text>
-          <View style={styles.modalButtonsContainer}>
-            <View style={styles.modalButtonDelete}>
-              <Pressable onPress={handleDeleteConfirm}>
-                <Text style={styles.modalButton}>Eliminar</Text>
-              </Pressable>
-            </View>
-            <View style={styles.modalButtonCancel}>
-              <Pressable onPress={handleDeleteCancel}>
-                <Text style={styles.modalButton}>Cancelar</Text>
-              </Pressable>
-            </View>
-          </View>
-        </LinearGradient>
-      </Modal>
-
-    </View>
-
-
-  )
+            </Modal>
+        </View>
+    );
 }
-
-export default CategoryListScreen
