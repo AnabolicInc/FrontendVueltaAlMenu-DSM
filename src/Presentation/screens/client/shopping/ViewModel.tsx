@@ -1,43 +1,38 @@
-import React, { useContext, useEffect } from 'react';
-import { ShoppingCartContext } from '../../../context/shopping/ShoppingCartContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { ProductShoppingContext } from '../../../context/ProductShoppingContext';
 import { Product } from '../../../../Domain/entities/Product';
 
 const ShoppingCartViewModel = () => {
-    const context = useContext(ShoppingCartContext);
+    const context = useContext(ProductShoppingContext);
 
     if (!context) {
-        console.error("ShoppingCartContext is undefined");
-        return { shoppingCart: [] };
+        console.error("ProductShoppingContext is undefined");
+        return { shoppingCart: [], total: 0 };
     }
 
-    let { shoppingCart } = context;
+    const { shoppingCart, addItem, subtracItem } = context;
+
+    const [total, setTotal] = useState(0);
 
     if (!shoppingCart) {
         console.error("shoppingCart is undefined in context");
-        shoppingCart = [];
+        return { shoppingCart: [], total: 0 };
     }
 
-    // Agregar un producto estático para pruebas
-    const staticProduct: Product = {
-        id: 'static',
-        name: 'Hamburguesa',
-        description: 'Hamburguesa bien rica',
-        price: 999,
-        quantity: 1,
-        image: 'https://via.placeholder.com/150'
+    const calculateTotal = () => {
+        const total = shoppingCart.reduce((acc, product) => acc + product.price * product.quantity, 0);
+        setTotal(total);
     };
 
-    if (shoppingCart.length === 0) {
-        shoppingCart.push(staticProduct);
-    }
-
     useEffect(() => {
-        console.log('ViewModel - shoppingCart:', shoppingCart);
-        console.log('ViewModel - Number of items in shoppingCart:', shoppingCart.length);
+        calculateTotal();
     }, [shoppingCart]);
 
     return {
         shoppingCart,
+        addItem,
+        subtracItem,
+        total,
     };
 }
 

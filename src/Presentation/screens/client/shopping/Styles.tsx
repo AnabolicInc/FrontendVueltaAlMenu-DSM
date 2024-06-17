@@ -114,8 +114,8 @@ const ShoppingCartStyles = StyleSheet.create({
     },
 
     quantityButton: {
-        width: 30,
-        height: 30,
+        width: 28.44,
+        height: 28.44,
         borderRadius: 5, // Bordes redondeados
         backgroundColor: COLORS.primaryOrange,
         alignItems: 'center',
@@ -125,12 +125,12 @@ const ShoppingCartStyles = StyleSheet.create({
 
     quantityButtonText: {
         color: COLORS.primaryWhite,
-        fontSize: FONTSIZE.size_18,
+        fontSize: FONTSIZE.size_15,
     },
 
     quantityText: {
         color: COLORS.primaryWhite,
-        fontSize: FONTSIZE.size_18,
+        fontSize: FONTSIZE.size_15,
     },
 
     payTotalBox: {
@@ -160,6 +160,10 @@ const ShoppingCartStyles = StyleSheet.create({
         fontFamily: 'Poppins',
         fontSize: 20,
         color: '#F6F6F6',
+    },
+
+    disabledCounterButton: {
+        backgroundColor: COLORS.secondaryDarkGrey,
     },
 });
 

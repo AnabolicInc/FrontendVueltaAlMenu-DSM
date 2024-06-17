@@ -204,6 +204,15 @@ const ClientHomeStyles = StyleSheet.create({
         fontSize: 24,
         bottom: 1,
     },
+    buttonPressed: {
+        backgroundColor: COLORS.primaryDarkGrey,
+    },
+    disabledCounterButton: {
+        backgroundColor: COLORS.secondaryDarkGrey,
+    },
+    disabledAddButton: {
+        backgroundColor: COLORS.secondaryDarkGrey,
+    },
 });
 
 export default ClientHomeStyles;
