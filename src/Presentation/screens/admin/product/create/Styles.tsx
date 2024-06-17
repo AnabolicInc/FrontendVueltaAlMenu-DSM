@@ -12,16 +12,20 @@ const CreateNewProductStyles = StyleSheet.create({
         padding: 20,
     },
     title: {
+        backgroundColor: COLORS.secondaryBlackRGBA,
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        borderColor: COLORS.primaryOrange,
         color: COLORS.primaryWhite,
-        fontFamily: 'Poppins-SemiBold',
-        fontSize: FONTSIZE.size_20,
+        fontSize: FONTSIZE.size_16,
         textAlign: 'center',
         marginVertical: 20,
     },
-    userImage: {
+    productAddImage: {
         width: 120,
         height: 135,
-        marginRight: 10,
+        margin: 5,
     },
     imageButton: {
         backgroundColor: COLORS.primaryDarkGrey,
@@ -40,6 +44,7 @@ const CreateNewProductStyles = StyleSheet.create({
         fontSize: FONTSIZE.size_15,
     },
     inputContainer: {
+        position: 'relative',
         backgroundColor: 'rgba(82, 85, 90, 0.32)',
         width: 320,
         borderRadius: 7,
@@ -87,7 +92,6 @@ const CreateNewProductStyles = StyleSheet.create({
     },
     saveText: {
         color: COLORS.primaryWhite,
-        fontFamily: 'Poppins-Bold.ttf',
         fontSize: 16,
     },
     imageContainer: {
@@ -96,6 +100,18 @@ const CreateNewProductStyles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
+    loadingContainer: {
+		backgroundColor: COLORS.secondaryBlackRGBA,
+		flex: 1,
+		width: '100%',
+		height: '100%',
+		position: 'absolute',
+		justifyContent: 'center',
+		alignSelf: 'center',
+		marginBottom: 10,
+		zIndex: 1,
+	},
+
 });
 
 export default CreateNewProductStyles;

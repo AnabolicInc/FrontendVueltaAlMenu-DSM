@@ -10,12 +10,14 @@ import { ProductContext } from "../../../../context/product/ProductContext";
 
 
 interface Values {
-	image: string;
 	name: string;
 	description: string;
     price: number;
     quantity: number;
 	id: string;
+	image1: string;
+	image2: string;
+	image3: string;
 }
 
 
@@ -41,16 +43,15 @@ const ProductUpdateViewModel = ( route ) => {
 	const [fontsLoaded, setFontsLoaded] = useState(false);
 
 	const [values, setValues] = useState<Values>({
-		image: productItem.image,
 		name: productItem.name,
 		description: productItem.description,
+		price: productItem.price,
+		quantity: productItem.quantity,
 		id: productItem.id,
-        price: productItem.price,
-        quantity: productItem.quantity,
+		image1: productItem.images[0].uri,
+		image2: productItem.images[1].uri,
+		image3: productItem.images[2].uri,
 	});
-
-
-
 
     const onChange = (property: string, value: string) => {
 
@@ -58,12 +59,11 @@ const ProductUpdateViewModel = ( route ) => {
 
 	};
 
+    const [file1, setfile1] = useState<ImagePicker.ImageInfo>();
+    const [file2, setfile2] = useState<ImagePicker.ImageInfo>();
+    const [file3, setfile3] = useState<ImagePicker.ImageInfo>();
 
-
-
-    const [file, setfile] = useState<ImagePicker.ImageInfo>();
-
-	const pickImage = async () => {
+	const pickImage = async (numberImage: number) => {
 
 		let result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -72,14 +72,35 @@ const ProductUpdateViewModel = ( route ) => {
 		});
 		
 		if (!result.canceled) {
-			onChange('image', result.assets[0].uri);
-			setfile(result.assets[0]);
+			await assignFile(result, numberImage)
 		}
-		
+
 	};
 
+	const assignFile = async (result: ImagePicker.ImagePickerResult, numberImage: number) => {
+		
+			switch (numberImage) {
+				case 1:
+					onChange('image1', result.assets[0].uri);
+					setfile1(result.assets[0]);
+					break;
+				case 2:
+					onChange('image2', result.assets[0].uri);
+					setfile2(result.assets[0]);
+					break;
+				case 3:
+					onChange('image3', result.assets[0].uri);
+					setfile3(result.assets[0]);
+					break;
+				default:
+					break;
+			}
+	
+	}
 
-	const takePhoto = async () => {
+
+
+	const takePhoto = async (numberImage: number) => {
 		
 		try {
 			let result = await ImagePicker.launchCameraAsync({
@@ -89,8 +110,7 @@ const ProductUpdateViewModel = ( route ) => {
 			});
 	
 			if (!result.canceled) {
-				onChange('image', result.assets[0].uri);
-				setfile(result.assets[0]);
+				await assignFile(result, numberImage)
 			}
 			
 		} catch (error) {
@@ -128,11 +148,11 @@ const ProductUpdateViewModel = ( route ) => {
             try{
                 setLoading(true);
             
-                const { image, ...data } = values;
+                const { ...data } = values;
 
 		
                 // call to update method in ProductContext
-                const response = await updateProductContext(data.id, data.name, data.description, data.price, data.quantity, file);
+                const response = await updateProductContext(data.id, data.name, data.description, data.price, data.quantity);
                 console.log(response);
                 
                 if (response.success){
