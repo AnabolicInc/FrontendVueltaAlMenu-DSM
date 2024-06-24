@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../../navigation/MainAppStack';
+import { RootAdminTopTabParamList } from '../../../../navigation/tabs/admin/AdminTopTab';
 
-interface Props extends StackScreenProps<RootStackParamList, 'PendingOrderScreen'> {}
+interface Props extends StackScreenProps<RootAdminTopTabParamList, 'PendingOrderScreen'> {}
 
 
-const PendingOrderScreen = ({ navigation, route }: Props) => {
+export const PendingOrderScreen = ({ navigation, route }: Props) => {
   return (
     <View>
       <Text>PendingOrderScreen</Text>
@@ -14,6 +14,6 @@ const PendingOrderScreen = ({ navigation, route }: Props) => {
   )
 }
 
-export default PendingOrderScreen;
+
 
 const styles = StyleSheet.create({})
