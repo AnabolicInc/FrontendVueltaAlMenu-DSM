@@ -1,75 +1,53 @@
 import { StyleSheet } from "react-native";
-
 import { COLORS, FONTSIZE } from '../../themes/Theme'
 
 const AdminHomeStyles = StyleSheet.create(
     {
-        userContainer: {
+        container: {
             flex: 1,
-            alignContent: 'center',
-            alignItems: 'center',
-            backgroundColor: COLORS.generalBackgroundBlack,
+            backgroundColor: '#0C1013',
+            padding: 20,
         },
-        userImage: {
-            backgroundColor: COLORS.generalBackgroundBlack,
-            position: 'absolute',
-            top: "-10%",
-            left: "-30%",
-            width: 350,
-            height: 350,
-            opacity: 0.8
-        },
-        userText: {
-            position: 'absolute',
-            top: "35%",
-            color: COLORS.primaryWhite,
+        welcomeText: {
+            position: 'relative',
+            top: "10%",
             fontFamily: 'Poppins',
-            fontSize: FONTSIZE.size_20,
+            color: '#fff',
+            fontSize: 20,
+            marginBottom: 20,
+        },
+        topBar: {
+            position: 'relative',
+            top: "20%",
+            flexDirection: 'row',
+            marginBottom: 20,
+        },
+        topBarButton: {
+            flex: 1,
+            padding: 10,
+            alignItems: 'center',
+        },
+        topBarText: {
+            color: '#888',
+            fontSize: 10,
+        },
+        selectedButton: {
+            borderBottomWidth: 2,
+            borderBottomColor: '#ff6347',
+        },
+        orderContainer: {
+            backgroundColor: '#1e1e1e',
+            padding: 15,
+            borderRadius: 10,
+            marginBottom: 20,
+        },
+        noOrdersText: {
+            color: '#888',
+            fontSize: 16,
             textAlign: 'center',
-            marginBottom: 20,
         },
-        mainText: {
-            color: COLORS.primaryWhite,
-            fontFamily: 'Poppins',
-            fontSize: FONTSIZE.size_20,
-            textAlign: 'left',
-            marginBottom: 20,
-            position: 'absolute',
-            top: "15%",
-            left: "5%",
 
-        },
-        userButton: {
-            position: 'absolute',
-            top: "50%",
-            left: "15%",
-            width: 250,
-            height: 40,
-            backgroundColor: COLORS.primaryOrange,
-            borderRadius: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-        userButtonText: {
-            color: 'white',
-            fontFamily: 'Poppins',
-            fontSize: 15,
-        },
-        searchBar: {
-            position: 'absolute',
-            top: "30%",
-            left: "5%",
-            width: "90%",
-            height: "8%",
-            backgroundColor: COLORS.primaryDarkGrey,
-            color: COLORS.primaryWhite,
-            borderRadius: 10,
-            textAlign: 'left',
-            fontSize: FONTSIZE.size_15,
-            paddingStart: 15,
-            paddingEnd: 15,
-        },
+
     }
 );
-
 export default AdminHomeStyles;

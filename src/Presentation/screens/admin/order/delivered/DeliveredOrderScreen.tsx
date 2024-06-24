@@ -1,7 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { NativeStackScreenProps } from 'react-native-screens/lib/typescript/native-stack/types'
+import { RootAdminTopTabParamList } from '../../../../navigation/tabs/admin/AdminTopTab'
 
-const DeliveredOrderScreen = () => {;
+
+interface Props extends NativeStackScreenProps<RootAdminTopTabParamList, 'PendingOrderScreen'> {}
+
+export const DeliveredOrderScreen = () => {;
   return (
     <View>
       <Text>DeliveredOrderScreen</Text>;
@@ -9,6 +14,6 @@ const DeliveredOrderScreen = () => {;
   )
 }
 
-export default DeliveredOrderScreen;
+
 
 const styles = StyleSheet.create({})

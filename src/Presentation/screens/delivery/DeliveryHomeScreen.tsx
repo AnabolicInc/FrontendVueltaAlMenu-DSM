@@ -1,10 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import styles from './Styles';
 
-const DeliveryHomeScreen = () => {
+export const DeliveryHomeScreen = () => {
   return (
-    <View>
-      <Text>DeliveryScreen</Text>
+
+    <View style={styles.deliveryContainer}>
+
+      <Text style={{color:'white'}}>DeliveryScreen</Text>
+
     </View>
   )
 }
