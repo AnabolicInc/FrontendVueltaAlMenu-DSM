@@ -30,8 +30,8 @@ import CreateNewProductScreen from '../screens/admin/product/create/CreateNewPro
 export type RootStackParamList = {
     CreateNewProductScreen: undefined;
     ForgotPasswordScreen: undefined;
-    ConfirmValidationCodeScreen: {email: string};
-    ChangeForgotPasswordScreen: {email: string};
+    ConfirmValidationCodeScreen: { email: string };
+    ChangeForgotPasswordScreen: { email: string };
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
@@ -41,13 +41,11 @@ export type RootStackParamList = {
 
     ProfileUpdateScreen: undefined;
 
-    ChangePasswordScreen: { email: string};
+    ChangePasswordScreen: { email: string };
 
-    PaymentScreen: undefined;
-
-
-
+    PaymentScreen: { paymentMethod: string }; 
 };
+
 
 const Stack = createStackNavigator<RootStackParamList>();
 

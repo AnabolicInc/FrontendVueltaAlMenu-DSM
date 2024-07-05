@@ -17,6 +17,7 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
 
     const handlePaymentMethodSelection = (paymentMethod: string) => {
         setMoldalVisible(false);
+        navigation.navigate('PaymentScreen', { paymentMethod, total }); // Navegar con los parámetros correctos
     };
 
     const { shoppingCart, addItem, subtracItem, total } = ShoppingCartViewModel();
@@ -25,9 +26,6 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
         console.log('ShoppingCartScreen - shoppingCart:', shoppingCart);
         console.log('ShoppingCartScreen - Number of items in shoppingCart:', shoppingCart.length);
     }, [shoppingCart]);
-
-    console.log("ShoppingCartScreen - TAMAÑO DEL SHOPPING CART: " + shoppingCart.length);
-    console.log("ShoppingCartScreen - SHOPPING CART CONTENT:", shoppingCart);
 
     const handleIncrementQuantity = (product: Product) => {
         addItem(product);
@@ -112,8 +110,7 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
                 modalUseState={modalVisible}
                 setModalUseState={setMoldalVisible}
                 onPaymentMethodSelected={handlePaymentMethodSelection}
-            >
-            </ModalPickPayment>
+            />
         </View>
     );
 }
