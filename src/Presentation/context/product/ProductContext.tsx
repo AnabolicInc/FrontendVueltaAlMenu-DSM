@@ -8,7 +8,6 @@ import { UpdateFileUseCase } from "../../../Domain/useCases/File/UpdateFileUseCa
 import { SaveProductUseCase } from "../../../Domain/useCases/Product/SaveProductLocal";
 import { ProductUpdateUseCase } from "../../../Domain/useCases/Product/ProductUpdateUseCase";
 import { ProductDeleteUseCase } from "../../../Domain/useCases/Product/ProductDeleteUseCase";
-import { ProductListByCategoryUseCase } from "../../../Domain/useCases/Product/ProductListByCategoryUseCase";
 import { ProductListUseCase } from "../../../Domain/useCases/Product/ProductListAllUseCase";
 
 export interface ProductContextProps {

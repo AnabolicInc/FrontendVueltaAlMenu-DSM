@@ -1,16 +1,9 @@
 import { useContext, useState } from "react";
 import * as Yup from 'yup';
-import * as Font from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
-import { CategoryCreateUseCase } from "../../../../../Domain/useCases/Category/CategoryCreateUseCase";
-import { UpdateFileUseCase } from "../../../../../Domain/useCases/File/UpdateFileUseCase";
 import { ResponseAPIDelivery } from "../../../../../Data/sources/remote/api/models/ResponseApiDelivery";
 import { showMessage } from "react-native-flash-message";
-import { SaveCategoryUseCase } from "../../../../../Domain/useCases/Category/SaveCategoryLocal";
 import { categoryContext } from "../../../../context/category/CategoryContext";
-
-
-
 
 interface Values {
 	image: string;

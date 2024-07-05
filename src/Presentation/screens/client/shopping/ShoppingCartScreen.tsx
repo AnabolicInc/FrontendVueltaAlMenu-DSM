@@ -13,6 +13,7 @@ import { ShoppingCartContext } from '../../../context/shopping/ShoppingCartConte
 import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 import { ClientHomeNavigatorParamList } from '../../../navigation/tabs/client/ClientHomeNavigator';
 import { ProductShoppingContext } from '../../../context/ProductShoppingContext';
+import { NewAddressButtom } from '../../../components/NewAddressButtom';
 
 interface Props extends StackScreenProps<ClientHomeNavigatorParamList, 'ShoppingCartScreen'> { }
 
@@ -111,8 +112,13 @@ export const ShoppingCartScreen = ({ navigation, route }:Props) => {
 				modalUseState={modalVisible}
 				setModalUseState={setMoldalVisible}
 				onPaymentMethodSelected={handlePaymentMethodSelection}
-			>
+				>
 			</ModalPickPayment>
+
+			<Pressable onPress={() => navigation.navigate('AddressCreateScreen')}>
+				<NewAddressButtom />
+            </Pressable>
+			
 
 		</View>
 	)
