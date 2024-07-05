@@ -30,8 +30,8 @@ import { DeliveryBottomTab } from './tabs/delivery/DeliveryBottomTab'
 export type RootStackParamList = {
     CreateNewProductScreen: undefined;
     ForgotPasswordScreen: undefined;
-    ConfirmValidationCodeScreen: {email: string};
-    ChangeForgotPasswordScreen: {email: string};
+    ConfirmValidationCodeScreen: { email: string };
+    ChangeForgotPasswordScreen: { email: string };
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
@@ -42,13 +42,11 @@ export type RootStackParamList = {
     DeliveryBottomTab: undefined
     ProfileUpdateScreen: undefined;
 
-    ChangePasswordScreen: { email: string};
+    ChangePasswordScreen: { email: string };
 
-    PaymentScreen: undefined;
-
-
-
+    PaymentScreen: { paymentMethod: string }; 
 };
+
 
 const Stack = createStackNavigator<RootStackParamList>();
 

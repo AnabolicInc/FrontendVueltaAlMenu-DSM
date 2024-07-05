@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductShoppingContext } from '../../../context/ProductShoppingContext';
 import { Product } from '../../../../Domain/entities/Product';
+import stripe from 'react-native-stripe-client';
+import { STRIPE_PUBLISHABLE_KEY } from '@env';
 
 const ShoppingCartViewModel = () => {
     const context = useContext(ProductShoppingContext);
@@ -11,6 +13,10 @@ const ShoppingCartViewModel = () => {
     }
 
     const { shoppingCart, addItem, subtracItem } = context;
+
+
+
+
 
     const [total, setTotal] = useState(0);
 
@@ -24,6 +30,8 @@ const ShoppingCartViewModel = () => {
         setTotal(total);
     };
 
+
+
     useEffect(() => {
         calculateTotal();
     }, [shoppingCart]);
@@ -35,5 +43,4 @@ const ShoppingCartViewModel = () => {
         total,
     };
 }
-
 export default ShoppingCartViewModel;
