@@ -1,11 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons'
-
-
+import { AdminTopTab } from './AdminTopTab';
 import { ProfileInfoScreen } from '../../../screens/profile/info/ProfileInfoScreen';
 import AdminHomeScreen from '../../../screens/admin/AdminHomeScreen';
-
 import { AdminCategoryNavigator } from './AdminCategoryNavigator';
 
 
@@ -19,6 +17,7 @@ export type RootAdminBottomTabParamList = {
     ProfileUpdateScreen: undefined;
     ChangePasswordScreen: undefined;
     ProductScreen: undefined;
+    AdminTopTab: undefined;  // Añadimos AdminTopTab aquí
 };
 
 const Tab = createBottomTabNavigator<RootAdminBottomTabParamList>();

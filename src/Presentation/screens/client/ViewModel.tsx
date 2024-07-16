@@ -6,10 +6,10 @@ import { ShoppingCartContext } from '../../context/shopping/ShoppingCartContext'
 import { ProductShoppingContext } from '../../context/ProductShoppingContext';
 
 const ProductListViewModel = () => {
-    const { products, getAllProducts} = useContext(ProductShoppingContext);
+    const { products, getAllProducts, saveProductShoppingCart} = useContext(ProductShoppingContext);
 
 
-    const { saveProductShoppingCart } = useContext(ShoppingCartContext);
+    //const { saveProductShoppingCart } = useContext(ShoppingCartContext);
     const addToCart = async (product: Product) => { 
         
         console.log('Add to cart', product);

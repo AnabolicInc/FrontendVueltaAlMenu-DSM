@@ -43,13 +43,15 @@ const ProductUpdateStyles = StyleSheet.create({
 
 	textContainer: {
 		position: 'absolute',
-		width: "100%",
+		width: "90%",
+		height: 170,
 		alignSelf: 'center',
-
 		backgroundColor: `${COLORS.generalBackgroundBlack}70`,
+		top: "50%",
 		bottom: 0,
 		borderRadius: 17,
-		height: 175,
+		borderBottomLeftRadius: 30,
+		borderBottomRightRadius: 30,
 
 	},
 
@@ -73,20 +75,21 @@ const ProductUpdateStyles = StyleSheet.create({
 	},
 
 	buttonEdit: {
-		fontFamily: 'Poppins',
-		fontSize: FONTSIZE.size_15,
-		borderRadius: 10,
-		width: 100,
-		height: 40,
-		
-		top: 5,
-		backgroundColor:COLORS.primaryDarkGrey,
-		borderColor: COLORS.primaryOrange,
-		borderWidth: 1,
 		position: 'relative',
 		alignSelf: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
+		width: 100,
+		height: 40,
+		top: "-50%",
+		left: "-30%",
+		borderRadius: 10,
+		fontFamily: 'Poppins',
+		fontSize: FONTSIZE.size_15,
+		backgroundColor:COLORS.primaryDarkGrey,
+		borderColor: COLORS.primaryOrange,
+		borderWidth: 1,
+
 	},
 
 	buttonSave: {
@@ -204,14 +207,8 @@ const ProductUpdateStyles = StyleSheet.create({
 
 
 	productImagesContainer: {
-
-		
 		width: 400,
 		height: 450,
-		
-		
-
-		
 	},
 
 	imagesContainer: {

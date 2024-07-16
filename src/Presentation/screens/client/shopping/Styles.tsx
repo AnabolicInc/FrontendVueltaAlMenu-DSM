@@ -1,183 +1,170 @@
 import { StyleSheet } from "react-native";
 import { COLORS, FONTSIZE } from "../../../themes/Theme";
 
-const ShoppingCartStyles = StyleSheet.create(
-    {
+const ShoppingCartStyles = StyleSheet.create({
+    shoppingCartContainer: {
+        flex: 1,
+        backgroundColor: COLORS.generalBackgroundBlack,
+        alignItems: 'center',
+    },
 
-        shoppingCartContainer: {
-            flex: 1,
-            backgroundColor: COLORS.generalBackgroundBlack,
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center', // Centrar el título
+        width: '100%',
+        padding: 15,
+        marginTop: 20,
+        marginBottom: 15,
+    },
 
+    backButton: {
+        position: 'absolute',
+        left: 15,
+        width: 30,
+        height: 30,
+    },
 
-        shoppingCartInnerContainer: {
-            flex: 1,
-            flexDirection: 'column',
-            position: 'relative',
-            alignItems: 'center',
-            justifyContent: 'center',
-            alignSelf: 'center',
+    mainText: {
+        fontFamily: 'Poppins',
+        fontSize: 20,
+        color: COLORS.primaryWhite, // Cambiar a blanco
+    },
 
-        },
+    noShoppingCartListText: {
+        color: COLORS.primaryOrange,
+        fontFamily: 'Poppins',
+        fontSize: FONTSIZE.size_20,
+        textAlign: 'center',
+        marginVertical: 20,
+    },
 
-        payTotalBox: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '70%',
-            top: "100%",
-        },
+    shoppingCartListInnerContainer: {
+        flex: 1,
+        width: "90%",
+        marginTop: 20,
+    },
 
-        totalBox: {
-            flexDirection: 'column',
-        },
+    shoppingCartListElement: {
+        backgroundColor: COLORS.secondaryBlackRGBA,
+        width: "100%",
+        borderRadius: 20, // Redondear más los bordes
+        padding: 15,
+        marginBottom: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 
-        totalTitle: {
-            fontSize: FONTSIZE.size_16,
-            color: COLORS.primaryWhite,
-        },
+    shoppingCartListImage: {
+        borderRadius: 15, // Redondear más los bordes
+        width: 100,
+        height: 100,
+        marginRight: 10,
+    },
 
-        priceSign: {
-            fontSize: FONTSIZE.size_18,
-            color: COLORS.primaryOrange,
-        },
+    shoppingCartListText: {
+        flex: 1,
+        flexDirection: 'column',
+        marginRight: 10, // Aumentar el espacio hacia la derecha
+    },
 
-        priceText: {
-            fontSize: FONTSIZE.size_18,
-            color: COLORS.primaryWhite,
-        },
+    shoppingCartListElementName: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        fontSize: 15, // Cambiar tamaño a 15
+        marginBottom: 5,
+    },
 
-        payButton: {
-            flexDirection: 'row',
-            backgroundColor: '#D17842',
-            padding: 13,
-            paddingStart: 35,
-            paddingEnd: 35,
-            borderRadius: 10,
-        },
+    shoppingCartListElementDescription: {
+        color: COLORS.primaryLightGrey,
+        fontFamily: 'Poppins',
+        fontSize: 9, // Cambiar tamaño a 9
+        marginBottom: 5,
+    },
 
-        payText: {
-            fontFamily: 'Poppins',
-            fontSize: 20,
-            color: '#F6F6F6',
-        },
+    priceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10, // Añadir espacio debajo del precio
+    },
 
-        backButton: {
-            position: 'relative',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 30,
-            height: 30,
-            top: "-8%",
-            left: "-38%",
-        },
+    priceText: {
+        color: COLORS.primaryWhite,
+        fontFamily: 'Poppins',
+        fontSize: 13, // Cambiar tamaño a 13
+        marginRight: 5,
+    },
 
+    priceCurrency: {
+        color: COLORS.primaryOrange,
+        fontFamily: 'Poppins',
+        fontSize: 13, // Cambiar tamaño a 13
+    },
 
-        mainText: {
-            
-            fontFamily: 'Poppins',
-            fontSize: 20,
-            color: '#D17842',
-        },
-        userText: {
-            fontFamily: 'Poppins',
-            fontSize: 20,
-            color: '#D17842',
-            marginBottom: 20,
-        },
-        userButton: {
-            backgroundColor: '#D17842',
-            padding: 10,
-            borderRadius: 5,
-            marginTop: 20,
-        },
-        userButtonText: {
-            fontFamily: 'Poppins',
-            fontSize: 20,
-            color: '#F6F6F6',
-        },
-        titleText: {
-            fontFamily: 'Poppins',
-            fontSize: 15,
-            color: '#ffffff',
-            marginBottom: 20,
-            position: 'absolute',
-            top: "30%",
-            left: "10%",
-        },
+    priceSign: {
+        fontSize: 13, // Cambiar tamaño a 13
+        color: COLORS.primaryOrange,
+    },
 
-        
-        fieldContainer: {
-            marginTop: 20,
-        },
+    quantityContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between', // Distribuir botones a través del contenedor
+        width: '100%',
+    },
 
-        noShoppingCartListText: {
-            position: 'absolute',
-            top: "50%",
-            color: COLORS.primaryOrange,
-            fontFamily: 'Poppins',
-            fontSize: FONTSIZE.size_20,
-            textAlign: 'center',
-            marginBottom: 20,
-    
-          },
+    quantityButton: {
+        width: 28.44,
+        height: 28.44,
+        borderRadius: 5, // Bordes redondeados
+        backgroundColor: COLORS.primaryOrange,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 5,
+    },
 
-          shoppingCartListInnerContainer: {
-            flex: 1,
-            flexGrow: 1,
-            flexDirection: 'column',
-            width: "85%",
-            height: "70%",
-            position: 'absolute',
-            top: "18%",
-            alignContent: 'center',
-            borderRadius: 10,
-          },
+    quantityButtonText: {
+        color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_15,
+    },
 
-          shoppingCartListElement: {
-            backgroundColor: COLORS.secondaryBlackRGBA,
-            flex: 1,
-            width: "100%",
-            height: 150,
-            borderRadius: 30,
-            marginBottom: 10,
-            paddingStart: 15,
-            paddingEnd: 15,
-            alignSelf: 'stretch',
-            flexDirection: 'row',
-          },
+    quantityText: {
+        color: COLORS.primaryWhite,
+        fontSize: FONTSIZE.size_15,
+    },
 
-          shoppingCartListImage: {
-            position: 'relative',
-            borderRadius: 30,
-            width: 100,
-            height: 100,
-            top: 25,
-            marginRight: '4%',
-          },
+    payTotalBox: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        padding: 20,
+        position: 'absolute',
+        bottom: 20,
+    },
 
-          shoppingCartListText: {
-            alignSelf: 'stretch',
-            flexDirection: 'column',
-          },
+    totalTitle: {
+        fontSize: FONTSIZE.size_16,
+        color: COLORS.primaryWhite,
+    },
 
-          shoppingCartListElementName: {
-            color: COLORS.primaryWhite,
-            fontFamily: 'Poppins',
-            textAlign: 'left',
-            fontSize: FONTSIZE.size_18,
-            top: 25,
-          },
-    
-          shoppingCartListElementDescription: {
-            color: COLORS.primaryLightGrey,
-            fontFamily: 'Poppins',
-            textAlign: 'left',
-            fontSize: FONTSIZE.size_12,
-            top: 25,
-          },
-    }
-);
+    payButton: {
+        flexDirection: 'row',
+        backgroundColor: '#D17842',
+        padding: 13,
+        paddingStart: 35,
+        paddingEnd: 35,
+        borderRadius: 10,
+    },
+
+    payText: {
+        fontFamily: 'Poppins',
+        fontSize: 20,
+        color: '#F6F6F6',
+    },
+
+    disabledCounterButton: {
+        backgroundColor: COLORS.secondaryDarkGrey,
+    },
+});
 
 export default ShoppingCartStyles;

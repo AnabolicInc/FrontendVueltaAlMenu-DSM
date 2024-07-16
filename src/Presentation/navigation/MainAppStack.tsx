@@ -23,31 +23,30 @@ import ChangeForgotPasswordScreen from '../screens/resetPassword/confirmValidati
 import PaymentScreen from '../screens/client/payment/PaymentScreen'
 import { Category } from "../../Domain/entities/Category";
 import CreateNewProductScreen from '../screens/admin/product/create/CreateNewProductScreen'
-
+import { DeliveryBottomTab } from './tabs/delivery/DeliveryBottomTab' 
 
 
 
 export type RootStackParamList = {
     CreateNewProductScreen: undefined;
     ForgotPasswordScreen: undefined;
-    ConfirmValidationCodeScreen: {email: string};
-    ChangeForgotPasswordScreen: {email: string};
+    ConfirmValidationCodeScreen: { email: string };
+    ChangeForgotPasswordScreen: { email: string };
     LoginScreen: undefined;
     RegisterScreen: undefined;
     ResetPasswordScreen: undefined;
 
     ClientBottomTab: undefined;
     AdminBottomTab: undefined;
-
+    AdminTopTab: undefined;
+    DeliveryBottomTab: undefined
     ProfileUpdateScreen: undefined;
 
-    ChangePasswordScreen: { email: string};
+    ChangePasswordScreen: { email: string };
 
-    PaymentScreen: undefined;
-
-
-
+    PaymentScreen: { paymentMethod: string }; 
 };
+
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -74,7 +73,7 @@ export const MainAppStack = () => {
             //this delivery
             return <>
 
-                {/* <Stack.Screen name="DeliveryBottomTab" component={DeliveryBottomTab} */}
+                <Stack.Screen name="DeliveryBottomTab" component={DeliveryBottomTab}/> 
             </>
         } else if (user.role_id == 1){
             return <>

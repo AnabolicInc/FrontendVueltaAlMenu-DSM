@@ -1,52 +1,59 @@
-import { View, Text, Image, TextInput, ScrollView, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Image, Pressable, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-
-
 import styles from './Styles';
 import useViewModel from './ViewModel';
 import { COLORS } from '../../../../themes/Theme';
 import { ClientShoppingNavigatorParamList } from '../../../../navigation/tabs/client/ClientShoppingNavigator';
 import { Product } from '../../../../../Domain/entities/Product';
-import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
-
 
 interface Props extends StackScreenProps<ClientShoppingNavigatorParamList, 'ProductInfoScreen'> { }
 
 export const ProductInfoScreen = ({ navigation, route }: Props) => {
-
-  const [modalVisible, setModalVisible] = useState<boolean>(false); //Modal para mostrar mensaje de error
+  const [modalVisible, setModalVisible] = useState<boolean>(false); // Modal para mostrar mensaje de error
 
   const { product } = route.params;
+  const { addToCart, subtracItem, addItem } = useViewModel();
+  const [quantity, setQuantity] = useState<number>(1);
+  const [totalPrice, setTotalPrice] = useState<number>(product.price);
 
-  const { addToCart } = useViewModel();
+  useEffect(() => {
+    setTotalPrice(product.price * quantity);
+  }, [quantity]);
 
-  const handleProductPress = (product: Product) => {
+  const handleAddToCart = () => {
+    product.quantity = quantity;
     addToCart(product);
-  }
+  };
 
+  const incrementQuantity = () => {
+    if (quantity < product.quantity) {
+      setQuantity(quantity + 1);
+      addItem({ ...product, quantity: quantity + 1 });
+    }
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+      subtracItem({ ...product, quantity: quantity - 1 });
+    }
+  };
 
   return (
     <View style={styles.productInfoContainer}>
-
       <View>
-
-        {
-          (product.image == '' || product.image == null)
-            ?
-            <Image style={styles.productInfoImage} source={require('../../../../../../assets/images/category.png')} />
-            :
-            <Image style={styles.productInfoImage} source={{ uri: product.image }} />
-
-        }
+        {product.image == '' || product.image == null ? (
+          <Image style={styles.productInfoImage} source={require('../../../../../../assets/images/category.png')} />
+        ) : (
+          <Image style={styles.productInfoImage} source={{ uri: product.image }} />
+        )}
         <View style={styles.textContainer}>
           <Text style={styles.productName}>{product.name}</Text>
         </View>
       </View>
 
-      <Text style={styles.descriptionTitle}>
-        Descripción
-      </Text>
+      <Text style={styles.descriptionTitle}>Descripción</Text>
 
       <Text style={styles.descriptionComplete}>
         {product.description.length > 42
@@ -55,26 +62,39 @@ export const ProductInfoScreen = ({ navigation, route }: Props) => {
       </Text>
 
       <View style={styles.productListPriceAddBoxContainer}>
-        <View style={styles.productListPriceAddBox}>
+        <View style={styles.priceBox}>
+          <Text style={styles.priceText}>Precio</Text>
+          <Text style={styles.productListElementPriceSignText}>$
+            <Text style={styles.productListElementPriceText}> {totalPrice}</Text>
+          </Text>
+        </View>
 
-          <View style={styles.priceBox}>
-
-            <Text style={styles.priceText}>Precio</Text>
-
-            <Text style={styles.productListElementPriceSignText}>$
-              <Text style={styles.productListElementPriceText}> {product.price}</Text>
-            </Text>
+        <View style={styles.quantityAddContainer}>
+          <View style={styles.counterContainer}>
+            <TouchableOpacity style={[styles.counterButton, quantity >= product.quantity && styles.disabledCounterButton]} onPress={incrementQuantity} disabled={quantity >= product.quantity}>
+              <Text style={styles.counterButtonText}>+</Text>
+            </TouchableOpacity>
+            <Text style={styles.counterText}>{quantity}</Text>
+            <TouchableOpacity
+              style={[styles.counterButton, quantity === 0 && styles.disabledCounterButton]}
+              onPress={decrementQuantity}
+              disabled={quantity === 0}
+            >
+              <Text style={styles.counterButtonText}>-</Text>
+            </TouchableOpacity>
           </View>
 
-          <Pressable style={styles.addButton} onPress={() => handleProductPress(product)}>
+          <Pressable
+            style={[styles.addButton, quantity === 0 && styles.disabledAddButton]}
+            onPress={handleAddToCart}
+            disabled={quantity === 0}
+          >
             <Text style={styles.addButtonText}>Agregar al carrito</Text>
           </Pressable>
-
         </View>
       </View>
-
     </View>
-  )
-}
+  );
+};
 
 export default ProductInfoScreen;

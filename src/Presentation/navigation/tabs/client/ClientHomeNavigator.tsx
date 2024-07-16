@@ -18,12 +18,15 @@ interface ContextStateProps {
 
 
 export type ClientHomeNavigatorParamList = {
+    ShoppingCartScreen: undefined;
     ClientHomeScreen: undefined;
     ProductInfoScreen: { product: Product };
     ShoppingCartScreen: undefined;
     AddressCreateScreen: undefined;
     AddressListScreen: undefined;
-}
+    PaymentScreen: { paymentMethod: string; total: number }; 
+};
+
 
 const Stack = createStackNavigator<ClientHomeNavigatorParamList>();
 
