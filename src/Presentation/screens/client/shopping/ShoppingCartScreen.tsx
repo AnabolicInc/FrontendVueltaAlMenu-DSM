@@ -6,9 +6,12 @@ import styles from './Styles';
 import { ModalPickPayment } from '../../../components/ModalPickPayment';
 import { COLORS } from '../../../themes/Theme';
 import { ClientHomeNavigatorParamList } from '../../../navigation/tabs/client/ClientHomeNavigator';
+import { ProductShoppingContext } from '../../../context/ProductShoppingContext';
+import { NewAddressButtom } from '../../../components/NewAddressButtom';
 import ShoppingCartViewModel from './ViewModel';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Product } from '../../../../Domain/entities/Product';
+
 
 interface Props extends StackScreenProps<ClientHomeNavigatorParamList, 'ShoppingCartScreen'> { }
 
@@ -86,6 +89,52 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
                         </LinearGradient>
                     )}
                 />
+
+            	)} */}	 
+
+
+				{/*createa a pressable button to go to the payment screen */}
+
+				<View style={styles.payTotalBox}>
+
+					<View>
+
+						<Text style={styles.totalTitle}>Total</Text>
+
+						<View style={{flexDirection: 'row'}}>
+							<Text style={styles.priceSign}>$</Text>
+							{/* Cambiar a variable total */}
+							<Text style={styles.priceText}>total</Text>
+						</View>
+					</View>
+
+					<Pressable
+						style={styles.payButton}
+						onPressIn={() => setMoldalVisible(true)}
+						//onPress={ () => navigation.navigate('PaymentScreen')}
+					>
+						<MaterialCommunityIcons style={{ marginRight: 10 }} name="cart" size={20} color="white" />
+						<Text style={styles.payText}>Pagar</Text>
+					</Pressable>
+				</View>
+
+			</View>
+
+			<ModalPickPayment
+				modalUseState={modalVisible}
+				setModalUseState={setMoldalVisible}
+				onPaymentMethodSelected={handlePaymentMethodSelection}
+				>
+			</ModalPickPayment>
+
+			<Pressable onPress={() => navigation.navigate('AddressCreateScreen')}>
+				<NewAddressButtom />
+            </Pressable>
+			
+
+		</View>
+	)
+
             )}
 
             <View style={styles.payTotalBox}>
@@ -113,6 +162,7 @@ export const ShoppingCartScreen = ({ navigation, route }: Props) => {
             />
         </View>
     );
+
 }
 
 export default ShoppingCartScreen;

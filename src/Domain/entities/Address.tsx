@@ -2,7 +2,7 @@ export interface Address {
     id?: string;
     address: string;
     neighborhood: string;
-    lat: number;
-    lng: number;
+    latitud: number;
+    longitud: number;
     user_id: string;
 }
